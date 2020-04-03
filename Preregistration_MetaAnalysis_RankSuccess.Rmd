@@ -16,7 +16,7 @@ output:
     latex_engine: xelatex
   github_document: 
     toc: true
-bibliography: /Users/dieterlukas//Users/dieterlukas/ownCloud/Documents/GitHub/FemaleDominanceReproduction_MetaAnalysis/MyLibrary.bib
+bibliography: /Users/dieterlukas/ownCloud/Documents/GitHub/FemaleDominanceReproduction_MetaAnalysis/MyLibrary.bib
 ---
 
 ```{r setup, include=FALSE}
@@ -248,6 +248,6 @@ This research is funded by the Department of Human Behavior, Ecology and Culture
 
 ###I. CONFLICT OF INTEREST DISCLOSURE
 
-We, the authors, declare that we have no financial conflicts of interest with the content of this article. Corina Logan and Dieter Lukas are Recommenders at PCI Ecology and Corina Logan is on the Managing Board at PCI Ecology.
+We, the authors, declare that we have no financial conflicts of interest with the content of this article. Dieter Lukas is a Recommender at PCI Ecology.
 
 ###J. [REFERENCES](MyLibrary.bib)
