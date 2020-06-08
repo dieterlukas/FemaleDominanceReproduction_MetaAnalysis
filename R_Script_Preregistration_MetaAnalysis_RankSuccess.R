@@ -308,7 +308,7 @@ for (i in 1:50) curve(post$etasq[i]*exp(-post$rhosq[i]*x^2),add=TRUE,col=grau())
 
 
 #Here, we expand the phylogenetic model to include a nested effect
-#In the analyses, we might expect that patterns differ between cooperative and plural breeders
+#In the analyses, we might expect that patterns differ between cooperative and plural breeders, or that group size does not have an influence in captive studies where individuals receive food but in wild populations
 #Here, we estimate whether patterns differ between studies that measured rank on a linear hierarchy and those that classified individuals into rank categories.
 #In particular, we assume that the influence of group size on the effect sizes might be different depending on the measurement method.
 dat_list <- list(
