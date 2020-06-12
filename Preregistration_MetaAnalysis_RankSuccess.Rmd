@@ -7,17 +7,17 @@ author:
 date: '`r Sys.Date()`'
 mainfont: Verdana
 output:
+  pdf_document:
+    keep_tex: yes
+    latex_engine: xelatex
+  md_document: 
+    toc: true
   html_document: 
     toc: TRUE
     toc_depth: 4
     toc_float: 
       collapsed: false
     code_folding: hide 
-  md_document: 
-    toc: true
-  pdf_document:
-    keep_tex: yes
-    latex_engine: xelatex
   github_document: 
     toc: true
 bibliography: /Users/dieterlukas/ownCloud/Documents/GitHub/FemaleDominanceReproduction_MetaAnalysis/MyLibrary.bib
@@ -69,7 +69,7 @@ We expect that, overall, high dominance rank has a positive effect on reproducti
 
 #### **2) What are the life history traits that mediate the benefits of rank on reproductive success?**
 
-We expect that dominants have higher reproductive success predominantly in species in which females have the flexibility to quickly produce large numbers of offspring.
+We expect that dominants have higher reproductive success predominantly in species in which females have the ability to quickly produce large numbers of offspring.
 
 
 #### **3) What are the ecological conditions that mediate the benefits of rank on reproductive success?**
@@ -87,7 +87,7 @@ We expect that the association between dominance rank and reproduction is strong
   
 ### D. PREDICTIONS
 
-To answer these questions, we will assess the following predictions:
+To answer these questions, we will assess the following predictions. All our predictions consider the potential direct influence of a specific variable on the size of the effect of dominance rank on reproductive success. The predictions present the direction of the influence we consider a-priori most likely. We will report all results, but in instances where influences are opposite to what we predict further studies will be necessary to place these results in context. In addition, several of the variables we will include are likely to influence each other. Accordingly, analyses with single variables might not necessarily show the predicted direct influence even if it is present (e.g. there might not be a positive relationship between a social system and the size of the effects if species with this particular social system primarily occur in environments where the size of the effect is expected to be smaller). While deciphering all the potential relationships among the variables we include is beyond the scope of this study, we will also perform analyses accounting for these potential interactions among variables by performing path analyses. We focus on instances where we expect that one variable might remove or change the direction of the influence of another variable, and present these at the end of the predictions.
 &nbsp; 
   
 
@@ -172,13 +172,36 @@ We predict that the effect of rank on reproductive success will be stronger in p
 
 We predict that the relationship between dominance rank and reproductive success will be more pronounced in species in which social groups primarily consist of close kin compared to groups composed of unrelated females. Groups with high levels of average kinship among females are those where groups are small, females remain philopatric (@lukas2005extent), and females have support to establish their positions (@lukas2018social), which all are expected to lead to higher benefits of high rank.
 
-*P4.6 The effect of dominance on reproductive success will be less pronounced in populations in which females regularly form coalitions.*
+*P4.6 Dominance rank will be more strongly associated with reproductive success in populations in which variance in relatedness among female group members is high.*
+
+In addition to levels of average relatedness among group females, we also predict that the relationship between dominance rank and reproductive success will be more pronounced in species in which there is high variance in relatedness, with females being closely related to some group members but not to others, as compared to species in which group females are either all related or all unrelated. In several species with female philopatry, groups are structured into matrilines (@fortunato2019lineal). Members of the same matriline tend to support each other in interactions with unrelated females, likely reinforcing differences among females. 
+
+*P4.7 The effect of dominance on reproductive success will be less pronounced in populations in which females regularly form coalitions.*
 
 We predict that high ranking females will have less pronounced reproductive benefits in species in which females form strategic coalitions with others (@bercovitch1991social). Individuals have been suggested to form strategic coalitions to level the reproduction of others (@pandit2003model) and these coalitions are less likely in cooperatively breeding species (@lukas2018social). 
 
-*P4.7 Dominance rank will have less effect on reproductive success in populations in which there is intense inter-sexual conflict.*
+*P4.8 Dominance rank will have less effect on reproductive success in populations in which there is intense inter-sexual conflict.*
 
-We predict that the association between high dominance rank and increased reproductive success of females will be lower in populations in which males compete intensively over reproductive opportunites because this leads to intersexual conflict that harms females. In such populations, males tend to be aggressive towards females and males taking up tenure in a group tend to kill offspring indiscriminately or might even target offspring of high-ranking females (@fedigan2013sexual), reducing any potential differences between high- and low-ranking females. We will assess whether high ranking females benefit less from their positions in populations in which groups show strong female-biased sex composition and in which males regularly commit infanticide.
+We predict that the association between high dominance rank and increased reproductive success of females will be lower in populations in which males compete intensively over reproductive opportunites because this leads to intersexual conflict that harms females. In such populations, males tend to be aggressive towards females and males taking up tenure in a group tend to kill offspring indiscriminately or might even target offspring of high-ranking females (@fedigan2013sexual), reducing any potential differences between high- and low-ranking females. We will assess whether high ranking females benefit less from their positions in populations in which groups show strong female-biased sex composition, or in which males regularly commit infanticide, or with strong sexual size dimorphism with males being much larger than females.
+
+  
+  &nbsp; 
+
+
+#### **Potential interactions among predictor variables**
+
+*Studies performed on wild versus captive individuals and using different measures of reproductive success might not only differ in the overall strength of the effect of rank on reproductive success, but also in how other variables influence this effect.*
+
+*Higher population density [predicted to lead to larger effect sizes] might be associated with larger group sizes [smaller effect sizes predicted], leading to an interactive influence on the strength of the effect sizes of dominance rank on reproductive success.*
+
+*Smaller group sizes [larger effect sizes predicted) might be associated with more intense intersexual conflict [smaller effect sizes predicted], leading to an interactive influence on the strength of the effect sizes of dominance rank on reproductive success.*
+
+*Monopolizable resources [larger effect sizes predicted] might be associated with reduced population density [smaller effect sizes predicted]), leading to an interactive influence on the strength of the effect sizes of dominance rank on reproductive success.*
+
+*Environmental harshness [larger effect sizes predicted] might be associated with reduced population density [smaller effect sizes predicted]), leading to an interactive influence on the strength of the effect sizes of dominance rank on reproductive success.*
+
+*Female philopatry [larger effect sizes predicted] might be associated with increased group sizes [smaller effect sizes predicted]), leading to an interactive influence on the strength of the effect sizes of dominance rank on reproductive success.*
+
 
 
   
@@ -251,7 +274,7 @@ This data will be added prior to the analyses, depending on which  specific pred
 
 **Population density**: the average number of individuals per square kilometer for the species (based on the data in @jones2009pantheria).
 
-**Average relatedness among group females**: the average relatedness measured using genetic approaches among adult females within the same group as reported for this species; data available from a subset of the populations.
+**Average and variance in relatedness among group females**: the average and variance in relatedness measured using genetic approaches among adult females within the same group as reported for this species; data available from a subset of the populations.
 
 **Coalition formation**: whether adult females form coalitions with other female group members to support each other during within-group aggressive interactions; data from species-level descriptions of female behaviour (based on the data in @lukas2018social).
 
@@ -265,7 +288,7 @@ We will generate a single consensus phylogeny for the mammalian species in our s
     
 ### F. ANALYSIS PLAN
 
-We will perform all analyses in the statistical software R (R Software Consortium 2019). We will build separate models for each prediction. We will first estimate all models using functions in the package metafor (@viechtbauer2010conducting). We will fit meta-analytic multilevel mixed-effects models with moderators via linear models, including models that account for the potential correlations among effect sizes due to shared phylogenetic history among species (@nakagawa2012methodological). Second, we will estimate a subset of models using Bayesian approaches in the package rethinking (@mcelreath2020statistical). We will fit multilevel models that include the sampling variance as measurement error (@kurz2019rethinking) and shared phylogenetic history as a covariance matrix. Weakly regularizing priors will be used for all parameters. The models will be implemented in Stan. We will draw 8000 samples from four chains, checking that for each the R-hat values will be less than 1.01. Visual inspection of trace plots and rank histograms will be performed to ensure that they indicated no evidence of divergent transitions or biased posterior exploration. Posteriors from the model will be used to generate estimates of the overall effect size and the influence of potential moderators. We detail model construction in the following: we will first assess whether species and population identity create dependencies amongst the measured effect sizes. If so, we will include these factors through covariance matrices reflecting the dependence across measurements. We provide code showing the setup of the various models, together with a simulated dataset with the same structure as the actual data to [assess the code here](https://github.com/dieterlukas/FemaleDominanceReproduction_MetaAnalysis)
+We will perform all analyses in the statistical software R (R Software Consortium 2019). We will build separate models for each prediction. To assess the robustness of the findings and whether modeling decisions might have an influence on our results, we will use a frequentist and a Bayesian approach to build the statistical models. We will first estimate all models using functions in the package metafor (@viechtbauer2010conducting). We will fit meta-analytic multilevel mixed-effects models with moderators via linear models, including models that account for the potential correlations among effect sizes due to shared phylogenetic history among species (@nakagawa2012methodological). Second, we will estimate a subset of models using Bayesian approaches in the package rethinking (@mcelreath2020statistical). We will fit multilevel models that include the sampling variance as measurement error (@kurz2019rethinking) and shared phylogenetic history as a covariance matrix. Weakly regularizing priors will be used for all parameters. The models will be implemented in Stan. We will draw 8000 samples from four chains, checking that for each the R-hat values will be less than 1.01. Visual inspection of trace plots and rank histograms will be performed to ensure that they indicated no evidence of divergent transitions or biased posterior exploration. Posteriors from the model will be used to generate estimates of the overall effect size and the influence of potential moderators. We detail model construction in the following: we will first assess whether species and population identity create dependencies amongst the measured effect sizes. If so, we will include these factors through covariance matrices reflecting the dependence across measurements. We provide code showing the setup of the various models, together with a simulated dataset with the same structure as the actual data to [assess the code here](https://github.com/dieterlukas/FemaleDominanceReproduction_MetaAnalysis)
 
 **Publication bias**: 
 We will plot all effect sizes in a funnel-plot to perform a visual inspection of the range of effect sizes at different sample sizes and to investigate whether there might be an underrepresentation of studies with small effect sizes and small sample sizes (@egger1997bias). Given the diversity of studies in our sample, we expect that the effect sizes will not represent a sample from a single distribution: for example, studies of offspring mortality tend to have larger sample sizes (because each mother can have multiple offspring) and we predict different effect sizes for these studies. Accordingly, we cannot perform tests to determine signs of publication bias such as skewness or missing values for the whole sample. 
@@ -273,14 +296,21 @@ We will plot all effect sizes in a funnel-plot to perform a visual inspection of
 **Overall effect**: 
 We will construct a multilevel intercept-only meta-analytic base model to test for a general effect of dominance rank on reproductive success.
 
-**Local/species influences**: 
+**Influence of locality/species**: 
 To the base model, we will add random effects to account for non-independence due to effect sizes originating from within the same study, from studies performed on the same population and on the same species.
 
-**Phylogenetic influences**: 
+**Influence of approach**:
+To the base model, we will add random effects reflecting the differences in approaches across studies (wild/captive; agonism/correlate; linear/categorical rank).
+
+**Influence of measure of reproductive success**:
+To the base model, we will add a predictor variable reflecting the six classes of measures of reproductive success.
+
+**Influence of phylogeny**: 
 To the random effects model, we will add a covariance structure to reflect potential similarities in effect sizes arising from closely related species showing similar effects due to their shared phylogenetic history. 
 
-**Influence of study approach and other predictor variables**: 
-In case any of the previous models suggests dependencies among the measured effect sizes, we will add the predictor variables as moderators to models including covariance matrices reflecting the dependencies. Most models we construct will be univariate, testing the influence of a single variable at a time to assess support for the specific predictions. For the variables reflecting the social environment, we will build multivariate models to assess potential pathways. To assess whether average relatedness directly influences the effect of dominance on reproduction we will also include the number of females per group; and to assess whether coalition formation mediates how average relatedness shapes dominance effects, we will build a model with these two factors included. For the predictions in which we expect different associationships in cooperative breeders as compared to plural breeders, we will nest the influence of the predictor variable within the classification of the social system in a multilevel model.
+**Influence of predictor variables**: 
+Most models we construct will be univariate, testing the influence of a single variable at a time to assess support for the specific predictions. In case any of the previous models suggests dependencies among the measured effect sizes, we will add the predictor variables as moderators to models including covariance matrices reflecting the dependencies (e.g. if effect sizes are different for different measures of reproductive success). For the variables reflecting the social environment, we will build multivariate models to assess potential pathways. To assess whether average relatedness directly influences the effect of dominance on reproduction we will also include the number of females per group; and to assess whether coalition formation mediates how average relatedness shapes dominance effects, we will build a model with these two factors included. For instances where we might expect covariation among variables that are predicted to influence the strength of the effect sizes in opposite ways, we will build models that include both variables and their interaction. For the predictions in which we expect different associationships in cooperative breeders as compared to plural breeders, we will nest the influence of the predictor variable within the classification of the social system in a multilevel model. Studies performed on wild versus captive individuals and using different measures of reproductive success might not only differ in the overall strength of the effect of rank on reproductive success, but also in how other variables influence this effect. We therefore will build models in which both the intercept and the slopes can vary according to whether studies were performed in the wild/captivity and to how reproductive success was measured.
+
 
   
   &nbsp; 
@@ -304,7 +334,7 @@ Shivani received funding from the INSPIRE programme of the Department of Science
 
 ### J. CONFLICT OF INTEREST DISCLOSURE
 
-We, the authors, declare that we have no financial conflicts of interest with the content of this article. Dieter Lukas is a Recommender at PCI Ecology.
+We, the authors, declare that we have no financial conflicts of interest with the content of this article. Elise Huchard and Dieter Lukas are Recommenders at PCI Ecology.
   
   &nbsp; 
     
