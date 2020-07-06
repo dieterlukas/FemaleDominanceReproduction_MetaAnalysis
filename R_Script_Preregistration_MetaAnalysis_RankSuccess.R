@@ -22,7 +22,7 @@ dat<-simulateddata
 
 # For the actual analyses, we will use the full data file
 # Load input data from GitHub
-inputdata<-read_csv(url("https://raw.githubusercontent.com/dieterlukas/FemaleDominanceReproduction_MetaAnalysis/master/InputData_MetaAnalysis_FemaleDominanceReproduction_March2020.csv"))
+inputdata<-read_csv(url("https://raw.githubusercontent.com/dieterlukas/FemaleDominanceReproduction_MetaAnalysis/master/InputData_MetaAnalysis_FemaleDominanceReproduction.csv"))
 inputdata<-data.frame(inputdata)
 dat<-inputdata
 #In the actual data, there are 444 effect sizes from 187 studies on 86 species. No analyses have yet been performed with these data (01 April 2020)
@@ -39,7 +39,17 @@ dat<-inputdata
 # For the fake data, we are using the phylogeny provided by Rolland et al. 2014 Plos Biology
 mammaltree<-read.tree(url("https://journals.plos.org/plosbiology/article/file?id=10.1371/journal.pbio.1001775.s001&type=supplementary"))
 
+#The consensus tree for the 86 species in the actual dataset
+mammaltree<-read.nexus(url("https://raw.githubusercontent.com/dieterlukas/FemaleDominanceReproduction_MetaAnalysis/trunk/CombinedTree_MetaAnalysis_RankSuccess.nex"))
 
+#Some of the Latin species names in the input file do not match the species name that were used for the phylogenetic tree
+#We can adapt these here
+#Instead of Canis familiaris we use Canis lupus
+dat[dat$Latin=="Canis_familiaris",]$Latin<-"Canis_lupus"
+#Fukomys mechowii is spelled Fukomys mechowi
+dat[dat$Latin=="Fukomys_mechowii",]$Latin<-"Fukomys_mechowi"
+#Bos bison is now Bison bison
+dat[dat$Latin=="Bos_bison",]$Latin<-"Bison_bison"
 
 
 # 2) analyses building models with the package metafor
