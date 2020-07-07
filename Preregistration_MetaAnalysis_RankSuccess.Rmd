@@ -7,17 +7,17 @@ author:
 date: '`r Sys.Date()`'
 mainfont: Verdana
 output:
-  pdf_document:
-    keep_tex: yes
-    latex_engine: xelatex
-  md_document: 
-    toc: true
   html_document: 
     toc: TRUE
     toc_depth: 4
     toc_float: 
       collapsed: false
     code_folding: hide 
+  md_document: 
+    toc: true
+  pdf_document:
+    keep_tex: yes
+    latex_engine: xelatex
   github_document: 
     toc: true
 bibliography: /Users/dieterlukas/ownCloud/Documents/GitHub/FemaleDominanceReproduction_MetaAnalysis/MyLibrary.bib
@@ -28,6 +28,19 @@ bibliography: /Users/dieterlukas/ownCloud/Documents/GitHub/FemaleDominanceReprod
 3. Institut des Sciences de l’Evolution de Montpellier, Centre National de la Recherche Scientifique, Université de Montpellier  
 
 Correspondence: * dieter_lukas@eva.mpg.de
+
+
+<img width="50%" src="logoPCIecology.png">
+
+**Cite as:** Shivani, Huchard E., Lukas D. 2020. [Preregistration - The effect of dominance rank on female reproductive success in social mammals](https://dieterlukas.github.io/Preregistration_MetaAnalysis_RankSuccess.html) In principle acceptance by *PCI Ecology* of the version 1.2 on 07 July 2020 [https://github.com/dieterlukas/FemaleDominanceReproduction_MetaAnalysis/blob/trunk/Preregistration_MetaAnalysis_RankSuccess.Rmd](https://github.com/dieterlukas/FemaleDominanceReproduction_MetaAnalysis/blob/trunk/Preregistration_MetaAnalysis_RankSuccess.Rmd).
+
+<img width="5%" src="logoOpenAccess.png"> <img width="5%" src="logoOpenData.png"> <img width="5%" src="logoOpenCode.png"> <img width="5%" src="logoOpenPeerReview.png">
+
+**This preregistration has been pre-study peer reviewed and received an In Principle Recommendation by:**
+
+Matthieu Paquet (2020) The effect of dominance rank on female reproductive success in social mammals. *Peer Community in Ecology*, 100056. [10.24072/pci.ecology.100056] (https://doi.org/10.24072/pci.ecology.100056)
+
+ - Reviewers: Bonaventura Majolo and one anonymous reviewer
 
    
 &nbsp; 
@@ -337,6 +350,11 @@ Shivani received funding from the INSPIRE programme of the Department of Science
 We, the authors, declare that we have no financial conflicts of interest with the content of this article. Elise Huchard and Dieter Lukas are Recommenders at PCI Ecology.
   
   &nbsp; 
+
+### K.  Acknowledgements
+
+We thank our PCI Ecology Recommender, Matthieu Paquet, and our reviewers, Bonaventura Majolo and one anonymous reviewer, for their valuable feedback that greatly improved this piece of research. We are grateful to the members of the Department of Human Behavior, Ecology and Culture at the Max Planck Institute for Evolutionary Anthropology for feedback during the early stages of this project.
     
+      &nbsp; 
     
-### K. [REFERENCES](MyLibrary.bib)
+### L. [REFERENCES](MyLibrary.bib)
