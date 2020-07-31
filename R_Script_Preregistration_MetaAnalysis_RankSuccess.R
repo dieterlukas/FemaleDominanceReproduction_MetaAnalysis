@@ -23,7 +23,7 @@ dat<-simulateddata
 
 # For the actual analyses, we will use the full data file
 # Load input data from GitHub
-inputdata<-read_csv(url("https://raw.githubusercontent.com/dieterlukas/FemaleDominanceReproduction_MetaAnalysis/master/InputData_MetaAnalysis_FemaleDominanceReproduction_March2020.csv"))
+inputdata<-read_csv(url("https://raw.githubusercontent.com/dieterlukas/FemaleDominanceReproduction_MetaAnalysis/master/InputData_MetaAnalysis_FemaleDominanceReproduction.csv"))
 inputdata<-data.frame(inputdata)
 dat<-inputdata
 #In the actual data, there are 444 effect sizes from 187 studies on 86 species. No analyses have yet been performed with these data (01 April 2020)
@@ -36,11 +36,21 @@ dat<-inputdata
 #[13] "StudyPopulation"      "Rank_Cont_Cat"        "RankDetermined"    
 
 # Phylogenetic tree
+# For the actual data, we will construct a consensus tree based on the species in the final dataset from the mammalian phylogeny at vertlife.org/phylosubsets/  ; the nexus file for the tree will be stored at github
 # For the fake data, we are using the phylogeny provided by Rolland et al. 2014 Plos Biology
 mammaltree<-read.tree(url("https://journals.plos.org/plosbiology/article/file?id=10.1371/journal.pbio.1001775.s001&type=supplementary"))
 
-# For the actual data, we use a consensus tree based on the species in the final dataset from the mammalian phylogeny at vertlife.org/phylosubsets/  ; the nexus file for the tree will be stored at github
-mammaltree<-read.tree(url("https://raw.githubusercontent.com/dieterlukas/FemaleDominanceReproduction_MetaAnalysis/trunk/CombinedTree_MetaAnalysis_RankSuccess.nex"))
+#The consensus tree for the 86 species in the actual dataset
+mammaltree<-read.nexus(url("https://raw.githubusercontent.com/dieterlukas/FemaleDominanceReproduction_MetaAnalysis/trunk/CombinedTree_MetaAnalysis_RankSuccess.nex"))
+
+#Some of the Latin species names in the input file do not match the species name that were used for the phylogenetic tree
+#We can adapt these here
+#Instead of Canis familiaris we use Canis lupus
+dat[dat$Latin=="Canis_familiaris",]$Latin<-"Canis_lupus"
+#Fukomys mechowii is spelled Fukomys mechowi
+dat[dat$Latin=="Fukomys_mechowii",]$Latin<-"Fukomys_mechowi"
+#Bos bison is now Bison bison
+dat[dat$Latin=="Bos_bison",]$Latin<-"Bison_bison"
 
 
 # 2) analyses building models with the package metafor
@@ -100,19 +110,19 @@ VCV_pagel<-vcv(Rlambda)
 #We fit the phylogenetic model, including also the potential independence from study reference and the potential for each effect to have a unique measurement.
 #First the model using Brownian motion
 meta_Brownian <- rma.mv(yi=Fishers_Z_r, V=variance, 
-                  random = list(~1 | Latin, ~1 | StudyRef,  ~1 | EffectRef),
-                  R = list(Latin = VCV_bm),
-                  method = "REML", 
-                  data = mdata)
+                        random = list(~1 | Latin, ~1 | StudyRef,  ~1 | EffectRef),
+                        R = list(Latin = VCV_bm),
+                        method = "REML", 
+                        data = mdata)
 meta_Brownian
 
 
 #Second the model with Pagel's lambda
 meta_Lambda <- rma.mv(yi=Fishers_Z_r, V=variance, 
-                  random = list(~1 | Latin, ~1 | StudyRef,  ~1 | EffectRef),
-                  R = list(Latin = VCV_pagel),
-                  method = "REML", 
-                  data = mdata)
+                      random = list(~1 | Latin, ~1 | StudyRef,  ~1 | EffectRef),
+                      R = list(Latin = VCV_pagel),
+                      method = "REML", 
+                      data = mdata)
 meta_Lambda
 
 # We now built the models to test for the influence of potential moderators on the effect sizes
@@ -134,10 +144,10 @@ meta_rankmeasurement
 
 #model assessing whether rank was measured categorical or continuous influences the effect sizes, with the phylogenetic similarity among species added
 meta_Lambda_rankmeasurement <- rma.mv(yi=Fishers_Z_r, V=variance, mods=~ Rank_Cont_Cat,
-                      random = list(~1 | Latin, ~1 | StudyRef,  ~1 | EffectRef),
-                      R = list(Latin = VCV_pagel),
-                      method = "REML", 
-                      data = mdata)
+                                      random = list(~1 | Latin, ~1 | StudyRef,  ~1 | EffectRef),
+                                      R = list(Latin = VCV_pagel),
+                                      method = "REML", 
+                                      data = mdata)
 meta_Lambda_rankmeasurement
 
 
@@ -309,7 +319,7 @@ for (i in 1:50) curve(post$etasq[i]*exp(-post$rhosq[i]*x^2),add=TRUE,col=grau())
 
 
 #Here, we expand the phylogenetic model to include a nested effect
-#In the analyses, we might expect that patterns differ between cooperative and plural breeders
+#In the analyses, we might expect that patterns differ between cooperative and plural breeders, or that group size does not have an influence in captive studies where individuals receive food but in wild populations
 #Here, we estimate whether patterns differ between studies that measured rank on a linear hierarchy and those that classified individuals into rank categories.
 #In particular, we assume that the influence of group size on the effect sizes might be different depending on the measurement method.
 dat_list <- list(
@@ -558,32 +568,31 @@ linearhierarchy_effectsizes<-matrix(nrow=10000,ncol=3)
 colnames(output)<-c("lm","t_singular","t_groups")
 
 for (i in 1:10000){
-ind1<-round(rnorm(1,mean=2,sd=1),0)
-ind2<-round(rnorm(1,mean=2.5,sd=1),0)
-ind3<-round(rnorm(1,mean=3,sd=1),0)
-ind4<-round(rnorm(1,mean=3.5,sd=1),0)
-ind5<-round(rnorm(1,mean=4,sd=1),0)
-ind6<-round(rnorm(1,mean=4.5,sd=1),0)
-ind1a<-round(rnorm(1,mean=2,sd=1),0)
-ind2a<-round(rnorm(1,mean=2.5,sd=1),0)
-ind3a<-round(rnorm(1,mean=3,sd=1),0)
-ind4a<-round(rnorm(1,mean=3.5,sd=1),0)
-ind5a<-round(rnorm(1,mean=4,sd=1),0)
-ind6a<-round(rnorm(1,mean=4.5,sd=1),0)
-success<-c(ind1,ind2,ind3,ind4,ind5,ind6,ind1a,ind2a,ind3a,ind4a,ind5a,ind6a)
-rank<-c(1:6,1:6)
-correlation<-lm(success~rank)
-linearhierarchy_effectsizes[i,1]<-sqrt(summary(correlation)$r.squared)
-dominant<-c(ind6,ind6a)
-subordinates<-c(ind2,ind3,ind4,ind5,ind1,ind2a,ind3a,ind4a,ind5a,ind1a)
-linearhierarchy_effectsizes[i,2]<-sqrt(t.test(dominant,subordinates)$statistic^2/(t.test(dominant,subordinates)$statistic^2+10))
-dominanthalf<-c(ind6,ind5,ind4,ind6a,ind5a,ind4a)
-subordinatehalf<-c(ind1,ind2,ind3,ind1a,ind2a,ind3a)
-linearhierarchy_effectsizes[i,3]<-sqrt(t.test(dominanthalf,subordinatehalf)$statistic^2/(t.test(dominanthalf,subordinatehalf)$statistic^2+10))
+  ind1<-round(rnorm(1,mean=2,sd=1),0)
+  ind2<-round(rnorm(1,mean=2.5,sd=1),0)
+  ind3<-round(rnorm(1,mean=3,sd=1),0)
+  ind4<-round(rnorm(1,mean=3.5,sd=1),0)
+  ind5<-round(rnorm(1,mean=4,sd=1),0)
+  ind6<-round(rnorm(1,mean=4.5,sd=1),0)
+  ind1a<-round(rnorm(1,mean=2,sd=1),0)
+  ind2a<-round(rnorm(1,mean=2.5,sd=1),0)
+  ind3a<-round(rnorm(1,mean=3,sd=1),0)
+  ind4a<-round(rnorm(1,mean=3.5,sd=1),0)
+  ind5a<-round(rnorm(1,mean=4,sd=1),0)
+  ind6a<-round(rnorm(1,mean=4.5,sd=1),0)
+  success<-c(ind1,ind2,ind3,ind4,ind5,ind6,ind1a,ind2a,ind3a,ind4a,ind5a,ind6a)
+  rank<-c(1:6,1:6)
+  correlation<-lm(success~rank)
+  linearhierarchy_effectsizes[i,1]<-sqrt(summary(correlation)$r.squared)
+  dominant<-c(ind6,ind6a)
+  subordinates<-c(ind2,ind3,ind4,ind5,ind1,ind2a,ind3a,ind4a,ind5a,ind1a)
+  linearhierarchy_effectsizes[i,2]<-sqrt(t.test(dominant,subordinates)$statistic^2/(t.test(dominant,subordinates)$statistic^2+10))
+  dominanthalf<-c(ind6,ind5,ind4,ind6a,ind5a,ind4a)
+  subordinatehalf<-c(ind1,ind2,ind3,ind1a,ind2a,ind3a)
+  linearhierarchy_effectsizes[i,3]<-sqrt(t.test(dominanthalf,subordinatehalf)$statistic^2/(t.test(dominanthalf,subordinatehalf)$statistic^2+10))
 }
 
 #positive values mean that the linear regression has higher effect sizes than the t-test
 hist(linearhierarchy_effectsizes[,1]-linearhierarchy_effectsizes[,2])
 median(linearhierarchy_effectsizes[,1]-linearhierarchy_effectsizes[,2])
-
 
