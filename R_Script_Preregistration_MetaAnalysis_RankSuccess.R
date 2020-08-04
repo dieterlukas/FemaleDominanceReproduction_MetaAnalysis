@@ -100,19 +100,19 @@ VCV_pagel<-vcv(Rlambda)
 #We fit the phylogenetic model, including also the potential independence from study reference and the potential for each effect to have a unique measurement.
 #First the model using Brownian motion
 meta_Brownian <- rma.mv(yi=Fishers_Z_r, V=variance, 
-                  random = list(~1 | Latin, ~1 | StudyRef,  ~1 | EffectRef),
-                  R = list(Latin = VCV_bm),
-                  method = "REML", 
-                  data = mdata)
+                        random = list(~1 | Latin, ~1 | StudyRef,  ~1 | EffectRef),
+                        R = list(Latin = VCV_bm),
+                        method = "REML", 
+                        data = mdata)
 meta_Brownian
 
 
 #Second the model with Pagel's lambda
 meta_Lambda <- rma.mv(yi=Fishers_Z_r, V=variance, 
-                  random = list(~1 | Latin, ~1 | StudyRef,  ~1 | EffectRef),
-                  R = list(Latin = VCV_pagel),
-                  method = "REML", 
-                  data = mdata)
+                      random = list(~1 | Latin, ~1 | StudyRef,  ~1 | EffectRef),
+                      R = list(Latin = VCV_pagel),
+                      method = "REML", 
+                      data = mdata)
 meta_Lambda
 
 # We now built the models to test for the influence of potential moderators on the effect sizes
@@ -134,10 +134,10 @@ meta_rankmeasurement
 
 #model assessing whether rank was measured categorical or continuous influences the effect sizes, with the phylogenetic similarity among species added
 meta_Lambda_rankmeasurement <- rma.mv(yi=Fishers_Z_r, V=variance, mods=~ Rank_Cont_Cat,
-                      random = list(~1 | Latin, ~1 | StudyRef,  ~1 | EffectRef),
-                      R = list(Latin = VCV_pagel),
-                      method = "REML", 
-                      data = mdata)
+                                      random = list(~1 | Latin, ~1 | StudyRef,  ~1 | EffectRef),
+                                      R = list(Latin = VCV_pagel),
+                                      method = "REML", 
+                                      data = mdata)
 meta_Lambda_rankmeasurement
 
 
@@ -558,32 +558,31 @@ linearhierarchy_effectsizes<-matrix(nrow=10000,ncol=3)
 colnames(output)<-c("lm","t_singular","t_groups")
 
 for (i in 1:10000){
-ind1<-round(rnorm(1,mean=2,sd=1),0)
-ind2<-round(rnorm(1,mean=2.5,sd=1),0)
-ind3<-round(rnorm(1,mean=3,sd=1),0)
-ind4<-round(rnorm(1,mean=3.5,sd=1),0)
-ind5<-round(rnorm(1,mean=4,sd=1),0)
-ind6<-round(rnorm(1,mean=4.5,sd=1),0)
-ind1a<-round(rnorm(1,mean=2,sd=1),0)
-ind2a<-round(rnorm(1,mean=2.5,sd=1),0)
-ind3a<-round(rnorm(1,mean=3,sd=1),0)
-ind4a<-round(rnorm(1,mean=3.5,sd=1),0)
-ind5a<-round(rnorm(1,mean=4,sd=1),0)
-ind6a<-round(rnorm(1,mean=4.5,sd=1),0)
-success<-c(ind1,ind2,ind3,ind4,ind5,ind6,ind1a,ind2a,ind3a,ind4a,ind5a,ind6a)
-rank<-c(1:6,1:6)
-correlation<-lm(success~rank)
-linearhierarchy_effectsizes[i,1]<-sqrt(summary(correlation)$r.squared)
-dominant<-c(ind6,ind6a)
-subordinates<-c(ind2,ind3,ind4,ind5,ind1,ind2a,ind3a,ind4a,ind5a,ind1a)
-linearhierarchy_effectsizes[i,2]<-sqrt(t.test(dominant,subordinates)$statistic^2/(t.test(dominant,subordinates)$statistic^2+10))
-dominanthalf<-c(ind6,ind5,ind4,ind6a,ind5a,ind4a)
-subordinatehalf<-c(ind1,ind2,ind3,ind1a,ind2a,ind3a)
-linearhierarchy_effectsizes[i,3]<-sqrt(t.test(dominanthalf,subordinatehalf)$statistic^2/(t.test(dominanthalf,subordinatehalf)$statistic^2+10))
+  ind1<-round(rnorm(1,mean=2,sd=1),0)
+  ind2<-round(rnorm(1,mean=2.5,sd=1),0)
+  ind3<-round(rnorm(1,mean=3,sd=1),0)
+  ind4<-round(rnorm(1,mean=3.5,sd=1),0)
+  ind5<-round(rnorm(1,mean=4,sd=1),0)
+  ind6<-round(rnorm(1,mean=4.5,sd=1),0)
+  ind1a<-round(rnorm(1,mean=2,sd=1),0)
+  ind2a<-round(rnorm(1,mean=2.5,sd=1),0)
+  ind3a<-round(rnorm(1,mean=3,sd=1),0)
+  ind4a<-round(rnorm(1,mean=3.5,sd=1),0)
+  ind5a<-round(rnorm(1,mean=4,sd=1),0)
+  ind6a<-round(rnorm(1,mean=4.5,sd=1),0)
+  success<-c(ind1,ind2,ind3,ind4,ind5,ind6,ind1a,ind2a,ind3a,ind4a,ind5a,ind6a)
+  rank<-c(1:6,1:6)
+  correlation<-lm(success~rank)
+  linearhierarchy_effectsizes[i,1]<-sqrt(summary(correlation)$r.squared)
+  dominant<-c(ind6,ind6a)
+  subordinates<-c(ind2,ind3,ind4,ind5,ind1,ind2a,ind3a,ind4a,ind5a,ind1a)
+  linearhierarchy_effectsizes[i,2]<-sqrt(t.test(dominant,subordinates)$statistic^2/(t.test(dominant,subordinates)$statistic^2+10))
+  dominanthalf<-c(ind6,ind5,ind4,ind6a,ind5a,ind4a)
+  subordinatehalf<-c(ind1,ind2,ind3,ind1a,ind2a,ind3a)
+  linearhierarchy_effectsizes[i,3]<-sqrt(t.test(dominanthalf,subordinatehalf)$statistic^2/(t.test(dominanthalf,subordinatehalf)$statistic^2+10))
 }
 
 #positive values mean that the linear regression has higher effect sizes than the t-test
 hist(linearhierarchy_effectsizes[,1]-linearhierarchy_effectsizes[,2])
 median(linearhierarchy_effectsizes[,1]-linearhierarchy_effectsizes[,2])
-
 
