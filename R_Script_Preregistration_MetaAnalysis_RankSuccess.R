@@ -23,7 +23,7 @@ dat<-simulateddata
 
 # For the actual analyses, we will use the full data file
 # Load input data from GitHub
-inputdata<-read_csv(url("https://raw.githubusercontent.com/dieterlukas/FemaleDominanceReproduction_MetaAnalysis/master/InputData_MetaAnalysis_FemaleDominanceReproduction_March2020.csv"))
+inputdata<-read_csv(url("https://raw.githubusercontent.com/dieterlukas/FemaleDominanceReproduction_MetaAnalysis/master/InputData_MetaAnalysis_FemaleDominanceReproduction.csv"))
 inputdata<-data.frame(inputdata)
 dat<-inputdata
 #In the actual data, there are 444 effect sizes from 187 studies on 86 species. No analyses have yet been performed with these data (01 April 2020)
@@ -36,17 +36,27 @@ dat<-inputdata
 #[13] "StudyPopulation"      "Rank_Cont_Cat"        "RankDetermined"    
 
 # Phylogenetic tree
+# For the actual data, we will construct a consensus tree based on the species in the final dataset from the mammalian phylogeny at vertlife.org/phylosubsets/  ; the nexus file for the tree will be stored at github
 # For the fake data, we are using the phylogeny provided by Rolland et al. 2014 Plos Biology
 mammaltree<-read.tree(url("https://journals.plos.org/plosbiology/article/file?id=10.1371/journal.pbio.1001775.s001&type=supplementary"))
 
-# For the actual data, we use a consensus tree based on the species in the final dataset from the mammalian phylogeny at vertlife.org/phylosubsets/  ; the nexus file for the tree will be stored at github
-mammaltree<-read.tree(url("https://raw.githubusercontent.com/dieterlukas/FemaleDominanceReproduction_MetaAnalysis/trunk/CombinedTree_MetaAnalysis_RankSuccess.nex"))
+#The consensus tree for the 86 species in the actual dataset
+mammaltree<-read.nexus(url("https://raw.githubusercontent.com/dieterlukas/FemaleDominanceReproduction_MetaAnalysis/trunk/CombinedTree_MetaAnalysis_RankSuccess.nex"))
+
+#Some of the Latin species names in the input file do not match the species name that were used for the phylogenetic tree
+#We can adapt these here
+#Instead of Canis familiaris we use Canis lupus
+dat[dat$Latin=="Canis_familiaris",]$Latin<-"Canis_lupus"
+#Fukomys mechowii is spelled Fukomys mechowi
+dat[dat$Latin=="Fukomys_mechowii",]$Latin<-"Fukomys_mechowi"
+#Bos bison is now Bison bison
+dat[dat$Latin=="Bos_bison",]$Latin<-"Bison_bison"
 
 
 # 2) analyses building models with the package metafor
 
 #based model: determine the overall effect size, accounting for the measurement error as reflected by the sampling variance
-meta_simple <- rma.mv(yi=Fishers_Z_r, V=variance, data=dat)
+meta_simple <- rma.mv(yi=Fishers_Z_r, V=Variance, data=dat)
 meta_simple
 
 
@@ -60,20 +70,20 @@ funnel(meta_simple, level=c(90, 95, 99), shade=c("white", "gray", "darkgray"),
 
 #Determine the overall effect size in a model that assumes that measurements from the same study, the same population, and the same species are not independent and that each measurement might have a unique approach.
 #For the fake data, we do not expect any dependence by study (because the sample size is small) or by population/species (because data were randomly generated)
-meta_randomfactors <- rma.mv(yi=Fishers_Z_r, V=variance, data=dat, method="REML", random=list(~1|StudyRef,~1|StudyPopulation,~1|SpeciesRef,~1|EffectRef))
+meta_randomfactors <- rma.mv(yi=Fishers_Z_r, V=Variance, data=dat, method="REML", random=list(~1|StudyRef,~1|StudyPopulation,~1|SpeciesRef,~1|EffectRef))
 meta_randomfactors
 
 #Check potential dependence from each of the random factors separately
 #model with species as random term
-meta_species <- rma.mv(yi=Fishers_Z_r, V=variance, data=dat, slab=StudyRef, random=~1|SpeciesRef)
+meta_species <- rma.mv(yi=Fishers_Z_r, V=Variance, data=dat, slab=StudyRef, random=~1|SpeciesRef)
 meta_species 
 
 #model with study as random term
-meta_study <- rma.mv(yi=Fishers_Z_r, V=variance, data=dat, slab=EffectRef, random=~ 1|StudyRef)
+meta_study <- rma.mv(yi=Fishers_Z_r, V=Variance, data=dat, slab=EffectRef, random=~ 1|StudyRef)
 meta_study 
 
 #model with population as random term
-meta_population <- rma.mv(yi=Fishers_Z_r, V=variance, data=dat, slab=EffectRef, random=~ 1|StudyPopulation)
+meta_population <- rma.mv(yi=Fishers_Z_r, V=Variance, data=dat, slab=EffectRef, random=~ 1|StudyPopulation)
 meta_population 
 
 
@@ -99,7 +109,7 @@ VCV_pagel<-vcv(Rlambda)
 
 #We fit the phylogenetic model, including also the potential independence from study reference and the potential for each effect to have a unique measurement.
 #First the model using Brownian motion
-meta_Brownian <- rma.mv(yi=Fishers_Z_r, V=variance, 
+meta_Brownian <- rma.mv(yi=Fishers_Z_r, V=Variance, 
                         random = list(~1 | Latin, ~1 | StudyRef,  ~1 | EffectRef),
                         R = list(Latin = VCV_bm),
                         method = "REML", 
@@ -108,7 +118,7 @@ meta_Brownian
 
 
 #Second the model with Pagel's lambda
-meta_Lambda <- rma.mv(yi=Fishers_Z_r, V=variance, 
+meta_Lambda <- rma.mv(yi=Fishers_Z_r, V=Variance, 
                       random = list(~1 | Latin, ~1 | StudyRef,  ~1 | EffectRef),
                       R = list(Latin = VCV_pagel),
                       method = "REML", 
@@ -123,17 +133,17 @@ meta_Lambda
 #Models without taking phylogeny into account
 
 #model assessing the influence of difference on group sizes on the measured effect sizes, with study reference as random term
-meta_groupsize <- rma.mv(yi=Fishers_Z_r, V=variance, data=dat, mods=~ GroupSize, random=~1| StudyRef)
+meta_groupsize <- rma.mv(yi=Fishers_Z_r, V=Variance, data=dat, mods=~ GroupSize, random=~1| StudyRef)
 meta_groupsize
 
 #model assessing whether rank was measured categorical or continuous influences the effect sizes, with the various factors that could lead to dependency included 
-meta_rankmeasurement <- rma.mv(yi=Fishers_Z_r, V=variance, data=dat, mods=~ Rank_Cont_Cat, random=list(~1|StudyRef,~1|StudyPopulation,~1|SpeciesRef,~1|EffectRef))
+meta_rankmeasurement <- rma.mv(yi=Fishers_Z_r, V=Variance, data=dat, mods=~ Rank_Cont_Cat, random=list(~1|StudyRef,~1|StudyPopulation,~1|SpeciesRef,~1|EffectRef))
 meta_rankmeasurement
 
 #Models taking shared phylogenetic history into account
 
 #model assessing whether rank was measured categorical or continuous influences the effect sizes, with the phylogenetic similarity among species added
-meta_Lambda_rankmeasurement <- rma.mv(yi=Fishers_Z_r, V=variance, mods=~ Rank_Cont_Cat,
+meta_Lambda_rankmeasurement <- rma.mv(yi=Fishers_Z_r, V=Variance, mods=~ Rank_Cont_Cat,
                                       random = list(~1 | Latin, ~1 | StudyRef,  ~1 | EffectRef),
                                       R = list(Latin = VCV_pagel),
                                       method = "REML", 
@@ -155,7 +165,7 @@ dstan <- dat[ complete.cases(dat$Rank_Cont_Cat,dat$GroupSize),]
 dat_list_simple <- list(
   N_spp = nrow(dstan),
   Z_obs = dstan$Fishers_Z_r,
-  Z_sd = dstan$variance
+  Z_sd = dstan$Variance
 )
 
 #We run the model assuming that the sampling variance reflects an error in the measurements of the true effect sizes
@@ -174,7 +184,7 @@ precis(rethinking_simple)
 dat_list_groupsize <- list(
   N_spp = nrow(dstan),
   Z_obs = dstan$Fishers_Z_r,
-  Z_sd = dstan$variance, 
+  Z_sd = dstan$Variance, 
   G = standardize(standardize(log(dstan$GroupSize)))
 )
 
@@ -216,7 +226,7 @@ VCV_pagel<-vcv(Rlambda)
 dat_list <- list(
   N_spp = nrow(mdata),
   Z_obs = mdata$Fishers_Z_r,
-  Z_sd = mdata$variance, 
+  Z_sd = mdata$Variance, 
   G = standardize(standardize(log(mdata$GroupSize)))
 )
 
@@ -309,13 +319,13 @@ for (i in 1:50) curve(post$etasq[i]*exp(-post$rhosq[i]*x^2),add=TRUE,col=grau())
 
 
 #Here, we expand the phylogenetic model to include a nested effect
-#In the analyses, we might expect that patterns differ between cooperative and plural breeders
+#In the analyses, we might expect that patterns differ between cooperative and plural breeders, or that group size does not have an influence in captive studies where individuals receive food but in wild populations
 #Here, we estimate whether patterns differ between studies that measured rank on a linear hierarchy and those that classified individuals into rank categories.
 #In particular, we assume that the influence of group size on the effect sizes might be different depending on the measurement method.
 dat_list <- list(
   N_spp = nrow(mdata),
   Z_obs = mdata$Fishers_Z_r,
-  Z_sd = mdata$variance, 
+  Z_sd = mdata$Variance, 
   G = standardize(standardize(log(mdata$GroupSize))),
   R = as.integer((mdata$Rank_Cont_Cat=="Categorical")+1)
 )
@@ -341,7 +351,7 @@ precis(rethinking_phylogenetic_gaussian_groupsize)
 dat_list <- list(
   N_spp = nrow(mdata),
   Z_obs = mdata$Fishers_Z_r,
-  Z_sd = mdata$variance, 
+  Z_sd = mdata$Variance, 
   G = standardize(standardize(log(mdata$GroupSize))),
   M = as.integer(as.factor(dat$MeasureType_Category))
 )
@@ -452,7 +462,7 @@ mdata_small<-mdata[c(1,6,7,8,12,14,16,17,19,24,36,37,40,42,43,45,46,49,52),]
 dat_list <- list(
   N_spp = nrow(mdata_small),
   Z_obs = mdata_small$Fishers_Z_r,
-  Z_sd = mdata_small$variance, 
+  Z_sd = mdata_small$Variance, 
   G = standardize(standardize(log(mdata_small$GroupSize)))
 )
 
@@ -490,7 +500,7 @@ library(broom)
 
 # Forest plot showing distribution of effect sizes across studies
 forestplot_simple <- dat[with(dat,order(Fishers_Z_r)),] %>% 
-  meta_analysis(yi = Fishers_Z_r, sei = variance, slab = StudyRef)
+  meta_analysis(yi = Fishers_Z_r, sei = Variance, slab = StudyRef)
 
 forest_plot(forestplot_simple)
 
@@ -499,7 +509,7 @@ forest_plot(forestplot_simple)
 
 forestplot_groupcomparison <- dat[with(dat,order(Fishers_Z_r)),] %>% 
   group_by(Rank_Cont_Cat) %>% 
-  meta_analysis(yi = Fishers_Z_r, sei = variance, slab = StudyRef)
+  meta_analysis(yi = Fishers_Z_r, sei = Variance, slab = StudyRef)
 
 fp <- forestplot_groupcomparison %>% 
   forest_plot(group = Rank_Cont_Cat)
@@ -585,4 +595,3 @@ for (i in 1:10000){
 #positive values mean that the linear regression has higher effect sizes than the t-test
 hist(linearhierarchy_effectsizes[,1]-linearhierarchy_effectsizes[,2])
 median(linearhierarchy_effectsizes[,1]-linearhierarchy_effectsizes[,2])
-
