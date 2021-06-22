@@ -291,7 +291,7 @@ This data will be added prior to the analyses, depending on which  specific pred
 
 **Dominance system**: whether dominance rank of females appears to depend primarily on (i) their age, (ii) their physical attributes such as body size, (iii) support from their mother, or (iv) coalitionary support from same-aged group members. Data available from a subset of populations, to which we will add from primary reports of species-level classifications from other populations assuming that this trait is usually stable across populations within species.
 
-**Philopatry**: whether females have the majority of their offspring in the same social groups or in the same location in which they have been born or whether females disperse to other groups or locations to reproduce; data from species-level descriptions of female behaviour (based on the data in @barsbai2020similarity).
+**Philopatry**: whether females have the majority of their offspring in the same social groups or in the same location in which they have been born or whether females disperse to other groups or locations to reproduce; data from species-level descriptions of female behaviour (based on the data in @barsbai2021local).
 
 **Monopolizable resources**: whether the gross dietary category of a species is based on monopolizable resources (carnivory, frugivory), or non-monopolizable resources (herbivory, or omnivory) (based on the data in @wilman2014eltontraits). 
 
@@ -320,21 +320,21 @@ We performed all analyses in the statistical software R (R Software Consortium 2
 ### F. CHANGES FROM THE PREREGISTRATION
 
 We collected data on the additional explanatory variables:
-- litter size, litters per year, and population density from Jones et al. 2009
-- cooperative vs plural vs associate breeding from the descriptions in the articles from which we obtained the effect sizes 
+- litter size, litters per year, and population density for the respective species from @jones2009pantheria
+- cooperative vs plural vs associate breeding from the descriptions in the respective population from the articles from which we obtained the effect sizes 
 - dominance system from additional references on the species (listed in the data file)
-- philopatry from Barsbai et al. 2021
-- diet category from Wilman et al. 2014
-- environmental harshness from Botero et al. 2012
-- coalition formation from Lukas & Clutton-Brock 2018
-- average relatedness from original article or additional references matching the exact population (listed in data file)
+- philopatry of the respective species from @barsbai2021local
+- diet category of the respective species from @wilman2014eltontraits
+- environmental harshness across the range of the respective species from @botero2014environmental
+- coalition formation in the respective species from @lukas2018social
+- average relatedness from the articles from which we obtained the effect sizes or additional references matching the exact population (listed in data file)
 - we did not collect data on variance in relatedness because it was not possible to extract this information from most studies reporting relatedness levels 
 
 Outlier check:
-Before running the analyses, we made funnel plot of the standard error over the effect size, where we noticed three outliers. We realized that for these three entries (EffectRefs 425, 427, and 428) we had used the wrong formula to calculate the effect size and variance. All of these are studies of multiple groups of Callithrix jacchus, each with a small number of females. For these three studies, we had erroneously used the 2-by-2 frequency tables to calculate the standardized mean difference, not the correlation coefficient. We corrected the values for these three entries before performing any of the analyses.
+Before running the analyses, we made a funnel plot of the standard error over the effect size, where we noticed three outlier data points. We realized that for these three entries (EffectRefs 425, 427, and 428) we had used the wrong formula to calculate the effect size and variance. All of these are studies of multiple groups of Callithrix jacchus, each with a small number of females. For these three studies, we had erroneously used the 2-by-2 frequency tables to calculate the standardized mean difference, not the correlation coefficient. We corrected the values for these three entries before performing any of the analyses.
 
 Sampling bias:
-The funnel plot of the complete dataset showed a strong asymmetry, indicating that our sample is biased towards including many studies with low precision and high positive effect sizes. We added further analyses, both based on functions in the package 'metafor' and in 'Stan', to determine the potential causes of the bias in our sample and the influence on what effects should be expected. 
+The funnel plot of the complete dataset showed a strong asymmetry, indicating that our sample is biased towards including many studies with low precision and high positive effect sizes. We added further analyses, both based on functions in the packages 'metafor' (following @nakagawa2021methods) and 'rethinking' (following @mcelreath2020statistical), to determine the potential causes of the bias in our sample and the influence on what effects should be expected. 
 
 
 
@@ -354,7 +354,9 @@ library(metafor)
 library(ape)
 library(geiger)
 library(dplyr)
-library(readr)  
+library(readr)
+library(orchaRd)
+library(patchwork)
 
 # Loading the data
 # all data are obtained from online sources
@@ -388,18 +390,38 @@ dat[dat$Latin=="Fukomys_mechowii",]$Latin<-"Fukomys_mechowi"
 #Bos bison is now Bison bison
 dat[dat$Latin=="Bos_bison",]$Latin<-"Bison_bison"
 
+table(dat$Latin)[grep("Macaca",names(table(dat$Latin)))]
+table(dat$Latin)[grep("Papio",names(table(dat$Latin)))]
+table(dat$Latin)[grep("Theropithecus",names(table(dat$Latin)))]
+
+table(dat$Populationtype)
+table(dat$RankDetermined)
+table(dat$Rank_Cont_Cat)
+table(dat$MeasureType_Category)
+
 ```
 
-We extracted 444 effect sizes from 187 studies on 86 species during our literature search. 
-
+We extracted 444 effect sizes of the relationship between dominance rank and reproductive success of female mammals from 187 studies on 86 species during our literature search. More than half of the effect sizes are from primate species (253 effect sizes), with macaques (109) and baboons (76) a particular focus for this research. About two thirds (283) of the reports are from wild populations; rank was predominantly determined on the basis of aggressive interactions (407) rather than on other measures such as age or size; and it was about equally frequent that researchers classified rank categorically as dominant versus subordinant (251) than continuously from highest to lowest (193). Most of the studies reported effects of dominance rank on infant production (198) followed by infant survival (113), with fewer studies investigating the effect on interbirth intervals (46), lifetime reproductive success (34), survival (30), or age at first reproduction (23).
 
 
 **Publication bias**: 
 We will plot all effect sizes in a funnel-plot to perform a visual inspection of the range of effect sizes at different sample sizes and to investigate whether there might be an underrepresentation of studies with small effect sizes and small sample sizes (@egger1997bias). Given the diversity of studies in our sample, we expect that the effect sizes will not represent a sample from a single distribution: for example, studies of offspring mortality tend to have larger sample sizes (because each mother can have multiple offspring) and we predict different effect sizes for these studies. 
 
 
+```{r ranksuccess_funnelplot, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
+options(width=60)
+meta_simple <- rma.mv(yi=Fishers_Z_r, V=Variance, data=dat)
+funnel(meta_simple, level=c(90, 95, 99), shade=c("white", "gray", "darkgray"), 
+       yaxis="seinv",xlab="effect size (Zr)",ylab="precision (1/SE)",digits=c(1,0),xlim=c(-2,2),ylim=c(1,30))
+
+orchard_plot(meta_simple, mod="Int", xlab = "Fisher's Z r", 
+  transfm = "none") 
+```
+
+
+
  trim-and-fill analysis to estimate the extent of this bias and determine what an adjusted estimate would be. 
-There are potentially three factors leading to this sample bias, with the first being publication bias with studies with low effect sizes missing from the published literature, the second being study system bias with research focusing on systems with small groups where it is easy to detect effects (captive settings, cooperative breeders), and the third being study time bias with studies performed over shorter time frames generally having smaller sample sizes. We added further post-hoc analyses to investigate these patterns. To investigate the extent of publication bias, we checked whether effect sizes were more likely to be missing if they did not reach significance for a given sample size. In addition, we determined whether sample sizes and effect sizes change with year of publication. To investigate the potential of study bias, we checked how uneven our sample sizes are between different study systems and determined how much the estimates of sample bias were reduced when accounting for differences in effect sizes between study systems. To investigate the role of study time bias, we looked at whether sample sizes are smaller in studies that had been conducted for shorter periods of time and whether the estimate of sample bias is reduced when accounting for differences in study time across the sample.
+There are potentially three factors leading to this sample bias, with the first being 'publication bias' with studies with low effect sizes missing from the published literature, the second being 'study system bias' with research focusing on systems with small groups where it is easy to detect effects (captive settings, cooperative breeders), and the third being 'study time bias' with studies performed over shorter time frames generally having smaller sample sizes. We added further post-hoc analyses to investigate these patterns. To investigate the extent of publication bias, we checked whether effect sizes were more likely to be missing if they did not reach significance for a given sample size. In addition, we determined whether sample sizes and effect sizes change with year of publication. To investigate the potential of study bias, we checked how uneven our sample sizes are between different study systems and determined how much the estimates of sample bias were reduced when accounting for differences in effect sizes between study systems. To investigate the role of study time bias, we looked at whether sample sizes are smaller in studies that had been conducted for shorter periods of time and whether the estimate of sample bias is reduced when accounting for differences in study time across the sample.
 
 **Overall effect**: 
 We will construct a multilevel intercept-only meta-analytic base model to test for a general effect of dominance rank on reproductive success.
