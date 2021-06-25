@@ -348,7 +348,7 @@ options(width=60)
 
 # Meta analysis of effect of rank on reproductive success in female social mammals
 
-# Load necessary libraries
+# Load necessary libraries. Some of these libraries have specific installation requirements (orchaRd and rethinking), please check their respective websites.
 
 library(metafor)
 library(ape)
@@ -357,6 +357,9 @@ library(dplyr)
 library(readr)
 library(orchaRd)
 library(patchwork)
+library(ggplot2)
+library(rethinking)
+
 
 # Loading the data
 # all data are obtained from online sources
@@ -390,10 +393,15 @@ dat[dat$Latin=="Fukomys_mechowii",]$Latin<-"Fukomys_mechowi"
 #Bos bison is now Bison bison
 dat[dat$Latin=="Bos_bison",]$Latin<-"Bison_bison"
 
+# The dataset was cleaned during the preparation, which led to the exclusion of an entry for one of the species. For some analyses, the species identities need to be numbered consecutively, so we are changing the identities of species 88 to the missing identity 34 (to have identities 1-87)
+dat[dat$SpeciesRef==88,]$SpeciesRef<-34
+
+# How many effect sizes are there for macaques and baboons?
 table(dat$Latin)[grep("Macaca",names(table(dat$Latin)))]
 table(dat$Latin)[grep("Papio",names(table(dat$Latin)))]
 table(dat$Latin)[grep("Theropithecus",names(table(dat$Latin)))]
 
+# How many effect sizes are there for each of the different methodological approaches?
 table(dat$Populationtype)
 table(dat$RankDetermined)
 table(dat$Rank_Cont_Cat)
@@ -401,39 +409,338 @@ table(dat$MeasureType_Category)
 
 ```
 
-We extracted 444 effect sizes of the relationship between dominance rank and reproductive success of female mammals from 187 studies on 86 species during our literature search. More than half of the effect sizes are from primate species (253 effect sizes), with macaques (109) and baboons (76) a particular focus for this research. About two thirds (283) of the reports are from wild populations; rank was predominantly determined on the basis of aggressive interactions (407) rather than on other measures such as age or size; and it was about equally frequent that researchers classified rank categorically as dominant versus subordinant (251) than continuously from highest to lowest (193). Most of the studies reported effects of dominance rank on infant production (198) followed by infant survival (113), with fewer studies investigating the effect on interbirth intervals (46), lifetime reproductive success (34), survival (30), or age at first reproduction (23).
+We extracted 444 effect sizes of the relationship between dominance rank and reproductive success of female mammals from 187 studies on 86 species during our literature search. More than half of the effect sizes are from primate species (253 effect sizes), with macaques (109) and baboons (76) a particular focus for this research. About two thirds (283) of the reports are from wild populations; rank was predominantly determined on the basis of aggressive interactions (407) rather than on other measures such as age or size; and it was about equally frequent that researchers classified rank categorically as dominant versus subordinant (251) than continuously from highest to lowest (193). Most of the reported effects link dominance rank to infant production (198) followed by infant survival (113), with fewer effects reported on interbirth intervals (46), lifetime reproductive success (34), survival (30), or age at first reproduction (23).
+
+
+**Overall effect**: 
+We constructed a intercept-only meta-analytic base model to test for a general effect of dominance rank on reproductive success. Across our sample, there is a strong effect that females with higher dominance rank have higher reproductive success (metafor estimate 0.22-0.27, stan estimate 0.26-0.30; this estimate means, for example, that in groups with two individuals dominants would have between 0-6 offspring while subordinates have between 0-4 offspring). There is large variation though in our sample, with effect sizes ranging from -0.89 to +1.33 (Figure 1).
+
+```{r ranksuccess_funnelplot, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
+options(width=60)
+
+#base model in metafor: determine the overall effect size, accounting for the measurement error as reflected by the sampling variance
+meta_simple <- rma.mv(yi=Fishers_Z_r, V=Variance, data=dat)
+meta_simple
+
+
+
+#base model in rethinking: determine the overall effect size
+#We create the structured data file for the model 
+dat_list_simple <- list(
+  N_spp = nrow(dat),
+  Z_obs = dat$Fishers_Z_r,
+  Z_sd = dat$Variance
+)
+
+#We run the model assuming that the sampling variance (Z_sd) reflects an error in the measurements of the true effect sizes (Z_true) giving the effect sizes in the sample (Z_obs). The inferred values for mu reflect the overall estimates for the effect size and the values for sigma the associated variance in the sample.
+rethinking_simple <- ulam(
+  alist(
+    Z_obs ~dnorm ( Z_true , Z_sd),
+    vector[N_spp]:Z_true ~ dnorm( mu , sigma_sq ),
+    mu ~ normal(0,1),
+    sigma_sq~dexp(1)
+  ),data=dat_list_simple)
+precis(rethinking_simple)
+
+```
 
 
 **Publication bias**: 
-We will plot all effect sizes in a funnel-plot to perform a visual inspection of the range of effect sizes at different sample sizes and to investigate whether there might be an underrepresentation of studies with small effect sizes and small sample sizes (@egger1997bias). Given the diversity of studies in our sample, we expect that the effect sizes will not represent a sample from a single distribution: for example, studies of offspring mortality tend to have larger sample sizes (because each mother can have multiple offspring) and we predict different effect sizes for these studies. 
+A visual inspection of the range of effect sizes at different sample sizes in a funnel plot (Supplemental Figure) showed that there might be an underrepresentation of studies with small or negative effect sizes and small sample sizes (@egger1997bias). This sample bias is clearer to see in an orchard plot, which shows that extreme effect sizes tend to be of low precision and that there is an overrepresentation of positive effect sizes (Figure 1). 
 
 
 ```{r ranksuccess_funnelplot, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
 options(width=60)
+
+# We build the funnel plot based on the estimation of the overall effect size from the base model in metafor
 meta_simple <- rma.mv(yi=Fishers_Z_r, V=Variance, data=dat)
 funnel(meta_simple, level=c(90, 95, 99), shade=c("white", "gray", "darkgray"), 
        yaxis="seinv",xlab="effect size (Zr)",ylab="precision (1/SE)",digits=c(1,0),xlim=c(-2,2),ylim=c(1,30))
 
+#We buid the orchard plot based on the same base model
 orchard_plot(meta_simple, mod="Int", xlab = "Fisher's Z r", 
   transfm = "none") 
 ```
 
+Simple tests for publication bias (@preston2004adjusting) support this inference, suggesting that effect sizes with a p-value smaller than 0.05 are about four times more likely to be reported than effect sizes with a p-value larger than 0.50. However, given the diversity of studies in our sample, we did not expect that the effect sizes represent a sample from a single distribution: for example, studies of offspring mortality tend to have larger sample sizes (because each mother can have multiple offspring) and we predicted different effect sizes for these studies. The base analysis indicates high heterogeneity in our sample (total heterogeneity / total variability: 73.37%) and accordingly our sample likely shows multiple sources of bias.
+
+```{r ranksuccess_effectsizeselection, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
+options(width=60)
+
+# The estimation of whether non-significant effect sizes are missing from our sample is based on the full dataset.
+meta_basic <- rma(yi=Fishers_Z_r, vi=Variance, data=dat)
+
+# We use two different selection processes to reflect whether studies with specific p-values are more or less likely to be represented in our sample - a halfnormal curve and a stepwise function
+plot(selmodel(meta_basic,type="halfnorm"))
+plot(selmodel(meta_basic,type="stepfun",steps=c(0.005,0.01,0.025,0.05,0.1,0.9,0.95,1)))
 
 
- trim-and-fill analysis to estimate the extent of this bias and determine what an adjusted estimate would be. 
-There are potentially three factors leading to this sample bias, with the first being 'publication bias' with studies with low effect sizes missing from the published literature, the second being 'study system bias' with research focusing on systems with small groups where it is easy to detect effects (captive settings, cooperative breeders), and the third being 'study time bias' with studies performed over shorter time frames generally having smaller sample sizes. We added further post-hoc analyses to investigate these patterns. To investigate the extent of publication bias, we checked whether effect sizes were more likely to be missing if they did not reach significance for a given sample size. In addition, we determined whether sample sizes and effect sizes change with year of publication. To investigate the potential of study bias, we checked how uneven our sample sizes are between different study systems and determined how much the estimates of sample bias were reduced when accounting for differences in effect sizes between study systems. To investigate the role of study time bias, we looked at whether sample sizes are smaller in studies that had been conducted for shorter periods of time and whether the estimate of sample bias is reduced when accounting for differences in study time across the sample.
+```
 
-**Overall effect**: 
-We will construct a multilevel intercept-only meta-analytic base model to test for a general effect of dominance rank on reproductive success.
+
+There are potentially three sources of sample bias, with the first being 'publication bias' with studies with low effect sizes missing from the published literature, the second being 'study system bias' with research focusing on systems with small groups where it is easy to detect effects (captive settings, cooperative breeders), and the third being 'study time bias' with studies performed over shorter time frames generally having smaller sample sizes. We added further post-hoc analyses to investigate these patterns. To investigate the extent of publication bias, we checked whether effect sizes were more likely to be missing if they did not reach significance for a given sample size. In addition, we determined whether sample sizes and effect sizes change with year of publication. To investigate the potential of study bias, we checked how uneven our sample sizes are between different study systems and determined how much the estimates of sample bias were reduced when accounting for differences in effect sizes between study systems. To investigate the role of study time bias, we looked at whether sample sizes are smaller in studies that had been conducted for shorter periods of time and whether the estimate of sample bias is reduced when accounting for differences in study time across the sample.
+
 
 **Influence of locality/species**: 
-To the base model, we will add random effects to account for non-independence due to effect sizes originating from within the same study, from studies performed on the same population and on the same species.
+To the base model, we added random effects to account for non-independence due to effect sizes originating from within the same study, from studies performed on the same population and on the same species. The estimate of the overall effect size did not change in this model (metafor estimate 0.22-0.31, rethinking estimate 0.26-0.35). Effect sizes from the same species and the same study, but not the same population, tend to be similar to each other.
+
+```{r ranksuccess_samesource, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
+
+#Determine the overall effect size in a model that assumes that measurements from the same study, the same population, and the same species are not independent and that each measurement might have a unique approach.
+meta_randomfactors <- rma.mv(yi=Fishers_Z_r, V=Variance, data=dat, method="REML", random=list(~1|StudyRef,~1|StudyPopulation,~1|SpeciesRef,~1|EffectRef))
+meta_randomfactors
+
+#Check potential dependence from each of the random factors separately
+#model with species as random term
+meta_species <- rma.mv(yi=Fishers_Z_r, V=Variance, data=dat, slab=StudyRef, random=~1|SpeciesRef)
+meta_species 
+
+#model with study as random term
+meta_study <- rma.mv(yi=Fishers_Z_r, V=Variance, data=dat, slab=EffectRef, random=~ 1|StudyRef)
+meta_study 
+
+#model with population as random term
+meta_population <- rma.mv(yi=Fishers_Z_r, V=Variance, data=dat, slab=EffectRef, random=~ 1|StudyPopulation)
+meta_population 
+
+
+# Setting up the data for the stan model
+dat_list_moderators <- list(
+  N_spp = nrow(dat),
+  Z_obs = dat$Fishers_Z_r,
+  Z_sd = dat$Variance,
+  Pop = as.integer(as.factor((dat$StudyPopulation))),
+  Species = as.integer(dat$SpeciesRef),
+  Study = as.integer(as.factor(dat$StudyRef))
+)
+
+#We run the model assuming that the sampling variance reflects an error in the measurements of the true effect sizes
+
+rethinking_moderators_hyperprior <- ulam(
+    alist(
+        Z_obs ~dnorm ( Z_true , Z_sd),
+        vector[N_spp]:Z_true ~ dnorm( mu , sigma_sq ),
+        mu <- a + p[Pop] + b[Species] + c[Study],
+        a~dnorm(0,1),
+        sigma_sq~dexp(1),
+      ## adaptive priors
+        p[Pop] ~ dnorm( 0 , sigma_pop ),
+        b[Species] ~ dnorm( 0 , sigma_spec ),
+        c[Study] ~dnorm(0, sigma_study),
+      ## hyper-priors
+        sigma_pop ~ dexp(1),
+        sigma_spec ~ dexp(1),
+        sigma_study ~ dexp(1)
+    ) , data=dat_list_moderators , chains=4 , cores=4 , log_lik=TRUE ,iter=8000)
+precis(rethinking_moderators_hyperprior)
+
+```
 
 **Influence of approach**:
-To the base model, we will add random effects reflecting the differences in approaches across studies (wild/captive; agonism/correlate; linear/categorical rank).
+To the base model, we add random effects reflecting the differences in approaches across studies (dominance ranks classified continuous/categorical; dominance determined through agonism/correlate; population type wild/provisioned/captive ).
+
+
+Studies which measured dominance rank categorically by classifying individuals as either dominants or subordinates report higher effect sizes (metafor estimate 0.29-0.35, rethinking estimate 0.31-0.41) than studies assigning individuals continuous ranks (metafor estimate 0.16-0.22, rethinking estimate 0.17-0.28). In essentially all studies of cooperative breeders (31 of 32 effect sizes), comparisons were between the single dominant female and a class of the remaining subordinate females.
+
+Studies which determined the rank of females based on agonistic interactions have lower effect sizes (metafor estimate 0.22-0.26, rethinking estimate 0.24-0.32) than studies which used other correlates (body size, age, etc.) to assign dominance ranks (metafor estimate 0.43-0.55, rethinking estimate 0.41-0.63). The 37 effect sizes where rank was assigned based on correlates are from cooperative breeders and/or studies in which groups consisted of mothers and their daughters.
+
+Effect sizes did not vary between studies conducted with captive (metafor estimate 0.24-0.30, rethinking estimate 0.27-0.37), provisioned (metafor estimate 0.21-0.33, rethinking estimate 0.14-0.41), or wild (metafor estimate 0.22-0.0.34) individuals, and this does not change when we nest the population type within species to indicating that effect sizes do not differ between captive, provisioned, and wild populations of the same species.
+
+
+```{r ranksuccess_approach, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
+
+#Determine whether how rank was classified (continuous or categorical) influences effect sizes, assuming that measurements from the same study, the same population, and the same species are not independent and that each measurement might have a unique approach.
+meta_rankmeasurement <- rma.mv(yi=Fishers_Z_r, V=Variance, data=dat, mods=~ Rank_Cont_Cat, random=list(~1|StudyRef,~1|StudyPopulation,~1|SpeciesRef,~1|EffectRef))
+meta_rankmeasurement
+
+#Determine whether how rank was determined (agonism or another correlate) influences effect sizes, assuming that measurements from the same study, the same population, and the same species are not independent and that each measurement might have a unique approach.
+meta_rankdetermined <- rma.mv(yi=Fishers_Z_r, V=Variance, data=dat, mods=~ RankDetermined, random=list(~1|StudyRef,~1|StudyPopulation,~1|SpeciesRef,~1|EffectRef))
+meta_rankdetermined
+
+#Determine whether the type of study population (wild, provisioned, captive) influences effect sizes, assuming that measurements from the same population and the same species are not independent and that each measurement might have a unique approach (confound with same study means that model does not converge when including 1|StudyRef as additional random variable).
+meta_populationtype <- rma.mv(yi=Fishers_Z_r, V=Variance, data=dat, mods=~ Populationtype, random=list(~1|StudyPopulation,~1|SpeciesRef))
+meta_populationtype
+
+
+
+#Determine whether the type of study population (wild, provisioned, captive) influences effect sizes, assuming that measurements from the same population and the same species are not independent and that each measurement might have a unique approach (confound with same study means that model does not converge when including 1|StudyRef as additional random variable).
+meta_populationtype <- rma.mv(yi=Fishers_Z_r, V=Variance, data=dat, mods=~ Populationtype, random=list(~Populationtype|SpeciesRef))
+meta_populationtype
+
+
+
+
+# Setting up the data for the stan model
+dat_list_rankmeasured <- list(
+  N_spp = nrow(dat),
+  Z_obs = dat$Fishers_Z_r,
+  Z_sd = dat$Variance,
+  Pop = as.integer(as.factor((dat$StudyPopulation))),
+  Species = as.integer(dat$SpeciesRef),
+  Study = as.integer(as.factor(dat$StudyRef)),
+  Rankmeasured = as.integer(as.factor(dat$Rank_Cont_Cat))
+)
+
+#We run the model assuming that the sampling variance reflects an error in the measurements of the true effect sizes
+
+rethinking_rankmeasured <- ulam(
+    alist(
+        Z_obs ~dnorm ( Z_true , Z_sd),
+        vector[N_spp]:Z_true ~ dnorm( mu , sigma_sq ),
+        mu <- a[Rankmeasured] + p[Pop] + b[Species] + c[Study],
+        a[Rankmeasured]~dnorm(0,1),
+        sigma_sq~dexp(1),
+      ## adaptive priors
+        p[Pop] ~ dnorm( 0 , sigma_pop ),
+        b[Species] ~ dnorm( 0 , sigma_spec ),
+        c[Study] ~dnorm(0, sigma_study),
+      ## hyper-priors
+        sigma_pop ~ dexp(1),
+        sigma_spec ~ dexp(1),
+        sigma_study ~ dexp(1)
+    ) , data=dat_list_rankmeasured , chains=4 , cores=4 , log_lik=TRUE ,iter=8000)
+precis(rethinking_rankmeasured,depth=2)[445:447,]
+
+
+
+# Setting up the data for the stan model
+dat_list_rankdetermined <- list(
+  N_spp = nrow(dat),
+  Z_obs = dat$Fishers_Z_r,
+  Z_sd = dat$Variance,
+  Pop = as.integer(as.factor((dat$StudyPopulation))),
+  Species = as.integer(dat$SpeciesRef),
+  Study = as.integer(as.factor(dat$StudyRef)),
+  Rankdetermined = as.integer(as.factor(dat$RankDetermined))
+)
+
+#We run the model assuming that the sampling variance reflects an error in the measurements of the true effect sizes
+
+rethinking_rankdetermined <- ulam(
+    alist(
+        Z_obs ~dnorm ( Z_true , Z_sd),
+        vector[N_spp]:Z_true ~ dnorm( mu , sigma_sq ),
+        mu <- a[Rankdetermined] + p[Pop] + b[Species] + c[Study],
+        a[Rankdetermined]~dnorm(0,1),
+        sigma_sq~dexp(1),
+      ## adaptive priors
+        p[Pop] ~ dnorm( 0 , sigma_pop ),
+        b[Species] ~ dnorm( 0 , sigma_spec ),
+        c[Study] ~dnorm(0, sigma_study),
+      ## hyper-priors
+        sigma_pop ~ dexp(1),
+        sigma_spec ~ dexp(1),
+        sigma_study ~ dexp(1)
+    ) , data=dat_list_rankdetermined , chains=4 , cores=4 , log_lik=TRUE ,iter=8000)
+precis(rethinking_rankdetermined,depth=2)[445:447,]
+
+
+
+# Setting up the data for the stan model
+dat_list_populationtype <- list(
+  N_spp = nrow(dat),
+  Z_obs = dat$Fishers_Z_r,
+  Z_sd = dat$Variance,
+  Pop = as.integer(as.factor((dat$StudyPopulation))),
+  Species = as.integer(dat$SpeciesRef),
+  Study = as.integer(as.factor(dat$StudyRef)),
+  Populationtype = as.integer(as.factor(dat$Populationtype))
+)
+
+#We run the model assuming that the sampling variance reflects an error in the measurements of the true effect sizes
+
+rethinking_populationtype <- ulam(
+    alist(
+        Z_obs ~dnorm ( Z_true , Z_sd),
+        vector[N_spp]:Z_true ~ dnorm( mu , sigma_sq ),
+        mu <- a[Populationtype] + p[Pop] + b[Species] + c[Study],
+        a[Populationtype]~dnorm(0,1),
+        sigma_sq~dexp(1),
+      ## adaptive priors
+        p[Pop] ~ dnorm( 0 , sigma_pop ),
+        b[Species] ~ dnorm( 0 , sigma_spec ),
+        c[Study] ~dnorm(0, sigma_study),
+      ## hyper-priors
+        sigma_pop ~ dexp(1),
+        sigma_spec ~ dexp(1),
+        sigma_study ~ dexp(1)
+    ) , data=dat_list_populationtype , chains=4 , cores=4 , log_lik=TRUE ,iter=8000)
+precis(rethinking_populationtype,depth=2)[445:447,]
+
+
+rethinking_populationtype_nested <- ulam(
+    alist(
+        Z_obs ~dnorm ( Z_true , Z_sd),
+        vector[N_spp]:Z_true ~ dnorm( mu , sigma_sq ),
+        mu <- g[Populationtype] + alpha[Species,Populationtype],
+        transpars> matrix[Species,3]:alpha <-
+            compose_noncentered( sigma_species , L_Rho_species , z_species ),
+        matrix[3,Species]:z_species~normal(0,1),
+        g[Populationtype]~normal(0,1),
+        vector[3]:sigma_species~dexp(1),
+        cholesky_factor_corr[3]:L_Rho_species ~ lkj_corr_cholesky( 2 ),
+        gq> matrix[3,3]:Rho_species <<- Chol_to_Corr(L_Rho_species),
+        sigma_sq~dexp(1)
+    ) , data=dat_list_populationtype , chains=4 , cores=4 , log_lik=TRUE ,iter=18000)
+precis(rethinking_populationtype_nested,depth=2)[445:451,]
+
+```
+
+
+
 
 **Influence of measure of reproductive success**:
-To the base model, we will add a predictor variable reflecting the six classes of measures of reproductive success.
+To the base model, we add a predictor variable reflecting the six classes of measures of reproductive success.
+
+Dominance rank appears to have the highest effect on age of first conception (metafor estimate 0.32-0.43, rethinking estimate 0.33-0.52), life time reproductive success (metafor estimate 0.27-0.40, rethinking estimate 0.31-0.47), interbirth interval (metafor estimate 0.25-0.37, rethinking estimate 0.28-0.37), infant production (metafor estimate 0.21-0.33, rethinking estimate 0.23-0.38), adult survival (metafor estimate 0.18-0.31, rethinking estimate 0.18-0.34), infant survival (metafor estimate 0.14-0.25, rethinking estimate 0.15-0.26). Effects of dominance rank on survival are lower than on other measures of female fitness. In addition, females themselves appear to benefit more than their offspring (adult survival > infant survival). While effect sizes for life time reproductive success are higher than those for the values from which it is calculated (adult survival, interbirth interval, infant production), there does not appear to be a straightforward additive (or multiplicative) combination of the individual effects. 
+
+
+```{r ranksuccess_approach, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
+
+#Determine whether how rank was classified (continuous or categorical) influences effect sizes, assuming that measurements from the same study, the same population, and the same species are not independent and that each measurement might have a unique approach.
+meta_measuretype <- rma.mv(yi=Fishers_Z_r, V=Variance, data=dat, mods=~ MeasureType_Category, random=list(~1|StudyRef,~1|StudyPopulation,~1|SpeciesRef,~1|EffectRef))
+meta_measuretype
+
+
+
+# Setting up the data for the stan model
+dat_list_measuretype <- list(
+  N_spp = nrow(dat),
+  Z_obs = dat$Fishers_Z_r,
+  Z_sd = dat$Variance,
+  Pop = as.integer(as.factor((dat$StudyPopulation))),
+  Species = as.integer(dat$SpeciesRef),
+  Study = as.integer(as.factor(dat$StudyRef)),
+  Measuretype = as.integer(as.factor(dat$MeasureType_Category))
+)
+
+#We run the model assuming that the sampling variance reflects an error in the measurements of the true effect sizes
+
+rethinking_rankmeasured <- ulam(
+    alist(
+        Z_obs ~dnorm ( Z_true , Z_sd),
+        vector[N_spp]:Z_true ~ dnorm( mu , sigma_sq ),
+        mu <- a[Measuretype] + b[Species] + c[Study],
+        a[Measuretype]~dnorm(0,1),
+        sigma_sq~dexp(1),
+      ## adaptive priors
+        b[Species] ~ dnorm( 0 , sigma_spec ),
+        c[Study] ~dnorm(0, sigma_study),
+      ## hyper-priors
+        sigma_pop ~ dexp(1),
+        sigma_spec ~ dexp(1),
+        sigma_study ~ dexp(1)
+    ) , data=dat_list_measuretype , chains=4 , cores=4 , log_lik=TRUE ,iter=8000)
+precis(rethinking_rankmeasured,depth=2)[445:451,]
+
+
+
+```
+
+
+
+
+
 
 **Influence of phylogeny**: 
 To the random effects model, we will add a covariance structure to reflect potential similarities in effect sizes arising from closely related species showing similar effects due to their shared phylogenetic history. 
