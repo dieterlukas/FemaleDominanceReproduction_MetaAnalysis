@@ -329,6 +329,7 @@ We collected data on the additional explanatory variables:
 - coalition formation in the respective species from @lukas2018social
 - average relatedness from the articles from which we obtained the effect sizes or additional references matching the exact population (listed in data file)
 - we did not collect data on variance in relatedness because it was not possible to extract this information from most studies reporting relatedness levels 
+- some missing data was detected after starting the analysis script and are added as part of the code below
 
 Outlier check:
 Before running the analyses, we made a funnel plot of the standard error over the effect size, where we noticed three outlier data points. We realized that for these three entries (EffectRefs 425, 427, and 428) we had used the wrong formula to calculate the effect size and variance. All of these are studies of multiple groups of Callithrix jacchus, each with a small number of females. For these three studies, we had erroneously used the 2-by-2 frequency tables to calculate the standardized mean difference, not the correlation coefficient. We corrected the values for these three entries before performing any of the analyses.
@@ -395,6 +396,21 @@ dat[dat$Latin=="Fukomys_mechowii",]$Latin<-"Fukomys_mechowi"
 #Bos bison is now Bison bison
 dat[dat$Latin=="Bos_bison",]$Latin<-"Bison_bison"
 
+# For linking the phylogeny to the data, we create covariance matrices reflecting the shared phylogenetic history of pairs of species in a distance matrix
+phylo_branch <- compute.brlen(mammaltree, method = "Grafen", power = 1)
+phylo_cor <- vcv(phylo_branch, cor = T)
+Dmat<-cophenetic(mammaltree)
+
+
+# Setting up the data for the phylogenetic models in rethinking
+spp_obs<-unique(dat$Latin)
+spp_obs<-matrix(nrow=length(spp_obs))
+rownames(spp_obs)<-unique(dat$Latin)
+dat$SpeciesIncluded<-dat$Latin
+
+
+
+
 # The dataset was cleaned during the preparation, which led to the exclusion of an entry for one of the species. For some analyses, the species identities need to be numbered consecutively, so we are changing the identities of species 88 to the missing identity 34 (to have identities 1-87)
 dat[dat$SpeciesRef==88,]$SpeciesRef<-34
 
@@ -403,22 +419,23 @@ dat[dat$SpeciesRef==88,]$SpeciesRef<-34
 dat[dat$Latin=="Macaca_assamensis",]$LittersPerYear<-0.6
 
 
+
+# There are 11 species for which we did not classify the breeding system
+dat[dat$Latin=="Apodemus_sylvaticus",]$CooperativeBreeding<-1
+dat[dat$Latin=="Canis_rufus",]$CooperativeBreeding<-1
+dat[dat$Latin=="Ceratotherium_simum",]$AssociatedBreeding<-1
+dat[dat$Latin=="Marmota_marmota",]$CooperativeBreeding<-1
+dat[dat$Latin=="Mesocricetus_auratus",]$PluralBreeding<-1
+dat[dat$Latin=="Microtus_ochrogaster",]$CooperativeBreeding<-1
+dat[dat$Latin=="Microtus_pinetorum",]$CooperativeBreeding<-1
+dat[dat$Latin=="Odocoileus_virginianus",]$PluralBreeding<-1
+dat[dat$Latin=="Oryctolagus_cuniculus",]$PluralBreeding<-1
+dat[dat$Latin=="Ozotoceros_bezoarticus",]$AssociatedBreeding<-1
+dat[dat$Latin=="Vulpes_vulpes",]$CooperativeBreeding<-1
+
 # Create a new variable that has a categorical classification of the breeding system 
 # 1=cooperative breeder, 2=plural breeder, 3=associated breeder
 dat$BreedingSystem <-dat$CooperativeBreeding*1+dat$PluralBreeding*2+dat$AssociatedBreeding*3
-# There are 11 species for which we did not classify the breeding system
-table(dat[dat$BreedingSystem==0,]$Latin)
-dat[dat$Latin=="Apodemus_sylvaticus",]$BreedingSystem<-1
-dat[dat$Latin=="Canis_rufus",]$BreedingSystem<-1
-dat[dat$Latin=="Ceratotherium_simum",]$BreedingSystem<-3
-dat[dat$Latin=="Marmota_marmota",]$BreedingSystem<-1
-dat[dat$Latin=="Mesocricetus_auratus",]$BreedingSystem<-2
-dat[dat$Latin=="Microtus_ochrogaster",]$BreedingSystem<-1
-dat[dat$Latin=="Microtus_pinetorum",]$BreedingSystem<-1
-dat[dat$Latin=="Odocoileus_virginianus",]$BreedingSystem<-2
-dat[dat$Latin=="Oryctolagus_cuniculus",]$BreedingSystem<-2
-dat[dat$Latin=="Ozotoceros_bezoarticus",]$BreedingSystem<-3
-dat[dat$Latin=="Vulpes_vulpes",]$BreedingSystem<-1
 
 
 
@@ -438,11 +455,12 @@ table(dat$MeasureType_Category)
 
 
 
+#### **1) Does high rank generally lead to higher reproductive success for females in social mammals?**
 
 **Overall effect**: 
-We constructed a intercept-only meta-analytic base model to test for a general effect of dominance rank on reproductive success. Across our sample, there is a strong effect that females with higher dominance rank have higher reproductive success (metafor estimate 0.22-0.27, stan estimate 0.26-0.30; this estimate means, for example, that in groups with two individuals dominants would have between 0-6 offspring while subordinates have between 0-4 offspring). There is large variation though in our sample, with effect sizes ranging from -0.89 to +1.33 (Figure 1).
+We constructed a intercept-only meta-analytic base model to test for a general effect of dominance rank on reproductive success. Across our sample, there is a strong effect that females with higher dominance rank have higher reproductive success (metafor estimate 0.22-0.27, rethinking estimate 0.26-0.30; the metafor estimate here and in the additional models is lower than the rethinking estimate because the statistical approach of the former expects the data to be more symmetrical than they are). This overall effect means, for example, that in groups with two individuals dominants would have between 0-6 offspring while subordinates have between 0-4 offspring. There is large variation though in our sample, with effect sizes ranging from -0.89 to +1.33 (Figure 1).
 
-```{r ranksuccess_funnelplot, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
+```{r ranksuccess_overalleffect, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
 options(width=60)
 
 #base model in metafor: determine the overall effect size, accounting for the measurement error as reflected by the sampling variance
@@ -477,7 +495,7 @@ precis(rethinking_simple)
 **Publication bias**: 
 A visual inspection of the range of effect sizes at different sample sizes in a funnel plot (Supplemental Figure) showed that there might be an underrepresentation of studies with small or negative effect sizes and small sample sizes (@egger1997bias). This sample bias is clearer to see in an orchard plot, which shows that extreme effect sizes tend to be of low precision and that there is an overrepresentation of positive effect sizes (Figure 1). 
 
-```{r ranksuccess_funnelplot, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
+```{r ranksuccess_publicationbias, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
 options(width=60)
 
 # We build the funnel plot based on the estimation of the overall effect size from the base model in metafor
@@ -490,7 +508,11 @@ orchard_plot(meta_simple, mod="Int", xlab = "Fisher's Z r",
   transfm = "none") 
 ```
 
-Simple tests for publication bias (@preston2004adjusting) support this inference, suggesting that effect sizes with a p-value smaller than 0.05 are about four times more likely to be reported than effect sizes with a p-value larger than 0.50. However, given the diversity of studies in our sample, we did not expect that the effect sizes represent a sample from a single distribution: for example, studies of offspring mortality tend to have larger sample sizes (because each mother can have multiple offspring) and we predicted different effect sizes for these studies. The base analysis indicates high heterogeneity in our sample (total heterogeneity / total variability: 73.37%) and accordingly our sample likely shows multiple sources of bias.
+
+
+There are potentially (at least) three sources of sample bias, the first being 'publication bias' with studies with low effect sizes not ending up in the published literature, the second being 'study system bias' with research focusing on populations with small groups where it is easy to detect effects (e.g. cooperative breeders), and the third being 'study time bias' with studies performed over shorter time frames generally being more imprecise. We added further post-hoc analyses to investigate these patterns individually here, and in a combined model after identifying which study systems might show different effect sizes.
+
+Simple tests for "publication bias' (@preston2004adjusting) suggest that effect sizes with a p-value smaller than 0.05 are about four times more likely to be reported than effect sizes with a p-value larger than 0.50. However, given the diversity of studies in our sample, we did not expect that the effect sizes represent a sample from a single distribution: for example, studies of offspring mortality tend to have larger sample sizes (because each mother can have multiple offspring) and we predicted different effect sizes for these studies. The base analysis indicates high heterogeneity in our sample (total heterogeneity / total variability: 73.37%) and suggesting that our sample might also show 'study system bias'.
 
 ```{r ranksuccess_effectsizeselection, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
 options(width=60)
@@ -505,8 +527,52 @@ plot(selmodel(meta_basic,type="stepfun",steps=c(0.005,0.01,0.025,0.05,0.1,0.9,0.
 
 ```
 
+Finally, including the number of years a study had been conducted for as a predictor of the effect sizes also indicates that our sample shows "study system bias". Effect sizes are lower when studies have been conducted for longer (metafor estimate -0.01 - 0.00, rethinking estimate -0.05 - 0.00), but in particular the variance is reduced once a study has been running for 10 ore more years (Supplemental figure). 
 
-There are potentially three sources of sample bias, with the first being 'publication bias' with studies with low effect sizes missing from the published literature, the second being 'study system bias' with research focusing on systems with small groups where it is easy to detect effects (captive settings, cooperative breeders), and the third being 'study time bias' with studies performed over shorter time frames generally having smaller sample sizes. We added further post-hoc analyses to investigate these patterns. To investigate the extent of publication bias, we checked whether effect sizes were more likely to be missing if they did not reach significance for a given sample size. In addition, we determined whether sample sizes and effect sizes change with year of publication. To investigate the potential of study bias, we checked how uneven our sample sizes are between different study systems and determined how much the estimates of sample bias were reduced when accounting for differences in effect sizes between study systems. To investigate the role of study time bias, we looked at whether sample sizes are smaller in studies that had been conducted for shorter periods of time and whether the estimate of sample bias is reduced when accounting for differences in study time across the sample.
+
+```{r ranksuccess_numberofyears, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
+options(width=60)
+
+#Determine whether the duration of the study population influences effect sizes, assuming that measurements from the same population and the same species are not independent and that each measurement might have a unique approach (confound with same study means that model does not converge when including 1|StudyRef as additional random variable).
+meta_numberofyears <- rma.mv(yi=Fishers_Z_r, V=Variance, data=dat, mods=~ No_of_years, random=list(~Populationtype|SpeciesRef))
+meta_numberofyears
+
+
+# Setting up the data for the stan model
+dat_list_noyears <- list(
+  N_spp = nrow(dat),
+  Z_obs = dat$Fishers_Z_r,
+  Z_sd = dat$Variance,
+  Pop = as.integer(as.factor((dat$StudyPopulation))),
+  Species = as.integer(dat$SpeciesRef),
+  Study = as.integer(as.factor(dat$StudyRef)),
+  NoYears = standardize(dat$No_of_years)
+)
+
+#We run the model assuming that the sampling variance reflects an error in the measurements of the true effect sizes
+
+rethinking_noyears <- ulam(
+    alist(
+        Z_obs ~dnorm ( Z_true , Z_sd),
+        vector[N_spp]:Z_true ~ dnorm( mu , sigma_sq ),
+        mu <- a+y*NoYears + p[Pop] + b[Species] + c[Study],
+        a~dnorm(0,1),
+        y~dnorm(0,1),
+        sigma_sq~dexp(1),
+      ## adaptive priors
+        p[Pop] ~ dnorm( 0 , sigma_pop ),
+        b[Species] ~ dnorm( 0 , sigma_spec ),
+        c[Study] ~dnorm(0, sigma_study),
+      ## hyper-priors
+        sigma_pop ~ dexp(1),
+        sigma_spec ~ dexp(1),
+        sigma_study ~ dexp(1)
+    ) , data=dat_list_noyears , chains=4 , cores=4 , log_lik=TRUE ,iter=8000)
+precis(rethinking_noyears,depth=2)[445:447,]
+
+```
+
+
 
 
 
@@ -569,13 +635,14 @@ precis(rethinking_moderators_hyperprior)
 
 
 **Influence of approach**:
-To the base model, we add random effects reflecting the differences in approaches across studies (dominance ranks classified continuous/categorical; dominance determined through agonism/correlate; population type wild/provisioned/captive).
+To the base model, we add random effects reflecting the differences in approaches across studies (dominance ranks classified continuous/categorical; dominance determined through agonism/correlate; population type wild/provisioned/captive; number of years of the study).
 
 Studies which measured dominance rank categorically by classifying individuals as either dominants or subordinates report higher effect sizes (metafor estimate 0.29-0.35, rethinking estimate 0.31-0.41) than studies assigning individuals continuous ranks (metafor estimate 0.16-0.22, rethinking estimate 0.17-0.28). In essentially all studies of cooperative breeders (31 of 32 effect sizes), comparisons were between the single dominant female and a class of the remaining subordinate females.
 
 Studies which determined the rank of females based on agonistic interactions have lower effect sizes (metafor estimate 0.22-0.26, rethinking estimate 0.24-0.32) than studies which used other correlates (body size, age, etc.) to assign dominance ranks (metafor estimate 0.43-0.55, rethinking estimate 0.41-0.63). The 37 effect sizes where rank was assigned based on correlates are from cooperative breeders and/or studies in which groups consisted of mothers and their daughters.
 
-Effect sizes did not vary between studies conducted with captive (metafor estimate 0.24-0.30, rethinking estimate 0.27-0.37), provisioned (metafor estimate 0.21-0.33, rethinking estimate 0.14-0.41), or wild (metafor estimate 0.22-0.0.34) individuals, and this does not change when we nest the population type within species to indicating that effect sizes do not differ between captive, provisioned, and wild populations of the same species.
+Effect sizes did not vary between studies conducted with captive (metafor estimate 0.24-0.30, rethinking estimate 0.27-0.37), provisioned (metafor estimate 0.21-0.33, rethinking estimate 0.14-0.41), or wild (metafor estimate 0.22-0.0.34) individuals, and this does not change when we nest the population type within species (indicating that effect sizes do not differ between captive, provisioned, and wild populations of the same species).
+
 
 
 ```{r ranksuccess_approach, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
@@ -597,6 +664,10 @@ meta_populationtype
 #Determine whether the type of study population (wild, provisioned, captive) influences effect sizes, assuming that measurements from the same population and the same species are not independent and that each measurement might have a unique approach (confound with same study means that model does not converge when including 1|StudyRef as additional random variable).
 meta_populationtype <- rma.mv(yi=Fishers_Z_r, V=Variance, data=dat, mods=~ Populationtype, random=list(~Populationtype|SpeciesRef))
 meta_populationtype
+
+
+
+
 
 
 
@@ -715,56 +786,47 @@ rethinking_populationtype_nested <- ulam(
     ) , data=dat_list_populationtype , chains=4 , cores=4 , log_lik=TRUE ,iter=18000)
 precis(rethinking_populationtype_nested,depth=2)[445:451,]
 
-```
-
-
-
-
-**Influence of measure of reproductive success**:
-To the base model, we add a predictor variable reflecting the six classes of measures of reproductive success.
-
-Dominance rank appears to have the highest effect on age of first conception (metafor estimate 0.32-0.43, rethinking estimate 0.33-0.52), life time reproductive success (metafor estimate 0.27-0.40, rethinking estimate 0.31-0.47), interbirth interval (metafor estimate 0.25-0.37, rethinking estimate 0.28-0.37), infant production (metafor estimate 0.21-0.33, rethinking estimate 0.23-0.38), adult survival (metafor estimate 0.18-0.31, rethinking estimate 0.18-0.34), infant survival (metafor estimate 0.14-0.25, rethinking estimate 0.15-0.26). Effects of dominance rank on survival are lower than on other measures of female fitness. In addition, females themselves appear to benefit more than their offspring (adult survival > infant survival). While effect sizes for life time reproductive success are higher than those for the values from which it is usually calculated (adult survival, interbirth interval, infant production), there does not appear to be a straightforward additive (or multiplicative) combination of the individual effects. 
-
-```{r ranksuccess_approach, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
-
-#Determine whether how rank was classified (continuous or categorical) influences effect sizes, assuming that measurements from the same study, the same population, and the same species are not independent and that each measurement might have a unique approach.
-meta_measuretype <- rma.mv(yi=Fishers_Z_r, V=Variance, data=dat, mods=~ MeasureType_Category, random=list(~1|StudyRef,~1|StudyPopulation,~1|SpeciesRef,~1|EffectRef))
-meta_measuretype
 
 
 
 # Setting up the data for the stan model
-dat_list_measuretype <- list(
+dat_list_noyears <- list(
   N_spp = nrow(dat),
   Z_obs = dat$Fishers_Z_r,
   Z_sd = dat$Variance,
   Pop = as.integer(as.factor((dat$StudyPopulation))),
   Species = as.integer(dat$SpeciesRef),
   Study = as.integer(as.factor(dat$StudyRef)),
-  Measuretype = as.integer(as.factor(dat$MeasureType_Category))
+  NoYears = standardize(dat$No_of_years)
 )
 
 #We run the model assuming that the sampling variance reflects an error in the measurements of the true effect sizes
 
-rethinking_rankmeasured <- ulam(
+rethinking_noyears <- ulam(
     alist(
         Z_obs ~dnorm ( Z_true , Z_sd),
         vector[N_spp]:Z_true ~ dnorm( mu , sigma_sq ),
-        mu <- a[Measuretype] + b[Species] + c[Study],
-        a[Measuretype]~dnorm(0,1),
+        mu <- a+y*NoYears + p[Pop] + b[Species] + c[Study],
+        a~dnorm(0,1),
+        y~dnorm(0,1),
         sigma_sq~dexp(1),
       ## adaptive priors
+        p[Pop] ~ dnorm( 0 , sigma_pop ),
         b[Species] ~ dnorm( 0 , sigma_spec ),
         c[Study] ~dnorm(0, sigma_study),
       ## hyper-priors
+        sigma_pop ~ dexp(1),
         sigma_spec ~ dexp(1),
         sigma_study ~ dexp(1)
-    ) , data=dat_list_measuretype , chains=4 , cores=4 , log_lik=TRUE ,iter=8000)
-precis(rethinking_rankmeasured,depth=2)[445:451,]
+    ) , data=dat_list_noyears , chains=4 , cores=4 , log_lik=TRUE ,iter=8000)
+precis(rethinking_noyears,depth=2)[445:447,]
 
 
 
 ```
+
+
+
 
 
 
@@ -772,19 +834,13 @@ precis(rethinking_rankmeasured,depth=2)[445:451,]
 
 
 **Influence of phylogeny**: 
-To the random effects model, we will add a covariance structure to reflect potential similarities in effect sizes arising from closely related species showing similar effects due to their shared phylogenetic history. Both statistical approaches indicate that closely related species tend to have effect sizes that are more similar than those of distantly related species. The metafor approach suggests that about 20% of the variation in effect sizes is associated with covariation among species. The rethinking approach shows high uncertainty in the estimates (Figure), reflecting the high heterogeneity in the underlying data with high variation within species and different measures taken among closely related species, but suggests that high similarity is primarily among species of the same genus and some similarity for species in the same Order (e.g. maximum standardized distance among primate species in our sample is 0.42, where estimates of similarity drop to zero).
+To the random effects model, we added a covariance structure to reflect potential similarities in effect sizes arising from closely related species showing similar effects due to their shared phylogenetic history. Both statistical approaches indicate that closely related species tend to have effect sizes that are more similar than those of distantly related species. The metafor approach suggests that about 20% of the variation in effect sizes is associated with covariation among species. The rethinking approach shows high uncertainty in the estimates (Figure), reflecting the high heterogeneity in the underlying data with high variation within species and different measures taken among closely related species, but suggests that high similarity is primarily among species of the same genus and some similarity for species in the same Order (e.g. maximum standardized distance among primate species in our sample is 0.42, where estimates of similarity drop to zero).
 
 
 ```{r ranksuccess_phylogeny, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
 
 #Determine whether how rank was classified (continuous or categorical) influences effect sizes, assuming that measurements from the same study, the same population, and the same species are not independent and that each measurement might have a unique approach.
 
-dat$SpeciesIncluded<-dat$Latin
-
-phylo_branch <- compute.brlen(mammaltree, method = "Grafen", power = 1)
-phylo_cor <- vcv(phylo_branch, cor = T)
-
-# Application of Equation 21 from the main text
 metafor_phylogenetic <- rma.mv(Fishers_Z_r, Variance,
                                       mod =~1,
                                       random=list(~ 1 | SpeciesIncluded, # linking the species to the phylogeny
@@ -797,10 +853,7 @@ metafor_phylogenetic <- rma.mv(Fishers_Z_r, Variance,
 metafor_phylogenetic
 
 
-# Setting up the data for the stan model
-spp_obs<-unique(dat$Latin)
-spp_obs<-matrix(nrow=length(spp_obs))
-rownames(spp_obs)<-unique(dat$Latin)
+
 
 #Next, we convert the phylogeny into a covariance matrix that reflects the shared phylogenetic history among all pairs of species in the sample
 #There are two approaches: first assuming a Brownian Motion model of evolution, and next a model that includes the parameter Pagel's lambda to account for potential changes in the rate of evolution
@@ -884,104 +937,53 @@ for (i in 1:50) curve(post$etasq[i]*exp(-post$rhosq[i]*x^2),add=TRUE,col=grau())
 
 
 
-**Influence of predictor variables**: 
+
+#### **2) What are the life history traits that mediate the benefits of rank on reproductive success?**
 
 
-*Group size*
-Both approaches detect a negative association between the effect sizes and group sizes (metafor estimate of log group size -0.099 - -0.678, rethinking estimate of standardized group size -0.10 - -0.05). Compared to groups of 2 females, groups of 10 females show ~10% lower effect sizes and groups of ~50 females show 50% lower effect sizes. The negative association between group size and the effect sizes remains when accounting for similarity among closely related species.
+**Influence of measure of reproductive success**:
+To the base model, we add a predictor variable reflecting the six classes of measures of reproductive success.
 
+Dominance rank appears to have the highest effect on age of first conception (metafor estimate 0.32-0.43, rethinking estimate 0.33-0.52), life time reproductive success (metafor estimate 0.27-0.40, rethinking estimate 0.31-0.47), interbirth interval (metafor estimate 0.25-0.37, rethinking estimate 0.28-0.37), infant production (metafor estimate 0.21-0.33, rethinking estimate 0.23-0.38), adult survival (metafor estimate 0.18-0.31, rethinking estimate 0.18-0.34), infant survival (metafor estimate 0.14-0.25, rethinking estimate 0.15-0.26). Effects of dominance rank on survival are lower than on other measures of female fitness. In addition, females themselves appear to benefit more than their offspring (adult survival > infant survival). While effect sizes for life time reproductive success are higher than those for the values from which it is usually calculated (adult survival, interbirth interval, infant production), there does not appear to be a straightforward additive (or multiplicative) combination of the individual effects. 
 
-```{r ranksuccess_groupsize, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
+```{r ranksuccess_measure, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
 
-#model assessing the influence of difference on group sizes on the measured effect sizes, with study reference as random term
-
-
-meta_groupsize <- rma.mv(yi=Fishers_Z_r, V=Variance, mods=~ GroupSize, data=dat, method="REML", random=list(~1|StudyRef,~1|SpeciesRef))
-meta_groupsize
-
-metafor_phylogenetic_groupsize <- rma.mv(Fishers_Z_r, Variance,
-                                      mod =~GroupSize,
-                                      random=list(~ 1 | SpeciesIncluded, # linking the species to the phylogeny
-                                                  ~ 1 | Latin, # observations from the same species might be similar to each other, even if those from closely related species are not
-                                                  ~ 1 | StudyRef),  # accounting for observations from the same publication
-                                      R = list(SpeciesIncluded = phylo_cor), # reflecting the phylogenetic relatedness
-                                      method="REML",
-                                      test="t",  
-                                      data=dat)
-metafor_phylogenetic_groupsize
+#Determine whether how rank was classified (continuous or categorical) influences effect sizes, assuming that measurements from the same study, the same population, and the same species are not independent and that each measurement might have a unique approach.
+meta_measuretype <- rma.mv(yi=Fishers_Z_r, V=Variance, data=dat, mods=~ MeasureType_Category, random=list(~1|StudyRef,~1|StudyPopulation,~1|SpeciesRef,~1|EffectRef))
+meta_measuretype
 
 
 
-#A non-phylogenetic model to determine the influence of group size on the variation in effect sizes
-#We create the structured data file for the model 
-dat_list_groupsize <- list(
-  N_spp = nrow(dat),
-  Fishers_Z_r = dat$Fishers_Z_r,
-  Variance = dat$Variance, 
-  GroupSize_s = standardize(dat$GroupSize)
-)
-
-dat$GroupSize_s<-standardize(dat$GroupSize)
-
-#We run the model
-rethinking_groupsize <- ulam(
-  alist(
-    Fishers_Z_r ~dnorm ( Z_true , Variance),
-    vector[N_spp]:Z_true ~ dnorm( mu , sigma_sq ),
-    mu <- a+bG*GroupSize_s,
-    a~normal(0,1),
-    bG~normal(0,0.5),
-    sigma_sq~dexp(1)
-  ),data=dat_list_groupsize)
-precis(rethinking_groupsize)
-
-
-#calculate and plot values at the minimum group size, 2,10,50,100 females, and the maximum group size
-groupsize.seq <-  c(-1,-0.84895,-0.415,1.753,4.4635,8)
-pred_dat <- list( GroupSize_s = groupsize.seq)
-mu <- link( rethinking_groupsize , data=pred_dat )
-mu.mean <- apply( mu , 2 , mean )
-mu.PI <- apply( mu , 2 , PI , prob=0.89 )
-plot( Fishers_Z_r ~ G , dat , col=col.alpha(rangi2,0.5) ,xaxt="n")
-at <- c(-0.84895,-0.415,1.753,4.4635)
-labels <- at*sd(dat$GroupSize) + mean(dat$GroupSize)
-axis( side=1 , at=at , labels=round(labels,1) )
-lines( groupsize.seq , mu.mean )
-shade( mu.PI , groupsize.seq )
-
-
-
-
-
-
-
-dat_list_phylogenetic_groupsize <- list(
+# Setting up the data for the stan model
+dat_list_measuretype <- list(
   N_spp = nrow(dat),
   Z_obs = dat$Fishers_Z_r,
-  Z_sd = dat$Variance, 
-  G = standardize(standardize(log(dat$GroupSize)))
+  Z_sd = dat$Variance,
+  Pop = as.integer(as.factor((dat$StudyPopulation))),
+  Species = as.integer(dat$SpeciesRef),
+  Study = as.integer(as.factor(dat$StudyRef)),
+  Measuretype = as.integer(as.factor(dat$MeasureType_Category))
 )
 
-dat_list_phylogenetic_groupsize$Dmat<-Dmat[ dat$Latin,dat$Latin ]/max(Dmat)
-rethinking_phylogenetic_gaussian_groupsize <- ulam(
-  alist(
-    Z_obs ~dnorm ( Z_true , Z_sd),
-    vector[N_spp]:Z_true ~ multi_normal( mu , SIGMA ),
-    mu <- a+bG*G,
-    matrix[N_spp,N_spp]: SIGMA <- cov_GPL2( Dmat, etasq, rhosq, 0.01),
-    a~normal(0,1),
-    bG~normal(0,0.5),
-    etasq~exponential(1),
-    rhosq~exponential(1)
-  ),data=dat_list_phylogenetic_groupsize)
-precis(rethinking_phylogenetic_gaussian_groupsize)
+#We run the model assuming that the sampling variance reflects an error in the measurements of the true effect sizes
 
-#To check the phylogenetic signal, we plot the estimate covariance(similarity) in effect sizes as species are more distantly related
-#A phylogenetic signal in the plot would be shown by high covariances among species that have small phylogenetic distances and declining covariances as phylogenetic distance increases
-#For the simulated dataset, most of the estimates show a covariance of 0, and no change as phylogenetic distance increases
-post<-extract.samples(rethinking_phylogenetic_gaussian)
-plot(NULL,xlim=c(0,max(dat_list$Dmat)),ylim=c(0,1.5),xlab="phylogenetic distance",ylab="covariance")
-for (i in 1:50) curve(post$etasq[i]*exp(-post$rhosq[i]*x^2),add=TRUE,col=grau())
+rethinking_rankmeasured <- ulam(
+    alist(
+        Z_obs ~dnorm ( Z_true , Z_sd),
+        vector[N_spp]:Z_true ~ dnorm( mu , sigma_sq ),
+        mu <- a[Measuretype] + b[Species] + c[Study],
+        a[Measuretype]~dnorm(0,1),
+        sigma_sq~dexp(1),
+      ## adaptive priors
+        b[Species] ~ dnorm( 0 , sigma_spec ),
+        c[Study] ~dnorm(0, sigma_study),
+      ## hyper-priors
+        sigma_spec ~ dexp(1),
+        sigma_study ~ dexp(1)
+    ) , data=dat_list_measuretype , chains=4 , cores=4 , log_lik=TRUE ,iter=8000)
+precis(rethinking_rankmeasured,depth=2)[445:451,]
+
+plot(precis( rethinking_rankmeasured , depth=2 , pars="a" ))
 
 
 ```
@@ -989,7 +991,9 @@ for (i in 1:50) curve(post$etasq[i]*exp(-post$rhosq[i]*x^2),add=TRUE,col=grau())
 
 
 
-*Litter Size and Litters Per Year*
+
+
+**Litter Size and Litters Per Year**
 Effects of dominance on reproductive success are higher in species with larger litter sizes (metafor estimate of litter size 0.03 - 0.05, rethinking estimate 0.05 - 0.09) and with more litters per year (metafor estimate of litters per year 0.04 - 0.08, rethinking estimate 0.06 - 0.11). Effect sizes in species where females produce single offspring are on average 0.25 while effect sizes in species where females produce litters are on average 0.34, and effect sizes in species where females produce one or fewer litters per year are on average 0.25 while effect sizes in species where females produce multiple litters each year are on average 0.45. The association of the effect sizes with the number of litters per year remained when accounting for the phylogenetic relatedness among species, but the association with litter size is not, suggesting that it might be influenced by other characteristics among which species with different litter sizes vary.
 
 
@@ -1151,7 +1155,361 @@ precis(rethinking_phylogenetic_gaussian_littersperyear)
 
 
 
-*Breeding system*
+
+#### **3) What are the ecological conditions that mediate the benefits of rank on reproductive success?**
+
+**Diet Category**
+
+Effect sizes are larger in carnivores (0.36) than in omnivores (0.29),  herbivores (0.27), or frugivores (0.22) (estimated differences c-o metafor -0.36 - -0.17 rethinking -0.24 - -0.04, c-h metafor -0.29 - -0.13 rethinking -0.16 - -0.03, c-f metafor -0.27 - -0.11 rethinking -0.14 - -0.02; estimates for all other comparisons cross 0). Carnivores are no longer estimated to have different effect sizes when the phylogenetic relatedness among species is taken into account.
+
+
+
+```{r ranksuccess_diet, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
+
+#model assessing the influence of difference on group sizes on the measured effect sizes, with study reference as random term
+
+
+meta_diet <- rma.mv(yi=Fishers_Z_r, V=Variance, mods=~ DietCategory, data=dat, method="REML", random=list(~1|StudyRef,~1|SpeciesRef))
+meta_diet
+
+metafor_phylogenetic_diet <- rma.mv(Fishers_Z_r, Variance,
+                                      mod =~DietCategory,
+                                      random=list(~ 1 | SpeciesIncluded, # linking the species to the phylogeny
+                                                  ~ 1 | Latin, # observations from the same species might be similar to each other, even if those from closely related species are not
+                                                  ~ 1 | StudyRef),  # accounting for observations from the same publication
+                                      R = list(SpeciesIncluded = phylo_cor), # reflecting the phylogenetic relatedness
+                                      method="REML",
+                                      test="t",  
+                                      data=dat)
+metafor_phylogenetic_diet
+
+
+
+#A non-phylogenetic model to determine the influence of group size on the variation in effect sizes
+#We create the structured data file for the model 
+
+dietdat<-dat[is.na(dat$DietCategory)==F,]
+
+dat_list_diet <- list(
+  N_spp = nrow(dietdat),
+  Z_obs = dietdat$Fishers_Z_r,
+  Z_sd = dietdat$Variance, 
+  D = as.integer(as.factor(dietdat$DietCategory))
+)
+
+#We run the model
+rethinking_diet <- ulam(
+  alist(
+    Z_obs ~dnorm ( Z_true , Z_sd),
+    vector[N_spp]:Z_true ~ dnorm( mu , sigma_sq ),
+    mu <- a+b[D],
+    a~normal(0,1),
+    b[D]~normal(0,0.5),
+    sigma_sq~dexp(1)
+  ),data=dat_list_diet)
+precis(rethinking_diet,depth=2)[444:450,]
+posterior<-extract.samples(rethinking_diet)
+difference_diet<-posterior$b[,2]-posterior$b[,1]
+precis(difference_diet)
+
+
+dat_list_phylogenetic_associatedbreeding <- list(
+  N_spp = nrow(dat),
+  Z_obs = dat$Fishers_Z_r,
+  Z_sd = dat$Variance, 
+  P = dat$AssociatedBreeding+1
+)
+
+dat_list_phylogenetic_associatedbreeding$Dmat<-Dmat[ dat$Latin,dat$Latin ]/max(Dmat)
+rethinking_phylogenetic_gaussian_associatedbreeding <- ulam(
+  alist(
+    Z_obs ~dnorm ( Z_true , Z_sd),
+    vector[N_spp]:Z_true ~ multi_normal( mu , SIGMA ),
+    mu <- a+b[P],
+    matrix[N_spp,N_spp]: SIGMA <- cov_GPL2( Dmat, etasq, rhosq, 0.01),
+    a~normal(0,1),
+    b[P]~normal(0,0.5),
+    etasq~exponential(1),
+    rhosq~exponential(1)
+  ),data=dat_list_phylogenetic_associatedbreeding)
+precis(rethinking_phylogenetic_gaussian_associatedbreeding)
+
+
+```
+
+
+
+
+
+**Environmental Harshness**
+
+Our data shows no association between environmental harshness and the effect of dominance rank on reproductive success (metafor estimate -0.3 - +0.4, rethinking -0.6 - +0.1).
+
+```{r ranksuccess_harshness, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
+
+#model assessing the influence of difference on group sizes on the measured effect sizes, with study reference as random term
+
+
+meta_harshness <- rma.mv(yi=Fishers_Z_r, V=Variance, mods=~ EnvironmentalHarshness, data=dat, method="REML", random=list(~1|StudyRef,~1|SpeciesRef))
+meta_harshness
+
+metafor_phylogenetic_harshness <- rma.mv(Fishers_Z_r, Variance,
+                                      mod =~EnvironmentalHarshness,
+                                      random=list(~ 1 | SpeciesIncluded, # linking the species to the phylogeny
+                                                  ~ 1 | Latin, # observations from the same species might be similar to each other, even if those from closely related species are not
+                                                  ~ 1 | StudyRef),  # accounting for observations from the same publication
+                                      R = list(SpeciesIncluded = phylo_cor), # reflecting the phylogenetic relatedness
+                                      method="REML",
+                                      test="t",  
+                                      data=dat)
+metafor_phylogenetic_harshness
+
+
+
+#A non-phylogenetic model to determine the influence of group size on the variation in effect sizes
+#We create the structured data file for the model 
+
+harshnessdat<-dat[is.na(dat$EnvironmentalHarshness)==F,]
+
+dat_list_harshness <- list(
+  N_spp = nrow(harshnessdat),
+  Z_obs = harshnessdat$Fishers_Z_r,
+  Z_sd = harshnessdat$Variance, 
+  H = standardize(harshnessdat$EnvironmentalHarshness)
+)
+
+#We run the model
+rethinking_harshness <- ulam(
+  alist(
+    Z_obs ~dnorm ( Z_true , Z_sd),
+    vector[N_spp]:Z_true ~ dnorm( mu , sigma_sq ),
+    mu <- a+b*H,
+    a~normal(0,1),
+    b~normal(0,0.5),
+    sigma_sq~dexp(1)
+  ),data=dat_list_harshness)
+precis(rethinking_harshness,depth=2)[260:262,]
+
+
+
+dat_list_phylogenetic_associatedbreeding <- list(
+  N_spp = nrow(dat),
+  Z_obs = dat$Fishers_Z_r,
+  Z_sd = dat$Variance, 
+  P = dat$AssociatedBreeding+1
+)
+
+dat_list_phylogenetic_associatedbreeding$Dmat<-Dmat[ dat$Latin,dat$Latin ]/max(Dmat)
+rethinking_phylogenetic_gaussian_associatedbreeding <- ulam(
+  alist(
+    Z_obs ~dnorm ( Z_true , Z_sd),
+    vector[N_spp]:Z_true ~ multi_normal( mu , SIGMA ),
+    mu <- a+b[P],
+    matrix[N_spp,N_spp]: SIGMA <- cov_GPL2( Dmat, etasq, rhosq, 0.01),
+    a~normal(0,1),
+    b[P]~normal(0,0.5),
+    etasq~exponential(1),
+    rhosq~exponential(1)
+  ),data=dat_list_phylogenetic_associatedbreeding)
+precis(rethinking_phylogenetic_gaussian_associatedbreeding)
+
+
+```
+
+
+
+
+**Population Density**
+
+Effect sizes are larger in species with higher population densities (metafor 0.04 - 0.08, rethinking 0.05 - 0.10), even when including phylogenetic relatedness.
+
+
+```{r ranksuccess_density, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
+
+#model assessing the influence of difference on group sizes on the measured effect sizes, with study reference as random term
+
+densitydat<-dat[is.na(dat$PopulationDensity)==F,]
+densitydat$PopulationDensity<-standardize(densitydat$PopulationDensity)
+
+
+meta_density <- rma.mv(yi=Fishers_Z_r, V=Variance, mods=~ PopulationDensity, data=dat, method="REML", random=list(~1|StudyRef,~1|SpeciesRef))
+meta_density
+
+metafor_phylogenetic_density <- rma.mv(Fishers_Z_r, Variance,
+                                      mod =~PopulationDensity,
+                                      random=list(~ 1 | SpeciesIncluded, # linking the species to the phylogeny
+                                                  ~ 1 | Latin, # observations from the same species might be similar to each other, even if those from closely related species are not
+                                                  ~ 1 | StudyRef),  # accounting for observations from the same publication
+                                      R = list(SpeciesIncluded = phylo_cor), # reflecting the phylogenetic relatedness
+                                      method="REML",
+                                      test="t",  
+                                      data=dat)
+metafor_phylogenetic_density
+
+
+
+#A non-phylogenetic model to determine the influence of group size on the variation in effect sizes
+#We create the structured data file for the model 
+
+densitydat<-dat[is.na(dat$PopulationDensity)==F,]
+
+dat_list_density <- list(
+  N_spp = nrow(densitydat),
+  Z_obs = densitydat$Fishers_Z_r,
+  Z_sd = densitydat$Variance, 
+  P = standardize(densitydat$PopulationDensity)
+)
+
+#We run the model
+rethinking_density <- ulam(
+  alist(
+    Z_obs ~dnorm ( Z_true , Z_sd),
+    vector[N_spp]:Z_true ~ dnorm( mu , sigma_sq ),
+    mu <- a+b*P,
+    a~normal(0,1),
+    b~normal(0,0.5),
+    sigma_sq~dexp(1)
+  ),data=dat_list_density)
+precis(rethinking_density,depth=2)[346:348,]
+
+
+
+dat_list_phylogenetic_density <- list(
+  N_spp = nrow(densitydat),
+  Z_obs = densitydat$Fishers_Z_r,
+  Z_sd = densitydat$Variance, 
+  P = standardize(densitydat$PopulationDensity)
+)
+
+dat_list_phylogenetic_density$Dmat<-Dmat[ densitydat$Latin,densitydat$Latin ]/max(Dmat)
+rethinking_phylogenetic_gaussian_density <- ulam(
+  alist(
+    Z_obs ~dnorm ( Z_true , Z_sd),
+    vector[N_spp]:Z_true ~ multi_normal( mu , SIGMA ),
+    mu <- a+b*P,
+    matrix[N_spp,N_spp]: SIGMA <- cov_GPL2( Dmat, etasq, rhosq, 0.01),
+    a~normal(0,1),
+    b~normal(0,0.5),
+    etasq~exponential(1),
+    rhosq~exponential(1)
+  ),data=dat_list_phylogenetic_density)
+precis(rethinking_phylogenetic_gaussian_density)
+
+
+```
+
+
+
+
+
+
+#### **4) What are the social circumstances that mediate the benefits of rank?**
+
+**Group size**
+Both approaches detect a negative association between the effect sizes and group sizes (metafor estimate of log group size -0.099 - -0.678, rethinking estimate of standardized group size -0.10 - -0.05). Compared to groups of 2 females, groups of 10 females show ~10% lower effect sizes and groups of ~50 females show 50% lower effect sizes. The negative association between group size and the effect sizes remains when accounting for similarity among closely related species.
+
+
+```{r ranksuccess_groupsize, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
+
+#model assessing the influence of difference on group sizes on the measured effect sizes, with study reference as random term
+
+
+meta_groupsize <- rma.mv(yi=Fishers_Z_r, V=Variance, mods=~ GroupSize, data=dat, method="REML", random=list(~1|StudyRef,~1|SpeciesRef))
+meta_groupsize
+
+metafor_phylogenetic_groupsize <- rma.mv(Fishers_Z_r, Variance,
+                                      mod =~GroupSize,
+                                      random=list(~ 1 | SpeciesIncluded, # linking the species to the phylogeny
+                                                  ~ 1 | Latin, # observations from the same species might be similar to each other, even if those from closely related species are not
+                                                  ~ 1 | StudyRef),  # accounting for observations from the same publication
+                                      R = list(SpeciesIncluded = phylo_cor), # reflecting the phylogenetic relatedness
+                                      method="REML",
+                                      test="t",  
+                                      data=dat)
+metafor_phylogenetic_groupsize
+
+
+
+#A non-phylogenetic model to determine the influence of group size on the variation in effect sizes
+#We create the structured data file for the model 
+dat_list_groupsize <- list(
+  N_spp = nrow(dat),
+  Fishers_Z_r = dat$Fishers_Z_r,
+  Variance = dat$Variance, 
+  GroupSize_s = standardize(dat$GroupSize)
+)
+
+dat$GroupSize_s<-standardize(dat$GroupSize)
+
+#We run the model
+rethinking_groupsize <- ulam(
+  alist(
+    Fishers_Z_r ~dnorm ( Z_true , Variance),
+    vector[N_spp]:Z_true ~ dnorm( mu , sigma_sq ),
+    mu <- a+bG*GroupSize_s,
+    a~normal(0,1),
+    bG~normal(0,0.5),
+    sigma_sq~dexp(1)
+  ),data=dat_list_groupsize)
+precis(rethinking_groupsize)
+
+
+#calculate and plot values at the minimum group size, 2,10,50,100 females, and the maximum group size
+groupsize.seq <-  c(-1,-0.84895,-0.415,1.753,4.4635,8)
+pred_dat <- list( GroupSize_s = groupsize.seq)
+mu <- link( rethinking_groupsize , data=pred_dat )
+mu.mean <- apply( mu , 2 , mean )
+mu.PI <- apply( mu , 2 , PI , prob=0.89 )
+plot( Fishers_Z_r ~ G , dat , col=col.alpha(rangi2,0.5) ,xaxt="n")
+at <- c(-0.84895,-0.415,1.753,4.4635)
+labels <- at*sd(dat$GroupSize) + mean(dat$GroupSize)
+axis( side=1 , at=at , labels=round(labels,1) )
+lines( groupsize.seq , mu.mean )
+shade( mu.PI , groupsize.seq )
+
+
+
+
+
+
+
+dat_list_phylogenetic_groupsize <- list(
+  N_spp = nrow(dat),
+  Z_obs = dat$Fishers_Z_r,
+  Z_sd = dat$Variance, 
+  G = standardize(standardize(log(dat$GroupSize)))
+)
+
+dat_list_phylogenetic_groupsize$Dmat<-Dmat[ dat$Latin,dat$Latin ]/max(Dmat)
+rethinking_phylogenetic_gaussian_groupsize <- ulam(
+  alist(
+    Z_obs ~dnorm ( Z_true , Z_sd),
+    vector[N_spp]:Z_true ~ multi_normal( mu , SIGMA ),
+    mu <- a+bG*G,
+    matrix[N_spp,N_spp]: SIGMA <- cov_GPL2( Dmat, etasq, rhosq, 0.01),
+    a~normal(0,1),
+    bG~normal(0,0.5),
+    etasq~exponential(1),
+    rhosq~exponential(1)
+  ),data=dat_list_phylogenetic_groupsize)
+precis(rethinking_phylogenetic_gaussian_groupsize)
+
+#To check the phylogenetic signal, we plot the estimate covariance(similarity) in effect sizes as species are more distantly related
+#A phylogenetic signal in the plot would be shown by high covariances among species that have small phylogenetic distances and declining covariances as phylogenetic distance increases
+#For the simulated dataset, most of the estimates show a covariance of 0, and no change as phylogenetic distance increases
+post<-extract.samples(rethinking_phylogenetic_gaussian)
+plot(NULL,xlim=c(0,max(dat_list$Dmat)),ylim=c(0,1.5),xlab="phylogenetic distance",ylab="covariance")
+for (i in 1:50) curve(post$etasq[i]*exp(-post$rhosq[i]*x^2),add=TRUE,col=grau())
+
+
+```
+
+
+
+
+
+
+**Breeding system**
 
 Effect sizes of cooperative breeders (average 0.58) are higher than those observed in plural (average 0.25) or associated breeders (average 0.23) (estimates for difference cooperative breeder vs plural breeder metafor -0.40 - -0.30, rethinking -0.41 - 0.27; cooperative breeder vs associated breeder metafor -0.47 - -0.35, rethinking -0.45 - -0.26; plural breeder vs associated breeder metafor -0.07 - +0.05, rethinking -0.07 - +0.05). Cooperative breeders are still estimated to have higher effect sizes than species with other breeding systems when accounting for phylogenetic relatedness, but the differences are slightly reduced.
 
@@ -1234,11 +1592,12 @@ precis(difference_breedingsystem)
 
 
 
-*Dominance System*
+**Dominance System**
 
-Effect sizes are higher in species in which condition plays a major role in determining which females are dominant rather than subordinant (average effect size 0.38), compared to species in which age (average effect size 0.31) or nepotism (average effect size 0.24) influence dominance rank (estimates for difference condition vs age: metafor 0.05 - 0.17, rethinking 0.01 - 0.16; condition vs nepotism: metafor 0.07 - 0.20, rethinking 0.08 - 0.20; age vs nepotism: metafor -0.07 - +0.03, rethinking -0.01 - +0.12).
+Effect sizes are higher in species in which condition plays a major role in determining which females are dominant rather than subordinant (average effect size 0.38), compared to species in which age (average effect size 0.31) or nepotism (average effect size 0.24) influence dominance rank (estimates for difference condition vs age: metafor 0.05 - 0.17, rethinking 0.01 - 0.16; condition vs nepotism: metafor 0.07 - 0.20, rethinking 0.08 - 0.20; age vs nepotism: metafor -0.07 - +0.03, rethinking -0.01 - +0.12). Species with different dominance system are no longer estimated to be different when including the phylogenetic similarity.
 
-```{r ranksuccess_associatedbreeding, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
+
+```{r ranksuccess_dominancesystem, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
 
 #model assessing the influence of difference on group sizes on the measured effect sizes, with study reference as random term
 
@@ -1317,21 +1676,1026 @@ precis(rethinking_phylogenetic_gaussian_associatedbreeding)
 
 
 
-Philopatry
+**Philopatry**
 
-Diet Category
-
-Environmental Harshness
-
-Population Density
-
-Average Relatedness
-
-Coalition formation
+The effects of dominance rank on reproductive success are higher in species in which females disperse and join new groups (average effect size 0.46) compared to species in which most females were born in the same group they breed (average effect size 0.26) (metafor estimate of difference -0.24 - -0.12, rethinking estimate -0.25 - -0.11), also when accounting for phylogenetic covariance.
 
 
+```{r ranksuccess_philopatry, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
 
-Most models we construct will be univariate, testing the influence of a single variable at a time to assess support for the specific predictions. In case any of the previous models suggests dependencies among the measured effect sizes, we will add the predictor variables as moderators to models including covariance matrices reflecting the dependencies (e.g. if effect sizes are different for different measures of reproductive success). For the variables reflecting the social environment, we will build multivariate models to assess potential pathways. To assess whether average relatedness directly influences the effect of dominance on reproduction we will also include the number of females per group; and to assess whether coalition formation mediates how average relatedness shapes dominance effects, we will build a model with these two factors included. For instances where we might expect covariation among variables that are predicted to influence the strength of the effect sizes in opposite ways, we will build models that include both variables and their interaction. For the predictions in which we expect different associationships in cooperative breeders as compared to plural breeders, we will nest the influence of the predictor variable within the classification of the social system in a multilevel model. Studies performed on wild versus captive individuals and using different measures of reproductive success might not only differ in the overall strength of the effect of rank on reproductive success, but also in how other variables influence this effect. We therefore will build models in which both the intercept and the slopes can vary according to whether studies were performed in the wild/captivity and to how reproductive success was measured.
+#model assessing the influence of difference on group sizes on the measured effect sizes, with study reference as random term
+
+
+meta_philopatry <- rma.mv(yi=Fishers_Z_r, V=Variance, mods=~ Philopatry, data=dat, method="REML", random=list(~1|StudyRef,~1|SpeciesRef))
+meta_philopatry
+
+metafor_phylogenetic_philopatry <- rma.mv(Fishers_Z_r, Variance,
+                                      mod =~Philopatry,
+                                      random=list(~ 1 | SpeciesIncluded, # linking the species to the phylogeny
+                                                  ~ 1 | Latin, # observations from the same species might be similar to each other, even if those from closely related species are not
+                                                  ~ 1 | StudyRef),  # accounting for observations from the same publication
+                                      R = list(SpeciesIncluded = phylo_cor), # reflecting the phylogenetic relatedness
+                                      method="REML",
+                                      test="t",  
+                                      data=dat)
+metafor_phylogenetic_philopatry
+
+
+
+#A non-phylogenetic model to determine the influence of group size on the variation in effect sizes
+#We create the structured data file for the model 
+
+philopatrydat<-dat[is.na(dat$Philopatry)==F,]
+
+dat_list_philopatry <- list(
+  N_spp = nrow(philopatrydat),
+  Z_obs = philopatrydat$Fishers_Z_r,
+  Z_sd = philopatrydat$Variance, 
+  D = as.integer(as.factor(philopatrydat$Philopatry))
+)
+
+#We run the model
+rethinking_philopatry <- ulam(
+  alist(
+    Z_obs ~dnorm ( Z_true , Z_sd),
+    vector[N_spp]:Z_true ~ dnorm( mu , sigma_sq ),
+    mu <- a+b[D],
+    a~normal(0,1),
+    b[D]~normal(0,0.5),
+    sigma_sq~dexp(1)
+  ),data=dat_list_philopatry)
+precis(rethinking_philopatry,depth=2)[416:419,]
+posterior<-extract.samples(rethinking_philopatry)
+difference_philopatry<-posterior$b[,2]-posterior$b[,1]
+precis(difference_philopatry)
+
+
+dat_list_phylogenetic_associatedbreeding <- list(
+  N_spp = nrow(dat),
+  Z_obs = dat$Fishers_Z_r,
+  Z_sd = dat$Variance, 
+  P = dat$AssociatedBreeding+1
+)
+
+dat_list_phylogenetic_associatedbreeding$Dmat<-Dmat[ dat$Latin,dat$Latin ]/max(Dmat)
+rethinking_phylogenetic_gaussian_associatedbreeding <- ulam(
+  alist(
+    Z_obs ~dnorm ( Z_true , Z_sd),
+    vector[N_spp]:Z_true ~ multi_normal( mu , SIGMA ),
+    mu <- a+b[P],
+    matrix[N_spp,N_spp]: SIGMA <- cov_GPL2( Dmat, etasq, rhosq, 0.01),
+    a~normal(0,1),
+    b[P]~normal(0,0.5),
+    etasq~exponential(1),
+    rhosq~exponential(1)
+  ),data=dat_list_phylogenetic_associatedbreeding)
+precis(rethinking_phylogenetic_gaussian_associatedbreeding)
+
+
+```
+
+
+
+**Average Relatedness**
+
+Effect sizes of dominance rank on reproductive success increase with increasing levels of average relatedness among female group members (metafor estimate 0.31 - 0.59, rethinking estimate 0.31 - 0.71), though the association is no longer detected when including the shared phylogenetic history among species.
+
+
+```{r ranksuccess_relatedness, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
+
+#model assessing the influence of difference on group sizes on the measured effect sizes, with study reference as random term
+
+
+meta_relatedness <- rma.mv(yi=Fishers_Z_r, V=Variance, mods=~ AverageRelatedness, data=dat, method="REML", random=list(~1|StudyRef,~1|SpeciesRef))
+meta_relatedness
+
+metafor_phylogenetic_relatedness <- rma.mv(Fishers_Z_r, Variance,
+                                      mod =~AverageRelatedness,
+                                      random=list(~ 1 | SpeciesIncluded, # linking the species to the phylogeny
+                                                  ~ 1 | Latin, # observations from the same species might be similar to each other, even if those from closely related species are not
+                                                  ~ 1 | StudyRef),  # accounting for observations from the same publication
+                                      R = list(SpeciesIncluded = phylo_cor), # reflecting the phylogenetic relatedness
+                                      method="REML",
+                                      test="t",  
+                                      data=dat)
+metafor_phylogenetic_relatedness
+
+
+
+#A non-phylogenetic model to determine the influence of group size on the variation in effect sizes
+#We create the structured data file for the model 
+
+relatednessdat<-dat[is.na(dat$AverageRelatedness)==F,]
+
+dat_list_relatedness <- list(
+  N_spp = nrow(relatednessdat),
+  Z_obs = relatednessdat$Fishers_Z_r,
+  Z_sd = relatednessdat$Variance, 
+  R = standardize(relatednessdat$AverageRelatedness)
+)
+
+#We run the model
+rethinking_relatedness <- ulam(
+  alist(
+    Z_obs ~dnorm ( Z_true , Z_sd),
+    vector[N_spp]:Z_true ~ dnorm( mu , sigma_sq ),
+    mu <- a+b*R,
+    a~normal(0,1),
+    b~normal(0,0.5),
+    sigma_sq~dexp(1)
+  ),data=dat_list_relatedness)
+precis(rethinking_relatedness)
+
+
+dat_list_phylogenetic_relatedness <- list(
+  N_spp = nrow(relatednessdat),
+  Z_obs = relatednessdat$Fishers_Z_r,
+  Z_sd = relatednessdat$Variance, 
+  R = standardize(relatednessdat$AverageRelatedness)
+)
+
+dat_list_phylogenetic_relatedness$Dmat<-Dmat[relatednessdat$Latin,relatednessdat$Latin ]/max(Dmat)
+rethinking_phylogenetic_gaussian_relatedness <- ulam(
+  alist(
+    Z_obs ~dnorm ( Z_true , Z_sd),
+    vector[N_spp]:Z_true ~ multi_normal( mu , SIGMA ),
+    mu <- a+b*R,
+    matrix[N_spp,N_spp]: SIGMA <- cov_GPL2( Dmat, etasq, rhosq, 0.01),
+    a~normal(0,1),
+    b~normal(0,0.5),
+    etasq~exponential(1),
+    rhosq~exponential(1)
+  ),data=dat_list_phylogenetic_relatedness)
+precis(rethinking_phylogenetic_gaussian_relatedness)
+
+
+```
+
+
+
+**Coalition formation**
+
+Species in which females form coalitions show only slightly lower effects of dominance rank on reproductive success (average 0.27) than species in which females do not have support during aggressive interactions (average 0.32) (estimate of difference metafor: -0.11 - -0.01, rethinking -0.09 - +0.01, no difference in models accounting for similarity due to phylogenetic relatedness)
+
+
+```{r ranksuccess_coalition, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
+
+#model assessing the influence of difference on group sizes on the measured effect sizes, with study reference as random term
+
+
+meta_coalition <- rma.mv(yi=Fishers_Z_r, V=Variance, mods=~ CoalitionFormation, data=dat, method="REML", random=list(~1|StudyRef,~1|SpeciesRef))
+meta_coalition
+
+metafor_phylogenetic_coalition <- rma.mv(Fishers_Z_r, Variance,
+                                      mod =~CoalitionFormation,
+                                      random=list(~ 1 | SpeciesIncluded, # linking the species to the phylogeny
+                                                  ~ 1 | Latin, # observations from the same species might be similar to each other, even if those from closely related species are not
+                                                  ~ 1 | StudyRef),  # accounting for observations from the same publication
+                                      R = list(SpeciesIncluded = phylo_cor), # reflecting the phylogenetic relatedness
+                                      method="REML",
+                                      test="t",  
+                                      data=dat)
+metafor_phylogenetic_coalition
+
+
+
+#A non-phylogenetic model to determine the influence of group size on the variation in effect sizes
+#We create the structured data file for the model 
+
+coalitiondat<-dat[is.na(dat$CoalitionFormation)==F,]
+
+dat_list_coalition <- list(
+  N_spp = nrow(coalitiondat),
+  Z_obs = coalitiondat$Fishers_Z_r,
+  Z_sd = coalitiondat$Variance, 
+  C = as.integer(as.factor(coalitiondat$CoalitionFormation))
+)
+
+#We run the model
+rethinking_coalition <- ulam(
+  alist(
+    Z_obs ~dnorm ( Z_true , Z_sd),
+    vector[N_spp]:Z_true ~ dnorm( mu , sigma_sq ),
+    mu <- a+b[C],
+    a~normal(0,1),
+    b[C]~normal(0,0.5),
+    sigma_sq~dexp(1)
+  ),data=dat_list_coalition)
+precis(rethinking_coalition,depth=2)[427:430,]
+posterior<-extract.samples(rethinking_coalition)
+difference_coalition<-posterior$b[,2]-posterior$b[,1]
+precis(difference_coalition)
+
+dat_list_phylogenetic_coalition <- list(
+  N_spp = nrow(coalitiondat),
+  Z_obs = coalitiondat$Fishers_Z_r,
+  Z_sd = coalitiondat$Variance, 
+  C = as.integer(as.factor(coalitiondat$CoalitionFormation))
+)
+
+dat_list_phylogenetic_coalition$Dmat<-Dmat[coalitiondat$Latin,coalitiondat$Latin ]/max(Dmat)
+rethinking_phylogenetic_gaussian_coalition <- ulam(
+  alist(
+    Z_obs ~dnorm ( Z_true , Z_sd),
+    vector[N_spp]:Z_true ~ multi_normal( mu , SIGMA ),
+    mu <- a+b[C],
+    matrix[N_spp,N_spp]: SIGMA <- cov_GPL2( Dmat, etasq, rhosq, 0.01),
+    a~normal(0,1),
+    b[C]~normal(0,0.5),
+    etasq~exponential(1),
+    rhosq~exponential(1)
+  ),data=dat_list_phylogenetic_coalition)
+precis(rethinking_phylogenetic_gaussian_coalition)
+
+
+```
+
+
+
+
+
+
+#### **Summary of univariate analyses**
+
+Overall, our data indicate that females of higher rank generally have higher reproductive success than females of lower rank. In terms of the approach, effect sizes of dominance rank on reproductive success were higher
+- when individuals were assigned a rank category rather than a continuous position
+- when rank was determined using indirect measures rather than aggressive interactions
+- in some studies, species, and families of species than in others.
+We find no differences in effect sizes
+- when studies were conducted in a captive rather than a wild setting.
+
+-Effect sizes of dominance rank were higher for higher for measures of reproductive output than for measures of survival, and higher for measures of maternal than for offspring fitness.
+
+Across our predictor variables, we find higher effect sizes of dominance rank on reproductive success in populations with
+- more litters per year
+- higher population densities
+- smaller group sizes
+- cooperative breeding
+- and female dispersal.
+
+We find no differences in effect sizes (after accounting for shared phylogenetic history) across populations differing in
+- litter size
+- which trait determines which females become dominant
+- diet
+- environmental harshness
+- average relatedness among female group members
+- and female coalition formation.
+
+
+
+
+#### **Combined analyses**
+
+
+
+
+after including factors associated with heterogeneity, still signal of publication bias? Yes.
+
+research has focused on systems and approaches where effects are more likely to detect.
+
+```{r ranksuccess_metapublicationbias, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
+
+dat$sei <- sqrt(dat$Variance)
+
+
+publication.bias.model.sei <- rma.mv(Fishers_Z_r, Variance,
+                            mod=~MeasureType_Category+LittersPerYear+CooperativeBreeding+CooperativeBreeding*GroupSize+No_of_years+sei,
+                                      random=list(~ 1 | SpeciesIncluded, # phylo effect
+                                                  ~ 1 | Latin, # non-phylo effect
+                                                  ~ 1 | StudyRef), 
+                                      R = list(SpeciesIncluded = phylo_cor), #phylogenetic relatedness
+                                      method="REML",
+                                      test="t", # using t dist rather than z 
+                                      data=dat)
+publication.bias.model.sei
+
+
+
+publication.bias.model <- rma.mv(Fishers_Z_r, Variance,
+                            mod=~MeasureType_Category+LittersPerYear+CooperativeBreeding+CooperativeBreeding*GroupSize+No_of_years,
+                                      random=list(~ 1 | SpeciesIncluded, # phylo effect
+                                                  ~ 1 | Latin, # non-phylo effect
+                                                  ~ 1 | StudyRef), 
+                                      R = list(SpeciesIncluded = phylo_cor), #phylogenetic relatedness
+                                      method="REML",
+                                      test="t", # using t dist rather than z 
+                                      data=dat)
+publication.bias.model
+
+
+funnel(publication.bias.model, level=c(90, 95, 99), shade=c("white", "gray", "darkgray"), 
+       yaxis="seinv",xlab="effect size (Zr)",ylab="precision (1/SE)",digits=c(1,0),xlim=c(-2,2),ylim=c(1,10))
+
+```
+
+
+
+
+
+
+In our preregistration, we had decided to first construct univariate models as reported above, testing the influence of a single variable at a time to assess support for the specific predictions. One of the main factors that we found to be associated with higher effect sizes is if species are cooperative breeders. Cooperative breeders differ in many additional aspects, so we first check whether any of the other associations we detect occur because they covary with cooperative breeding.
+
+
+**Differences in approach to study cooperative breeders**
+Approaches of assigning rank depend on the breeding system of the study species, with many studies of cooperative breeders assigning rank into categories (98% categorical, 2% continuous) based on other measures (50% agonism, 50% other) while studies of plural and associated breeders often assign continuous ranks (51% categorical, 49% continuous) based on agonistic interactions (97% agonism, 3% other). Combining the variables for the approaches with the classification as cooperative breeder or not into single models indicates that the difference in effect sizes is primarily due to the stronger dominance effects in cooperative breeders (estimate of difference metafor 0.23 -  0.34, rethinking 0.23 - 0.37) and only very little due to the approaches the authors chose (other measure vs agonisms estimate of difference metafor 0.02 - 0.15, rethinking -0.02 - 0.16; rank categorical vs continuous estimate of difference metafor -0.02 - -0.09, rethinking -0.07 - 0.03). 
+
+
+```{r ranksuccess_rankdetermined_cooperativebreeding, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
+
+# Percentage of plural/associated breeders in which rank is classified categorical rather than continuous
+(dat %>% group_by(Rank_Cont_Cat) %>% summarize(sum(AssociatedBreeding,PluralBreeding)) ) [1,2] / ( (dat %>% group_by(Rank_Cont_Cat) %>% summarize(sum(AssociatedBreeding,PluralBreeding)) ) [1,2] + (dat %>% group_by(Rank_Cont_Cat) %>% summarize(sum(AssociatedBreeding,PluralBreeding)) ) [2,2] )
+# Percentage of cooperative breeders in which rank is classified categorical rather than continuous
+(dat %>% group_by(Rank_Cont_Cat) %>% summarize(sum(CooperativeBreeding)) ) [1,2] / ( (dat %>% group_by(Rank_Cont_Cat) %>% summarize(sum(CooperativeBreeding)) ) [1,2] + (dat %>% group_by(Rank_Cont_Cat) %>% summarize(sum(CooperativeBreeding)) ) [2,2] )
+
+# Percentage of plural/associated breeders in which rank is classified through agonism rather than another measure
+(dat %>% group_by(RankDetermined) %>% summarize(sum(AssociatedBreeding,PluralBreeding)) ) [1,2] / ( (dat %>% group_by(RankDetermined) %>% summarize(sum(AssociatedBreeding,PluralBreeding)) ) [1,2] + (dat %>% group_by(RankDetermined) %>% summarize(sum(AssociatedBreeding,PluralBreeding)) ) [2,2] )
+# Percentage of cooperative breeders in which rank is classified through agonism rather than another measure
+(dat %>% group_by(RankDetermined) %>% summarize(sum(CooperativeBreeding)) ) [1,2] / ( (dat %>% group_by(RankDetermined) %>% summarize(sum(CooperativeBreeding)) ) [1,2] + (dat %>% group_by(RankDetermined) %>% summarize(sum(CooperativeBreeding)) ) [2,2] )
+
+
+# Assessing whether how rank is determined (agonism vs other) remains associated with different
+# effect sizes after accounting that rank is determined differently in cooperative breeders
+
+meta_rankdetermined_cooperativebreeding <- rma.mv(yi=Fishers_Z_r, V=Variance, mods=~ CooperativeBreeding+RankDetermined, data=dat, method="REML", random=list(~1|StudyRef,~1|SpeciesRef))
+meta_rankdetermined_cooperativebreeding
+
+metafor_phylogenetic_rankdetermined_cooperativebreeding <- rma.mv(Fishers_Z_r, Variance,
+                                      mod =~CooperativeBreeding+RankDetermined,
+                                      random=list(~ 1 | SpeciesIncluded, # linking the species to the phylogeny
+                                                  ~ 1 | Latin, # observations from the same species might be similar to each other, even if those from closely related species are not
+                                                  ~ 1 | StudyRef),  # accounting for observations from the same publication
+                                      R = list(SpeciesIncluded = phylo_cor), # reflecting the phylogenetic relatedness
+                                      method="REML",
+                                      test="t",  
+                                      data=dat)
+metafor_phylogenetic_rankdetermined_cooperativebreeding
+
+
+
+
+
+
+#model assessing the influence of difference on group sizes on the measured effect sizes, with study reference as random term
+
+dat_list <- list(
+  N_spp = nrow(dat),
+  Z_obs = dat$Fishers_Z_r,
+  Z_sd = dat$Variance, 
+  C = dat$CooperativeBreeding+1,
+  M = as.integer(as.factor(dat$RankDetermined))
+)
+
+
+rethinking_rankdetermined_cooperativebreeding <- ulam(
+  alist(
+    Z_obs ~dnorm ( Z_true , Z_sd),
+    vector[N_spp]:Z_true ~ dnorm( mu , sigma_sq ),
+    mu <- a + c[C]+m[M],
+    m[M] ~ dnorm(0,1),
+    a~normal(0,1),
+    c[C]~normal(0,0.5),
+    sigma_sq~dexp(1)
+  ),data=dat_list)
+precis(rethinking_rankdetermined_cooperativebreeding,depth=2)[445:450,]
+posterior<-extract.samples(rethinking_rankdetermined_cooperativebreeding)
+difference_rankdetermined_cooperativebreeding<-posterior$m[,2]-posterior$m[,1]
+precis(difference_rankdetermined_cooperativebreeding)
+
+
+
+dat_list$Dmat<-Dmat[ dat$Latin,dat$Latin ]/max(Dmat)
+
+rethinking_phylogenetic_gaussian_rankdetermined_cooperativebreeding <- ulam(
+  alist(
+    Z_obs ~dnorm ( Z_true , Z_sd),
+    vector[N_spp]:Z_true ~ multi_normal( mu , SIGMA ),
+    mu <- a + c[C]+m[M],
+    m[M] ~ dnorm(0,1),
+    matrix[N_spp,N_spp]: SIGMA <- cov_GPL2( Dmat, etasq, rhosq, 0.01),
+    a~normal(0,1),
+    c[C]~normal(0,0.5),
+    etasq~exponential(1),
+    rhosq~exponential(1)
+  ),data=dat_list,chains=4)
+precis(rethinking_phylogenetic_gaussian_rankdetermined_cooperativebreeding)
+
+
+
+
+
+
+
+# Assessing whether how rank is assigned (categorical vs continuous) remains associated with different
+# effect sizes after accounting that rank is assigned categorically in cooperative breeders
+
+
+meta_rankcategory_cooperativebreeding <- rma.mv(yi=Fishers_Z_r, V=Variance, mods=~ CooperativeBreeding+Rank_Cont_Cat, data=dat, method="REML", random=list(~1|StudyRef,~1|SpeciesRef))
+meta_rankcategory_cooperativebreeding
+
+metafor_phylogenetic_rankcategory_cooperativebreeding <- rma.mv(Fishers_Z_r, Variance,
+                                      mod =~CooperativeBreeding+Rank_Cont_Cat,
+                                      random=list(~ 1 | SpeciesIncluded, # linking the species to the phylogeny
+                                                  ~ 1 | Latin, # observations from the same species might be similar to each other, even if those from closely related species are not
+                                                  ~ 1 | StudyRef),  # accounting for observations from the same publication
+                                      R = list(SpeciesIncluded = phylo_cor), # reflecting the phylogenetic relatedness
+                                      method="REML",
+                                      test="t",  
+                                      data=dat)
+metafor_phylogenetic_rankcategory_cooperativebreeding
+
+
+
+
+
+
+#model assessing the influence of difference on group sizes on the measured effect sizes, with study reference as random term
+
+dat_list <- list(
+  N_spp = nrow(dat),
+  Z_obs = dat$Fishers_Z_r,
+  Z_sd = dat$Variance, 
+  C = dat$CooperativeBreeding+1,
+  R = as.integer(as.factor(dat$Rank_Cont_Cat))
+)
+
+
+rethinking_rankcategory_cooperativebreeding <- ulam(
+  alist(
+    Z_obs ~dnorm ( Z_true , Z_sd),
+    vector[N_spp]:Z_true ~ dnorm( mu , sigma_sq ),
+    mu <- a + c[C]+r[R],
+    r[R] ~ dnorm(0,1),
+    a~normal(0,1),
+    c[C]~normal(0,0.5),
+    sigma_sq~dexp(1)
+  ),data=dat_list)
+precis(rethinking_rankcategory_cooperativebreeding,depth=2)[445:450,]
+posterior<-extract.samples(rethinking_rankcategory_cooperativebreeding)
+difference_rankcategory_cooperativebreeding<-posterior$r[,2]-posterior$r[,1]
+precis(difference_rankcategory_cooperativebreeding)
+
+
+
+dat_list$Dmat<-Dmat[ dat$Latin,dat$Latin ]/max(Dmat)
+
+rethinking_phylogenetic_gaussian_rankdetermined_cooperativebreeding <- ulam(
+  alist(
+    Z_obs ~dnorm ( Z_true , Z_sd),
+    vector[N_spp]:Z_true ~ multi_normal( mu , SIGMA ),
+    mu <- a + c[C]+m[M],
+    m[M] ~ dnorm(0,1),
+    matrix[N_spp,N_spp]: SIGMA <- cov_GPL2( Dmat, etasq, rhosq, 0.01),
+    a~normal(0,1),
+    c[C]~normal(0,0.5),
+    etasq~exponential(1),
+    rhosq~exponential(1)
+  ),data=dat_list,chains=4)
+precis(rethinking_phylogenetic_gaussian_rankdetermined_cooperativebreeding)
+
+
+
+
+```
+
+
+
+
+**Different life history measures and cooperative breeding**
+
+In cooperative breeders, effects of dominance rank were only assessed on three of the of the six life history traits. We therefore performed separate analyses for cooperative and for plural/associated breeders to assess where high ranking females particularly show increased reproduction.
+
+In cooperative breeders, effect sizes are higher for infant production (0.55-0.69), and lower for infant survival (0.20-0.61) and adult survival (0.12-0.73).
+
+In plural/associated breeders, effect sizes are highest for life time reproductive success (0.33-0.47), followed by age at first conception (0.25-0.43) and interbirth interval (0.25-0.38), infant production (0.19-0.27) and adult survival (0.15-0.30), and are lowest for infant survival (0.11-0.20)
+
+
+```{r ranksuccess_measure_interactions, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
+
+#model assessing the influence of difference on group sizes on the measured effect sizes, with study reference as random term
+
+dat_list <- list(
+  N_spp = nrow(dat),
+  Z_obs = dat$Fishers_Z_r,
+  Z_sd = dat$Variance, 
+  G = standardize(standardize(log(dat$GroupSize))),
+  M = as.integer(as.factor(dat$MeasureType_Category))
+)
+
+
+rethinking_groupsize_measures <- ulam(
+  alist(
+    Z_obs ~dnorm ( Z_true , Z_sd),
+    vector[N_spp]:Z_true ~ dnorm( mu , sigma_sq ),
+    mu <- a + G*r[M]+m[M],
+    r[M] ~ dnorm(0,1),
+    m[M] ~ dnorm(0,1),
+    a~normal(0,1),
+    sigma_sq~dexp(1)
+  ),data=dat_list)
+precis(rethinking_groupsize_measures,depth=2)[445:454,]
+
+
+cooperative<-dat[dat$CooperativeBreeding==1,]
+
+dat_list <- list(
+  N_spp = nrow(cooperative),
+  Z_obs = cooperative$Fishers_Z_r,
+  Z_sd = cooperative$Variance, 
+  M = as.integer(as.factor(cooperative$MeasureType_Category))
+)
+
+
+rethinking_cooperation_measures <- ulam(
+  alist(
+    Z_obs ~dnorm ( Z_true , Z_sd),
+    vector[N_spp]:Z_true ~ dnorm( mu , sigma_sq ),
+    mu <-  m[M],
+    m[M] ~ dnorm(0,1),
+    sigma_sq~dexp(1)
+  ),data=dat_list)
+precis(rethinking_cooperation_measures,depth=2)[53:57,]
+
+plot(precis( rethinking_cooperation_measures , depth=2 , pars="m" ))
+
+
+
+notcooperative<-dat[dat$CooperativeBreeding==0,]
+
+dat_list <- list(
+  N_spp = nrow(notcooperative),
+  Z_obs = notcooperative$Fishers_Z_r,
+  Z_sd = notcooperative$Variance, 
+  M = as.integer(as.factor(notcooperative$MeasureType_Category))
+)
+
+
+rethinking_notcooperation_measures <- ulam(
+  alist(
+    Z_obs ~dnorm ( Z_true , Z_sd),
+    vector[N_spp]:Z_true ~ dnorm( mu , sigma_sq ),
+    mu <-  m[M],
+    m[M] ~ dnorm(0,1),
+    sigma_sq~dexp(1)
+  ),data=dat_list)
+precis(rethinking_notcooperation_measures,depth=2)[393:399,]
+
+
+plot(precis( rethinking_cooperation_measures , depth=2 , pars="m" ),xlim=c(0,1))
+
+plot(precis( rethinking_notcooperation_measures , depth=2 , pars="m" ),xlim=c(0,1))
+
+
+
+dat_list$Dmat<-Dmat[ dat$Latin,dat$Latin ]/max(Dmat)
+
+rethinking_phylogenetic_gaussian_groupsize <- ulam(
+  alist(
+    Z_obs ~dnorm ( Z_true , Z_sd),
+    vector[N_spp]:Z_true ~ multi_normal( mu , SIGMA ),
+    mu <- a + bG*G*r[M],
+    r[M] ~ dnorm(0,1),
+    matrix[N_spp,N_spp]: SIGMA <- cov_GPL2( Dmat, etasq, rhosq, 0.01),
+    a~normal(0,1),
+    bG~normal(0,0.5),
+    etasq~exponential(1),
+    rhosq~exponential(1)
+  ),data=dat_list,chains=4)
+precis(rethinking_phylogenetic_gaussian_groupsize)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+**Litters per year and cooperative breeding**
+
+Cooperative breeders tend to have higher reproductive rates than species with other breeding systems. However, the association between life history and effect sizes of dominance rank on reproductive success remains across all breeding systems, with larger effect sizes in species producing more litters per year in cooperative (estimate 0.10 - 0.17), plural (0.02 - 0.07), and associated breeders (0.02 - 0.16).
+
+
+```{r ranksuccess_littersperyear_cooperativebreeding, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
+
+# Assessing whether how rank is determined (agonism vs other) remains associated with different
+# effect sizes after accounting that rank is determined differently in cooperative breeders
+
+
+meta_littersperyear_cooperativebreeding <- rma.mv(yi=Fishers_Z_r, V=Variance, mods=~ CooperativeBreeding+LittersPerYear, data=dat, method="REML", random=list(~1|StudyRef,~1|SpeciesRef))
+meta_littersperyear_cooperativebreeding
+
+metafor_phylogenetic_littersperyear_cooperativebreeding <- rma.mv(Fishers_Z_r, Variance,
+                                      mod =~CooperativeBreeding+LittersPerYear,
+                                      random=list(~ 1 | SpeciesIncluded, # linking the species to the phylogeny
+                                                  ~ 1 | Latin, # observations from the same species might be similar to each other, even if those from closely related species are not
+                                                  ~ 1 | StudyRef),  # accounting for observations from the same publication
+                                      R = list(SpeciesIncluded = phylo_cor), # reflecting the phylogenetic relatedness
+                                      method="REML",
+                                      test="t",  
+                                      data=dat)
+metafor_phylogenetic_littersperyear_cooperativebreeding
+
+
+
+
+
+
+#model assessing the influence of difference on group sizes on the measured effect sizes, with study reference as random term
+
+dat_list <- list(
+  N_spp = nrow(dat),
+  Z_obs = dat$Fishers_Z_r,
+  Z_sd = dat$Variance, 
+  B = dat$BreedingSystem,
+  L = standardize(dat$LittersPerYear)
+)
+
+
+rethinking_littersperyear_cooperativebreeding <- ulam(
+  alist(
+    Z_obs ~dnorm ( Z_true , Z_sd),
+    vector[N_spp]:Z_true ~ dnorm( mu , sigma_sq ),
+    mu <- a + b[B]*L,
+    a~normal(0,1),
+    b[B]~normal(0,0.5),
+    sigma_sq~dexp(1)
+  ),data=dat_list)
+precis(rethinking_littersperyear_cooperativebreeding,depth=2)[445:450,]
+
+
+
+dat_list$Dmat<-Dmat[ dat$Latin,dat$Latin ]/max(Dmat)
+
+rethinking_phylogenetic_gaussian_littersperyear_cooperativebreeding <- ulam(
+  alist(
+    Z_obs ~dnorm ( Z_true , Z_sd),
+    vector[N_spp]:Z_true ~ multi_normal( mu , SIGMA ),
+    mu <- a + c[C]+g*G,
+    g~normal(0,1),
+    matrix[N_spp,N_spp]: SIGMA <- cov_GPL2( Dmat, etasq, rhosq, 0.01),
+    a~normal(0,1),
+    c[C]~normal(0,0.5),
+    etasq~exponential(1),
+    rhosq~exponential(1)
+  ),data=dat_list,chains=4)
+precis(rethinking_phylogenetic_gaussian_littersperyear_cooperativebreeding)
+
+
+
+```
+
+
+
+
+**Interactions among social traits**
+Cooperative breeders tend to differ in some of the social traits that we investigated separately.
+
+In mammals, groups of cooperative breeders never grow to the same size (in our data, median 2 females per group) as groups of plural/associated breeders (in our data, median 14 females per group), potentially introducing an interaction effect. In our data, both group size and cooperative breeding remain independently associated with the effect sizes of dominance rank on reproductive success. The analyses suggest an interaction, with effect sizes increasing with group size in cooperative breeders (estimate 0.01 - 0.02), where a single dominant continues to monopolize reproduction as groups get larger, and declining with group sizes in other breeding systems (estimate -0.01 - 0.00), where dominants might be less able to control reproduction of other group members as groups grow larger.
+
+Similarly, there appears to be an interaction between average relatedness and breeding systems, with effect sizes increasing with higher levels of average relatedness in cooperative breeders (estimate 0.00 - 0.12) and decreasing with higher levels of average relatedness in plural/associate breeders (estimate -0.06 - 0.00)
+
+Female dispersal is more common in cooperative breeders (46%) than in plural/associated breeders (9%), however, effect sizes are larger in species with female dispersal also just among the plural/associated breeders (estimate -0.19 - -0.02), though differences between philopatry and dispersal are not associated with effect sizes in cooperative breeders (estimate -0.10 - 0.12). 
+
+Among plural/associated breeders, average relatedness is lower in species in which females disperse (mean r 0.03) than in species in which females are philopatric (mean r 0.10), and among these species, differences in effect sizes are mainly associated with whether females disperse or are philopatric (estimate -0.22 - -0.02) rather than levels of average relatedness (estimate -0.04 - 0.01).
+
+Coalition formation does not occur in cooperative breeders, leading to a potential confound. Among plural/associated breeders, effect sizes are higher in species in which females do form coalitions than in species where they do not (estimate of difference 0.01 - 0.11).
+
+
+
+```{r ranksuccess_social_cooperativebreeding, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
+
+# Assessing whether there is an interaction between group size and cooperative breeding on the effect sizes
+
+meta_groupsize_cooperativebreeding <- rma.mv(yi=Fishers_Z_r, V=Variance, mods=~ CooperativeBreeding*GroupSize, data=dat, method="REML", random=list(~1|StudyRef,~1|SpeciesRef))
+meta_groupsize_cooperativebreeding
+
+metafor_phylogenetic_groupsize_cooperativebreeding <- rma.mv(Fishers_Z_r, Variance,
+                                      mod =~CooperativeBreeding+GroupSize,
+                                      random=list(~ 1 | SpeciesIncluded, # linking the species to the phylogeny
+                                                  ~ 1 | Latin, # observations from the same species might be similar to each other, even if those from closely related species are not
+                                                  ~ 1 | StudyRef),  # accounting for observations from the same publication
+                                      R = list(SpeciesIncluded = phylo_cor), # reflecting the phylogenetic relatedness
+                                      method="REML",
+                                      test="t",  
+                                      data=dat)
+metafor_phylogenetic_groupsize_cooperativebreeding
+
+
+
+dat_list <- list(
+  N_spp = nrow(dat),
+  Z_obs = dat$Fishers_Z_r,
+  Z_sd = dat$Variance, 
+  C = dat$CooperativeBreeding+1,
+  G = standardize(dat$GroupSize)
+)
+
+
+rethinking_groupsize_cooperativebreeding <- ulam(
+  alist(
+    Z_obs ~dnorm ( Z_true , Z_sd),
+    vector[N_spp]:Z_true ~ dnorm( mu , sigma_sq ),
+    mu <- a + c[C]+g*G+cg[C]*G,
+    a~normal(0,1),
+    c[C]~normal(0,0.5),
+    g~normal(0,1),
+    cg[C]~normal(0,1),
+    sigma_sq~dexp(1)
+  ),data=dat_list)
+precis(rethinking_groupsize_cooperativebreeding,depth=2)[445:450,]
+posterior<-extract.samples(rethinking_groupsize_cooperativebreeding)
+difference_groupsize_cooperativebreeding<-posterior$m[,2]-posterior$m[,1]
+precis(difference_groupsize_cooperativebreeding)
+
+
+
+dat_list$Dmat<-Dmat[ dat$Latin,dat$Latin ]/max(Dmat)
+
+rethinking_phylogenetic_gaussian_groupsize_cooperativebreeding <- ulam(
+  alist(
+    Z_obs ~dnorm ( Z_true , Z_sd),
+    vector[N_spp]:Z_true ~ multi_normal( mu , SIGMA ),
+    mu <- a + c[C]+g*G+cg[C]*G,
+    matrix[N_spp,N_spp]: SIGMA <- cov_GPL2( Dmat, etasq, rhosq, 0.01),
+    a~normal(0,1),
+    c[C]~normal(0,0.5),
+    g~normal(0,1),
+    cg[C]~normal(0,1),
+    etasq~exponential(1),
+    rhosq~exponential(1)
+  ),data=dat_list,chains=4)
+precis(rethinking_phylogenetic_gaussian_groupsize_cooperativebreeding)
+
+
+
+# Assessing whether female dispersal is independently associated with higher effect sizes in addition to cooperative breeding
+
+
+meta_dispersal_cooperativebreeding <- rma.mv(yi=Fishers_Z_r, V=Variance, mods=~Philopatry+CooperativeBreeding , data=dat, method="REML", random=list(~1|StudyRef,~1|SpeciesRef))
+meta_dispersal_notcooperativebreeding
+
+metafor_phylogenetic_dispersal_cooperativebreeding <- rma.mv(Fishers_Z_r, Variance,
+                                      mod =~Philopatry+CooperativeBreeding,
+                                      random=list(~ 1 | SpeciesIncluded, # linking the species to the phylogeny
+                                                  ~ 1 | Latin, # observations from the same species might be similar to each other, even if those from closely related species are not
+                                                  ~ 1 | StudyRef),  # accounting for observations from the same publication
+                                      R = list(SpeciesIncluded = phylo_cor), # reflecting the phylogenetic relatedness
+                                      method="REML",
+                                      test="t",  
+                                      data=dat)
+metafor_phylogenetic_dispersal_cooperativebreeding
+
+
+
+philopatry<-dat[is.na(dat$Philopatry)==F,]
+
+dat_list <- list(
+  N_spp = nrow(philopatry),
+  Z_obs = philopatry$Fishers_Z_r,
+  Z_sd = philopatry$Variance, 
+  P = as.integer(as.factor(philopatry$Philopatry)),
+  C = philopatry$CooperativeBreeding+1
+)
+
+
+rethinking_philopatry_cooperativebreeding <- ulam(
+    alist(
+        Z_obs ~dnorm ( Z_true , Z_sd),
+        vector[N_spp]:Z_true ~ dnorm( mu , sigma_sq ),
+        mu <- a + p[C]*P + c[C],
+        a~normal(0,1),
+        p[C]~normal(0,0.5),
+        c[C]~normal(0,0.5),
+        sigma_sq~dexp(1)
+    ),data=dat_list)
+precis(rethinking_philopatry_cooperativebreeding,depth=2)[416:421,]
+
+
+
+dat_list$Dmat<-Dmat[ philopatry$Latin,philopatry$Latin ]/max(Dmat)
+
+rethinking_phylogenetic_gaussian_philoptray_cooperativebreeding <- ulam(
+  alist(
+    Z_obs ~dnorm ( Z_true , Z_sd),
+    vector[N_spp]:Z_true ~ multi_normal( mu , SIGMA ),
+    mu <- a + p[C]*P+c[C],
+    matrix[N_spp,N_spp]: SIGMA <- cov_GPL2( Dmat, etasq, rhosq, 0.01),
+    a~normal(0,1),
+    p[C]~normal(0,0.5),
+    c[C]~normal(0,0.5),
+    etasq~exponential(1),
+    rhosq~exponential(1)
+  ),data=dat_list,chains=4)
+precis(rethinking_phylogenetic_gaussian_philoptray_cooperativebreeding,depth=2)[416:421,]
+
+
+
+
+# Assessing whether there is an interaction between average relatedness and cooperative breeding
+
+
+meta_relatedness_cooperativebreeding <- rma.mv(yi=Fishers_Z_r, V=Variance, mods=~AverageRelatedness*CooperativeBreeding , data=dat, method="REML", random=list(~1|StudyRef,~1|SpeciesRef))
+meta_relatedness_cooperativebreeding
+
+metafor_phylogenetic_relatedness_cooperativebreeding <- rma.mv(Fishers_Z_r, Variance,
+                                      mod =~AverageRelatedness*CooperativeBreeding,
+                                      random=list(~ 1 | SpeciesIncluded, # linking the species to the phylogeny
+                                                  ~ 1 | Latin, # observations from the same species might be similar to each other, even if those from closely related species are not
+                                                  ~ 1 | StudyRef),  # accounting for observations from the same publication
+                                      R = list(SpeciesIncluded = phylo_cor), # reflecting the phylogenetic relatedness
+                                      method="REML",
+                                      test="t",  
+                                      data=dat)
+metafor_phylogenetic_relatedness_cooperativebreeding
+
+
+
+relatednessdat<-dat[is.na(dat$AverageRelatedness)==F,]
+
+dat_list <- list(
+  N_spp = nrow(relatednessdat),
+  Z_obs = relatednessdat$Fishers_Z_r,
+  Z_sd = relatednessdat$Variance, 
+  R = standardize(relatednessdat$AverageRelatedness),
+  C = relatednessdat$CooperativeBreeding+1
+)
+
+
+rethinking_philopatry_cooperativebreeding <- ulam(
+    alist(
+        Z_obs ~dnorm ( Z_true , Z_sd),
+        vector[N_spp]:Z_true ~ dnorm( mu , sigma_sq ),
+        mu <- a + r[C]*R + c[C],
+        a~normal(0,1),
+        r[C]~normal(0,0.5),
+        c[C]~normal(0,0.5),
+        sigma_sq~dexp(1)
+    ),data=dat_list)
+precis(rethinking_philopatry_cooperativebreeding,depth=2)[289:294,]
+
+
+# Dispersal & relatedness
+relatednessdat<-dat[is.na(dat$AverageRelatedness)==F,]
+relatednessdat<-relatednessdat[is.na(relatednessdat$Philopatry)==F,]
+relatednessdat<-relatednessdat[relatednessdat$CooperativeBreeding==0,]
+
+dat_list <- list(
+  N_spp = nrow(relatednessdat),
+  Z_obs = relatednessdat$Fishers_Z_r,
+  Z_sd = relatednessdat$Variance, 
+  R = standardize(relatednessdat$AverageRelatedness),
+  P = as.integer(as.factor(relatednessdat$Philopatry))
+)
+
+
+rethinking_philopatry_relatedness <- ulam(
+    alist(
+        Z_obs ~dnorm ( Z_true , Z_sd),
+        vector[N_spp]:Z_true ~ dnorm( mu , sigma_sq ),
+        mu <- a + r*R + p[P],
+        a~normal(0,1),
+        r~normal(0,0.5),
+        p[P]~normal(0,0.5),
+        sigma_sq~dexp(1)
+    ),data=dat_list)
+precis(rethinking_philopatry_relatedness,depth=2)[281:285,]
+posterior<-extract.samples(rethinking_philopatry_relatedness)
+difference_philopatry_relatedness<-posterior$p[,2]-posterior$p[,1]
+precis(difference_philopatry_relatedness)
+
+
+
+
+
+
+
+
+#model assessing the influence of difference on group sizes on the measured effect sizes, with study reference as random term
+
+
+meta_coalition <- rma.mv(yi=Fishers_Z_r, V=Variance, mods=~ CoalitionFormation, data=dat[dat$CooperativeBreeding==0,], method="REML", random=list(~1|StudyRef,~1|SpeciesRef))
+meta_coalition
+
+metafor_phylogenetic_coalition <- rma.mv(Fishers_Z_r, Variance,
+                                      mod =~CoalitionFormation,
+                                      random=list(~ 1 | SpeciesIncluded, # linking the species to the phylogeny
+                                                  ~ 1 | Latin, # observations from the same species might be similar to each other, even if those from closely related species are not
+                                                  ~ 1 | StudyRef),  # accounting for observations from the same publication
+                                      R = list(SpeciesIncluded = phylo_cor), # reflecting the phylogenetic relatedness
+                                      method="REML",
+                                      test="t",  
+                                      data=dat[dat$CooperativeBreeding==0,])
+metafor_phylogenetic_coalition
+
+
+
+#A non-phylogenetic model to determine the influence of group size on the variation in effect sizes
+#We create the structured data file for the model 
+
+coalitiondat<-dat[is.na(dat$CoalitionFormation)==F,]
+coalitiondat<-coalitiondat[coalitiondat$CooperativeBreeding==0,]
+
+dat_list_coalition <- list(
+  N_spp = nrow(coalitiondat),
+  Z_obs = coalitiondat$Fishers_Z_r,
+  Z_sd = coalitiondat$Variance, 
+  C = as.integer(as.factor(coalitiondat$CoalitionFormation))
+)
+
+#We run the model
+rethinking_coalition <- ulam(
+  alist(
+    Z_obs ~dnorm ( Z_true , Z_sd),
+    vector[N_spp]:Z_true ~ dnorm( mu , sigma_sq ),
+    mu <- a+b[C],
+    a~normal(0,1),
+    b[C]~normal(0,0.5),
+    sigma_sq~dexp(1)
+  ),data=dat_list_coalition)
+precis(rethinking_coalition,depth=2)[374:378,]
+posterior<-extract.samples(rethinking_coalition)
+difference_coalition<-posterior$b[,2]-posterior$b[,1]
+precis(difference_coalition)
+
+
+
+
+```
+
+
+
+**Different influences in captive and wild populations**
+Models in which both the intercept and the slopes can vary according to whether studies were performed in the wild or in captivity also showed that there are no systematic differences of the effects of dominance rank on reproductive success between populations in these settings (for the different life history measurements and for cooperative breeding). 
+
+```{r ranksuccess_captivity_interactions, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
+
+
+
+
+meta_captivity_measurement <- rma.mv(yi=Fishers_Z_r, V=Variance, mods=~MeasureType_Category*Populationtype , data=dat, method="REML", random=list(~1|StudyRef,~1|SpeciesRef))
+meta_captivity_measurement
+
+metafor_phylogenetic_captivity_measurement <- rma.mv(Fishers_Z_r, Variance,
+                                      mod =~MeasureType_Category*Populationtype,
+                                      random=list(~ 1 | SpeciesIncluded, # linking the species to the phylogeny
+                                                  ~ 1 | Latin, # observations from the same species might be similar to each other, even if those from closely related species are not
+                                                  ~ 1 | StudyRef),  # accounting for observations from the same publication
+                                      R = list(SpeciesIncluded = phylo_cor), # reflecting the phylogenetic relatedness
+                                      method="REML",
+                                      test="t",  
+                                      data=dat)
+metafor_phylogenetic_captivity_measurement
+
+
+
+
+meta_captivity_cooperation <- rma.mv(yi=Fishers_Z_r, V=Variance, mods=~Populationtype*CooperativeBreeding , data=dat, method="REML", random=list(~1|StudyRef,~1|SpeciesRef))
+meta_captivity_cooperation
+
+metafor_phylogenetic_captivity_measurement <- rma.mv(Fishers_Z_r, Variance,
+                                      mod =~CooperativeBreeding*Populationtype,
+                                      random=list(~ 1 | SpeciesIncluded, # linking the species to the phylogeny
+                                                  ~ 1 | Latin, # observations from the same species might be similar to each other, even if those from closely related species are not
+                                                  ~ 1 | StudyRef),  # accounting for observations from the same publication
+                                      R = list(SpeciesIncluded = phylo_cor), # reflecting the phylogenetic relatedness
+                                      method="REML",
+                                      test="t",  
+                                      data=dat)
+metafor_phylogenetic_captivity_measurement
+
+
+
+
+
+dat_list <- list(
+  N_spp = nrow(dat),
+  Z_obs = dat$Fishers_Z_r,
+  Z_sd = dat$Variance, 
+  M = as.integer(as.factor(dat$CooperativeBreeding)),
+  P = as.integer(as.factor(dat$Populationtype))
+)
+
+
+dat_list$P[dat_list$P==3]<-2
+
+rethinking_philopatry_cooperativebreeding <- ulam(
+    alist(
+        Z_obs ~dnorm ( Z_true , Z_sd),
+        vector[N_spp]:Z_true ~ dnorm( mu , sigma_sq ),
+        mu <- a + p[M]*P + c[M],
+        a~normal(0,1),
+        p[M]~normal(0,0.5),
+        c[M]~normal(0,0.5),
+        sigma_sq~dexp(1)
+    ),data=dat_list)
+precis(rethinking_philopatry_cooperativebreeding,depth=2)[445:458,]
+
+```
+
 
 
   
@@ -1341,15 +2705,132 @@ Most models we construct will be univariate, testing the influence of a single v
 
 ### G. DISCUSSION
 
-- practical guidance
-publish weak or negative associations between dominance rank and reproductive success
+Our study finds that, in social mammals, dominant females have higher reproductive success than lower-ranking females. Positive effects of dominance rank are present for all our measures of life history and highest for life-time reproductive success, suggesting that even if dominants might face some trade-offs (e.g. higher stress levels @cavigelli2003female), obtaining a high ranking position in a social group leads to fitness benefits. While there is a consistent positive relationship between higher dominance rank and higher reproductive success, the data we were able to bring together for this study also indicates that studies have primarily focused on systems where strong effects can be detected and that reports of weak or absent relationships between rank and reproductive success might be missing in the published literature. In particular, effects were less extreme in studies that had been conducted across longer time-frames. Studies conducted for longer time spans likely have larger sample sizes to estimates effects. Alternatively, or in addition, natural changes in dominance rank and events that affect all females equally (e.g. infanticide @cheney2004factors) occur only rarely, so that short-term studies will be strongly influenced by current conditions whereas long-term measures might balance across conditions. Our meta-analysis also highlights several factors associated with variation in the strength of the effect of dominance rank on reproductive success, where social factors in particular appear to have a modulating influence while variation in life history and ecological factors appears of less importance.    
 
-think about the mechanism: 
-- do you expect the dominant to be clearly different from the rest or do you expect there to be a linear effect (matters for classifying rank continuously or categorical)
-- even though the relative difference between dominant and subordinate females might be lower in larger group sizes, in terms of overall fitness it might still be better to be the dominant in a larger group if mean fitness increases with group size (3 versus 2 offspring (50% higher fitness) compared to 4 versus 3 offspring (33% higher fitness))
+Overall, we estimated an average effect of 0.28 of rank on reproductive success. What does this mean? First, it is important to highlight that this effect size reflects how well rank predicts reproductive success, but not directly indicates how different the reproductive success of high-ranking females is from that of low-ranking females. While the effect of dominance has to be zero in groups where all females have exactly the same reproductive success, an effect of zero is also found in a group where there are large differences in reproduction success across females which though does not align with the females' dominance rank. Just by chance, we would expect differences in reproductive success among females in a social group and we could also expect that these differences are associated with traits that we might use to classify social rank. To assess whether the effects we detect are higher than such random variation, we performed simulations. For this, we simulated artificial groups of females reflecting macaques, the genus most common in our sample. We assumed that each female in each group might have between 0 to 8 offspring, with an average 2 (following a Poisson distribution, so most females have 1 or 2 offspring). We performed 10,000 simulations of six groups of twelve females each (the median group size in our data). When we set no association between rank and reproductive success, less than 0.1% of simulations showed an effect size as high or higher than the 0.28 we observe in the data. Effect sizes for a perfect association between each female's rank and her reproductive success ranged from 0.75-0.95 (mean 0.88). Simulations in which the two highest ranking females always have the highest reproductive success while rank among lower ranking females no longer is associated with success produces effect sizes close to what we observe (mean 0.32), whereas values tend to be lower if only the highest ranking female consistently has the highest success (mean 0.18). While these simulations cannot resolve whether high ranking females have higher reproductive success because they obtained this position or whether there are some traits that lead to both higher rank and higher reproductive success, they indicate that social rank has a particular association with reproductive success beyond the random variation we expect in social groups.
 
-- demographic & multigenerational
-florida scrub jays / hyaenas: how do the effects combine to lead to the growth of matrilines, in particular heritability
+
+```{r ranksuccess_expectationsimulations, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
+
+
+
+
+# Perfect association
+emptylist<-c()
+for (i in 1:10000) {
+success<-c(sort(rpois(12,2)),sort(rpois(12,2)),sort(rpois(12,2)),sort(rpois(12,2)),sort(rpois(12,2)),sort(rpois(12,2)))
+dominants<-rep(c(1,2,3,4,5,6,7,8,9,10,11,12),6)
+effectsize<-ifelse(summary(lm(success~dominants))$coefficients[2,1]<0,(-1*sqrt(summary(lm(success~dominants))$r.squared)), sqrt(summary(lm(success~dominants))$r.squared))
+emptylist<-c(emptylist,effectsize)
+}
+hist(emptylist)
+
+
+# average 0.88
+
+
+# Highest ranking one best, thereafter no association
+emptylist<-c()
+for (i in 1:10000) {
+success<-c(sort(rgampois(12,2,0.2)),sort(rgampois(12,2,0.2)),sort(rgampois(12,2,0.2)),sort(rgampois(12,2,0.2)),sort(rgampois(12,2,0.2)),sort(rgampois(12,2,0.2)))
+dominants<-rep(c(1,sample(c(2,3,4,5,6,7,8,9,10,11,12),11)),6)
+effectsize<-ifelse(summary(lm(success~dominants))$coefficients[2,1]<0,(-1*sqrt(summary(lm(success~dominants))$r.squared)), sqrt(summary(lm(success~dominants))$r.squared))
+emptylist<-c(emptylist,effectsize)
+}
+hist(emptylist)
+
+# average 0.18
+
+
+# Highest two ranking best, thereafter no association
+emptylist<-c()
+for (i in 1:10000) {
+success<-c(sort(rgampois(12,2,0.2)),sort(rgampois(12,2,0.2)),sort(rgampois(12,2,0.2)),sort(rgampois(12,2,0.2)),sort(rgampois(12,2,0.2)),sort(rgampois(12,2,0.2)))
+dominants<-rep(c(1,2,sample(c(3,4,5,6,7,8,9,10,11,12),10)),6)
+effectsize<-ifelse(summary(lm(success~dominants))$coefficients[2,1]<0,(-1*sqrt(summary(lm(success~dominants))$r.squared)), sqrt(summary(lm(success~dominants))$r.squared))
+emptylist<-c(emptylist,effectsize)
+}
+hist(emptylist)
+
+#Average 0.33
+
+
+# No association
+emptylist<-c()
+for (i in 1:10000) {
+success<-c((rgampois(12,2,0.2)),(rgampois(12,2,0.2)),(rgampois(12,2,0.2)),(rgampois(12,2,0.2)),(rgampois(12,2,0.2)),(rgampois(12,2,0.2)))
+dominants<-rep(c(1,sample(c(2,3,4,5,6,7,8,9,10,11,12),11)),6)
+effectsize<-ifelse(summary(lm(success~dominants))$coefficients[2,1]<0,-1*sqrt(summary(lm(success~dominants))$r.squared), sqrt(summary(lm(success~dominants))$r.squared))
+emptylist<-c(emptylist,effectsize)
+}
+hist(emptylist)
+
+# 84/10000 higher than 0.28
+
+
+
+
+# Highest ranking one best thereafter no association - in smaller group
+emptylist<-c()
+for (i in 1:10000) {
+success<-c(sort(rgampois(6,2,0.2)),sort(rgampois(6,2,0.2)),sort(rgampois(6,2,0.2)),sort(rgampois(6,2,0.2)),sort(rgampois(6,2,0.2)),sort(rgampois(6,2,0.2)))
+dominants<-rep(c(1,sample(c(2,3,4,5,6),5)),6)
+effectsize<-ifelse(summary(lm(success~dominants))$coefficients[2,1]<0,(-1*sqrt(summary(lm(success~dominants))$r.squared)), sqrt(summary(lm(success~dominants))$r.squared))
+emptylist<-c(emptylist,effectsize)
+}
+hist(emptylist)
+
+
+emptylist<-c()
+for (i in 1:10000) {
+success<-c(sort(rgampois(4,2,0.2)),sort(rgampois(4,2,0.2)),sort(rgampois(4,2,0.2)),sort(rgampois(4,2,0.2)),sort(rgampois(4,2,0.2)),sort(rgampois(4,2,0.2)))
+dominants<-rep(c(1,sample(c(2,3,4),3)),6)
+effectsize<-ifelse(summary(lm(success~dominants))$coefficients[2,1]<0,(-1*sqrt(summary(lm(success~dominants))$r.squared)), sqrt(summary(lm(success~dominants))$r.squared))
+emptylist<-c(emptylist,effectsize)
+}
+hist(emptylist)
+
+
+
+
+# Highest two ranking best thereafter no association - in smaller group
+emptylist<-c()
+for (i in 1:10000) {
+success<-c(sort(rgampois(6,2,0.2)),sort(rgampois(6,2,0.2)),sort(rgampois(6,2,0.2)),sort(rgampois(6,2,0.2)),sort(rgampois(6,2,0.2)),sort(rgampois(6,2,0.2)))
+dominants<-rep(c(1,2,sample(c(3,4,5,6),4)),6)
+effectsize<-ifelse(summary(lm(success~dominants))$coefficients[2,1]<0,(-1*sqrt(summary(lm(success~dominants))$r.squared)), sqrt(summary(lm(success~dominants))$r.squared))
+emptylist<-c(emptylist,effectsize)
+}
+hist(emptylist)
+
+
+
+
+
+# Highest two ranking best, thereafter no association; normal distribution
+emptylist<-c()
+for (i in 1:10000) {
+success<-c(sort(round(rnorm(12,mean=2,sd=0.5),0)),sort(round(rnorm(12,mean=2,sd=0.5),0)),sort(round(rnorm(12,mean=2,sd=0.5),0)),sort(round(rnorm(12,mean=2,sd=0.5),0)),sort(round(rnorm(12,mean=2,sd=0.5),0)),sort(round(rnorm(12,mean=2,sd=0.5),0)))
+dominants<-rep(c(1,2,sample(c(3,4,5,6,7,8,9,10,11,12),10)),6)
+effectsize<-ifelse(summary(lm(success~dominants))$coefficients[2,1]<0,(-1*sqrt(summary(lm(success~dominants))$r.squared)), sqrt(summary(lm(success~dominants))$r.squared))
+emptylist<-c(emptylist,effectsize)
+}
+hist(emptylist)
+
+```
+
+
+
+Among the social traits we investigated, the highest difference in the effect of rank on reproductive success was between cooperative breeders and plural/associated breeders. This results was expected given the higher reproductive skew that has been found among females in cooperative breeders (@lukas2012cooperative). The difference in reproductive control of dominant females in cooperative breeders compared to plural/associated breeders are also reflected in the different relationships of the effect sizes with group size in the different breeding systems. While among cooperative breeders there usually is only a single breeding dominant female and large groups occur when her reproductive output is higher, dominant females in plural/associated breeders likely face reduced opportunities to control reproduction in larger groups (@rubenstein2016discrete). In this context, it is again important to note that we only look at the association between rank and the variation in reproductive success within groups. Even though the relative difference between dominant and subordinate females might be lower in larger group sizes, in terms of overall fitness it might still be better to be the dominant in a larger group if mean fitness increases with group size (e.g. small group where dominant has 3 versus subordinate has 2 offspring (50% higher fitness) compared to large group where dominant has 4 while all other females have 3 offspring (33% higher fitness)).
+
+Of the ecological variables we investigated, only population density was associated with differences in effect sizes of dominance rank on reproductive success. This might indicate dominants have higher reproductive success because they are consistently able to outcompete other females in the group rather than dominant individuals having better abilities to cope with challenging conditions. This is also supported by our observation that dominance rank has a lower effect on survival, which generally responds less to differential resource availability than fertility. Most of the social mammals in our sample are long-lived, so it also fits with expectations that they would invest additional resources into their own increased fertility rather than any offspring they already have. 
+
+Our findings highlight that social factors can have important influences on demography and genetic evolution. The effect of high dominance rank on reproductive success can influence the growth and composition of social groups across generations. In particular when social rank is heritable, strong long-term changes are visible in the few studies which have been able to track reproductive success across multiple generations. For example, among spotted hyenas, the highest ranking female in 1979 is the ancestor of more than half of the females in the clan in 2009. For future studies, such detailed long-term investigations are not only relevant to understand the long-term consequences of the effect of dominance rank on reproduction, but also to infer the specific mechanisms that link rank to reproductive output. On the flip side, there were many studies in our sample that indicate that higher dominance rank does is not associated with increased reproductive output, raising the question why a dominance structure exists in these groups.
+
+
+
+
+
 
   
 ### G. ETHICS
