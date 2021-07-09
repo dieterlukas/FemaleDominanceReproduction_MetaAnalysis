@@ -1835,7 +1835,7 @@ precis(rethinking_phylogenetic_gaussian_relatedness)
 
 **Coalition formation**
 
-Species in which females form coalitions show only slightly lower effects of dominance rank on reproductive success (average 0.27) than species in which females do not have support during aggressive interactions (average 0.32) (estimate of difference metafor: -0.11 - -0.01, rethinking -0.09 - +0.01, no difference in models accounting for similarity due to phylogenetic relatedness)
+Species in which females form coalitions show only slightly lower effects of dominance rank on reproductive success (average 0.27) than species in which females do not have support during aggressive interactions (average 0.32) (estimate of difference metafor: -0.11 - -0.01, rethinking -0.09 - +0.01, no difference in models accounting for similarity due to phylogenetic relatedness).
 
 
 ```{r ranksuccess_coalition, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
@@ -1948,10 +1948,7 @@ We find no differences in effect sizes (after accounting for shared phylogenetic
 
 
 
-
-after including factors associated with heterogeneity, still signal of publication bias? Yes.
-
-research has focused on systems and approaches where effects are more likely to detect.
+We first assessed, whether after including the factors we identified in the univariate analyses to be associated with the heterogeneity in the dataset, we still find signal of publication bias. The statistical analysis indicates that there is a still bias towards effect sizes that are more likely to be significant. However, the resulting funnel plot indicates much reduced asymmetry, indicating that the unpublished studies might be low, and that the imbalance in the dataset mainly results from "study system" bias, with research focusing on systems and approaches where effects are more likely to detect.
 
 ```{r ranksuccess_metapublicationbias, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
 
@@ -2166,7 +2163,7 @@ In cooperative breeders, effects of dominance rank were only assessed on three o
 
 In cooperative breeders, effect sizes are higher for infant production (0.55-0.69), and lower for infant survival (0.20-0.61) and adult survival (0.12-0.73).
 
-In plural/associated breeders, effect sizes are highest for life time reproductive success (0.33-0.47), followed by age at first conception (0.25-0.43) and interbirth interval (0.25-0.38), infant production (0.19-0.27) and adult survival (0.15-0.30), and are lowest for infant survival (0.11-0.20)
+In plural/associated breeders, effect sizes are highest for life time reproductive success (0.33-0.47), followed by age at first conception (0.25-0.43) and interbirth interval (0.25-0.38), infant production (0.19-0.27) and adult survival (0.15-0.30), and are lowest for infant survival (0.11-0.20).
 
 
 ```{r ranksuccess_measure_interactions, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
