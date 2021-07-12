@@ -20,7 +20,7 @@ output:
     code_folding: hide 
   github_document: 
     toc: true
-bibliography: /Users/dieterlukas/ownCloud/Documents/GitHub/FemaleDominanceReproduction_MetaAnalysis/MyLibrary.bib
+bibliography: https://raw.githubusercontent.com/dieterlukas/FemaleDominanceReproduction_MetaAnalysis/trunk/Manuscriptfiles/MyLibrary.bib
 ---
 ##### Affiliations: 
 1. Indian Institute of Science Education and Research Kolkata 
@@ -48,7 +48,7 @@ Matthieu Paquet (2020) The effect of dominance rank on female reproductive succe
 
  - Reviewers: Bonaventura Majolo and one anonymous reviewer
 
-**The preregistration for this article can be found here:** Shivani, Huchard E., Lukas D. 2020. [Preregistration - The effect of dominance rank on female reproductive success in social mammals](https://dieterlukas.github.io/Preregistration_MetaAnalysis_RankSuccess.html) In principle acceptance by *PCI Ecology* of the version 1.2 on 07 July 2020 [https://github.com/dieterlukas/FemaleDominanceReproduction_MetaAnalysis/blob/trunk/Preregistration_MetaAnalysis_RankSuccess.Rmd](https://github.com/dieterlukas/FemaleDominanceReproduction_MetaAnalysis/blob/trunk/Preregistration_MetaAnalysis_RankSuccess.Rmd).
+**The preregistration for this article can be found here:** Shivani, Huchard E., Lukas D. 2020. [Preregistration - The effect of dominance rank on female reproductive success in social mammals](https://dieterlukas.github.io/Preregistration_MetaAnalysis_RankSuccess.html) In principle acceptance by *PCI Ecology* of the version 1.2 on 07 July 2020 [https://github.com/dieterlukas/FemaleDominanceReproduction_MetaAnalysis/blob/trunk/Preregistration_MetaAnalysis_RankSuccess.Rmd](https://github.com/dieterlukas/FemaleDominanceReproduction_MetaAnalysis/blob/trunk/Manuscriptfiles/Preregistration_MetaAnalysis_RankSuccess.html).
    
 &nbsp; 
 
@@ -368,7 +368,7 @@ library(rethinking)
 # all data are obtained from online sources
 
 # Load input data from GitHub
-inputdata<-read_csv(url("https://raw.githubusercontent.com/dieterlukas/FemaleDominanceReproduction_MetaAnalysis/trunk/InputData_MetaAnalysis_FemaleDominanceReproduction.csv"))
+inputdata<-read_csv(url("https://raw.githubusercontent.com/dieterlukas/FemaleDominanceReproduction_MetaAnalysis/trunk/Inputfiles/InputData_MetaAnalysis_FemaleDominanceReproduction.csv"))
 inputdata<-data.frame(inputdata)
 dat<-inputdata
  
@@ -386,7 +386,7 @@ dat<-inputdata
 #[28] "Reference_DominanceSucccess" "Reference_DominanceSystem"   "Reference_Relatedness" 
 
 # Load the consensus tree for the 86 species in the actual dataset
-mammaltree<-read.nexus(url("https://raw.githubusercontent.com/dieterlukas/FemaleDominanceReproduction_MetaAnalysis/trunk/CombinedTree_MetaAnalysis_RankSuccess.nex"))
+mammaltree<-read.nexus(url("https://raw.githubusercontent.com/dieterlukas/FemaleDominanceReproduction_MetaAnalysis/trunk/Inputfiles/CombinedTree_MetaAnalysis_RankSuccess.nex"))
 
 # Some of the Latin species names in the input file do not match the species name that were used for the phylogenetic tree. We can adapt these here
 #Instead of Canis familiaris we use Canis lupus
