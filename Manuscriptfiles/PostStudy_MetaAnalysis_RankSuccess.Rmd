@@ -303,6 +303,19 @@ This data will be added prior to the analyses, depending on which  specific pred
 
 **Coalition formation**: whether adult females form coalitions with other female group members to support each other during within-group aggressive interactions; data from species-level descriptions of female behaviour (based on the data in @lukas2018social).
 
+**Sexual dimorphism in body weight**: average weight of males of that species divided by average weight of males of that species (based on data in:)
+
+Jarman P. (1983). Mating system and sexual dimorphism in large terrestrial, mammalian herbivores. Biological Reviews, 58(4), 485-520.
+Loison, A., Gaillard, J. M., Pélabon, C., & Yoccoz, N. G. (1999). What factors shape sexual size dimorphism in ungulates?. Evolutionary Ecology Research, 1(5), 611-633.
+Smith, R. J., & Cheverud, J. M. (2002). Scaling of sexual dimorphism in body mass: a phylogenetic analysis of Rensch's rule in primates. International Journal of Primatology, 23(5), 1095-1135.
+Isaac, J. L. (2005). Potential causes and life‐history consequences of sexual size dimorphism in mammals. Mammal Review, 35(1), 101-115.
+Kappeler, P. M., Nunn, C. L., Vining, A. Q., & Goodman, S. M. (2019). Evolutionary dynamics of sexual size dimorphism in non-volant mammals following their independent colonization of Madagascar. Scientific reports, 9(1), 1-14.
+
+**Male infanticide**: whether adult males in that species kill offspring (based on the data in Lukas & Huchard 2014).
+
+**Adult sex ratio**: the ratio of the average number of males divided by the average number of females per social group of that species. We took species' averages to reflect potential sexual conflict because several of the studies from which we extracted effect sizes had captive or experimental settings or only reported the number of females that were included in the study.
+
+
 
 #### **Phylogeny**
 We will generate a single consensus phylogeny for the mammalian species in our sample from the most recent complete mammalian time-calibrated phylogeny (@upham2019inferring). We will download a credible set of 1000 trees of mammalian phylogenetic history from vertlife.org/phylosubsets/ and use TreeAnnotator (version 1.8.2 in BEAST: @drummond2012bayesian) to generate a maximum clade credibility (MCC) tree (median node heights and a burn in of 250 trees). We will trim the tree to match the species in our sample and convert branch lengths using functions of the package ape (@paradis2019ape).
@@ -1909,6 +1922,236 @@ precis(rethinking_phylogenetic_gaussian_coalition)
 
 
 ```
+
+
+**Sexual conflict**
+
+We will assess whether high ranking females benefit less from their positions in populations in which groups show strong female-biased sex composition, or in which males regularly commit infanticide, or with strong sexual size dimorphism with males being much larger than females.
+
+
+```{r ranksuccess_sexualconflict, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
+
+#model assessing the influence of difference on group sizes on the measured effect sizes, with study reference as random term
+
+
+meta_sexratio <- rma.mv(yi=Fishers_Z_r, V=Variance, mods=~ SexRatio, data=dat, method="REML", random=list(~1|StudyRef,~1|SpeciesRef))
+meta_sexratio
+
+metafor_phylogenetic_sexratio <- rma.mv(Fishers_Z_r, Variance,
+                                      mod =~SexRatio,
+                                      random=list(~ 1 | SpeciesIncluded, # linking the species to the phylogeny
+                                                  ~ 1 | Latin, # observations from the same species might be similar to each other, even if those from closely related species are not
+                                                  ~ 1 | StudyRef),  # accounting for observations from the same publication
+                                      R = list(SpeciesIncluded = phylo_cor), # reflecting the phylogenetic relatedness
+                                      method="REML",
+                                      test="t",  
+                                      data=dat)
+metafor_phylogenetic_sexratio
+
+
+
+#A non-phylogenetic model to determine the influence of group size on the variation in effect sizes
+#We create the structured data file for the model 
+
+#A non-phylogenetic model to determine the influence of group size on the variation in effect sizes
+#We create the structured data file for the model 
+
+sexratiodat<-dat[is.na(dat$SexRatio)==F,]
+
+dat_list_sexratio <- list(
+  N_spp = nrow(sexratiodat),
+  Z_obs = sexratiodat$Fishers_Z_r,
+  Z_sd = sexratiodat$Variance, 
+  S = standardize(sexratiodat$SexRatio)
+)
+
+#We run the model
+rethinking_sexratio <- ulam(
+  alist(
+    Z_obs ~dnorm ( Z_true , Z_sd),
+    vector[N_spp]:Z_true ~ dnorm( mu , sigma_sq ),
+    mu <- a+b*S,
+    a~normal(0,1),
+    b~normal(0,0.5),
+    sigma_sq~dexp(1)
+  ),data=dat_list_sexratio)
+precis(rethinking_sexratio)
+
+
+dat_list_phylogenetic_sexratio <- list(
+  N_spp = nrow(sexratiodat),
+  Z_obs = sexratiodat$Fishers_Z_r,
+  Z_sd = sexratiodat$Variance, 
+  S = standardize(sexratiodat$SexRatio)
+)
+
+dat_list_phylogenetic_sexratio$Dmat<-Dmat[sexratiodat$Latin,sexratiodat$Latin ]/max(Dmat)
+rethinking_phylogenetic_gaussian_sexratio <- ulam(
+  alist(
+    Z_obs ~dnorm ( Z_true , Z_sd),
+    vector[N_spp]:Z_true ~ multi_normal( mu , SIGMA ),
+    mu <- a+b*S,
+    matrix[N_spp,N_spp]: SIGMA <- cov_GPL2( Dmat, etasq, rhosq, 0.01),
+    a~normal(0,1),
+    b~normal(0,0.5),
+    etasq~exponential(1),
+    rhosq~exponential(1)
+  ),data=dat_list_phylogenetic_sexratio)
+precis(rethinking_phylogenetic_gaussian_sexratio)
+
+
+
+################################################################################################
+
+# Infanticide
+
+#model assessing the influence of difference on group sizes on the measured effect sizes, with study reference as random term
+
+
+meta_infanticide <- rma.mv(yi=Fishers_Z_r, V=Variance, mods=~ MaleInfanticide, data=dat, method="REML", random=list(~1|StudyRef,~1|SpeciesRef))
+meta_infanticide
+
+metafor_phylogenetic_infanticide <- rma.mv(Fishers_Z_r, Variance,
+                                      mod =~MaleInfanticide,
+                                      random=list(~ 1 | SpeciesIncluded, # linking the species to the phylogeny
+                                                  ~ 1 | Latin, # observations from the same species might be similar to each other, even if those from closely related species are not
+                                                  ~ 1 | StudyRef),  # accounting for observations from the same publication
+                                      R = list(SpeciesIncluded = phylo_cor), # reflecting the phylogenetic relatedness
+                                      method="REML",
+                                      test="t",  
+                                      data=dat)
+metafor_phylogenetic_infanticide
+
+
+
+#A non-phylogenetic model to determine the influence of group size on the variation in effect sizes
+#We create the structured data file for the model 
+
+infanticidedat<-dat[is.na(dat$MaleInfanticide)==F,]
+
+dat_list_infanticide <- list(
+  N_spp = nrow(infanticidedat),
+  Z_obs = infanticidedat$Fishers_Z_r,
+  Z_sd = infanticidedat$Variance, 
+  M = as.integer(as.factor(infanticidedat$MaleInfanticide))
+)
+
+#We run the model
+rethinking_infanticide <- ulam(
+  alist(
+    Z_obs ~dnorm ( Z_true , Z_sd),
+    vector[N_spp]:Z_true ~ dnorm( mu , sigma_sq ),
+    mu <- a+b[M],
+    a~normal(0,1),
+    b[M]~normal(0,0.5),
+    sigma_sq~dexp(1)
+  ),data=dat_list_infanticide)
+precis(rethinking_infanticide,depth=2)[427:430,]
+posterior<-extract.samples(rethinking_infanticide)
+difference_infanticide<-posterior$b[,2]-posterior$b[,1]
+precis(difference_infanticide)
+
+dat_list_phylogenetic_infanticide <- list(
+  N_spp = nrow(infanticidedat),
+  Z_obs = infanticidedat$Fishers_Z_r,
+  Z_sd = infanticidedat$Variance, 
+  M = as.integer(as.factor(infanticidedat$MaleInfanticide))
+)
+
+dat_list_phylogenetic_infanticide$Dmat<-Dmat[infanticidedat$Latin,infanticidedat$Latin ]/max(Dmat)
+rethinking_phylogenetic_gaussian_infanticide <- ulam(
+  alist(
+    Z_obs ~dnorm ( Z_true , Z_sd),
+    vector[N_spp]:Z_true ~ multi_normal( mu , SIGMA ),
+    mu <- a+b[M],
+    matrix[N_spp,N_spp]: SIGMA <- cov_GPL2( Dmat, etasq, rhosq, 0.01),
+    a~normal(0,1),
+    b[M]~normal(0,0.5),
+    etasq~exponential(1),
+    rhosq~exponential(1)
+  ),data=dat_list_phylogenetic_infanticide)
+precis(rethinking_phylogenetic_gaussian_infanticide)
+
+
+
+################################################################################################
+
+# Sexual dimorphism
+
+#model assessing the influence of difference on group sizes on the measured effect sizes, with study reference as random term
+
+
+meta_sexualdimorphism <- rma.mv(yi=Fishers_Z_r, V=Variance, mods=~ SexualDimorphism_MaleWeightOverFemaleWeight, data=dat, method="REML", random=list(~1|StudyRef,~1|SpeciesRef))
+meta_sexualdimorphism
+
+metafor_phylogenetic_sexualdimorphism <- rma.mv(Fishers_Z_r, Variance,
+                                      mod =~SexualDimorphism_MaleWeightOverFemaleWeight,
+                                      random=list(~ 1 | SpeciesIncluded, # linking the species to the phylogeny
+                                                  ~ 1 | Latin, # observations from the same species might be similar to each other, even if those from closely related species are not
+                                                  ~ 1 | StudyRef),  # accounting for observations from the same publication
+                                      R = list(SpeciesIncluded = phylo_cor), # reflecting the phylogenetic relatedness
+                                      method="REML",
+                                      test="t",  
+                                      data=dat)
+metafor_phylogenetic_sexualdimorphism
+
+
+
+#A non-phylogenetic model to determine the influence of group size on the variation in effect sizes
+#We create the structured data file for the model 
+
+#A non-phylogenetic model to determine the influence of group size on the variation in effect sizes
+#We create the structured data file for the model 
+
+sexualdimorphismdat<-dat[is.na(dat$SexualDimorphism_MaleWeightOverFemaleWeight)==F,]
+
+dat_list_sexualdimorphism <- list(
+  N_spp = nrow(sexualdimorphismdat),
+  Z_obs = sexualdimorphismdat$Fishers_Z_r,
+  Z_sd = sexualdimorphismdat$Variance, 
+  S = standardize(sexualdimorphismdat$SexualDimorphism_MaleWeightOverFemaleWeight)
+)
+
+#We run the model
+rethinking_sexualdimorphism <- ulam(
+  alist(
+    Z_obs ~dnorm ( Z_true , Z_sd),
+    vector[N_spp]:Z_true ~ dnorm( mu , sigma_sq ),
+    mu <- a+b*S,
+    a~normal(0,1),
+    b~normal(0,0.5),
+    sigma_sq~dexp(1)
+  ),data=dat_list_sexualdimorphism)
+precis(rethinking_sexualdimorphism)
+
+
+dat_list_phylogenetic_sexualdimorphism <- list(
+  N_spp = nrow(sexualdimorphismdat),
+  Z_obs = sexualdimorphismdat$Fishers_Z_r,
+  Z_sd = sexualdimorphismdat$Variance, 
+  S = standardize(sexualdimorphismdat$SexualDimorphism_MaleWeightOverFemaleWeight)
+)
+
+dat_list_phylogenetic_sexualdimorphism$Dmat<-Dmat[sexualdimorphismdat$Latin,sexualdimorphismdat$Latin ]/max(Dmat)
+rethinking_phylogenetic_gaussian_sexualdimorphism <- ulam(
+  alist(
+    Z_obs ~dnorm ( Z_true , Z_sd),
+    vector[N_spp]:Z_true ~ multi_normal( mu , SIGMA ),
+    mu <- a+b*S,
+    matrix[N_spp,N_spp]: SIGMA <- cov_GPL2( Dmat, etasq, rhosq, 0.01),
+    a~normal(0,1),
+    b~normal(0,0.5),
+    etasq~exponential(1),
+    rhosq~exponential(1)
+  ),data=dat_list_phylogenetic_sexualdimorphism)
+precis(rethinking_phylogenetic_gaussian_sexualdimorphism)
+
+
+
+
+
+```
+
 
 
 
