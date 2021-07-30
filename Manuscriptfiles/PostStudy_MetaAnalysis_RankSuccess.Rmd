@@ -1928,17 +1928,23 @@ precis(rethinking_phylogenetic_gaussian_coalition)
 
 We will assess whether high ranking females benefit less from their positions in populations in which groups show strong female-biased sex composition, or in which males regularly commit infanticide, or with strong sexual size dimorphism with males being much larger than females.
 
+Effect sizes are larger in species in which sex ratios in social groups are more balanced and lower when there are fewer males per female (metafor estimate 0.55-1.25, rethinking estimate 0.07-0.11). 
+
+Effect sizes are lower in species in which males commit infanticide (metafor estimate -0.20 - 0.00; rethinking estimate -0.15 - -0.04), but the relationship does not hold when accounting for phylogenetic relatedness.
+
+Differences in effect sizes are not associated with the extent of sexual dimorphism in body size across species (metafor estimate -0.17 - 0.11; rethinking -0.05 - 0.01).
+
 
 ```{r ranksuccess_sexualconflict, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
 
 #model assessing the influence of difference on group sizes on the measured effect sizes, with study reference as random term
 
 
-meta_sexratio <- rma.mv(yi=Fishers_Z_r, V=Variance, mods=~ SexRatio, data=dat, method="REML", random=list(~1|StudyRef,~1|SpeciesRef))
+meta_sexratio <- rma.mv(yi=Fishers_Z_r, V=Variance, mods=~ sexratio_socialgroup, data=dat, method="REML", random=list(~1|StudyRef,~1|SpeciesRef))
 meta_sexratio
 
 metafor_phylogenetic_sexratio <- rma.mv(Fishers_Z_r, Variance,
-                                      mod =~SexRatio,
+                                      mod =~sexratio_socialgroup,
                                       random=list(~ 1 | SpeciesIncluded, # linking the species to the phylogeny
                                                   ~ 1 | Latin, # observations from the same species might be similar to each other, even if those from closely related species are not
                                                   ~ 1 | StudyRef),  # accounting for observations from the same publication
@@ -1956,13 +1962,13 @@ metafor_phylogenetic_sexratio
 #A non-phylogenetic model to determine the influence of group size on the variation in effect sizes
 #We create the structured data file for the model 
 
-sexratiodat<-dat[is.na(dat$SexRatio)==F,]
+sexratiodat<-dat[is.na(dat$sexratio_socialgroup)==F,]
 
 dat_list_sexratio <- list(
   N_spp = nrow(sexratiodat),
   Z_obs = sexratiodat$Fishers_Z_r,
   Z_sd = sexratiodat$Variance, 
-  S = standardize(sexratiodat$SexRatio)
+  S = standardize(sexratiodat$sexratio_socialgroup)
 )
 
 #We run the model
@@ -1982,7 +1988,7 @@ dat_list_phylogenetic_sexratio <- list(
   N_spp = nrow(sexratiodat),
   Z_obs = sexratiodat$Fishers_Z_r,
   Z_sd = sexratiodat$Variance, 
-  S = standardize(sexratiodat$SexRatio)
+  S = standardize(sexratiodat$sexratio_socialgroup)
 )
 
 dat_list_phylogenetic_sexratio$Dmat<-Dmat[sexratiodat$Latin,sexratiodat$Latin ]/max(Dmat)
@@ -2008,11 +2014,11 @@ precis(rethinking_phylogenetic_gaussian_sexratio)
 #model assessing the influence of difference on group sizes on the measured effect sizes, with study reference as random term
 
 
-meta_infanticide <- rma.mv(yi=Fishers_Z_r, V=Variance, mods=~ MaleInfanticide, data=dat, method="REML", random=list(~1|StudyRef,~1|SpeciesRef))
+meta_infanticide <- rma.mv(yi=Fishers_Z_r, V=Variance, mods=~ maleinfanticide, data=dat, method="REML", random=list(~1|StudyRef,~1|SpeciesRef))
 meta_infanticide
 
 metafor_phylogenetic_infanticide <- rma.mv(Fishers_Z_r, Variance,
-                                      mod =~MaleInfanticide,
+                                      mod =~maleinfanticide,
                                       random=list(~ 1 | SpeciesIncluded, # linking the species to the phylogeny
                                                   ~ 1 | Latin, # observations from the same species might be similar to each other, even if those from closely related species are not
                                                   ~ 1 | StudyRef),  # accounting for observations from the same publication
@@ -2027,13 +2033,13 @@ metafor_phylogenetic_infanticide
 #A non-phylogenetic model to determine the influence of group size on the variation in effect sizes
 #We create the structured data file for the model 
 
-infanticidedat<-dat[is.na(dat$MaleInfanticide)==F,]
+infanticidedat<-dat[is.na(dat$maleinfanticide)==F,]
 
 dat_list_infanticide <- list(
   N_spp = nrow(infanticidedat),
   Z_obs = infanticidedat$Fishers_Z_r,
   Z_sd = infanticidedat$Variance, 
-  M = as.integer(as.factor(infanticidedat$MaleInfanticide))
+  M = as.integer(as.factor(infanticidedat$maleinfanticide))
 )
 
 #We run the model
@@ -2055,7 +2061,7 @@ dat_list_phylogenetic_infanticide <- list(
   N_spp = nrow(infanticidedat),
   Z_obs = infanticidedat$Fishers_Z_r,
   Z_sd = infanticidedat$Variance, 
-  M = as.integer(as.factor(infanticidedat$MaleInfanticide))
+  M = as.integer(as.factor(infanticidedat$maleinfanticide))
 )
 
 dat_list_phylogenetic_infanticide$Dmat<-Dmat[infanticidedat$Latin,infanticidedat$Latin ]/max(Dmat)
@@ -2081,11 +2087,11 @@ precis(rethinking_phylogenetic_gaussian_infanticide)
 #model assessing the influence of difference on group sizes on the measured effect sizes, with study reference as random term
 
 
-meta_sexualdimorphism <- rma.mv(yi=Fishers_Z_r, V=Variance, mods=~ SexualDimorphism_MaleWeightOverFemaleWeight, data=dat, method="REML", random=list(~1|StudyRef,~1|SpeciesRef))
+meta_sexualdimorphism <- rma.mv(yi=Fishers_Z_r, V=Variance, mods=~ SexualDimorphism_Weight, data=dat, method="REML", random=list(~1|StudyRef,~1|SpeciesRef))
 meta_sexualdimorphism
 
 metafor_phylogenetic_sexualdimorphism <- rma.mv(Fishers_Z_r, Variance,
-                                      mod =~SexualDimorphism_MaleWeightOverFemaleWeight,
+                                      mod =~SexualDimorphism_Weight,
                                       random=list(~ 1 | SpeciesIncluded, # linking the species to the phylogeny
                                                   ~ 1 | Latin, # observations from the same species might be similar to each other, even if those from closely related species are not
                                                   ~ 1 | StudyRef),  # accounting for observations from the same publication
@@ -2103,13 +2109,13 @@ metafor_phylogenetic_sexualdimorphism
 #A non-phylogenetic model to determine the influence of group size on the variation in effect sizes
 #We create the structured data file for the model 
 
-sexualdimorphismdat<-dat[is.na(dat$SexualDimorphism_MaleWeightOverFemaleWeight)==F,]
+sexualdimorphismdat<-dat[is.na(dat$SexualDimorphism_Weight)==F,]
 
 dat_list_sexualdimorphism <- list(
   N_spp = nrow(sexualdimorphismdat),
   Z_obs = sexualdimorphismdat$Fishers_Z_r,
   Z_sd = sexualdimorphismdat$Variance, 
-  S = standardize(sexualdimorphismdat$SexualDimorphism_MaleWeightOverFemaleWeight)
+  S = standardize(sexualdimorphismdat$SexualDimorphism_Weight)
 )
 
 #We run the model
@@ -2129,7 +2135,7 @@ dat_list_phylogenetic_sexualdimorphism <- list(
   N_spp = nrow(sexualdimorphismdat),
   Z_obs = sexualdimorphismdat$Fishers_Z_r,
   Z_sd = sexualdimorphismdat$Variance, 
-  S = standardize(sexualdimorphismdat$SexualDimorphism_MaleWeightOverFemaleWeight)
+  S = standardize(sexualdimorphismdat$SexualDimorphism_Weight)
 )
 
 dat_list_phylogenetic_sexualdimorphism$Dmat<-Dmat[sexualdimorphismdat$Latin,sexualdimorphismdat$Latin ]/max(Dmat)
