@@ -386,6 +386,7 @@ library(rethinking)
 inputdata<-read_csv(url("https://raw.githubusercontent.com/dieterlukas/FemaleDominanceReproduction_MetaAnalysis/trunk/Inputfiles/InputData_MetaAnalysis_FemaleDominanceReproduction.csv"))
 inputdata<-data.frame(inputdata)
 dat<-inputdata
+# We rearrange the columns so that the dataset is easier to view, with the references at the end
 dat<-dat[,c(3:32,37,36,33:35)] 
 
 # The following variables are part of the dataset
@@ -404,14 +405,6 @@ dat<-dat[,c(3:32,37,36,33:35)]
 
 # Load the consensus tree for the 86 species in the actual dataset
 mammaltree<-read.nexus(url("https://raw.githubusercontent.com/dieterlukas/FemaleDominanceReproduction_MetaAnalysis/trunk/Inputfiles/CombinedTree_MetaAnalysis_RankSuccess.nex"))
-
-# Some of the Latin species names in the input file do not match the species name that were used for the phylogenetic tree. We can adapt these here
-#Instead of Canis familiaris we use Canis lupus
-dat[dat$Latin=="Canis_familiaris",]$Latin<-"Canis_lupus"
-#Fukomys mechowii is spelled Fukomys mechowi
-dat[dat$Latin=="Fukomys_mechowii",]$Latin<-"Fukomys_mechowi"
-#Bos bison is now Bison bison
-dat[dat$Latin=="Bos_bison",]$Latin<-"Bison_bison"
 
 # For linking the phylogeny to the data, we create covariance matrices reflecting the shared phylogenetic history of pairs of species in a distance matrix
 phylo_branch <- compute.brlen(mammaltree, method = "Grafen", power = 1)
@@ -445,7 +438,7 @@ table(dat$MeasureType_Category)
 #### **1) Does high rank generally lead to higher reproductive success for females in social mammals?**
 
 
-**R1.1 Publication bias**: 
+**R1.1 Sample bias**: 
 A visual inspection of the range of effect sizes at different sample sizes in a funnel plot (Supplemental Figure) showed that there might be an underrepresentation of studies with small or negative effect sizes and small sample sizes (@egger1997bias). This sample bias is clearer to see in an orchard plot, which shows that extreme effect sizes tend to be of low precision and that there is an overrepresentation of positive effect sizes (Figure 1). 
 
 ```{r ranksuccess_publicationbias, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
@@ -463,9 +456,9 @@ orchard_plot(meta_simple, mod="Int", xlab = "Fisher's Z r",
 
 
 
-There are potentially (at least) three sources of sample bias, the first being 'publication bias' with studies with low effect sizes not ending up in the published literature, the second being 'study system bias' with research focusing on populations with small groups where it is easy to detect effects (e.g. cooperative breeders), and the third being 'study time bias' with studies performed over shorter time frames generally being more imprecise. We added further post-hoc analyses to investigate these patterns individually here, and in a combined model after identifying which study systems might show different effect sizes (section R5.1).
+There are potentially (at least) three sources of sample bias, the first being 'publication bias' with studies with low effect sizes (not reaching traditional levels of significance) not ending up in the published literature, the second being 'study system bias' with research focusing on populations with small groups where it is easy to detect effects (e.g. cooperative breeders), and the third being 'study time bias' with studies performed over shorter time frames generally being more imprecise. We added further post-hoc analyses to investigate these patterns individually here, and in a combined model after identifying which study systems might show different effect sizes (section R5.1).
 
-Simple tests for "publication bias' (@preston2004adjusting) suggest that effect sizes with a p-value smaller than 0.05 are about four times more likely to be reported than effect sizes with a p-value larger than 0.50. However, given the diversity of studies in our sample, we did not expect that the effect sizes represent a sample from a single distribution: for example, studies of offspring mortality tend to have larger sample sizes (because each mother can have multiple offspring) and we predicted different effect sizes for these studies. The base analysis indicates high heterogeneity in our sample (total heterogeneity / total variability: 73.37%) and suggesting that our sample might also show 'study system bias'.
+Simple tests for 'publication bias' (@preston2004adjusting) suggest that effect sizes with a p-value smaller than 0.05 are about four times more likely to be reported than effect sizes with a p-value larger than 0.50. However, given the diversity of studies in our sample, we did not expect that the effect sizes represent a sample from a single distribution: for example, studies of offspring mortality tend to have larger sample sizes (because each mother can have multiple offspring) and we predicted different effect sizes for these studies. The base analysis indicates high heterogeneity in our sample (total heterogeneity / total variability: 73.37%) which suggests that our sample might also show 'study system bias'.
 
 ```{r ranksuccess_effectsizeselection, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
 options(width=60)
@@ -1524,6 +1517,28 @@ rethinking_phylogenetic_gaussian_associatedbreeding <- ulam(
 precis(rethinking_phylogenetic_gaussian_associatedbreeding)
 
 
+dominancedat<-dat[is.na(dat$DominanceSystem)==F,]
+dominancedat_years<-dominancedat[dominancedat$CooperativeBreeding==0,]
+
+dat_list_dominance <- list(
+  N_spp = nrow(dominancedat_years),
+  Z_obs = dominancedat_years$Fishers_Z_r,
+  Z_sd = dominancedat_years$Variance, 
+  D = as.integer(as.factor(dominancedat_years$DominanceSystem)),
+  Y = standardize(dominancedat_years$No_of_years)
+)
+
+rethinking_dominance_years <- ulam(
+  alist(
+    Z_obs ~dnorm ( Z_true , Z_sd),
+    vector[N_spp]:Z_true ~ dnorm( mu , sigma_sq ),
+    mu <- a+b[D]*Y,
+    a~normal(0,1),
+    b[D]~normal(0,0.5),
+    sigma_sq~dexp(1)
+  ),data=dat_list_dominance)
+precis(rethinking_dominance_years,depth=2)[386:390,]
+
 ```
 
 **R4.3 Philopatry**
@@ -2139,8 +2154,8 @@ We find no differences in effect sizes (after accounting for shared phylogenetic
 #### **Combined analyses**
 
 
-**R5.1 Heterogeneity and publication**
-We first assessed, whether after including the factors we identified in the univariate analyses to be associated with the heterogeneity in the dataset, we still find signal of publication bias. The statistical analysis indicates that there is a still bias towards effect sizes that are more likely to be significant. However, the resulting funnel plot (Supplemental Figure) indicates much reduced asymmetry, indicating that the number of unpublished studies might be low, and that the imbalance in the dataset mainly results from "study system" bias, with research focusing on systems and approaches where effects are more likely to be detected.
+**R5.1 Heterogeneity and sample bias**
+We first assessed, whether after including the factors we identified in the univariate analyses to be associated with the heterogeneity in the dataset, we still find signal of publication bias. The statistical analysis indicates that there is a still bias towards effect sizes that are more likely to be significant. However, the resulting funnel plot (Supplemental Figure) indicates much reduced asymmetry, suggesting that the number of unpublished studies might be low and that the imbalance in the dataset mainly results from "study system" bias, with research focusing on systems and approaches where effects are more likely to be detected.
 
 ```{r ranksuccess_metapublicationbias, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
 
@@ -2181,11 +2196,10 @@ funnel(publication.bias.model, level=c(90, 95, 99), shade=c("white", "gray", "da
 
 
 
-
+**R5.2 Differences in approach to study cooperative breeders**
 In our preregistration, we had decided to first construct univariate models as reported above, testing the influence of a single variable at a time to assess support for the specific predictions. One of the main factors that we found to be associated with higher effect sizes is if species are cooperative breeders. Cooperative breeders differ in many additional aspects, so we first check whether any of the other associations we detect occur because they covary with cooperative breeding.
 
 
-**R5.2 Differences in approach to study cooperative breeders**
 Approaches of assigning rank depend on the breeding system of the study species, with many studies of cooperative breeders assigning rank into categories (98% categorical, 2% continuous) based on other measures (50% agonism, 50% other) while studies of plural and associated breeders often assign continuous ranks (51% categorical, 49% continuous) based on agonistic interactions (97% agonism, 3% other). Combining the variable representing the different study approaches with the variable representing the classification as cooperative breeder or not into single models indicates that the difference in effect sizes is primarily due to the stronger dominance effects in cooperative breeders (estimate of difference metafor +0.23 - +0.34, rethinking +0.23 - +0.37) and only very little due to the approaches the authors chose (other measure vs agonisms estimate of difference metafor +0.02 - +0.15, rethinking -0.02 - +0.16; rank categorical vs continuous estimate of difference metafor -0.02 - -0.09, rethinking -0.07 - +0.03). 
 
 
@@ -2338,7 +2352,7 @@ In cooperative breeders, effects of dominance rank were only assessed on three o
 
 In cooperative breeders, effect sizes are higher for infant production (metafor estimate +0.49 - +0.72, rethinking estimate +0.55 - +0.69), and lower for infant survival (metafor +0.13 - 0.54, rethinking +0.20 - +0.61) and adult survival (metafor estimate +0.02 - 0.59, +0.12 - +0.73).
 
-In plural/associated breeders, effect sizes are (depending on the approach) highest for lifetime reproductive success (metafor estimate +0.19 - +0.29, rethinking estimate +0.33 - +0.47), by age at first conception (metafor +0.27 - +0.36, rethinking +0.25 - +0.43) and interbirth interval (metafor +0.23 - +0.34, rethinking +0.25 - +0.38), followed by infant production (metafor +0.13 - +0.22, rethinking +0.19 - +0.27) and adult survival (metafor +0.14 - +0.24, rethinking +0.15 - +0.30), and are lowest for infant survival (metafor +0.11 - +0.20, rethinking +0.11 - +0.20).
+In plural/associated breeders, effect sizes are (depending on the approach) highest for lifetime reproductive success (metafor estimate +0.19 - +0.29, rethinking estimate +0.33 - +0.47), age at first conception (metafor +0.27 - +0.36, rethinking +0.25 - +0.43) and interbirth interval (metafor +0.23 - +0.34, rethinking +0.25 - +0.38), followed by infant production (metafor +0.13 - +0.22, rethinking +0.19 - +0.27) and adult survival (metafor +0.14 - +0.24, rethinking +0.15 - +0.30), and are lowest for infant survival (metafor +0.11 - +0.20, rethinking +0.11 - +0.20). The two methods give slightly different estimates because there is large variation among the effect sizes within each life history trait. For example, effect sizes of dominance rank on lifetime reproductive success can be either low or high, often for the same population. For example, an experiment with house mice reported effect sizes ranging from 0.08 to 0.80, depending on the relatedness among the group members (König 1994). For mountain gorillas living in the Virungas, one study reported no effect of dominance rank on lifetime reproductive success (0.00) (Robbins et al. 2007) while another reported the highest effect size in our sample (1.33) after excluding major sources of environmental variability on reproductive success (Robbins et al. 2011). 
 
 
 ```{r ranksuccess_measure_interactions, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
@@ -2362,18 +2376,12 @@ meta_MeasureType_Category_cooperativebreeding_phylogenetic <- rma.mv(Fishers_Z_r
 meta_MeasureType_Category_cooperativebreeding_phylogenetic
 
 
-
-
-
-
-
 dat_list <- list(
   N_spp = nrow(cooperative),
   Z_obs = cooperative$Fishers_Z_r,
   Z_sd = cooperative$Variance, 
   M = as.integer(as.factor(cooperative$MeasureType_Category))
 )
-
 
 rethinking_cooperation_measures <- ulam(
   alist(
@@ -2391,7 +2399,6 @@ plot(precis( rethinking_cooperation_measures , depth=2 , pars="m" ))
 
 notcooperative<-dat[dat$CooperativeBreeding==0,]
 
-
 meta_MeasureType_Category_notcooperativebreeding <- rma.mv(yi=Fishers_Z_r, V=Variance, mods=~ MeasureType_Category, data=notcooperative, method="REML", random=list(~1|StudyRef,~1|SpeciesRef))
 meta_MeasureType_Category_notcooperativebreeding
 
@@ -2407,14 +2414,12 @@ meta_MeasureType_Category_notcooperativebreeding_phylogenetic <- rma.mv(Fishers_
 meta_MeasureType_Category_notcooperativebreeding_phylogenetic
 
 
-
 dat_list <- list(
   N_spp = nrow(notcooperative),
   Z_obs = notcooperative$Fishers_Z_r,
   Z_sd = notcooperative$Variance, 
   M = as.integer(as.factor(notcooperative$MeasureType_Category))
 )
-
 
 rethinking_notcooperation_measures <- ulam(
   alist(
@@ -2430,7 +2435,6 @@ precis(rethinking_notcooperation_measures,depth=2)[393:399,]
 plot(precis( rethinking_cooperation_measures , depth=2 , pars="m" ),xlim=c(0,1))
 
 plot(precis( rethinking_notcooperation_measures , depth=2 , pars="m" ),xlim=c(0,1))
-
 
 
 dat_list$Dmat<-Dmat[ dat$Latin,dat$Latin ]/max(Dmat)
@@ -2531,15 +2535,15 @@ precis(rethinking_phylogenetic_gaussian_littersperyear_cooperativebreeding)
 **R5.5 Interactions among social traits**
 Cooperative breeders tend to differ in some of the social traits that we investigated separately.
 
-In mammals, groups of cooperative breeders never grow to the same size (in our data, median 2 females per group) as groups of plural/associated breeders (in our data, median 14 females per group), potentially introducing an interaction effect. In our data, both group size and cooperative breeding remain independently associated with the effect sizes of dominance rank on reproductive success. The analyses suggest an interaction, with effect sizes increasing with group size in cooperative breeders (rethinking estimate +0.01 - +0.02), where a single dominant continues to monopolize reproduction as groups get larger, and declining with group sizes in other breeding systems (rethinking estimate -0.01 - 0.00), where dominants might be less able to control reproduction of other group members as groups grow larger.
+In mammals, groups of cooperative breeders never grow to the same size (in our data, median 2 females per group) as groups of plural/associated breeders (in our data, median 14 females per group), potentially introducing an interaction effect. In our data, both group size and cooperative breeding remain independently associated with the effect sizes of dominance rank on reproductive success. The analyses suggest an interaction (metafor estimate for cooperative breeding +0.16 - +0.39, for group size -0.01 - 0.00, interaction 0.00 - +0.03), with effect sizes increasing with group size in cooperative breeders (rethinking estimate +0.01 - +0.02), where a single dominant continues to monopolize reproduction as groups get larger, and declining with group sizes in other breeding systems (rethinking estimate -0.01 - 0.00), where dominants might be less able to control reproduction of other group members as groups grow larger.
 
-Similarly, there appears to be an interaction between average relatedness and breeding systems, with effect sizes increasing with higher levels of average relatedness in cooperative breeders (rethinking estimate 0.00 - +0.12) and decreasing with higher levels of average relatedness in plural/associate breeders (rethinking estimate -0.06 - 0.00)
+Similarly, there appears to be an interaction between average relatedness and breeding systems (metafor estimate for cooperative breeding -0.06 - +0.44, for average relatedness -0.75 - +0.03, for interaction +0.10 - +1.51), with effect sizes increasing with higher levels of average relatedness in cooperative breeders (rethinking estimate 0.00 - +0.12) and decreasing with higher levels of average relatedness in plural/associate breeders (rethinking estimate -0.06 - 0.00)
 
-Female dispersal is more common in cooperative breeders (46%) than in plural/associated breeders (9%), however, effect sizes are larger in species with female dispersal also just among the plural/associated breeders (rethinking estimate -0.19 - -0.02), though differences between philopatry and dispersal are not associated with effect sizes in cooperative breeders (rethinking estimate -0.10 - +0.12). 
+Female dispersal is more common in cooperative breeders (46%) than in plural/associated breeders (9%), however, effect sizes are larger in species with female dispersal also just among the plural/associated breeders (rethinking estimate -0.19 - -0.02), though differences between philopatry and dispersal are not associated with effect sizes in cooperative breeders (rethinking estimate -0.10 - +0.12) (metafor estimate for cooperative breeding +0.15 - +0.49, for philopatry -0.18 - +0.06, for interaction -0.18 - +0.26). 
 
-Among plural/associated breeders, average relatedness is lower in species in which females disperse (mean r 0.03) than in species in which females are philopatric (mean r 0.10), and among these species, differences in effect sizes are mainly associated with whether females disperse or are philopatric (rethinking estimate -0.22 - -0.02) rather than levels of average relatedness (estimate -0.04 - +0.01).
+Among plural/associated breeders, average relatedness is lower in species in which females disperse (mean r 0.03) than in species in which females are philopatric (mean r 0.10), and among these species, differences in effect sizes are mainly associated with whether females disperse or are philopatric (metafor estimate -0.11 - -0.03, rethinking estimate -0.22 - -0.02) rather than levels of average relatedness (metafor estimate +0.03 - +0.10, rethinking estimate -0.04 - +0.01) .
 
-Coalition formation does not occur in cooperative breeders, leading to a potential confound. Among plural/associated breeders, effect sizes are higher in species in which females do form coalitions than in species where they do not (rethinking estimate +0.01 - +0.11).
+Coalition formation does not occur in cooperative breeders, leading to a potential confound. Restricting the analyses to plural/associated breeders, we find that effect sizes are higher in species in which females do form coalitions than in species where they do not (metafor estimate 0.00 - +0.14, rethinking estimate +0.01 - +0.11).
 
 
 
@@ -2639,11 +2643,11 @@ precis(rethinking_phylogenetic_gaussian_groupsize_cooperativebreeding)
 # Assessing whether female dispersal is independently associated with higher effect sizes in addition to cooperative breeding
 
 
-meta_dispersal_cooperativebreeding <- rma.mv(yi=Fishers_Z_r, V=Variance, mods=~Philopatry+CooperativeBreeding , data=dat, method="REML", random=list(~1|StudyRef,~1|SpeciesRef))
-meta_dispersal_notcooperativebreeding
+meta_dispersal_cooperativebreeding <- rma.mv(yi=Fishers_Z_r, V=Variance, mods=~Philopatry*CooperativeBreeding , data=dat, method="REML", random=list(~1|StudyRef,~1|SpeciesRef))
+meta_dispersal_cooperativebreeding
 
 metafor_phylogenetic_dispersal_cooperativebreeding <- rma.mv(Fishers_Z_r, Variance,
-                                      mod =~Philopatry+CooperativeBreeding,
+                                      mod =~Philopatry*CooperativeBreeding,
                                       random=list(~ 1 | SpeciesIncluded, # linking the species to the phylogeny
                                                   ~ 1 | Latin, # observations from the same species might be similar to each other, even if those from closely related species are not
                                                   ~ 1 | StudyRef),  # accounting for observations from the same publication
@@ -2743,6 +2747,25 @@ precis(rethinking_philopatry_cooperativebreeding,depth=2)[289:294,]
 
 
 # Dispersal & relatedness
+meta_relatedness_dispersal <- rma.mv(yi=Fishers_Z_r, V=Variance, mods=~standardize(AverageRelatedness)+standardize(as.integer(as.factor(Philopatry))) , data=dat, method="REML", random=list(~1|StudyRef,~1|SpeciesRef))
+meta_relatedness_dispersal
+
+metafor_phylogenetic_relatedness_philopatry <- rma.mv(Fishers_Z_r, Variance,
+                                      mod =~AverageRelatedness*Philopatry,
+                                      random=list(~ 1 | SpeciesIncluded, # linking the species to the phylogeny
+                                                  ~ 1 | Latin, # observations from the same species might be similar to each other, even if those from closely related species are not
+                                                  ~ 1 | StudyRef),  # accounting for observations from the same publication
+                                      R = list(SpeciesIncluded = phylo_cor), # reflecting the phylogenetic relatedness
+                                      method="REML",
+                                      test="t",  
+                                      data=dat)
+metafor_phylogenetic_relatedness_philopatry
+
+
+
+
+
+
 relatednessdat<-dat[is.na(dat$AverageRelatedness)==F,]
 relatednessdat<-relatednessdat[is.na(relatednessdat$Philopatry)==F,]
 relatednessdat<-relatednessdat[relatednessdat$CooperativeBreeding==0,]
@@ -2797,6 +2820,7 @@ metafor_phylogenetic_coalition
 coalitiondat<-dat[is.na(dat$CoalitionFormation)==F,]
 coalitiondat<-coalitiondat[coalitiondat$CooperativeBreeding==0,]
 
+
 dat_list_coalition <- list(
   N_spp = nrow(coalitiondat),
   Z_obs = coalitiondat$Fishers_Z_r,
@@ -2828,8 +2852,6 @@ precis(difference_coalition)
 Models in which both the intercept and the slopes can vary according to whether studies were performed in the wild or in captivity also showed that there are no systematic differences of the effects of dominance rank on reproductive success between populations in these settings (for the different life history measurements and for cooperative breeding). 
 
 ```{r ranksuccess_captivity_interactions, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
-
-
 
 
 meta_captivity_measurement <- rma.mv(yi=Fishers_Z_r, V=Variance, mods=~MeasureType_Category*Populationtype , data=dat, method="REML", random=list(~1|StudyRef,~1|SpeciesRef))
