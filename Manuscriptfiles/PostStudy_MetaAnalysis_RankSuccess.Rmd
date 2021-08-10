@@ -36,14 +36,17 @@ knitr::opts_chunk$set(tidy.opts=list(width.cutoff=60), tidy=TRUE)
 ```
 
 
-<img width="50%" src="logoPCIecology.png">
 
 
-
-<img width="5%" src="logoOpenAccess.png"> <img width="5%" src="logoOpenData.png"> <img width="5%" src="logoOpenCode.png"> <img width="5%" src="logoOpenPeerReview.png">
+Open... ![](logoOpenAccess.png){width=5%} access ![](logoOpenCode.png){width=5%} [code](https://github.com/corinalogan/grackles/blob/master/Files/Preregistrations/gdispersal_manuscript.Rmd) ![](logoOpenPeerReview.png){width=5%} peer review ![](logoOpenData.png){width=5%} [data](https://doi.org/10.5063/F1W66J48)
+\   
+\   
 
 **The preregistration for this article has been pre-study peer reviewed and received an In Principle Recommendation by:**
 
+![](logoPCIecology.png){width=25%}
+
+\
 Matthieu Paquet (2020) The effect of dominance rank on female reproductive success in social mammals. *Peer Community in Ecology*, 100056. [10.24072/pci.ecology.100056] (https://doi.org/10.24072/pci.ecology.100056)
 
  - Reviewers: Bonaventura Majolo and one anonymous reviewer
@@ -53,7 +56,7 @@ Matthieu Paquet (2020) The effect of dominance rank on female reproductive succe
 &nbsp; 
 
   
-### ABSTRACT
+### Abstract
 
 Life in social groups, while potentially providing social benefits, inevitably leads to conflict among group members. In many social mammals, such conflicts lead to the formation of dominance hierarchies, where high-ranking individuals consistently outcompete other group members. Given that competition is a fundamental tenet of the theory of natural selection, it is generally assumed that high-ranking individuals have higher reproductive success than lower-ranking individuals. Previous reviews have indicated large variation across populations on the potential effect of dominance rank on reproductive success in female mammals. Here, we perform a meta-analysis based on 444 effect sizes from 187 studies on 86 mammal species to show that (1) dominance rank is generally positively associated with reproductive success, independent of the approach different studies have taken to answer this question; (2) life-history mechanisms mediate the relationship between rank and reproductive success, with higher effects of dominance rank on reproductive output than on survival, particularly in species with high reproductive investment; (3) the fitness benefits to high-ranking females appear consistent across ecological conditions, and (4) instead the social environment consistently mitigates rank differences on reproductive success by modulating female competition.
 
@@ -62,7 +65,7 @@ Life in social groups, while potentially providing social benefits, inevitably l
   
  &nbsp; 
    
-### B. BACKGROUND
+### Background
 
 In order for social groups to persist, group members need to find strategies to deal with the conflicts that inevitably occur (@ward2016sociality). In many female social mammals, conflicts and aggressive interactions are associated with the formation of different types of hierarchies. In singular cooperative breeders, a single dominant breeding female  suppresses reproduction in subordinate group members, who rarely fight amongst each other until an opportunity to become dominant opens (@solomon1997cooperative). In many species where multiple breeding females form stable groups, females can be arranged in stable linear hierarchies, where mothers help their daughters to inherit their rank in their matriline (@holekamp1991dominance). In another set of species, hierarchies are more flexible as a female’s rank depends on her body size, condition, or availability of coalition partners (@pusey2012magnitude). Given that, in species in which dominance hierarchies structure social groups, females can always be attributed either a low or a high rank, it has remained unclear whether and when there is selection on females to compete for a high rank or whether selection is on finding a place in the hierarchy.  
 
@@ -74,7 +77,7 @@ Previous reviews have found that while high ranking female mammals frequently ap
 &nbsp; 
   
   
-### C. OBJECTIVE
+### Objective
 
 In this study, we will perform a quantitative assessment of the strength of the relationship between dominance rank and reproductive success in female social mammals and explore factors that might mediate this relationship. Our objective is to identify the sources and ranges of variation in the relationship between rank and reproductive success and predict that the relationship will be influenced by differences in life-history, ecology, and sociality. We address our objective through the following questions, by testing the corresponding predictions: 
 
@@ -102,7 +105,7 @@ We expect that the association between dominance rank and reproduction is strong
 
 
   
-### D. PREDICTIONS
+### Predictions
 
 To answer these questions, we assessed the following predictions. All our predictions consider the potential direct influence of a specific variable on the size of the effect of dominance rank on reproductive success. The predictions present the direction of the influence we consider a-priori most likely. We will report all results, but in instances where influences are opposite to what we predict further studies will be necessary to place these results in context. In addition, several of the variables we will include are likely to influence each other. Accordingly, analyses with single variables might not necessarily show the predicted direct influence even if it is present (e.g. there might not be a positive relationship between a social system and the size of the effects if species with this particular social system primarily occur in environments where the size of the effect is expected to be smaller). While deciphering all the potential relationships among the variables we include is beyond the scope of this study, we will also perform analyses accounting for these potential interactions among variables by performing path analyses. We focus on instances where we expect that one variable might remove or change the direction of the influence of another variable, and present these at the end of the predictions.
 
@@ -206,7 +209,7 @@ We predict that the association between high dominance rank and increased reprod
   &nbsp; 
 
 
-#### **Potential interactions among predictor variables**
+#### **5) Potential interactions among predictor variables**
 
 *Studies performed on wild versus captive individuals and using different measures of reproductive success might not only differ in the overall strength of the effect of rank on reproductive success, but also in how other variables influence this effect.*
 
@@ -226,7 +229,7 @@ We predict that the association between high dominance rank and increased reprod
   &nbsp; 
     
     
-### E. METHODS
+### Methods
 
 #### **Literature search**
 
@@ -275,6 +278,8 @@ This data will be added prior to the analyses, depending on which  specific pred
 **Litter size**: the number of offspring per birth; data available for each population, we will use the average as reported by the authors (based on the data in @jones2009pantheria).
 
 **Interbirth interval**: the time in months between consecutive births; data available for a limited set of populations, we will use the average as reported by the authors. Depending on the availability of population specific data, we will alternatively use averages as reported for each species (based on the data in @jones2009pantheria).
+
+**Maximum lifespan**: the maximum time in months that an individual of that species has been recorded to live for (based on the data in @jones2009pantheria).
 
 **Cooperative breeding group**: whether social groups usually contain a single breeding female and additional non-breeding adult females that help to raise the offspring of the breeding female. Group membership is usually closed and changes occur through birth and death or fissioning of existing groups. This classification is in contrast to plural breeding groups and breeding associations (see below); data available for each population, we will use the description of the social system in the population as reported by the authors.
 
@@ -345,6 +350,9 @@ We collected data on the additional explanatory variables:
 
 
 #### **Changes from preregistration**
+Additional variables:
+We added data on the maximum lifespan of species to address Prediction 4.2. We realized that, whether a study should be considered short- or long-term, depends on the lifespan of the species. We used the information on the number of years a study had been conducted together with the maximum lifespan data to calculate the relative duration of a study.
+
 Outlier check:
 Before running the analyses, we made a funnel plot of the standard error over the effect size, where we noticed three outlier data points. We realized that for these three entries (EffectRefs 425, 427, and 428) we had used the wrong formula to calculate the effect size and variance. All of these are studies of multiple groups of Callithrix jacchus, each with a small number of females. For these three studies, we had erroneously used the 2-by-2 frequency tables to calculate the standardized mean difference, not the correlation coefficient. We corrected the values for these three entries before performing any of the analyses.
 
@@ -357,7 +365,7 @@ We constructed the multivariate analyses after completing the univariate analyse
 
 &nbsp; 
   
-### G. RESULTS
+### Results
 
 We extracted 444 effect sizes of the relationship between dominance rank and reproductive success of female mammals from 187 studies on 86 species during our literature search. More than half of the effect sizes are from primate species (253 effect sizes), with macaques (109) and baboons (76) a particular focus for this research. About two thirds (283) of the reports are from wild populations; rank was predominantly determined on the basis of aggressive interactions (407) rather than on other measures such as age or size; and it was about equally frequent that researchers classified rank categorically as dominant versus subordinant (251) than continuously from highest to lowest (193). Most of the reported effects link dominance rank to infant production (198) followed by infant survival (113), with fewer effects reported on interbirth intervals (46), lifetime reproductive success (34), survival (30), or age at first reproduction (23).
 
@@ -386,8 +394,6 @@ library(rethinking)
 inputdata<-read_csv(url("https://raw.githubusercontent.com/dieterlukas/FemaleDominanceReproduction_MetaAnalysis/trunk/Inputfiles/InputData_MetaAnalysis_FemaleDominanceReproduction.csv"))
 inputdata<-data.frame(inputdata)
 dat<-inputdata
-# We rearrange the columns so that the dataset is easier to view, with the references at the end
-dat<-dat[,c(3:32,37,36,33:35)] 
 
 # The following variables are part of the dataset
 # [1] "EffectRef"                   "StudyRef"                    "Latin"                      
@@ -440,6 +446,8 @@ table(dat$MeasureType_Category)
 
 **R1.1 Sample bias**: 
 A visual inspection of the range of effect sizes at different sample sizes in a funnel plot (Supplemental Figure) showed that there might be an underrepresentation of studies with small or negative effect sizes and small sample sizes (@egger1997bias). This sample bias is clearer to see in an orchard plot, which shows that extreme effect sizes tend to be of low precision and that there is an overrepresentation of positive effect sizes (Figure 1). 
+
+![](ranksuccess_Fig1_orchard.png)
 
 ```{r ranksuccess_publicationbias, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
 options(width=60)
@@ -1442,9 +1450,8 @@ precis(difference_breedingsystem)
 
 Effect sizes are higher in species in which condition plays a major role in determining which females are dominant rather than subordinate (average effect size 0.38; n=94 effect sizes), compared to species in which age (average effect size 0.31; n=100 effect sizes) or nepotism (average effect size 0.24; n=243 effect sizes) influence dominance rank (estimates for difference condition vs age: metafor +0.05 - +0.17, rethinking +0.01 - +0.16; condition vs nepotism: metafor +0.07 - +0.20, rethinking +0.08 - +0.20; age vs nepotism: metafor -0.07 - +0.03, rethinking -0.01 - +0.12). Species with different dominance system are no longer estimated to be different when including the phylogenetic similarity.
 
+We had initially planned to assess whether dominance effect appear across different time scales depending on how dominant females acquire their position. However, this turned out to be more difficult. The species in our dataset have vastly varying lifespans, so simply assessing the number of years a study had been conducted for skews the observation towards short-lived species. The values for the relative duration (number of years studied divided by the maximum lifespan of the species) show that 90% of effect sizes are from studies that lasted less than 10% of the lifespan of the species (median 3%). Interestingly, in all of the 19 species in which studies spanned more than 10% of the lifespan, females acquire rank by nepotism. We did not find any consistent relationships of changes in effect size with study duration dependent on the system of dominance acquisition.  
 
-ADD: Time scales / plural breeders / type of benefit
-test the mechanism of rank acquisition in relation with the timescale of the study as proposed here. Would it be possible to divide the sample into three subsample: short studies, medium studies and long studies, and then add the mechanism of rank acquisition (condition, age, nepotism) as a moderator in each case…?
 
 ```{r ranksuccess_dominancesystem, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
 
@@ -1519,13 +1526,16 @@ precis(rethinking_phylogenetic_gaussian_associatedbreeding)
 
 dominancedat<-dat[is.na(dat$DominanceSystem)==F,]
 dominancedat_years<-dominancedat[dominancedat$CooperativeBreeding==0,]
+dominancedat_years<-dominancedat_years[is.na(dominancedat_years$MaximumLifespan)==F,]
+
+dominancedat_years$relativeduration<-dominancedat_years$No_of_years/(10^(dominancedat_years$MaximumLifespan))
 
 dat_list_dominance <- list(
   N_spp = nrow(dominancedat_years),
   Z_obs = dominancedat_years$Fishers_Z_r,
   Z_sd = dominancedat_years$Variance, 
   D = as.integer(as.factor(dominancedat_years$DominanceSystem)),
-  Y = standardize(dominancedat_years$No_of_years)
+  Y = standardize(dominancedat_years$relativeduration)
 )
 
 rethinking_dominance_years <- ulam(
@@ -1537,7 +1547,7 @@ rethinking_dominance_years <- ulam(
     b[D]~normal(0,0.5),
     sigma_sq~dexp(1)
   ),data=dat_list_dominance)
-precis(rethinking_dominance_years,depth=2)[386:390,]
+precis(rethinking_dominance_years,depth=2)[304:308,]
 
 ```
 
@@ -2919,9 +2929,9 @@ precis(rethinking_philopatry_cooperativebreeding,depth=2)[445:458,]
     
 
 
-### G. DISCUSSION
+### Discussion
 
-Our study finds that, in social mammals, dominant females have higher reproductive success than lower-ranking females. Positive effects of dominance rank are present for all our measures of life history and highest for life-time reproductive success, suggesting that even if dominants might face some trade-offs (e.g. higher stress levels @cavigelli2003female), obtaining a high ranking position in a social group leads to fitness benefits. Our meta-analysis also highlights several factors associated with variation in the strength of the effect of dominance rank on reproductive success, where social factors in particular appear to have a modulating influence while variation in life history and ecological factors appears of less importance. While in our data there is a consistent positive relationship between higher dominance rank and higher reproductive success, the data we were able to bring together for this study also indicates that studies have primarily focused on systems where strong effects can be detected and that reports of weak or absent relationships between rank and reproductive success might be missing in the published literature. In particular, effects were less extreme in studies that had been conducted across longer time-frames. Studies conducted for longer time spans likely have larger sample sizes to estimate effects potentially leading to less noisy and smaller estimates. Alternatively, or in addition, studies conducted across longer-times females might have smaller effect sizes because natural changes in dominance rank and events that affect all females equally (e.g. infanticide @cheney2004factors) occur relatively rarely, so that short-term studies will be strongly influenced by current conditions whereas long-term measures might balance across conditions. These checks into publication bias indicate that, in this case unlike often claimed for meta-analysis, the over-representation of positive findings in the published literature appears not to be due to a file-drawer problem of unpublished negative findings but due to the limitations of studying reproductive effects over longer terms in mammals and due to the focus on a limited subset of systems to investigate the effect. We follow previous calls highlighting the importance to support long-term projects on diverse study systems.
+Our study finds that, in social mammals, dominant females have higher reproductive success than lower-ranking females. Positive effects of dominance rank are present for all our measures of life history and, among plural breeders, highest for life-time reproductive success, suggesting that even if dominants might face some trade-offs (e.g. higher stress levels @cavigelli2003female), obtaining a high ranking position in a social group leads to fitness benefits. Our meta-analysis also highlights several factors associated with variation in the strength of the effect of dominance rank on reproductive success, where social factors in particular appear to have a modulating influence while variation in life history and ecological factors appears of less importance. While in our data there is a consistent positive relationship between higher dominance rank and higher reproductive success, the data we were able to bring together for this study also indicates that studies have primarily focused on systems where strong effects can be detected and that reports of weak or absent relationships between rank and reproductive success might be missing in the published literature. Unlike often claimed for meta-analyses, the over-representation of positive findings in the published literature in our case appears not to be due to a file-drawer problem of unpublished negative findings but due to researchers targeting their efforts on feasible systems. Studies into the potential mechanisms of female competition and reproductive suppression have focused on species where there are clear difference in reproductive success between dominants and subordinates. In addition, obtaining reliable life history data in long-lived mammals takes particular effort, again likely limiting the systems that have been studied to investigate the effects of dominance rank. We did find that studies conducted for larger time periods show less variance in their estimates, potentially because they also have larger sample sizes. Alternatively, or in addition, studies conducted across longer-times females might be less likely to show extreme effect size estimates because natural changes in dominance rank and events that affect all females equally (e.g. infanticide @cheney2004factors) occur relatively rarely, so that short-term studies will be strongly influenced by current conditions whereas long-term measures might balance across conditions. We follow previous calls highlighting the importance to support long-term projects on diverse study systems.
 
 Overall, we estimated an average effect of 0.28 of rank on reproductive success. What does this mean? First, it is important to highlight that this effect size reflects how well rank predicts reproductive success, but not directly indicates how different the reproductive success of high-ranking females is from that of low-ranking females. While the effect of dominance has to be zero in groups where all females have exactly the same reproductive success, an effect of zero is also found in a group where there are large differences in reproduction success across females which do not align with the females' dominance rank. Just by chance, we would expect differences in reproductive success among females in a social group and we could also expect that these differences are associated with traits that might be used to classify social rank. To assess whether the effects we detect are higher than such random variation, we performed simulations. For this, we simulated artificial groups of females reflecting macaques, the genus most common in our sample. We assumed that each female in each group might have between 0 to 8 offspring, with an average 2 (following a Poisson distribution, so most females have 1 or 2 offspring). We performed 10,000 simulations of six groups of twelve females each (the median group size in our data). When we set no association between rank and reproductive success, less than 0.1% of simulations showed an effect size as high or higher than the 0.28 we observe in the data. Effect sizes for a perfect association between each female's rank and her reproductive success ranged from 0.75-0.95 (mean 0.88). Simulations in which the two highest ranking females always have the highest reproductive success while rank among lower ranking females no longer is associated with success produces effect sizes close to what we observe (mean 0.32), whereas values tend to be lower if only the highest ranking female consistently has the highest success (mean 0.18). While these simulations cannot resolve whether high ranking females have higher reproductive success because they obtained this position or whether there are some traits that lead to both higher rank and higher reproductive success, they indicate that social rank has a particular association with reproductive success beyond the random variation we expect in social groups.
 
@@ -3025,9 +3035,9 @@ hist(emptylist)
 
 Among the social traits we investigated, the highest difference in the effect of rank on reproductive success was between cooperative breeders and plural/associated breeders. This results was expected given the higher reproductive skew that has been found among females in cooperative breeders (@lukas2012cooperative). The contrast between breeding systems appears not due to differences in how females acquire and maintain high rank, but by the degree of reproductive control that dominants in cooperative breeders have over their, mostly related, group mates. Independently of whether dominant females acquire their position by kin support, aggression, or age, they appear to have similar benefits once in that position. In addition, across macaque species, despotic species do not show different effects of dominance rank on reproductive success than more egalitarian species (Figure). The likely importance of reproductive control of dominant females in cooperative breeders compared to plural/associated breeders are also reflected in the different relationships of the effect sizes with group size in the different breeding systems. While among cooperative breeders there usually is only a single breeding dominant female and large groups occur when her reproductive output is higher, dominant females in plural/associated breeders likely face reduced opportunities to control reproduction in larger groups (@rubenstein2016discrete). In this context, it is again important to note that we only look at the association between rank and the variation in reproductive success within groups. Even though the relative difference between dominant and subordinate females might be lower in larger group sizes, in terms of overall fitness it might still be better to be the dominant in a larger group if mean fitness increases with group size (e.g. small group where dominant has 3 versus subordinate has 2 offspring (50% higher fitness) compared to large group where dominant has 4 while all other females have 3 offspring (33% higher fitness)).
 
-Of the ecological variables we investigated, only population density was associated with differences in effect sizes of dominance rank on reproductive success. This might indicate dominants have higher reproductive success because they are consistently able to outcompete other females in the group rather than dominant individuals having better abilities to cope with challenging conditions. This is also supported by our observation that dominance rank has a lower effect on survival, which generally responds less to differential resource availability than fertility. Most of the social mammals in our sample are long-lived, so it also fits with expectations that they would invest additional resources into their own increased fertility rather than any offspring they already have. While local ecological conditions, rather than the species-level traits we used, might modulate fitness benefits of high dominance rank for females, it seems unlikely that there would be a strong influence given that our data shows that effect sizes from the same species tend to be similar, even when females are in captive conditions.
+Of the ecological variables we investigated, only population density was associated with differences in effect sizes of dominance rank on reproductive success. This might indicate dominants have higher reproductive success because they are consistently able to outcompete other females in the group rather than dominant individuals having better abilities to cope with challenging conditions. This is also supported by our observation that dominance rank has a lower effect on survival, which generally responds less to differential resource availability than fertility. Most of the social mammals in our sample are long-lived, so it also fits with expectations that they would invest additional resources into their own increased fertility rather than any offspring they already have. While local ecological conditions, rather than the species-level traits we used, might modulate fitness benefits of high dominance rank for females, it seems unlikely that there would be a strong influence given that our data shows that effect sizes from the same species tend to be similar, even when females are in captive conditions. Ecological variables are also likely to affect all females in a group similarly without changing the relative benefits dominant females acquire. 
 
-Comparison with patterns in males: dominance versus mating in males is 0.59 in  https://www.sciencedirect.com/science/article/abs/pii/S0003347205806426
+The overall size of the effect of dominance rank on female reproductive success is slightly higher than that reported in a previous study on primates (ours 0.28, previous 0.20 Majolo et al. 2012). This probably reflects study system biases, with primate studies being primarily long-term observations while studies in rodents and other species based on experimental settings, with the estimated effect size among just the 35 primate species in our sample being 0.23. These estimates of the effects of female dominance rank are lower than those reported for males. The previous study on primates reports an effect of male dominance rank on fecundity of 0.71, and estimates of the effect of dominance rank on males' mating success are ~0.6 (https://www.sciencedirect.com/science/article/abs/pii/S0003347205806426). Does this means that males benefit more from high rank than females? We think that at this stage we cannot make such an inference. First, measures of mating success might not necessarily translate in equally high skew in reproductive success. Second, because males can potentially have a much higher reproductive rate than females by mating with several partners in a short period, studies to identify male reproductive success tend to be even shorter than the studies that identify female reproductive success. Third, several of the factors we identified here to modulate the effect of dominance rank on reproductive success are also linked to differences between females and males. For example, we found that in plural breeders the effect of rank declines with increasing group size, and in almost all mammalian groups there are more females than males. Our results suggests that the selective forces that shape dominance interactions in females and in males might be similar.
 
 Our findings highlight that social factors can have important influences on demography and genetic evolution. The effect of high dominance rank on reproductive success can influence the growth and composition of social groups across generations. In particular when social rank is heritable, strong long-term changes are visible in the few studies which have been able to track reproductive success across multiple generations. For example, among spotted hyenas, the highest ranking female in 1979 is the ancestor of more than half of the females in the clan in 2009. For future studies, such detailed long-term investigations are not only relevant to understand the long-term consequences of the effect of dominance rank on reproduction, but also to infer the specific mechanisms that link rank to reproductive output. On the flip side, there were many studies in our sample that indicate that higher dominance rank is not associated with increased reproductive output, raising the question why a dominance structure exists in these groups.
 
@@ -3037,11 +3047,11 @@ Our findings highlight that social factors can have important influences on demo
 
 
   
-### G. ETHICS
+### Ethics
 Our study relies on previously published data.
 
 
-### H. AUTHOR CONTRIBUTIONS
+### Author contributions
 
 **Shivani:** Hypothesis development, data collection, data analysis and interpretation, revising/editing.
 
@@ -3049,20 +3059,20 @@ Our study relies on previously published data.
 
 **Lukas:** Hypothesis development, data collection, data analysis and interpretation, write up, revising/editing, materials/funding.
 
-### I. FUNDING
+### Funding
 
 Shivani received funding from the INSPIRE programme of the Department of Science & Technology of the Government of India. This research was supported by the Department of Human Behavior, Ecology and Culture at the Max Planck Institute for Evolutionary Anthropology.
 
-### J. CONFLICT OF INTEREST DISCLOSURE
+### Conflict of interest disclosure
 
 We, the authors, declare that we have no financial conflicts of interest with the content of this article. Elise Huchard and Dieter Lukas are Recommenders at PCI Ecology.
   
   &nbsp; 
 
-### K.  Acknowledgements
+### Acknowledgements
 
 We thank our PCI Ecology Recommender, Matthieu Paquet, and our reviewers, Bonaventura Majolo and one anonymous reviewer, for their valuable feedback that greatly improved this piece of research. We are grateful to the members of the Department of Human Behavior, Ecology and Culture at the Max Planck Institute for Evolutionary Anthropology for feedback during the early stages of this project.
     
       &nbsp; 
     
-### L. [REFERENCES](MyLibrary.bib)
+### [References](MyLibrary.bib)
