@@ -20,7 +20,7 @@ output:
     code_folding: hide 
   github_document: 
     toc: true
-bibliography: https://raw.githubusercontent.com/dieterlukas/FemaleDominanceReproduction_MetaAnalysis/trunk/Manuscriptfiles/MyLibrary.bib
+bibliography: MyLibrary.bib
 ---
 ##### Affiliations: 
 1. Indian Institute of Science Education and Research Kolkata 
@@ -458,8 +458,105 @@ funnel(meta_simple, level=c(90, 95, 99), shade=c("white", "gray", "darkgray"),
        yaxis="seinv",xlab="effect size (Zr)",ylab="precision (1/SE)",digits=c(1,0),xlim=c(-2,2),ylim=c(1,30))
 
 #We buid the orchard plot based on the same base model
-orchard_plot(meta_simple, mod="Int", xlab = "Fisher's Z r", 
-  transfm = "none") 
+orchard_plot_basic <- function(object, mod = "Int", xlab, N = "none", alpha = 0.5, angle = 90, cb = TRUE, k = TRUE, transfm = c("none", "tanh")) {
+  
+  ## evaluate choices
+  transfm <- match.arg(transfm) # if not sepcificed it takes the first choice
+  
+  if(any(class(object) %in% c("rma.mv", "rma.uni", "rma"))){
+    if(mod != "Int"){
+      object <- mod_results(object, mod)
+    } else{
+      object <- mod_results(object, mod = "Int")
+    }
+  }
+  
+  mod_table <- object$mod_table
+  levels(mod_table$name)<-c("Intrcpt","Spread of effect sizes")
+  mod_table[mod_table$name %in% "Intrcpt"]$name<-factor("Spread of effect sizes")
+  
+  data <- object$data
+  
+  data[data$moderator %in% "Intrcpt",]$moderator<-"Spread of effect sizes"
+  
+  data$moderator <- factor(data$moderator, levels = mod_table$name, labels = mod_table$name)
+  
+  data$scale <- (1/sqrt(data[,"vi"]))
+  legend <- "Precision (1/SE)"
+  
+  if(any(N != "none")){
+    data$scale <- N
+    legend <- "Sample Size (N)"
+  }
+  
+  if(transfm == "tanh"){
+    cols <- sapply(mod_table, is.numeric)
+    mod_table[,cols] <- Zr_to_r(mod_table[,cols])
+    data$yi <- Zr_to_r(data$yi)
+    label <- xlab
+  }else{
+    label <- xlab
+  }
+  
+  mod_table$K <- as.vector(by(data, data[,"moderator"], function(x) length(x[,"yi"])))
+  
+  # the number of groups in a moderator & data points
+  group_no <- nrow(mod_table)
+  #data_no <- nrow(data)
+  
+  # colour blind friendly colours with grey
+  cbpl <- c("#E69F00","#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7", "#56B4E9", "#999999")
+  
+  # Make the orchard plot
+  plot <- ggplot2::ggplot(data = mod_table, aes(x = estimate, y = name)) +
+    # pieces of fruit (bee-swarm and bubbles)
+    ggbeeswarm::geom_quasirandom(data = data, aes(x = yi, y = moderator, size = scale, colour = moderator), groupOnX = FALSE, alpha=alpha) +
+    # 95 %prediction interval (PI): twigs
+    ggplot2::geom_errorbarh(aes(xmin = lowerPR, xmax = upperPR),  height = 0, show.legend = FALSE, size = 0.5, alpha = 0.6) +
+    # 95 %CI: branches
+    ggplot2::geom_errorbarh(aes(xmin = lowerCL, xmax = upperCL),  height = 0, show.legend = FALSE, size = 1.2) +
+    ggplot2::geom_vline(xintercept = 0, linetype = 2, colour = "black", alpha = alpha) +
+    # creating dots for truncks
+    ggplot2::geom_point(aes(fill = name), size = 3, shape = 21) +
+    # putting labels
+    #ggplot2::annotate('text', x = (max(data$yi) + (max(data$yi)*0.10)), y = (seq(1, group_no, 1)+0.3),
+    #                 label= paste("italic(k)==", mod_table$K), parse = TRUE, hjust = "right", size = 3.5) +
+    ggplot2::theme_bw() +
+    ggplot2::guides(fill = "none", colour = "none") +
+    ggplot2::theme(legend.position= c(1, 0), legend.justification = c(1, 0)) +
+    ggplot2::theme(legend.title = element_text(size = 11)) +
+    ggplot2::theme(legend.direction="horizontal") +
+    ggplot2::theme(legend.background = element_blank()) +
+    ggplot2::labs(x = label, y = "", size = legend) +
+    ggplot2::theme(axis.text.y = element_text(size = 14, colour ="black",
+                                              hjust = 0.5,
+                                              angle = angle)) +
+    ggplot2::theme(axis.text.x = element_text(size = 14, colour ="black",
+                                              hjust = 0.5,
+                                              angle = 0)) + 
+    ggplot2::theme(axis.title.x = element_text(size = 18, colour ="black", face = "bold",
+                                              hjust = 0.5,
+                                              vjust = -0.5,
+                                              angle = 0))
+  # putting colours in
+  if(cb == TRUE){
+    plot <- plot +
+      scale_fill_manual(values=cbpl) +
+      scale_colour_manual(values=cbpl)
+  }
+  
+  # putting k in
+  if(k == TRUE){
+    plot <- plot +
+      ggplot2::annotate('text', x = (max(data$yi) + (max(data$yi)*0.10)), y = (seq(1, group_no, 1)+0.3),
+                        label= paste("italic(k)==", mod_table$K), parse = TRUE, hjust = "right", size = 4.5)
+  }
+  
+  return(plot)
+}
+
+orchard_plot_basic(meta_simple, mod="Int", xlab = "Effect size (Fisher's Z r)", 
+             transfm = "none") 
 ```
 
 
@@ -481,7 +578,10 @@ plot(selmodel(meta_basic,type="stepfun",steps=c(0.005,0.01,0.025,0.05,0.1,0.9,0.
 
 ```
 
-Finally, including the number of years a study had been conducted for as a predictor of the effect sizes also indicates that our sample shows "study system bias". Effect sizes are lower when studies have been conducted for longer (metafor estimate -0.01 - 0.00, rethinking estimate -0.05 - 0.00), but in particular the variance is reduced once a study has been running for 10 ore more years (Supplemental figure). 
+Finally, including the number of years a study had been conducted for as a predictor of the effect sizes also indicates that our sample shows "study system bias". Effect sizes are lower when studies have been conducted for longer (metafor estimate -0.01 - 0.00, rethinking estimate -0.05 - 0.00), but in particular the variance is reduced once a study has been running for 10 ore more years (Figure 2). 
+
+
+![](ranksuccess_Fig2_effectsize_noyears.png)
 
 
 ```{r ranksuccess_numberofyears, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
@@ -524,7 +624,55 @@ rethinking_noyears <- ulam(
     ) , data=dat_list_noyears , chains=4 , cores=4 , log_lik=TRUE ,iter=8000)
 precis(rethinking_noyears,depth=2)[445:447,]
 
+
+
+#Plot for effect size vs number of years
+meta_numberofyears <- rma.mv(yi=Fishers_Z_r, V=Variance, data=dat, mods=~ No_of_years, random=list(~Populationtype|SpeciesRef))
+meta_numberofyears
+
+years.plotting<- predict(meta_numberofyears)
+years.plotting
+newdat <- data.frame(N.final = dat$No_of_years,
+                                           ES = dat$Fishers_Z_r,
+                                           ESVar = dat$Variance,
+                                           fit = years.plotting$pred,
+                                           upper = years.plotting$ci.ub,
+                                           lower = years.plotting$ci.lb,
+                                           stringsAsFactors = FALSE)
+newdat$precision <- sqrt(1/(newdat$ESVar))
+newdat$N.final <- as.numeric(newdat$N.final)
+newdat <- newdat[order(newdat$N.final),]
+figure_no_of_years <- ggplot(newdat, aes(x = N.final, y = ES)) + 
+  theme(axis.text.y = element_text(size = 12.5, colour = "black"), 
+        axis.text.x = element_text(size = 12.5, colour = "black"), 
+        panel.background = element_rect(fill = "white"),
+        axis.title.y  = element_text(size=20, vjust = 0.5),
+        axis.title.x  = element_text(size=20, vjust = 0.5),
+        panel.border = element_rect(colour = "black", fill=NA, size = 0.5)) +
+  scale_x_continuous(limits = c(0, 45)) +
+  scale_y_continuous(limits = c(-1.5,1.5), expand = c(0, 0), breaks=c(-1.0, -0.5, 0, 0.5, 1)) +
+  geom_hline(yintercept = 0, linetype = 1, colour = "black", alpha = 0.4, size = 0.25) +
+  geom_hline(yintercept = 0, linetype = 2, colour = "black", alpha = 0.6, size = 0.25) +
+  geom_hline(yintercept = 0.5, linetype = 1, colour = "black", alpha = 0.25, size = 0.25) +
+  geom_hline(yintercept = -0.5, linetype = 1, colour = "black", alpha = 0.25, size = 0.25) +
+  geom_hline(yintercept = 1, linetype = 1, colour = "black", alpha = 0.25, size = 0.25) +
+  geom_hline(yintercept = -1, linetype = 1, colour = "black", alpha = 0.25, size = 0.25) +
+  geom_point(shape = 21, color = "goldenrod3", fill = "#e6be78", alpha = 0.8, cex = 0.35*(newdat$precision)) +
+  geom_ribbon(aes(ymin = lower, ymax = upper, x = N.final), fill = "black", alpha=0.1) +
+  geom_smooth(aes(y = fit, x = N.final), color = "black", size = 0.5) +
+  labs(x = "Number of years study was performed",
+       y = "Effect size (Zr)") +
+  annotate("text", x = 44, y = 1.35, size = 4, label = "italic(k) == 444", parse = TRUE)+ geom_point(aes(x=43, y=-1.35), shape = 21, color = "grey36", fill = "grey50", cex=0.35*15) +
+  geom_point(aes(x=40, y=-1.35), shape = 21, color = "grey36", fill = "grey50", cex = 0.35*5) +
+  annotate("text", x = 35, y = -1.35, size = 4, label = "Precision (1/SE)") +
+  annotate("text", x = 41, y = -1.35, size = 4, label = "5") +
+  annotate("text", x = 45, y = -1.35, size = 4, label = "15")
+
+figure_no_of_years
+
+
 ```
+
 
 
 
@@ -620,8 +768,9 @@ precis(rethinking_moderators_hyperprior)
 
 
 **R1.4 Influence of phylogeny**: 
-To the random effects model, we added a covariance structure to reflect potential similarities in effect sizes arising from closely related species showing similar effects due to their shared phylogenetic history. Both statistical approaches indicate that closely related species tend to have effect sizes that are more similar than those of distantly related species. The metafor approach suggests that about 20% of the variation in effect sizes is associated with covariation among species. The rethinking approach shows high uncertainty in the estimates (Figure), reflecting the high heterogeneity in the underlying data with high variation within species and different measures taken among closely related species. It suggests that species of the same genus tend to have similar effect sizes and that shared phylogenetic history might also explain similarities in effect sizes among species in the same Order, but covariance estimates are close to zero for species pairs that are more distantly related (Fgure; the hightest standardized distance between any pair of species in the same Order is 0.40).
+To the random effects model, we added a covariance structure to reflect potential similarities in effect sizes arising from closely related species showing similar effects due to their shared phylogenetic history. Both statistical approaches indicate that closely related species tend to have effect sizes that are more similar than those of distantly related species. The metafor approach suggests that about 20% of the variation in effect sizes is associated with covariation among species. The rethinking approach shows high uncertainty in the estimates (Figure), reflecting the high heterogeneity in the underlying data with high variation within species and different measures taken among closely related species. It suggests that species of the same genus tend to have similar effect sizes and that shared phylogenetic history might also explain similarities in effect sizes among species in the same Order, but covariance estimates are close to zero for species pairs that are more distantly related (Figure 3; the hightest standardized distance between any pair of species in the same Order is 0.40).
 
+![](ranksuccess_Fig3_covariation_phylogeny.png)
 
 ```{r ranksuccess_phylogeny, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
 
@@ -702,7 +851,7 @@ rethinking_phylogenetic_gaussian <- ulam(
     bG~normal(0,0.5),
     etasq~exponential(1),
     rhosq~exponential(1)
-  ),data=dat_list,chains=4)
+  ),data=dat_list_phylogenetic,chains=4,cores=4)
 precis(rethinking_phylogenetic_gaussian)
 
 
@@ -710,10 +859,23 @@ precis(rethinking_phylogenetic_gaussian)
 #A phylogenetic signal in the plot would be shown by high covariances among species that have small phylogenetic distances and declining covariances as phylogenetic distance increases
 #For the simulated dataset, most of the estimates show a covariance of 0, and no change as phylogenetic distance increases
 post<-extract.samples(rethinking_phylogenetic_gaussian)
-plot(NULL,xlim=c(0,max(dat_list$Dmat)),ylim=c(0,1.5),xlab="phylogenetic distance",ylab="covariance")
-for (i in 1:50) curve(post$etasq[i]*exp(-post$rhosq[i]*x^2),add=TRUE,col=grau())
 
+originalpar<-par()
 
+op <- par(oma=c(0,2.5,0,0), mar=c(4.5,4.5,3.2,4.2), mfrow=c(1,1))
+plot(NULL,xlim=c(0,max(dat_list_phylogenetic$Dmat)),ylim=c(0,3.5),xlab="Standardized phylogenetic distance between species",ylab="Covariance in effect sizes between species",bty="n",cex.lab=1.5)
+for (i in 1:50) curve(post$etasq[i]*exp(-post$rhosq[i]*x^2),add=TRUE,col="grey75")
+valuesacross<-rep(NA,101)
+for (x in 0:100) {
+  valueshere<-rep(NA,500)
+  for ( i in 1:500 ) {
+  
+    valueshere[i]<-post$etasq[i]*exp(-post$rhosq[i]*(x/100)^2) 
+  } 
+  valuesacross[x+1]<-mean(valueshere)
+  }
+lines(x=seq(from = 0, to =1, by=0.01), y= valuesacross, lwd=7)
+par<-originalpar
 
 ```
 
@@ -908,7 +1070,9 @@ precis(rethinking_noyears,depth=2)[445:447,]
 **R2.1 Influence of measure of reproductive success**:
 To the base model, we add a predictor variable reflecting the six classes of measures of reproductive success.
 
-Dominance rank appears to have the highest effect on age at first conception (metafor estimate +0.32 - +0.43, rethinking estimate +0.33 - +0.52; n=23 effect sizes), life time reproductive success (metafor estimate +0.27 - +0.40, rethinking estimate +0.31 - +0.47; n=34 effect sizes), interbirth interval (metafor estimate +0.25 - +0.37, rethinking estimate +0.28 - +0.37; n=46 effect sizes), infant production (metafor estimate +0.21 - +0.33, rethinking estimate +0.23 - +0.38; 198 effect sizes), adult survival (metafor estimate +0.18 - +0.31, rethinking estimate +0.18 - +0.34; n=30 effect sizes), infant survival (metafor estimate +0.14 - +0.25, rethinking estimate +0.15 - +0.26; n=113 effect sizes). Effects of dominance rank on survival are lower than on other measures of female fitness. In addition, females themselves appear to benefit more than their offspring (adult survival > infant survival). While effect sizes for life time reproductive success are higher than those for the values from which it is usually calculated (adult survival, interbirth interval, infant production), there does not appear to be a straightforward additive (or multiplicative) combination of the individual effects. 
+Dominance rank appears to have the highest effect on age at first conception (metafor estimate +0.32 - +0.43, rethinking estimate +0.33 - +0.52; n=23 effect sizes), life time reproductive success (metafor estimate +0.27 - +0.40, rethinking estimate +0.31 - +0.47; n=34 effect sizes), interbirth interval (metafor estimate +0.25 - +0.37, rethinking estimate +0.28 - +0.37; n=46 effect sizes), infant production (metafor estimate +0.21 - +0.33, rethinking estimate +0.23 - +0.38; 198 effect sizes), adult survival (metafor estimate +0.18 - +0.31, rethinking estimate +0.18 - +0.34; n=30 effect sizes), infant survival (metafor estimate +0.14 - +0.25, rethinking estimate +0.15 - +0.26; n=113 effect sizes). Effects of dominance rank on survival are lower than on other measures of female fitness. In addition, females themselves appear to benefit more than their offspring (adult survival > infant survival). While effect sizes for life time reproductive success are higher than those for the values from which it is usually calculated (adult survival, interbirth interval, infant production), there does not appear to be a straightforward additive (or multiplicative) combination of the individual effects (Figure 4)
+
+![](ranksuccess_Fig4_effectsize_lifehistorymeasure.png) 
 
 ```{r ranksuccess_measure, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
 
@@ -948,6 +1112,202 @@ rethinking_rankmeasured <- ulam(
 precis(rethinking_rankmeasured,depth=2)[445:451,]
 
 plot(precis( rethinking_rankmeasured , depth=2 , pars="a" ))
+
+
+originalpar<-par()
+
+op <- par(oma=c(0,2.5,0,0), mar=c(4.5,4.5,3.2,4.2), mfrow=c(2,1))
+
+meta_measuretype_cooperative <- rma.mv(yi=Fishers_Z_r, V=Variance, data=dat[dat$BreedingSystem=="1",], mods=~ -1+ MeasureType_Category, random=list(~1|StudyRef,~1|StudyPopulation,~1|SpeciesRef,~1|EffectRef))
+
+
+orchard_plot_cooperative <- function(object, mod = "Int", xlab, N = "none", alpha = 0.5, angle = 90, cb = TRUE, k = TRUE, transfm = c("none", "tanh")) {
+
+  ## evaluate choices
+  transfm <- match.arg(transfm) # if not sepcificed it takes the first choice
+
+	if(any(class(object) %in% c("rma.mv", "rma.uni", "rma"))){
+		if(mod != "Int"){
+			object <- mod_results(object, mod)
+		} else{
+			object <- mod_results(object, mod = "Int")
+			}
+	}
+
+	mod_table <- object$mod_table
+
+  data <- object$data
+  data$moderator <- factor(data$moderator, levels = mod_table$name, labels = mod_table$name)
+
+	data$scale <- (1/sqrt(data[,"vi"]))
+	legend <- "Precision (1/SE)"
+
+	if(any(N != "none")){
+		  data$scale <- N
+		  legend <- "Sample Size (N)"
+	}
+
+	if(transfm == "tanh"){
+		                   cols <- sapply(mod_table, is.numeric)
+		mod_table[,cols] <- Zr_to_r(mod_table[,cols])
+		                data$yi <- Zr_to_r(data$yi)
+		                  label <- xlab
+	}else{
+		label <- xlab
+	}
+
+	 mod_table$K <- as.vector(by(data, data[,"moderator"], function(x) length(x[,"yi"])))
+
+	 # the number of groups in a moderator & data points
+	 group_no <- nrow(mod_table)
+	 #data_no <- nrow(data)
+
+	# colour blind friendly colours with grey
+	 cbpl <- c("#E69F00","#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7", "#56B4E9", "#999999")
+
+	# Make the orchard plot
+  plot <- ggplot2::ggplot(data = mod_table, aes(x = estimate, y = name)) +
+    # pieces of fruit (bee-swarm and bubbles)
+    ggbeeswarm::geom_quasirandom(data = data, aes(x = yi, y = moderator, size = scale, colour = moderator), groupOnX = FALSE, alpha=alpha) +
+    # 95 %prediction interval (PI): twigs
+    ggplot2::geom_errorbarh(aes(xmin = lowerPR, xmax = upperPR),  height = 0, show.legend = FALSE, size = 0.5, alpha = 0.6) +
+    # 95 %CI: branches
+    ggplot2::geom_errorbarh(aes(xmin = lowerCL, xmax = upperCL),  height = 0, show.legend = FALSE, size = 1.2) +
+    ggplot2::geom_vline(xintercept = 0, linetype = 2, colour = "black", alpha = alpha) +
+    # creating dots for truncks
+    ggplot2::geom_point(aes(fill = name), size = 3, shape = 21) +
+    # putting labels
+    #ggplot2::annotate('text', x = (max(data$yi) + (max(data$yi)*0.10)), y = (seq(1, group_no, 1)+0.3),
+    #                 label= paste("italic(k)==", mod_table$K), parse = TRUE, hjust = "right", size = 3.5) +
+    ggplot2::theme_bw() +
+    ggplot2::guides(fill = "none", colour = "none") +
+    ggplot2::theme(legend.position= c(1, 0), legend.justification = c(1, 0)) +
+    ggplot2::theme(legend.title = element_text(size = 11)) +
+    ggplot2::theme(legend.direction="horizontal") +
+    ggplot2::theme(legend.background = element_blank()) +
+    ggplot2::labs(x = label, y = "", size = legend) +
+    ggplot2::theme(axis.text.y = element_text(size = 14, colour ="black",
+                                              hjust = 0.5,
+                                              angle = angle)) +
+    ggplot2::theme(axis.text.x = element_text(size = 14, colour ="black",
+                                              hjust = 0.5,
+                                              angle = 0)) + 
+    ggplot2::theme(axis.title.x = element_text(size = 18, colour ="black", face = "bold",
+                                              hjust = 0.5,
+                                              vjust = -0.5,
+                                              angle = 0))
+	  # putting colours in
+	  if(cb == TRUE){
+	    plot <- plot +
+	      scale_fill_manual(values=cbpl) +
+	      scale_colour_manual(values=cbpl)
+	  }
+
+				     # putting k in
+          if(k == TRUE){
+                plot <- plot +
+                  ggplot2::annotate('text', x = (max(data$yi) + (max(data$yi)*0.10)), y = (seq(1, group_no, 1)+0.3),
+                  label= paste("italic(k)==", mod_table$K), parse = TRUE, hjust = "right", size = 3.5)
+          }
+
+	  return(plot)
+}
+
+
+orchard_plot_cooperative(meta_measuretype_cooperative, mod = "MeasureType_Category",xlab = "Effect size (Fisher's Z r)", angle = 0)+ylab("Measure of reproductive success")+ theme(axis.title.y = element_text(size=16,face="bold"))+xlim(-1.0,1.5)
+
+
+#For plural and associative breeders
+meta_measuretype_social<- rma.mv(yi=Fishers_Z_r, V=Variance, data=dat[dat$BreedingSystem!="1",], mods=~ -1+ MeasureType_Category, random=list(~1|StudyRef,~1|StudyPopulation,~1|SpeciesRef,~1|EffectRef))
+
+orchard_plot_plural <- function(object, mod = "Int", xlab, N = "none", alpha = 0.5, angle = 90, cb = TRUE, k = TRUE, transfm = c("none", "tanh")) {
+ ## evaluate choices
+  transfm <- match.arg(transfm) # if not sepcificed it takes the first choice
+	if(any(class(object) %in% c("rma.mv", "rma.uni", "rma"))){
+		if(mod != "Int"){
+			object <- mod_results(object, mod)
+		} else{
+			object <- mod_results(object, mod = "Int")
+			}
+	}
+	mod_table <- object$mod_table
+  data <- object$data
+  data$moderator <- factor(data$moderator, levels = mod_table$name, labels = mod_table$name)
+	data$scale <- (1/sqrt(data[,"vi"]))
+	legend <- "Precision (1/SE)"
+	if(any(N != "none")){
+		  data$scale <- N
+		  legend <- "Sample Size (N)"
+	}
+	if(transfm == "tanh"){
+		                   cols <- sapply(mod_table, is.numeric)
+		mod_table[,cols] <- Zr_to_r(mod_table[,cols])
+		                data$yi <- Zr_to_r(data$yi)
+		                  label <- xlab
+	}else{
+		label <- xlab
+	}
+	 mod_table$K <- as.vector(by(data, data[,"moderator"], function(x) length(x[,"yi"])))
+	 # the number of groups in a moderator & data points
+	 group_no <- nrow(mod_table)
+	 #data_no <- nrow(data)
+
+	# colour blind friendly colours with grey
+cbpl <- c("#D55E00","#E69F00","#009E73",   "#CC79A7", "#56B4E9", "#F0E442", "#999999")
+
+	# Make the orchard plot
+  plot <- ggplot2::ggplot(data = mod_table, aes(x = estimate, y = name)) +
+    # pieces of fruit (bee-swarm and bubbles)
+    ggbeeswarm::geom_quasirandom(data = data, aes(x = yi, y = moderator, size = scale, colour = moderator), groupOnX = FALSE, alpha=alpha) +
+    # 95 %prediction interval (PI): twigs
+    ggplot2::geom_errorbarh(aes(xmin = lowerPR, xmax = upperPR),  height = 0, show.legend = FALSE, size = 0.5, alpha = 0.6) +
+    # 95 %CI: branches
+    ggplot2::geom_errorbarh(aes(xmin = lowerCL, xmax = upperCL),  height = 0, show.legend = FALSE, size = 1.2) +
+    ggplot2::geom_vline(xintercept = 0, linetype = 2, colour = "black", alpha = alpha) +
+    # creating dots for truncks
+    ggplot2::geom_point(aes(fill = name), size = 3, shape = 21) +
+    # putting labels
+    #ggplot2::annotate('text', x = (max(data$yi) + (max(data$yi)*0.10)), y = (seq(1, group_no, 1)+0.3),
+    #                 label= paste("italic(k)==", mod_table$K), parse = TRUE, hjust = "right", size = 3.5) +
+    ggplot2::theme_bw() +
+    ggplot2::guides(fill = "none", colour = "none") +
+    ggplot2::theme(legend.position= c(1, 0), legend.justification = c(1, 0)) +
+    ggplot2::theme(legend.title = element_text(size = 11)) +
+    ggplot2::theme(legend.direction="horizontal") +
+    ggplot2::theme(legend.background = element_blank()) +
+    ggplot2::labs(x = label, y = "", size = legend) +
+    ggplot2::theme(axis.text.y = element_text(size = 14, colour ="black",
+                                              hjust = 0.5,
+                                              angle = angle)) +
+    ggplot2::theme(axis.text.x = element_text(size = 14, colour ="black",
+                                              hjust = 0.5,
+                                              angle = 0)) + 
+    ggplot2::theme(axis.title.x = element_text(size = 18, colour ="black", face = "bold",
+                                              hjust = 0.5,
+                                              vjust = -0.5,
+                                              angle = 0))
+	  # putting colours in
+	  if(cb == TRUE){
+	    plot <- plot +
+	      scale_fill_manual(values=cbpl) +
+	      scale_colour_manual(values=cbpl)
+	  }
+				     # putting k in
+          if(k == TRUE){
+                plot <- plot +
+                  ggplot2::annotate('text', x = (max(data$yi) + (max(data$yi)*0.10)), y = (seq(1, group_no, 1)+0.3),
+                  label= paste("italic(k)==", mod_table$K), parse = TRUE, hjust = "right", size = 3.5)
+          }
+	  return(plot)
+}
+
+
+
+orchard_plot_plural(meta_measuretype_social, mod = "MeasureType_Category",xlab = "Effect size (Fisher's Z r", angle = 0)+ylab("Measures of reproductive success")+ theme(axis.title.y = element_text(size=16,face="bold"))+xlim(-1.0,1.5)
+
+
+
+par<-originalpar
 
 
 ```
@@ -1369,7 +1729,7 @@ precis(rethinking_phylogenetic_gaussian_density)
 
 **R4.1 Breeding system**
 
-Effect sizes of cooperative breeders (average 0.58; n=52 effect sizes) are higher than those observed in plural (average 0.25; n=324 effect sizes) or associated breeders (average 0.23; n=68 effect sizes) (estimates for difference cooperative breeder vs plural breeder metafor -0.40 - -0.30, rethinking -0.41 - -0.27; cooperative breeder vs associated breeder metafor -0.47 - -0.35, rethinking -0.45 - -0.26; plural breeder vs associated breeder metafor -0.07 - +0.05, rethinking -0.07 - +0.05). Cooperative breeders are still estimated to have higher effect sizes than species with other breeding systems when accounting for phylogenetic relatedness, but the differences are slightly reduced.
+Effect sizes of cooperative breeders (average 0.58; n=52 effect sizes) are higher than those observed in plural (average 0.25; n=324 effect sizes) or associated breeders (average 0.23; n=68 effect sizes) (estimates for difference cooperative breeder vs plural breeder metafor -0.40 - -0.30, rethinking -0.41 - -0.27; cooperative breeder vs associated breeder metafor -0.47 - -0.35, rethinking -0.45 - -0.26; plural breeder vs associated breeder metafor -0.07 - +0.05, rethinking -0.07 - +0.05). Cooperative breeders are still estimated to have higher effect sizes than species with other breeding systems when accounting for phylogenetic relatedness, but the differences are slightly reduced (Figure 4).
 
 
 ```{r ranksuccess_breedingsystem, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
@@ -1450,7 +1810,7 @@ precis(difference_breedingsystem)
 
 Effect sizes are higher in species in which condition plays a major role in determining which females are dominant rather than subordinate (average effect size 0.38; n=94 effect sizes), compared to species in which age (average effect size 0.31; n=100 effect sizes) or nepotism (average effect size 0.24; n=243 effect sizes) influence dominance rank (estimates for difference condition vs age: metafor +0.05 - +0.17, rethinking +0.01 - +0.16; condition vs nepotism: metafor +0.07 - +0.20, rethinking +0.08 - +0.20; age vs nepotism: metafor -0.07 - +0.03, rethinking -0.01 - +0.12). Species with different dominance system are no longer estimated to be different when including the phylogenetic similarity.
 
-We had initially planned to assess whether dominance effect appear across different time scales depending on how dominant females acquire their position. However, this turned out to be more difficult. The species in our dataset have vastly varying lifespans, so simply assessing the number of years a study had been conducted for skews the observation towards short-lived species. The values for the relative duration (number of years studied divided by the maximum lifespan of the species) show that 90% of effect sizes are from studies that lasted less than 10% of the lifespan of the species (median 3%). Interestingly, in all of the 19 species in which studies spanned more than 10% of the lifespan, females acquire rank by nepotism. We did not find any consistent relationships of changes in effect size with study duration dependent on the system of dominance acquisition.  
+We had initially planned to assess whether dominance effect appear across different time scales depending on how dominant females acquire their position. However, this turned out to be more difficult. The species in our dataset have vastly varying lifespans, so simply assessing the number of years a study had been conducted for skews the observation towards short-lived species. The values for the relative duration (number of years studied divided by the maximum lifespan of the species) show that 90% of effect sizes are from studies that lasted less than 10% of the lifespan of the species (median 3%). In all of the 19 species in which studies spanned more than 10% of the lifespan, females acquire rank by nepotism. We did not find any consistent relationships of changes in effect size with study duration dependent on the system of dominance acquisition.  
 
 
 ```{r ranksuccess_dominancesystem, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
@@ -1553,8 +1913,9 @@ precis(rethinking_dominance_years,depth=2)[304:308,]
 
 **R4.3 Philopatry**
 
-The effects of dominance rank on reproductive success are higher in species in which females disperse and join new groups (average effect size 0.46; n=55 effect sizes) compared to species in which most females were born in the same group they breed (average effect size 0.26; n=360 effect sizes) (metafor estimate of difference -0.24 - -0.12, rethinking estimate -0.25 - -0.11), also when accounting for phylogenetic covariance.
+The effects of dominance rank on reproductive success are higher in species in which females disperse and join new groups (average effect size 0.46; n=55 effect sizes) compared to species in which most females were born in the same group they breed (average effect size 0.26; n=360 effect sizes) (metafor estimate of difference -0.24 - -0.12, rethinking estimate -0.25 - -0.11), also when accounting for phylogenetic covariance (Figure 5).
 
+![](ranksuccess_Fig5_effectsize_philopatry.png)
 
 ```{r ranksuccess_philopatry, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
 
@@ -1626,6 +1987,105 @@ rethinking_phylogenetic_gaussian_associatedbreeding <- ulam(
   ),data=dat_list_phylogenetic_associatedbreeding)
 precis(rethinking_phylogenetic_gaussian_associatedbreeding)
 
+
+
+meta_philopatry <- rma.mv(yi=Fishers_Z_r, V=Variance, mods=~ factor(Philopatry)-1, data=dat, method="REML", random=list(~1|StudyRef,~1|SpeciesRef))
+
+
+orchard_plot_philopatry <- function(object, mod = "Int", xlab, N = "none", alpha = 0.5, angle = 90, cb = TRUE, k = TRUE, transfm = c("none", "tanh")) {
+ ## evaluate choices
+  transfm <- match.arg(transfm) # if not sepcificed it takes the first choice
+	if(any(class(object) %in% c("rma.mv", "rma.uni", "rma"))){
+		if(mod != "Int"){
+			object <- mod_results(object, mod)
+		} else{
+			object <- mod_results(object, mod = "Int")
+			}
+	}
+	mod_table <- object$mod_table
+  data <- object$data
+  data$moderator <- factor(data$moderator, levels = mod_table$name, labels = mod_table$name)
+	data$scale <- (1/sqrt(data[,"vi"]))
+	legend <- "Precision (1/SE)"
+	if(any(N != "none")){
+		  data$scale <- N
+		  legend <- "Sample Size (N)"
+	}
+	if(transfm == "tanh"){
+		                   cols <- sapply(mod_table, is.numeric)
+		mod_table[,cols] <- Zr_to_r(mod_table[,cols])
+		                data$yi <- Zr_to_r(data$yi)
+		                  label <- xlab
+	}else{
+		label <- xlab
+	}
+	 mod_table$K <- as.vector(by(data, data[,"moderator"], function(x) length(x[,"yi"])))
+	 # the number of groups in a moderator & data points
+	 group_no <- nrow(mod_table)
+	 #data_no <- nrow(data)
+
+	# colour blind friendly colours with grey
+cbpl <- c("#D55E00","#E69F00","#009E73",   "#CC79A7", "#56B4E9", "#F0E442", "#999999")
+
+	# Make the orchard plot
+  plot <- ggplot2::ggplot(data = mod_table, aes(x = estimate, y = name)) +
+    # pieces of fruit (bee-swarm and bubbles)
+    ggbeeswarm::geom_quasirandom(data = data, aes(x = yi, y = moderator, size = scale, colour = moderator), groupOnX = FALSE, alpha=alpha) +
+    # 95 %prediction interval (PI): twigs
+    ggplot2::geom_errorbarh(aes(xmin = lowerPR, xmax = upperPR),  height = 0, show.legend = FALSE, size = 0.5, alpha = 0.6) +
+    # 95 %CI: branches
+    ggplot2::geom_errorbarh(aes(xmin = lowerCL, xmax = upperCL),  height = 0, show.legend = FALSE, size = 1.2) +
+    ggplot2::geom_vline(xintercept = 0, linetype = 2, colour = "black", alpha = alpha) +
+    # creating dots for truncks
+    ggplot2::geom_point(aes(fill = name), size = 3, shape = 21) +
+    # putting labels
+    #ggplot2::annotate('text', x = (max(data$yi) + (max(data$yi)*0.10)), y = (seq(1, group_no, 1)+0.3),
+    #                 label= paste("italic(k)==", mod_table$K), parse = TRUE, hjust = "right", size = 3.5) +
+    ggplot2::theme_bw() +
+    ggplot2::guides(fill = "none", colour = "none") +
+    ggplot2::theme(legend.position= c(1, 0), legend.justification = c(1, 0)) +
+    ggplot2::theme(legend.title = element_text(size = 11)) +
+    ggplot2::theme(legend.direction="horizontal") +
+    ggplot2::theme(legend.background = element_blank()) +
+    ggplot2::labs(x = label, y = "", size = legend) +
+    ggplot2::theme(axis.text.y = element_text(size = 18, colour ="black",
+                                              hjust = 0.5,
+                                              angle = angle)) +
+    ggplot2::theme(axis.text.x = element_text(size = 14, colour ="black",
+                                              hjust = 0.5,
+                                              angle = 0)) + 
+    ggplot2::theme(axis.title.x = element_text(size = 18, colour ="black", face = "bold",
+                                              hjust = 0.5,
+                                              vjust = -0.5,
+                                              angle = 0)) 
+	  # putting colours in
+	  if(cb == TRUE){
+	    plot <- plot +
+	      scale_fill_manual(values=cbpl) +
+	      scale_colour_manual(values=cbpl)
+	  }
+				     # putting k in
+          if(k == TRUE){
+                plot <- plot +
+                  ggplot2::annotate('text', x = (max(data$yi) + (max(data$yi)*0.10)), y = (seq(1, group_no, 1)+0.3),
+                  label= paste("italic(k)==", mod_table$K), parse = TRUE, hjust = "right", size = 3.5)
+          }
+	  return(plot)
+}
+
+
+
+
+
+orchard_plot_philopatry(meta_philopatry,mod = "FemalePhilopatry", xlab="Effect size (Fisher's r)",cb=FALSE)+ theme(axis.text.y = element_text(size=8))+scale_y_discrete(labels=c("Factor(Philopatry)FemaleDispersal"="Female dispersal","Factor(Philopatry)"="Female philopatry"))+
+	      scale_fill_manual(values=c("grey20","blue")) +
+	      scale_colour_manual(values=c("grey20","blue"))+
+        theme(axis.text = element_text(size = 24, colour ="black", face = "bold",
+                                              hjust = 0.5,
+                                              vjust = -0.5,
+                                              angle = 90))
+
++scale_y_discrete(labels=c("Factor(Philopatry)1"="Cooperative","Factor()2"="Plural", "Factor()3"="Associated"))
 
 ```
 
@@ -2360,9 +2820,9 @@ precis(rethinking_phylogenetic_gaussian_rankdetermined_cooperativebreeding)
 
 In cooperative breeders, effects of dominance rank were only assessed on three of the of the six life history traits. We therefore performed separate analyses for cooperative and for plural/associated breeders to identify the life history traits showing specific increases in higher ranking females compared to others.
 
-In cooperative breeders, effect sizes are higher for infant production (metafor estimate +0.49 - +0.72, rethinking estimate +0.55 - +0.69), and lower for infant survival (metafor +0.13 - 0.54, rethinking +0.20 - +0.61) and adult survival (metafor estimate +0.02 - 0.59, +0.12 - +0.73).
+In cooperative breeders, effect sizes are higher for infant production (metafor estimate +0.49 - +0.72, rethinking estimate +0.55 - +0.69), and lower for infant survival (metafor +0.13 - 0.54, rethinking +0.20 - +0.61) and adult survival (metafor estimate +0.02 - 0.59, +0.12 - +0.73) (Figure 4).
 
-In plural/associated breeders, effect sizes are (depending on the approach) highest for lifetime reproductive success (metafor estimate +0.19 - +0.29, rethinking estimate +0.33 - +0.47), age at first conception (metafor +0.27 - +0.36, rethinking +0.25 - +0.43) and interbirth interval (metafor +0.23 - +0.34, rethinking +0.25 - +0.38), followed by infant production (metafor +0.13 - +0.22, rethinking +0.19 - +0.27) and adult survival (metafor +0.14 - +0.24, rethinking +0.15 - +0.30), and are lowest for infant survival (metafor +0.11 - +0.20, rethinking +0.11 - +0.20). The two methods give slightly different estimates because there is large variation among the effect sizes within each life history trait. For example, effect sizes of dominance rank on lifetime reproductive success can be either low or high, often for the same population. For example, an experiment with house mice reported effect sizes ranging from 0.08 to 0.80, depending on the relatedness among the group members (König 1994). For mountain gorillas living in the Virungas, one study reported no effect of dominance rank on lifetime reproductive success (0.00) (Robbins et al. 2007) while another reported the highest effect size in our sample (1.33) after excluding major sources of environmental variability on reproductive success (Robbins et al. 2011). 
+In plural/associated breeders, effect sizes are (depending on the approach) highest for lifetime reproductive success (metafor estimate +0.19 - +0.29, rethinking estimate +0.33 - +0.47), age at first conception (metafor +0.27 - +0.36, rethinking +0.25 - +0.43) and interbirth interval (metafor +0.23 - +0.34, rethinking +0.25 - +0.38), followed by infant production (metafor +0.13 - +0.22, rethinking +0.19 - +0.27) and adult survival (metafor +0.14 - +0.24, rethinking +0.15 - +0.30), and are lowest for infant survival (metafor +0.11 - +0.20, rethinking +0.11 - +0.20) (Figure 4). The two methods give slightly different estimates because there is large variation among the effect sizes within each life history trait. For example, effect sizes of dominance rank on lifetime reproductive success can be either low or high, often for the same population. For example, an experiment with house mice reported effect sizes ranging from 0.08 to 0.80, depending on the relatedness among the group members (König 1994). For mountain gorillas living in the Virungas, one study reported no effect of dominance rank on lifetime reproductive success (0.00) (Robbins et al. 2007) while another reported the highest effect size in our sample (1.33) after excluding major sources of environmental variability on reproductive success (Robbins et al. 2011). 
 
 
 ```{r ranksuccess_measure_interactions, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
@@ -2545,7 +3005,7 @@ precis(rethinking_phylogenetic_gaussian_littersperyear_cooperativebreeding)
 **R5.5 Interactions among social traits**
 Cooperative breeders tend to differ in some of the social traits that we investigated separately.
 
-In mammals, groups of cooperative breeders never grow to the same size (in our data, median 2 females per group) as groups of plural/associated breeders (in our data, median 14 females per group), potentially introducing an interaction effect. In our data, both group size and cooperative breeding remain independently associated with the effect sizes of dominance rank on reproductive success. The analyses suggest an interaction (metafor estimate for cooperative breeding +0.16 - +0.39, for group size -0.01 - 0.00, interaction 0.00 - +0.03), with effect sizes increasing with group size in cooperative breeders (rethinking estimate +0.01 - +0.02), where a single dominant continues to monopolize reproduction as groups get larger, and declining with group sizes in other breeding systems (rethinking estimate -0.01 - 0.00), where dominants might be less able to control reproduction of other group members as groups grow larger.
+In mammals, groups of cooperative breeders never grow to the same size (in our data, median 2 females per group) as groups of plural/associated breeders (in our data, median 14 females per group), potentially introducing an interaction effect. In our data, both group size and cooperative breeding remain independently associated with the effect sizes of dominance rank on reproductive success. The analyses suggest an interaction (metafor estimate for cooperative breeding +0.16 - +0.39, for group size -0.01 - 0.00, interaction 0.00 - +0.03), with effect sizes increasing with group size in cooperative breeders (rethinking estimate +0.01 - +0.02), where a single dominant continues to monopolize reproduction as groups get larger, and declining with group sizes in other breeding systems (rethinking estimate -0.01 - 0.00), where dominants might be less able to control reproduction of other group members as groups grow larger (Figure 6).
 
 Similarly, there appears to be an interaction between average relatedness and breeding systems (metafor estimate for cooperative breeding -0.06 - +0.44, for average relatedness -0.75 - +0.03, for interaction +0.10 - +1.51), with effect sizes increasing with higher levels of average relatedness in cooperative breeders (rethinking estimate 0.00 - +0.12) and decreasing with higher levels of average relatedness in plural/associate breeders (rethinking estimate -0.06 - 0.00)
 
@@ -2555,7 +3015,7 @@ Among plural/associated breeders, average relatedness is lower in species in whi
 
 Coalition formation does not occur in cooperative breeders, leading to a potential confound. Restricting the analyses to plural/associated breeders, we find that effect sizes are higher in species in which females do form coalitions than in species where they do not (metafor estimate 0.00 - +0.14, rethinking estimate +0.01 - +0.11).
 
-
+![](ranksuccess_Fig6_effectsize_interaction_groupsize.png)
 
 ```{r ranksuccess_social_cooperativebreeding, eval=FALSE, warning=FALSE, results='asis', echo=TRUE}
 
@@ -2574,6 +3034,10 @@ metafor_phylogenetic_groupsize_cooperativebreeding <- rma.mv(Fishers_Z_r, Varian
                                       test="t",  
                                       data=dat)
 metafor_phylogenetic_groupsize_cooperativebreeding
+
+
+
+
 
 
 
@@ -2599,36 +3063,37 @@ rethinking_groupsize_cooperativebreeding <- ulam(
   ),data=dat_list)
 precis(rethinking_groupsize_cooperativebreeding,depth=2)[445:450,]
 posterior<-extract.samples(rethinking_groupsize_cooperativebreeding)
-difference_groupsize_cooperativebreeding<-posterior$m[,2]-posterior$m[,1]
-precis(difference_groupsize_cooperativebreeding)
+
 
 #calculate and plot values at the minimum group size, 2,10,50,100 females, and the maximum group size
 # Do a panel plot with cooperative breeders versus plural/associated breeders
 groupsize.seq <-  c(-1,-0.84895,-0.415,1.753,4.4635,8)
-pred_dat <- list( GroupSize_s = groupsize.seq)
-mu <- link( rethinking_groupsize , data=data.frame(C = 1, G = pred_dat) )
+pred_dat <- list( G = groupsize.seq)
+mu <- link( rethinking_groupsize_cooperativebreeding , data=data.frame(C = 1, G = pred_dat) )
 mu.mean <- apply( mu , 2 , mean )
 mu.PI <- apply( mu , 2 , PI , prob=0.89 )
-plot( Fishers_Z_r ~ G , dat , col=col.alpha(rangi2,0.5) ,xaxt="n")
-at <- c(-0.84895,-0.415,1.753,4.4635)
+standardized_groupsize<-standardize(dat$GroupSize)
+plot( dat[dat$CooperativeBreeding==0,]$Fishers_Z_r ~ standardized_groupsize[dat$CooperativeBreeding==0] , col="#dd4444" ,xaxt="n", ann=F,bty="n",ylim=c(-1,1.5))
+at <- c(-0.84895,-0.415,1.753,4.4635,7.715)
 labels <- at*sd(dat$GroupSize) + mean(dat$GroupSize)
 axis( side=1 , at=at , labels=round(labels,1) )
-lines( groupsize.seq , mu.mean )
-shade( mu.PI , groupsize.seq, col=col.alpha(rangi2,0.1) )
-mtext("Plural/Associated breeders")
+lines( groupsize.seq , mu.mean ,col="#dd4444")
+shade( mu.PI , groupsize.seq, col=col.alpha("#dd4444",0.1) )
 
-groupsize.seq <-  c(-1,-0.84895,-0.415,1.753,4.4635,8)
-pred_dat <- list( GroupSize_s = groupsize.seq)
-mu <- link( rethinking_groupsize , data=data.frame(C = 2, G = pred_dat) )
-mu.mean <- apply( mu , 2 , mean )
-mu.PI <- apply( mu , 2 , PI , prob=0.89 )
-plot( Fishers_Z_r ~ G , dat , col=col.alpha(rangi2,0.5) ,xaxt="n")
-at <- c(-0.84895,-0.415,1.753,4.4635)
-labels <- at*sd(dat$GroupSize) + mean(dat$GroupSize)
-axis( side=1 , at=at , labels=round(labels,1) )
-lines( groupsize.seq , mu.mean )
-shade( mu.PI , groupsize.seq, col=col.alpha(rangi2,0.1) )
-mtext("Cooperative breeders")
+
+groupsize.seq_short <-  c(-1,-0.84895,-0.415,1.753,4.4635)
+short_pred_dat <- list( G = groupsize.seq_short)
+mu_2 <- link( rethinking_groupsize_cooperativebreeding , data=data.frame(C = 2, G = short_pred_dat) )
+mu_2.mean <- apply( mu_2 , 2 , mean )
+mu_2.PI <- apply( mu_2 , 2 , PI , prob=0.89 )
+points( dat[dat$CooperativeBreeding==1,]$Fishers_Z_r ~ standardized_groupsize[dat$CooperativeBreeding==1] , dat , col="#2d676f" )
+lines( groupsize.seq_short , mu_2.mean,col="#2d676f" )
+shade( mu_2.PI , groupsize.seq_short, col=col.alpha("#2d676f",0.1) )
+
+legend(x="topright",legend=c("Cooperative breeder","Plural breeder"),lwd=4,col=c("#2d676f","#dd4444"),bty="n")
+
+mtext("Group size",side=1,cex=1.8,line=3.0)
+mtext("Effect size (Fisher's Z r)",side=2,cex=1.5,line=2.5,las=3)
 
 
 dat_list$Dmat<-Dmat[ dat$Latin,dat$Latin ]/max(Dmat)
