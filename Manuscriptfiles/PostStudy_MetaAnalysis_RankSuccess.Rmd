@@ -5,10 +5,11 @@ author:
 - 'Elise Huchard^3^'
 - 'Dieter Lukas^2^*'
 date: '`r Sys.Date()`'
-mainfont: Verdana
+mainfont: Arial
+linestretch: 1.2
 output:
   pdf_document:
-    keep_tex: yes
+    keep_tex: no
     latex_engine: xelatex
   md_document: 
     toc: true
