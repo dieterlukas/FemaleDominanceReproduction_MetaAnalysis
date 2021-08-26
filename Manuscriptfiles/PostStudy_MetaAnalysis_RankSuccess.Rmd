@@ -2818,10 +2818,18 @@ We find no differences in effect sizes (after accounting for shared phylogenetic
   
 **R5.1 Heterogeneity and sample bias**
 
-The sample bias, the overrepresentation of extreme effect sizes, in our data likely results from all three influences of publication bias, study system bias, and study time bias. For publication bias, our univariate analyses indicate a number of study systems in which effect sizes are different. In some cases, these systems are overrepresented: for example, while less than 5% of all mammalian species are cooperative breeders, 12% of all effect sizes in our sample are from cooperative breeders. For study system bias, we find that the noise in the estimate is much reduced in studies that were conducted across longer periods.
+The sample bias, the over-representation of extreme effect sizes, in our data likely results from all three influences of publication bias, study system bias, and study time bias. In addition to the indication of publication and study system bias, our univariate analyses identified many factors that could lead to study system bias. For example, while less than 5% of all mammalian species are cooperative breeders, 12% of all effect sizes in our sample are from cooperative breeders, and cooperative breeders have larger effect sizes. 
 
-To identify the potential interplay between the three biases, we build combined models based on the predicted causal relationships. 
+To identify the potential interplay between the three biases, we build combined models. If the choice of study systems also influenced sample sizes and study duration, we should no longer see their influence on the effect sizes, suggesting that our sample shows no publication and study system biases. The combined models indicate that all the factors we identified in the uni-variate analyses are directly associated with variation in the effect sizes (their estimates do not overlap), as is the sample size, but not the number of years a study had been conducted for. This indicates that our sample has both publication and study system bias. The absence of an indication of a direct influence of study time bias presumably occurs because sample size is associated with the number of years a study has been conducted for, indicating that large samples both in terms of time period or breadth might reduce noise. 
 
+The reduction in the publication bias when accounting for the study system bias is visible when comparing the funnel plot of the raw effect sizes in relation to their precision (Figure 8a), which shows a clear asymmetry, to the funnel plot of the effect sizes adjusted for known predictors (Figure 8b), which only indicates some large effect sizes at small precision that are not balanced.
+
+---
+
+![](ranksuccess_Fig7_effectsize_funnelplot.png)
+**Figure 7.** Funnel plots based on raw effect sizes (a) and effect sizes adjusted for known predictors (b). When accounting for the influence of which reproductive trait was measured, whether the species is a cooperative breeder or not, the number of litters per year the species produces, and the phylogenetic covariance among species, the distribution of the 444 effect sizes in our sample appears much less imbalanced (b) than the raw effect sizes (a).
+
+---
 
 
 ```{r ranksuccess_metapublicationbias, eval=FALSE, warning=FALSE, results='asis', echo=FALSE}
@@ -2856,26 +2864,26 @@ publication.bias.model_simple
 
 
 publication.bias.model <- rma.mv(Fishers_Z_r, Variance,
-                            mod=~MeasureType_Category+LittersPerYear+CooperativeBreeding+CooperativeBreeding*GroupSize+No_of_years,
-                                      random=list(~ 1 | SpeciesIncluded, # phylo effect
-                                                  ~ 1 | Latin, # non-phylo effect
-                                                  ~ 1 | StudyRef), 
+                            mod=~MeasureType_Category+LittersPerYear+CooperativeBreeding+No_of_years+SampleSize,
                                       R = list(SpeciesIncluded = phylo_cor), #phylogenetic relatedness
                                       method="REML",
                                       test="t", # using t dist rather than z 
                                       data=dat)
 publication.bias.model
 
+metafor_phylogenetic_publication_bias <- rma.mv(Fishers_Z_r, Variance,
+                                      mod =~MeasureType_Category+LittersPerYear+CooperativeBreeding+No_of_years,
+                                      random=list(~ 1 | SpeciesIncluded, # linking the species to the phylogeny
+                                                  ~ 1 | Latin, # observations from the same species might be similar to each other, even if those from closely related species are not
+                                                  ~ 1 | StudyRef),  # accounting for observations from the same publication
+                                      R = list(SpeciesIncluded = phylo_cor), # reflecting the phylogenetic relatedness
+                                      method="REML",
+                                      test="t",  
+                                      data=dat)
 
-funnel(publication.bias.model, level=c(90, 95, 99), shade=c("white", "gray", "darkgray"), 
-       yaxis="seinv",xlab="effect size (Zr)",ylab="precision (1/SE)",digits=c(1,0),xlim=c(-2,2),ylim=c(1,10))
 
 
 
-
-
-# Plot to show how extreme effect sizes are only observed with small sample sizes
-plot(abs(dat$Fishers_Z_r)~log(dat$SampleSize))
 
 
 # Set up the dataframe to look at the influence of the sample size on the observed effect sizes
@@ -2885,6 +2893,7 @@ dat_list_samplesize <- list(
   Z_sd = dat$Variance,
   Study = as.integer(as.factor(dat$StudyRef)),
   SampleSize = standardize(dat$SampleSize),
+  Y = standardize(dat$No_of_years),
   C = dat$CooperativeBreeding+1,
   M = as.integer(as.factor(dat$MeasureType_Category)),
   L = standardize(dat$LittersPerYear)
@@ -2896,9 +2905,9 @@ rethinking_samplesize <- ulam(
     alist(
         Z_obs ~dnorm ( Z_true , Z_sd),
         vector[N_spp]:Z_true ~ dnorm( mu , sigma_sq ),
-        mu <- a+y*SampleSize,
+        mu <- a+s*SampleSize,
         a~dnorm(0,1),
-        y~dnorm(0,1),
+        s~dnorm(0,1),
         sigma_sq~dexp(1)
     ) , data=dat_list_samplesize , chains=4 , cores=4 , log_lik=TRUE ,iter=8000)
 
@@ -2910,17 +2919,16 @@ rethinking_samplesize_full <- ulam(
     alist(
         Z_obs ~dnorm ( Z_true , Z_sd),
         vector[N_spp]:Z_true ~ dnorm( mu , sigma_sq ),
-        mu <- a+y*SampleSize + c[C]+m[M]+l*L,
+        mu <- a+s*SampleSize+y*Y + c[C]+m[M]+l*L,
         a~dnorm(0,1),
-        y~dnorm(0,1),
+        s~dnorm(0,1),
         l~dnorm(0,1),
+        y~dnorm(0,1),
         sigma_sq~dexp(1),
       ## adaptive priors
-        s[Study] ~dnorm(0, sigma_study),
         c[C]~dnorm(0, sigma_coop),
         m[M]~dnorm(0, sigma_measure),
       ## hyper-priors
-        sigma_study ~ dexp(1),
         sigma_coop ~ dexp(1),
        sigma_measure ~ dexp(1)
     ) , data=dat_list_samplesize , chains=4 , cores=4 , log_lik=TRUE ,iter=8000)
@@ -2928,11 +2936,33 @@ rethinking_samplesize_full <- ulam(
 precis(rethinking_samplesize_full)
 
 
+b[B]~normal(0,0.5),
+
+rethinking_samplesize_full <- ulam(
+    alist(
+        Z_obs ~dnorm ( Z_true , Z_sd),
+        vector[N_spp]:Z_true ~ dnorm( mu , sigma_sq ),
+        mu <- a+s*SampleSize+y*Y + c[C]+m[M]+l*L,
+        a~dnorm(0,1),
+        s~dnorm(0,1),
+        l~dnorm(0,1),
+        y~dnorm(0,1),
+        sigma_sq~dexp(1),
+        c[C]~normal(0,0.5),
+        m[M]~normal(0,0.5)
+    ) , data=dat_list_samplesize , chains=4 , cores=4 , log_lik=TRUE ,iter=8000)
 
 
+meta_simple <- rma.mv(yi=Fishers_Z_r, V=Variance, data=dat)
 
+originalpar<-par()
 
-
+op <- par(oma=c(0,2.5,0,0), mar=c(4.5,4.5,3.2,4.2), mfrow=c(1,2))
+funnel(meta_simple, level=c(90, 95, 99), shade=c("white", "gray", "darkgray"), 
+       yaxis="seinv",xlab="Effect size (Fisher's Zr)",ylab="precision (1/SE)",digits=c(1,0),xlim=c(-2,2),ylim=c(1,30))
+mtext("a) Raw data",side=3,cex=1.5,line=1.0)
+funnel(metafor_phylogenetic_publication_bias, level=c(90, 95, 99), shade=c("white", "gray", "darkgray"),yaxis="seinv",xlab="Effect size (Fisher's Zr)",ylab="precision (1/SE)",digits=c(1,0),xlim=c(-2,2),ylim=c(1,30))
+mtext("b) Adjusted for known predictors",side=3,cex=1.5,line=1.0)
 
 
 ```
@@ -3282,8 +3312,8 @@ In mammals, groups of cooperative breeders never grow to the same size (in our d
 
 ---
 
-![](ranksuccess_Fig7_effectsize_interaction_groupsize.png)
-**Figure 7.** The relationship between the number of females in the group and the effect of dominance on reproductive success depends on whether the species is a cooperative (olive dots show data and olive line with shading shows estimate from rethinking model) or a plural breeder (red dots show data and red line with shading shows estimate from rethinking model). In cooperative breeders, effect sizes increase with increasing group size as a single female continues to monopolize reproduction in the group, whereas effect sizes decrease with increasing group size as dominants can potentially no longer control other females in the group.
+![](ranksuccess_Fig8_effectsize_interaction_groupsize.png)
+**Figure 8.** The relationship between the number of females in the group and the effect of dominance on reproductive success depends on whether the species is a cooperative (olive dots show data and olive line with shading shows estimate from rethinking model) or a plural breeder (red dots show data and red line with shading shows estimate from rethinking model). In cooperative breeders, effect sizes increase with increasing group size as a single female continues to monopolize reproduction in the group, whereas effect sizes decrease with increasing group size as dominants can potentially no longer control other females in the group.
 
 ---
 
@@ -3823,7 +3853,7 @@ precis(rethinking_philopatry_cooperativebreeding,depth=2)[445:458,]
 
 #### **Summary of combined analyses**
 \
-
+The analyses of combinations of predictors of the effect size of dominance on rank on reproductive success show that most predictors have a direct influence. However, we find that the approach authors used to measure the effect does not lead to different estimates of the effect size, it is rather that different approaches have been used in different study systems. We also find that average relatedness might not directly mitigate effect sizes, but that it is a co-variate of the breeding system and whether females are philopatric or disperse. In addition, we find some interactions, with group size having divergent influences depending on the breeding system; and coalitions among females reducing effect sizes among plural breeders.
 
   
   &nbsp; 
@@ -3832,7 +3862,7 @@ precis(rethinking_philopatry_cooperativebreeding,depth=2)[445:458,]
 
 ## Discussion
 
-Our study finds that, in social mammals, dominant females have higher reproductive success than lower-ranking females. Positive effects of dominance rank are present for all our measures of life history and are highest for life-time reproductive success. This suggests that even if dominants might face some trade-offs (e.g. higher stress levels @cavigelli2003female), obtaining a high ranking position in a social group leads to fitness benefits, though how females obtain these benefits (e.g. shorter interbirth intervals versus larger offspring) differ between populations. Our meta-analysis also highlights several factors associated with variation in the strength of the effect of dominance rank on reproductive success, where social factors in particular appear to have a modulating influence while variation in life history and ecological factors appears of less importance. While in our data there is a consistent positive relationship between higher dominance rank and higher reproductive success, the data we were able to bring together for this study also indicates that studies have primarily focused on systems where strong effects can be detected and that reports of weak or absent relationships between rank and reproductive success might be missing in the published literature. Unlike often claimed for meta-analyses, the over-representation of positive findings in the published literature in our case appears not to be due to a file-drawer problem of unpublished negative findings but due to researchers targeting their efforts on feasible systems. Studies into the potential mechanisms of female competition and reproductive suppression have focused on species where there are clear difference in reproductive success between dominants and subordinates. In addition, obtaining reliable reproductive success data in long-lived mammals takes particular effort, again likely limiting the systems that have been studied to investigate the effects of dominance rank. We did find that studies conducted for longer time periods show less variance in their estimates, potentially because they also have larger sample sizes. Alternatively, or in addition, studies conducted across longer-times females might be less likely to show extreme effect size estimates because natural changes in dominance rank and events that affect all females equally (e.g. infanticide @cheney2004factors) occur relatively rarely, so that short-term studies will be strongly influenced by current conditions whereas long-term measures might balance across conditions.
+Our study finds that, in social mammals, dominant females have higher reproductive success than lower-ranking females. Positive effects of dominance rank are present for all our measures of life history and are highest for life-time reproductive success. This suggests that even if dominants might face some trade-offs (e.g. higher stress levels @cavigelli2003female), obtaining a high ranking position in a social group leads to fitness benefits, though how females obtain these benefits (e.g. shorter interbirth intervals versus larger offspring) differ between populations. Our meta-analysis also highlights several factors associated with variation in the strength of the effect of dominance rank on reproductive success, where social factors in particular appear to have a modulating influence while variation in life history and ecological factors appears of less importance. While in our data there is a consistent positive relationship between higher dominance rank and higher reproductive success, the data we were able to bring together for this study show some biases that suggest that further studies might detect lower effects. Our investigation of sample bias indicates a combination of publication bias, study system bias, and study time bias. Unlike often claimed for meta-analyses, the over-representation of positive findings in our case appears not to be primarily due to a file-drawer problem of unpublished negative findings but due to researchers targeting their efforts on feasible systems. Studies into the potential mechanisms of female competition and reproductive suppression have focused on species where there are clear difference in reproductive success between dominants and subordinates. In addition, obtaining reliable reproductive success data in long-lived mammals takes particular effort, again likely limiting the systems that have been studied to investigate the effects of dominance rank. We did find that studies conducted for longer time periods show less variance in their estimates, potentially because they also have larger sample sizes. Alternatively, or in addition, studies conducted across longer-times females might be less likely to show extreme effect size estimates because natural changes in dominance rank and events that affect all females equally (e.g. infanticide @cheney2004factors) occur relatively rarely, so that short-term studies will be strongly influenced by current conditions whereas long-term measures might balance across conditions.
 
 Overall, we estimated an average effect of 0.28 of rank on reproductive success. What does this mean? First, it is important to highlight that this effect size reflects how well rank predicts reproductive success, but not directly indicates how different the reproductive success of high-ranking females is from that of low-ranking females. While the effect of dominance has to be zero in groups where all females have exactly the same reproductive success, an effect of zero is also found in a group where there are large differences in reproduction success across females which do not align with the females' dominance rank. Just by chance, we would expect differences in reproductive success among females in a social group and we could also expect that these differences are associated with traits that might be used to classify social rank. To assess whether the effects we detect are higher than such random variation, we performed simulations. For this, we simulated artificial groups of females reflecting macaques, the genus most common in our sample. We assumed that each female in each group might have between 0 to 8 offspring, with an average 2 (following a Poisson distribution, so most females have 1 or 2 offspring). We performed 10,000 simulations of six groups of twelve females each (the median group size in our data). When we set no association between rank and reproductive success, less than 0.1% of simulations showed an effect size as high or higher than the 0.28 we observe in the data. Effect sizes for a perfect association between each female's rank and her reproductive success ranged from 0.75-0.95 (mean 0.88). Simulations in which the two highest ranking females always have the highest reproductive success while rank among lower ranking females no longer is associated with success produces effect sizes close to what we observe (mean 0.32), whereas values tend to be lower if only the highest ranking female consistently has the highest success (mean 0.18). While these simulations cannot resolve whether high ranking females have higher reproductive success because they obtained this position or whether there are some traits that lead to both higher rank and higher reproductive success, they indicate that social rank has a particular association with reproductive success beyond the random variation we expect in social groups.
 
@@ -3931,14 +3961,153 @@ hist(emptylist)
 
 
 
-Among the social traits we investigated, the highest difference in the effect of rank on reproductive success was between cooperative breeders and plural/associated breeders. This results was expected given the higher reproductive skew that has been found among females in cooperative breeders (@lukas2012cooperative). The contrast between breeding systems appears not due to differences in how females acquire and maintain high rank, but by the degree of reproductive control that dominants in cooperative breeders have over their, mostly related, group mates. Independently of whether dominant females acquire their position by kin support, aggression, or age, they appear to have similar benefits once in that position. In addition, across macaque species, despotic species do not show different effects of dominance rank on reproductive success than more egalitarian species (Figure 8). The likely importance of reproductive control of dominant females in cooperative breeders compared to plural/associated breeders are also reflected in the different relationships of the effect sizes with group size in the different breeding systems. While among cooperative breeders there usually is only a single breeding dominant female and large groups occur when her reproductive output is higher, dominant females in plural/associated breeders likely face reduced opportunities to control reproduction in larger groups (@rubenstein2016discrete). In this context, it is again important to note that we only look at the association between rank and the variation in reproductive success within groups. Even though the relative difference between dominant and subordinate females might be lower in larger group sizes, in terms of overall fitness it might still be better to be the dominant in a larger group if mean fitness increases with group size (e.g. small group where dominant has 3 versus subordinate has 2 offspring (50% higher fitness) compared to large group where dominant has 4 while all other females have 3 offspring (33% higher fitness)).
+Among the social traits we investigated, the highest difference in the effect of rank on reproductive success was between cooperative breeders and plural/associated breeders. This results was expected given the higher reproductive skew that has been found among females in cooperative breeders (@lukas2012cooperative). The likely importance of reproductive control of dominant females in cooperative breeders compared to plural/associated breeders are also reflected in the different relationships of the effect sizes with group size in the different breeding systems. While among cooperative breeders there usually is only a single breeding dominant female and large groups occur when her reproductive output is higher, dominant females in plural/associated breeders likely face reduced opportunities to control reproduction in larger groups (@rubenstein2016discrete). In this context, it is again important to note that we only look at the association between rank and the variation in reproductive success within groups. Even though the relative difference between dominant and subordinate females might be lower in larger group sizes, in terms of overall fitness it might still be better to be the dominant in a larger group if mean fitness increases with group size (e.g. small group where dominant has 3 versus subordinate has 2 offspring (50% higher fitness) compared to large group where dominant has 4 while all other females have 3 offspring (33% higher fitness)). The contrast between breeding systems appears not due to differences in how females acquire and maintain high rank, but by the degree of reproductive control that dominants in cooperative breeders have over their, mostly related, group mates. We found that independently of whether dominant females acquire their position by kin support, aggression, or age, they appear to have similar benefits once in that position. This absence of an influence of dominance style on differences in reproductive success is supported by looking across macaque species, where despotic species do not show different effects of dominance rank on reproductive success than more egalitarian species (Figure 8) (data on dominance style from @balasubramaniam2012hierarchical). 
 
 ---
 
-![](ranksuccess_Fig8_effectsizes_macaquedominancestyles.png)
-**Figure 8.** The effect of dominance rank on female reproductive success is similar across macaque species with different dominance styles. Relationships among female group members in species of grade 1 are generally considered egalitarian, while grade 4 is assigned to species in which relationships are deemed highly despotic.
+![](ranksuccess_Fig9_effectsizes_macaquedominancestyles.png)
+**Figure 9.** The effect of dominance rank on female reproductive success is similar across macaque species with different dominance styles. Relationships among female group members in species of grade 1 (bottom dark grey) are generally considered egalitarian, while grade 4 (top light grey) is assigned to species in which relationships are deemed highly despotic. Species with different dominance styles are not estimated to be different (all posterior contrasts overlap zero).
 
 ---
+
+```{r ranksuccess_macaquedominance, eval=FALSE, warning=FALSE, results='asis', echo=FALSE}
+
+
+macaquespecies<-unique(dat$Latin)[grep("Macaca",unique(dat$Latin))]
+macaquedominancestyles<-as.data.frame(c("Grade3","Grade1","Grade1","Grade3","Grade2","Grade3","Grade3","Grade2","Grade4") )
+colnames(macaquedominancestyles)<-"dominancestyle"
+macaquedominancestyles$Latin<-macaquespecies
+macaquedata<-dat[dat$Latin %in% macaquespecies,]
+macaquedata<-left_join(macaquedata,macaquedominancestyles,by="Latin")
+
+
+dat_list_macaques <- list(
+  N_spp = nrow(macaquedata),
+  Z_obs = macaquedata$Fishers_Z_r,
+  Z_sd = macaquedata$Variance, 
+  D = as.integer(as.factor(macaquedata$dominancestyle))
+)
+
+#We run the model
+rethinking_macaques <- ulam(
+  alist(
+    Z_obs ~dnorm ( Z_true , Z_sd),
+    vector[N_spp]:Z_true ~ dnorm( mu , sigma_sq ),
+    mu <- a+b[D],
+    a~normal(0,1),
+    b[D]~normal(0,0.5),
+    sigma_sq~dexp(1)
+  ),data=dat_list_macaques)
+precis(rethinking_macaques,depth=2)[110:115,]
+posterior<-extract.samples(rethinking_macaques)
+difference_macaques<-posterior$b[,2]-posterior$b[,1]
+precis(difference_macaques)
+difference_macaques<-posterior$b[,3]-posterior$b[,1]
+precis(difference_macaques)
+difference_macaques<-posterior$b[,4]-posterior$b[,1]
+precis(difference_macaques)
+difference_macaques<-posterior$b[,3]-posterior$b[,2]
+precis(difference_macaques)
+difference_macaques<-posterior$b[,4]-posterior$b[,2]
+precis(difference_macaques)
+difference_macaques<-posterior$b[,4]-posterior$b[,3]
+precis(difference_macaques)
+
+meta_macaques <- rma.mv(yi=Fishers_Z_r, V=Variance, mods=~ factor(dominancestyle)-1, data=macaquedata, method="REML")
+
+orchard_plot_macaques <- function(object, mod = "Int", xlab, N = "none", alpha = 0.5, angle = 90, cb = TRUE, k = TRUE, transfm = c("none", "tanh")) {
+ ## evaluate choices
+  transfm <- match.arg(transfm) # if not sepcificed it takes the first choice
+	if(any(class(object) %in% c("rma.mv", "rma.uni", "rma"))){
+		if(mod != "Int"){
+			object <- mod_results(object, mod)
+		} else{
+			object <- mod_results(object, mod = "Int")
+			}
+	}
+	mod_table <- object$mod_table
+  data <- object$data
+  data$moderator <- factor(data$moderator, levels = mod_table$name, labels = mod_table$name)
+	data$scale <- (1/sqrt(data[,"vi"]))
+	legend <- "Precision (1/SE)"
+	if(any(N != "none")){
+		  data$scale <- N
+		  legend <- "Sample Size (N)"
+	}
+	if(transfm == "tanh"){
+		                   cols <- sapply(mod_table, is.numeric)
+		mod_table[,cols] <- Zr_to_r(mod_table[,cols])
+		                data$yi <- Zr_to_r(data$yi)
+		                  label <- xlab
+	}else{
+		label <- xlab
+	}
+	 mod_table$K <- as.vector(by(data, data[,"moderator"], function(x) length(x[,"yi"])))
+	 # the number of groups in a moderator & data points
+	 group_no <- nrow(mod_table)
+	 #data_no <- nrow(data)
+
+	# colour blind friendly colours with grey
+cbpl <- c("#D55E00","#E69F00","#009E73",   "#CC79A7", "#56B4E9", "#F0E442", "#999999")
+
+	# Make the orchard plot
+  plot <- ggplot2::ggplot(data = mod_table, aes(x = estimate, y = name)) +
+    # pieces of fruit (bee-swarm and bubbles)
+    ggbeeswarm::geom_quasirandom(data = data, aes(x = yi, y = moderator, size = scale, colour = moderator), groupOnX = FALSE, alpha=alpha) +
+    # 95 %prediction interval (PI): twigs
+    ggplot2::geom_errorbarh(aes(xmin = lowerPR, xmax = upperPR),  height = 0, show.legend = FALSE, size = 0.5, alpha = 0.6) +
+    # 95 %CI: branches
+    ggplot2::geom_errorbarh(aes(xmin = lowerCL, xmax = upperCL),  height = 0, show.legend = FALSE, size = 1.2) +
+    ggplot2::geom_vline(xintercept = 0, linetype = 2, colour = "black", alpha = alpha) +
+    # creating dots for truncks
+    ggplot2::geom_point(aes(fill = name), size = 3, shape = 21) +
+    # putting labels
+    #ggplot2::annotate('text', x = (max(data$yi) + (max(data$yi)*0.10)), y = (seq(1, group_no, 1)+0.3),
+    #                 label= paste("italic(k)==", mod_table$K), parse = TRUE, hjust = "right", size = 3.5) +
+    ggplot2::theme_bw() +
+    ggplot2::guides(fill = "none", colour = "none") +
+    ggplot2::theme(legend.position= c(1, 0), legend.justification = c(1, 0)) +
+    ggplot2::theme(legend.title = element_text(size = 11)) +
+    ggplot2::theme(legend.direction="horizontal") +
+    ggplot2::theme(legend.background = element_blank()) +
+    ggplot2::labs(x = label, y = "", size = legend) +
+    ggplot2::theme(axis.text.y = element_text(size = 18, colour ="black",
+                                              hjust = 0.5,
+                                              angle = angle)) +
+    ggplot2::theme(axis.text.x = element_text(size = 14, colour ="black",
+                                              hjust = 0.5,
+                                              angle = 0)) + 
+    ggplot2::theme(axis.title.x = element_text(size = 18, colour ="black", face = "bold",
+                                              hjust = 0.5,
+                                              vjust = -0.5,
+                                              angle = 0)) 
+	  # putting colours in
+	  if(cb == TRUE){
+	    plot <- plot +
+	      scale_fill_manual(values=cbpl) +
+	      scale_colour_manual(values=cbpl)
+	  }
+				     # putting k in
+          if(k == TRUE){
+                plot <- plot +
+                  ggplot2::annotate('text', x = (max(data$yi) + (max(data$yi)*0.10)), y = (seq(1, group_no, 1)+0.3),
+                  label= paste("italic(k)==", mod_table$K), parse = TRUE, hjust = "right", size = 3.5)
+          }
+	  return(plot)
+}
+
+
+
+orchard_plot_macaques(meta_macaques,mod = "dominancestyle", xlab="Effect size (Fisher's r)",cb=FALSE)+ theme(axis.text.y = element_text(size=8))+scale_y_discrete(labels=c("Grade1","Grade2","Grade3","Grade4"))+
+	      scale_fill_manual(values=c("grey10","grey35","grey60","grey90")) +
+	      scale_colour_manual(values=c("grey10","grey35","grey60","grey90"))+
+        theme(axis.text = element_text(size = 24, colour ="black", face = "bold",
+                                              hjust = 0.5,
+                                              vjust = -0.5,
+                                              angle = 90))
+
+
+```
 
 
 Of the ecological variables we investigated, only population density was associated with differences in effect sizes of dominance rank on reproductive success, again supporting the role of social interactions in shaping fitness outcomes of dominance interactions. The observation that other ecological factors do not mitigate the strength of the fitness benefit dominant females receive might suggests that dominants are consistently able to outcompete other females in the group rather than dominance only being important under challenging conditions. While local ecological conditions, rather than the species-level traits we used, might modulate fitness benefits of high dominance rank for females, it seems unlikely that there would be a strong directional influence given that our data shows that effect sizes from the same species tend to be similar, even when females are in captive conditions. In line with this, previous work has shown that, while in some circumstances subordinate females might be the first to suffer under limiting conditions (@fedigan1983dominance), other ecological challenges affect all females independent of their rank thereby diminishing the relative benefits dominant females acquire (@altmann2003variability). 
