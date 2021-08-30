@@ -363,14 +363,15 @@ We collected data on the additional explanatory variables:
 
 ## **Changes from preregistration**
 \ 
-Additional variables:
+
+**Additional variables:**
 We added data on the maximum lifespan of species to address Prediction 4.2. We realized that, whether a study should be considered short- or long-term, depends on the lifespan of the species. We used the information on the number of years a study had been conducted together with the maximum lifespan data to calculate the relative duration of a study.
 
 **Outlier check:**
 Before running the analyses, we made a funnel plot of the standard error over the effect size, where we noticed three outlier data points. We realized that for these three entries (EffectRefs 425, 427, and 428) we had used the wrong formula to calculate the effect size and variance. All of these are studies of multiple groups of Callithrix jacchus, each with a small number of females. For these three studies, we had erroneously used the 2-by-2 frequency tables to calculate the standardized mean difference, not the correlation coefficient. We corrected the values for these three entries before performing any of the analyses.
 
 **Sampling bias:**
-The funnel plot of the complete dataset showed a strong asymmetry, indicating that our sample is biased towards including many studies with low precision and high positive effect sizes. We used a different way to plot the data (@nakagawa2021orchard) and added further analyses, both based on functions in the packages 'metafor' (following @nakagawa2021methods) and 'rethinking' (following @mcelreath2020statistical), to determine the potential causes of the bias in our sample and the influence on what effects should be expected in new samples. 
+The funnel plot of the complete dataset showed a strong asymmetry, indicating that our sample is biased towards including many studies with low precision and high positive effect sizes. To better illustrate this sample bias, we used a different way to plot the data (@nakagawa2021orchard) that was suggested after we had written our preregistration. We added further analyses to investigate the potential causes of the bias in our sampleand added further analyses, both based on functions in the packages 'metafor' (following @nakagawa2021methods) and 'rethinking' (following @mcelreath2020statistical), to determine the potential causes of the bias in our sample and the influence on what effects should be expected in new samples. 
 
 **Multivariate analyses:**
 We constructed the multivariate analyses after completing the univariate analyses. We did not perform the multivariate analyses we had listed in the preregistration where the univariate analyses indicated no influence/interaction (group size + intersexual conflict; diet + population density; harshness + population density). We added a set of multivariate analyses after finding that cooperative breeders have very different effect sizes of dominance rank on female reproductive success than plural/associated breeders to determine how this difference between breeding systems might relate to the influence of some of the additional social variables we included.
@@ -575,7 +576,15 @@ orchard_plot_basic <- function(object, mod = "Int", xlab, N = "none", alpha = 0.
 }
 
 orchard_plot_basic(meta_simple, mod="Int", xlab = "Effect size (Fisher's Z r)", 
-             transfm = "none") 
+             transfm = "none") +
+        theme(axis.text = element_text(size = 24, colour ="black", face = "bold",
+                                              hjust = 0.5,
+                                              vjust = -0.5,
+                                              angle = 90))+
+        theme(axis.text.y = element_text(size = 15, colour ="black",
+                                              hjust = 0.5,
+                                              vjust = 1.5,
+                                              angle = 90))
 ```
 
   &nbsp;
@@ -685,11 +694,11 @@ newdat$precision <- sqrt(1/(newdat$ESVar))
 newdat$N.final <- as.numeric(newdat$N.final)
 newdat <- newdat[order(newdat$N.final),]
 figure_samplesize <- ggplot(newdat, aes(x = N.final, y = ES)) + 
-  theme(axis.text.y = element_text(size = 12.5, colour = "black"), 
-        axis.text.x = element_text(size = 12.5, colour = "black"), 
+  theme(axis.text.y = element_text(size = 11.5, colour = "black"), 
+        axis.text.x = element_text(size = 12.5, colour = "black",face="bold"), 
         panel.background = element_rect(fill = "white"),
-        axis.title.y  = element_text(size=20, vjust = 0.5),
-        axis.title.x  = element_text(size=20, vjust = 0.5),
+        axis.title.y  = element_text(size=16, vjust = 0.5,face="bold"),
+        axis.title.x  = element_text(size=20, vjust = 0.5,face="bold"),
         panel.border = element_rect(colour = "black", fill=NA, size = 0.5)) +
   scale_x_continuous(limits = c(0, 1000)) +
   scale_y_continuous(limits = c(-1.1,1.5), expand = c(0, 0), breaks=c(-1.0, -0.5, 0, 0.5, 1)) +
@@ -703,7 +712,7 @@ figure_samplesize <- ggplot(newdat, aes(x = N.final, y = ES)) +
   geom_ribbon(aes(ymin = lower, ymax = upper, x = N.final), fill = "black", alpha=0.1) +
   geom_smooth(aes(y = fit, x = N.final), color = "black", size = 0.5) +
   labs(x = "Sample size",
-       y = "Effect size (Zr)") +
+       y = "Effect size (Fisher's Z r)") +
   annotate("text", x = 900, y = 1.35, size = 4, label = "italic(k) == 444", parse = TRUE)+ geom_point(aes(x=905, y=-0.8), shape = 21, color = "goldenrod3", fill = "#e6be78", cex=0.35*15) +
   geom_point(aes(x=850, y=-0.8), shape = 21, color = "goldenrod3", fill = "#e6be78", cex = 0.35*5) +
   annotate("text", x = 750, y = -0.8, size = 4, label = "Precision (1/SE)") +
@@ -797,8 +806,8 @@ figure_no_of_years <- ggplot(newdat, aes(x = N.final, y = ES)) +
   theme(axis.text.y = element_text(size = 12.5, colour = "black"), 
         axis.text.x = element_text(size = 12.5, colour = "black"), 
         panel.background = element_rect(fill = "white"),
-        axis.title.y  = element_text(size=20, vjust = 0.5),
-        axis.title.x  = element_text(size=20, vjust = 0.5),
+        axis.title.y  = element_text(size=16, vjust = 0.5,face="bold"),
+        axis.title.x  = element_text(size=20, vjust = 0.5,face="bold"),
         panel.border = element_rect(colour = "black", fill=NA, size = 0.5)) +
   scale_x_continuous(limits = c(0, 45)) +
   scale_y_continuous(limits = c(-1.5,1.5), expand = c(0, 0), breaks=c(-1.0, -0.5, 0, 0.5, 1)) +
@@ -812,7 +821,7 @@ figure_no_of_years <- ggplot(newdat, aes(x = N.final, y = ES)) +
   geom_ribbon(aes(ymin = lower, ymax = upper, x = N.final), fill = "black", alpha=0.1) +
   geom_smooth(aes(y = fit, x = N.final), color = "black", size = 0.5) +
   labs(x = "Number of years study was performed",
-       y = "Effect size (Zr)") +
+       y = "Effect size (Fisher's Z r)") +
   annotate("text", x = 44, y = 1.35, size = 4, label = "italic(k) == 444", parse = TRUE)+ geom_point(aes(x=43, y=-1.35), shape = 21, color = "grey36", fill = "grey50", cex=0.35*15) +
   geom_point(aes(x=40, y=-1.35), shape = 21, color = "grey36", fill = "grey50", cex = 0.35*5) +
   annotate("text", x = 35, y = -1.35, size = 4, label = "Precision (1/SE)") +
@@ -1472,7 +1481,7 @@ cbpl <- c("#D55E00","#E69F00","#009E73",   "#CC79A7", "#56B4E9", "#F0E442", "#99
 
 
 
-orchard_plot_plural(meta_measuretype_social, mod = "MeasureType_Category",xlab = "Effect size (Fisher's Z r", angle = 0)+ylab("Measures of reproductive success")+ theme(axis.title.y = element_text(size=16,face="bold"))+xlim(-1.0,1.5)
+orchard_plot_plural(meta_measuretype_social, mod = "MeasureType_Category",xlab = "Effect size (Fisher's Z r)", angle = 0)+ylab("Measure of reproductive success")+ theme(axis.title.y = element_text(size=16,face="bold"))+xlim(-1.0,1.5)
 
 
 
@@ -2242,7 +2251,11 @@ cbpl <- c("#D55E00","#E69F00","#009E73",   "#CC79A7", "#56B4E9", "#F0E442", "#99
     ggplot2::theme(axis.title.x = element_text(size = 18, colour ="black", face = "bold",
                                               hjust = 0.5,
                                               vjust = -0.5,
-                                              angle = 0)) 
+                                              angle = 0)) +
+    ggplot2::theme(axis.title.y = element_text(size = 18, colour ="black", face = "bold",
+                                              hjust = 0.5,
+                                              vjust = -0.5,
+                                              angle = angle)) 
 	  # putting colours in
 	  if(cb == TRUE){
 	    plot <- plot +
@@ -2258,19 +2271,21 @@ cbpl <- c("#D55E00","#E69F00","#009E73",   "#CC79A7", "#56B4E9", "#F0E442", "#99
 	  return(plot)
 }
 
+s
 
 
 
-
-orchard_plot_philopatry(meta_philopatry,mod = "FemalePhilopatry", xlab="Effect size (Fisher's r)",cb=FALSE)+ theme(axis.text.y = element_text(size=8))+scale_y_discrete(labels=c("Factor(Philopatry)FemaleDispersal"="Female dispersal","Factor(Philopatry)"="Female philopatry"))+
+orchard_plot_philopatry(meta_philopatry,mod = "FemalePhilopatry", xlab="Effect size (Fisher's Z r)",cb=FALSE)+ theme(axis.text.y = element_text(size=8))+scale_y_discrete(labels=c("Factor(Philopatry)FemaleDispersal"="Female dispersal","Factor(Philopatry)"="Female philopatry"))+
 	      scale_fill_manual(values=c("grey20","blue")) +
 	      scale_colour_manual(values=c("grey20","blue"))+
         theme(axis.text = element_text(size = 24, colour ="black", face = "bold",
                                               hjust = 0.5,
                                               vjust = -0.5,
-                                              angle = 90))
-
-+scale_y_discrete(labels=c("Factor(Philopatry)1"="Cooperative","Factor()2"="Plural", "Factor()3"="Associated"))
+                                              angle = 90))+
+        theme(axis.text.y = element_text(size = 15, colour ="black",
+                                              hjust = -0.5,
+                                              vjust = 0.5,
+                                              angle = 0))
 
 ```
 
@@ -2809,6 +2824,24 @@ We find no differences in effect sizes (after accounting for shared phylogenetic
   - presence or absence of infanticide by males
   - and sexual dimorphism in body size.
 
+
+**Table 1.** Output of correlogram analyses linking pairwise relatedness to pairwise distances. The values represent the correlations between relatedness and distances for males and females across trapping sites binned into distance classes, with the probability of observing the values by chance corrected for the multiple tests across distances classes (based on the Holm-Bonferroni method).
+
+```{r table1, eval=TRUE, warning=FALSE, results='asis', echo=FALSE}
+options(width=60)
+
+predictorvariable<-c("litters per year","population density","group size","cooperative breeding","philopatry","sex ratio")
+metaforresults<-c("+0.01 - +0.07","+0.01 - +0.07","-0.01 - -0.07","+0.05 - +0.07","+0.01 - +0.09","+0.01 - +0.07")
+rethinkingresults<-c("+0.01 - +0.07","+0.01 - +0.07","-0.01 - -0.07","+0.05 - +0.07","+0.01 - +0.09","+0.01 - +0.07")
+
+
+d <- data.frame(predictorvariable,metaforresults,rethinkingresults)
+
+colnames(d)<-c("Predictor variable","Metafor compatibility estimate of association","Rethinking compatibility estimate of association")
+
+knitr::kable(d)
+```
+  
 
 
 
@@ -4104,7 +4137,15 @@ orchard_plot_macaques(meta_macaques,mod = "dominancestyle", xlab="Effect size (F
         theme(axis.text = element_text(size = 24, colour ="black", face = "bold",
                                               hjust = 0.5,
                                               vjust = -0.5,
-                                              angle = 90))
+                                              angle = 90))+
+        theme(axis.text = element_text(size = 24, colour ="black", face = "bold",
+                                              hjust = 0.5,
+                                              vjust = -0.5,
+                                              angle = 90))+
+        theme(axis.text.y = element_text(size = 15, colour ="black",
+                                              hjust = -0.5, 
+                                              vjust = 0.5,
+                                              angle = 0))
 
 
 ```
