@@ -1292,58 +1292,54 @@ precis(rethinking_rankmeasured,depth=2)[445:451,]
 plot(precis( rethinking_rankmeasured , depth=2 , pars="a" ))
 
 
-originalpar<-par()
-
-op <- par(oma=c(0,2.5,0,0), mar=c(4.5,4.5,3.2,4.2), mfrow=c(2,1))
-
 meta_measuretype_cooperative <- rma.mv(yi=Fishers_Z_r, V=Variance, data=dat[dat$BreedingSystem=="1",], mods=~ -1+ MeasureType_Category, random=list(~1|StudyRef,~1|StudyPopulation,~1|SpeciesRef,~1|EffectRef))
 
 
-orchard_plot_cooperative <- function(object, mod = "Int", xlab, N = "none", alpha = 0.5, angle = 90, cb = TRUE, k = TRUE, transfm = c("none", "tanh")) {
-
+orchard_plot_cooperative <- function(object, mod = "Int", N = "none", alpha = 0.5, angle = 90, cb = TRUE, k = TRUE, transfm = c("none", "tanh")) {
+  
   ## evaluate choices
   transfm <- match.arg(transfm) # if not sepcificed it takes the first choice
-
-	if(any(class(object) %in% c("rma.mv", "rma.uni", "rma"))){
-		if(mod != "Int"){
-			object <- mod_results(object, mod)
-		} else{
-			object <- mod_results(object, mod = "Int")
-			}
-	}
-
-	mod_table <- object$mod_table
-
+  
+  if(any(class(object) %in% c("rma.mv", "rma.uni", "rma"))){
+    if(mod != "Int"){
+      object <- mod_results(object, mod)
+    } else{
+      object <- mod_results(object, mod = "Int")
+    }
+  }
+  
+  mod_table <- object$mod_table
+  
   data <- object$data
   data$moderator <- factor(data$moderator, levels = mod_table$name, labels = mod_table$name)
-
-	data$scale <- (1/sqrt(data[,"vi"]))
-	legend <- "Precision (1/SE)"
-
-	if(any(N != "none")){
-		  data$scale <- N
-		  legend <- "Sample Size (N)"
-	}
-
-	if(transfm == "tanh"){
-		                   cols <- sapply(mod_table, is.numeric)
-		mod_table[,cols] <- Zr_to_r(mod_table[,cols])
-		                data$yi <- Zr_to_r(data$yi)
-		                  label <- xlab
-	}else{
-		label <- xlab
-	}
-
-	 mod_table$K <- as.vector(by(data, data[,"moderator"], function(x) length(x[,"yi"])))
-
-	 # the number of groups in a moderator & data points
-	 group_no <- nrow(mod_table)
-	 #data_no <- nrow(data)
-
-	# colour blind friendly colours with grey
-	 cbpl <- c("#E69F00","#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7", "#56B4E9", "#999999")
-
-	# Make the orchard plot
+  
+  data$scale <- (1/sqrt(data[,"vi"]))
+  legend <- "Precision (1/SE)"
+  
+  if(any(N != "none")){
+    data$scale <- N
+    legend <- "Sample Size (N)"
+  }
+  
+  if(transfm == "tanh"){
+    cols <- sapply(mod_table, is.numeric)
+    mod_table[,cols] <- Zr_to_r(mod_table[,cols])
+    data$yi <- Zr_to_r(data$yi)
+    label <- xlab
+  }else{
+    label <- xlab
+  }
+  
+  mod_table$K <- as.vector(by(data, data[,"moderator"], function(x) length(x[,"yi"])))
+  
+  # the number of groups in a moderator & data points
+  group_no <- nrow(mod_table)
+  #data_no <- nrow(data)
+  
+  # colour blind friendly colours with grey
+  cbpl <- c("#E69F00","#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7", "#56B4E9", "#999999")
+  
+  # Make the orchard plot
   plot <- ggplot2::ggplot(data = mod_table, aes(x = estimate, y = name)) +
     # pieces of fruit (bee-swarm and bubbles)
     ggbeeswarm::geom_quasirandom(data = data, aes(x = yi, y = moderator, size = scale, colour = moderator), groupOnX = FALSE, alpha=alpha) +
@@ -1362,78 +1358,68 @@ orchard_plot_cooperative <- function(object, mod = "Int", xlab, N = "none", alph
     ggplot2::theme(legend.position= c(1, 0), legend.justification = c(1, 0)) +
     ggplot2::theme(legend.title = element_text(size = 11)) +
     ggplot2::theme(legend.direction="horizontal") +
-    ggplot2::theme(legend.background = element_blank()) +
-    ggplot2::labs(x = label, y = "", size = legend) +
-    ggplot2::theme(axis.text.y = element_text(size = 14, colour ="black",
-                                              hjust = 0.5,
-                                              angle = angle)) +
-    ggplot2::theme(axis.text.x = element_text(size = 14, colour ="black",
-                                              hjust = 0.5,
-                                              angle = 0)) + 
-    ggplot2::theme(axis.title.x = element_text(size = 18, colour ="black", face = "bold",
-                                              hjust = 0.5,
-                                              vjust = -0.5,
-                                              angle = 0))
-	  # putting colours in
-	  if(cb == TRUE){
-	    plot <- plot +
-	      scale_fill_manual(values=cbpl) +
-	      scale_colour_manual(values=cbpl)
-	  }
-
-				     # putting k in
-          if(k == TRUE){
-                plot <- plot +
-                  ggplot2::annotate('text', x = (max(data$yi) + (max(data$yi)*0.10)), y = (seq(1, group_no, 1)+0.3),
-                  label= paste("italic(k)==", mod_table$K), parse = TRUE, hjust = "right", size = 3.5)
-          }
-
-	  return(plot)
+    ggplot2::theme(legend.background = element_blank())  +
+    ggplot2::labs(x = label, y = "", size = legend)
+  # putting colours in
+  if(cb == TRUE){
+    plot <- plot +
+      scale_fill_manual(values=cbpl) +
+      scale_colour_manual(values=cbpl)
+  }
+  
+  # putting k in
+  if(k == TRUE){
+    plot <- plot +
+      ggplot2::annotate('text', x = (max(data$yi) + (max(data$yi)*0.10)), y = (seq(1, group_no, 1)+0.3),
+                        label= paste("italic(k)==", mod_table$K), parse = TRUE, hjust = "right", size = 3.5)
+  }
+  
+  return(plot)
 }
 
 
-orchard_plot_cooperative(meta_measuretype_cooperative, mod = "MeasureType_Category",xlab = "Effect size (Fisher's Z r)", angle = 0)+ylab("Measure of reproductive success")+ theme(axis.title.y = element_text(size=16,face="bold"))+xlim(-1.0,1.5)
+plot1<-orchard_plot_cooperative(meta_measuretype_cooperative)+xlim(-3.0,1.5)+theme(axis.line=element_blank(),axis.text.x=element_blank(),axis.text.y = element_blank(),axis.title.x = element_blank(),axis.title.y=element_blank())+ theme(plot.margin = unit(c(1,1,0,15), "lines"))+annotate('text', x = -2, y = 1:3, label = c("Infant production","Infant survival","Adult survival"),fontface="bold",size=5,col=c("#E69F00", "#009E73","#F0E442"))+coord_cartesian(ylim = c(0.5, 3),xlim=c(-1.0,1.5), clip = "off")
 
 
 #For plural and associative breeders
 meta_measuretype_social<- rma.mv(yi=Fishers_Z_r, V=Variance, data=dat[dat$BreedingSystem!="1",], mods=~ -1+ MeasureType_Category, random=list(~1|StudyRef,~1|StudyPopulation,~1|SpeciesRef,~1|EffectRef))
 
-orchard_plot_plural <- function(object, mod = "Int", xlab, N = "none", alpha = 0.5, angle = 90, cb = TRUE, k = TRUE, transfm = c("none", "tanh")) {
- ## evaluate choices
+orchard_plot_plural <- function(object, mod = "Int", N = "none", alpha = 0.5, angle = 90, cb = TRUE, k = TRUE, transfm = c("none", "tanh")) {
+  ## evaluate choices
   transfm <- match.arg(transfm) # if not sepcificed it takes the first choice
-	if(any(class(object) %in% c("rma.mv", "rma.uni", "rma"))){
-		if(mod != "Int"){
-			object <- mod_results(object, mod)
-		} else{
-			object <- mod_results(object, mod = "Int")
-			}
-	}
-	mod_table <- object$mod_table
+  if(any(class(object) %in% c("rma.mv", "rma.uni", "rma"))){
+    if(mod != "Int"){
+      object <- mod_results(object, mod)
+    } else{
+      object <- mod_results(object, mod = "Int")
+    }
+  }
+  mod_table <- object$mod_table
   data <- object$data
   data$moderator <- factor(data$moderator, levels = mod_table$name, labels = mod_table$name)
-	data$scale <- (1/sqrt(data[,"vi"]))
-	legend <- "Precision (1/SE)"
-	if(any(N != "none")){
-		  data$scale <- N
-		  legend <- "Sample Size (N)"
-	}
-	if(transfm == "tanh"){
-		                   cols <- sapply(mod_table, is.numeric)
-		mod_table[,cols] <- Zr_to_r(mod_table[,cols])
-		                data$yi <- Zr_to_r(data$yi)
-		                  label <- xlab
-	}else{
-		label <- xlab
-	}
-	 mod_table$K <- as.vector(by(data, data[,"moderator"], function(x) length(x[,"yi"])))
-	 # the number of groups in a moderator & data points
-	 group_no <- nrow(mod_table)
-	 #data_no <- nrow(data)
-
-	# colour blind friendly colours with grey
-cbpl <- c("#D55E00","#E69F00","#009E73",   "#CC79A7", "#56B4E9", "#F0E442", "#999999")
-
-	# Make the orchard plot
+  data$scale <- (1/sqrt(data[,"vi"]))
+  legend <- "Precision (1/SE)"
+  if(any(N != "none")){
+    data$scale <- N
+    legend <- "Sample Size (N)"
+  }
+  if(transfm == "tanh"){
+    cols <- sapply(mod_table, is.numeric)
+    mod_table[,cols] <- Zr_to_r(mod_table[,cols])
+    data$yi <- Zr_to_r(data$yi)
+    label <- xlab
+  }else{
+    label <- xlab
+  }
+  mod_table$K <- as.vector(by(data, data[,"moderator"], function(x) length(x[,"yi"])))
+  # the number of groups in a moderator & data points
+  group_no <- nrow(mod_table)
+  #data_no <- nrow(data)
+  
+  # colour blind friendly colours with grey
+  cbpl <- c("#D55E00","#E69F00","#009E73",   "#CC79A7", "#56B4E9", "#F0E442", "#999999")
+  
+  # Make the orchard plot
   plot <- ggplot2::ggplot(data = mod_table, aes(x = estimate, y = name)) +
     # pieces of fruit (bee-swarm and bubbles)
     ggbeeswarm::geom_quasirandom(data = data, aes(x = yi, y = moderator, size = scale, colour = moderator), groupOnX = FALSE, alpha=alpha) +
@@ -1461,32 +1447,38 @@ cbpl <- c("#D55E00","#E69F00","#009E73",   "#CC79A7", "#56B4E9", "#F0E442", "#99
                                               hjust = 0.5,
                                               angle = 0)) + 
     ggplot2::theme(axis.title.x = element_text(size = 18, colour ="black", face = "bold",
-                                              hjust = 0.5,
-                                              vjust = -0.5,
-                                              angle = 0))
-	  # putting colours in
-	  if(cb == TRUE){
-	    plot <- plot +
-	      scale_fill_manual(values=cbpl) +
-	      scale_colour_manual(values=cbpl)
-	  }
-				     # putting k in
-          if(k == TRUE){
-                plot <- plot +
-                  ggplot2::annotate('text', x = (max(data$yi) + (max(data$yi)*0.10)), y = (seq(1, group_no, 1)+0.3),
-                  label= paste("italic(k)==", mod_table$K), parse = TRUE, hjust = "right", size = 3.5)
-          }
-	  return(plot)
+                                               hjust = 0.5,
+                                               vjust = -0.5,
+                                               angle = 0))
+  # putting colours in
+  if(cb == TRUE){
+    plot <- plot +
+      scale_fill_manual(values=cbpl) +
+      scale_colour_manual(values=cbpl)
+  }
+  # putting k in
+  if(k == TRUE){
+    plot <- plot +
+      ggplot2::annotate('text', x = (max(data$yi) + (max(data$yi)*0.10)), y = (seq(1, group_no, 1)+0.3),
+                        label= paste("italic(k)==", mod_table$K), parse = TRUE, hjust = "right", size = 3.5)
+  }
+  
+  return(plot)
 }
 
 
 
-orchard_plot_plural(meta_measuretype_social, mod = "MeasureType_Category",xlab = "Effect size (Fisher's Z r)", angle = 0)+ylab("Measure of reproductive success")+ theme(axis.title.y = element_text(size=16,face="bold"))+xlim(-1.0,1.5)
+plot2<-orchard_plot_plural(meta_measuretype_social)+xlim(-3.0,1.5)+theme(axis.line=element_blank(),axis.text.x=element_blank(),axis.text.y = element_blank(),axis.title.x = element_blank(),axis.title.y=element_blank())+ theme(plot.margin = unit(c(0,1,5,15), "lines"))+annotate('text', x = 1, y = -0.4, label = "1.0",fontface="bold",size=4)+annotate('text', x = 2, y = -0.4, label = "2.0",fontface="bold",size=4) +annotate('text', x = 0.0, y = -0.4, label = "0.0",fontface="bold",size=4)+annotate('text', x = 0.5, y = -0.4, label = "0.5",fontface="bold",size=4)+annotate('text', x = 1.5, y = -0.4, label = "1.5",fontface="bold",size=4)+annotate('text', x = -0.5, y = -0.4, label = "-0.5",fontface="bold",size=4)+annotate('text', x = -1.0, y = -0.4, label = "-1.0",fontface="bold",size=4)+annotate('text', x = 0.25, y = -1.0, label = "Effect size (Fisher's Z r)",fontface="bold",size=6)+annotate('text', x = -2, y = 1:7, label = c("Age at first conception","Infant production","Infant survival","Inter-birth interval","Lifetime success","Adult survival",""),fontface="bold",size=5,col=c("#D55E00","#E69F00","#009E73",   "#CC79A7", "#56B4E9", "#F0E442", "#999999"))+coord_cartesian(ylim = c(0.5, 6.5), xlim=c(-1,1.5),clip = "off")
 
 
 
-par<-originalpar
-
+plot_grid(plot1,
+          plot2,
+          labels = c('Fig A) Cooperative breeders','Fig B) Plural breeders'),
+          label_x = 0.0,
+          hjust = -0.05,
+          ncol = 1,
+          rel_heights = c(1,2))
 
 ```
 
