@@ -2817,21 +2817,33 @@ We find no differences in effect sizes (after accounting for shared phylogenetic
   - and sexual dimorphism in body size.
 
 
-**Table 1.** Output of correlogram analyses linking pairwise relatedness to pairwise distances. The values represent the correlations between relatedness and distances for males and females across trapping sites binned into distance classes, with the probability of observing the values by chance corrected for the multiple tests across distances classes (based on the Holm-Bonferroni method).
+**Table 1.** Associations between individual predictor variables and the effect sizes of dominance rank on female reprodutive success.
 
 ```{r table1, eval=TRUE, warning=FALSE, results='asis', echo=FALSE}
 options(width=60)
 
-predictorvariable<-c("litters per year","population density","group size","cooperative breeding","philopatry","sex ratio")
-metaforresults<-c("+0.01 - +0.07","+0.01 - +0.07","-0.01 - -0.07","+0.05 - +0.07","+0.01 - +0.09","+0.01 - +0.07")
-rethinkingresults<-c("+0.01 - +0.07","+0.01 - +0.07","-0.01 - -0.07","+0.05 - +0.07","+0.01 - +0.09","+0.01 - +0.07")
+predictorvariable_associated<-c("litters per year","population density","group size","cooperative breeding","philopatry","sex ratio")
+metaforresults_associated<-c("+0.03 - +0.05","+0.04 - +0.08","-0.07 - -0.01","+0.30 - +0.40","+0.24 - -0.12","+0.44 - +1.25")
+rethinkingresults_associated<-c("+0.05 - +0.09","+0.05 - +0.10","-0.10 - -0.05","+0.27 - +0.41","-0.25 - -0.11","+0.07 - +0.11")
+
+d_associated <- data.frame(predictorvariable_associated,metaforresults_associated,rethinkingresrethinkingresults_associatedults)
+
+colnames(d_associated)<-c("Predictor variable","Metafor compatibility estimate of association","Rethinking compatibility estimate of association")
+
+knitr::kable(d_associated)
+
+predictorvariable_notassociated<-c("litter size","dominance acquisition","diet","environmental harshness","average relatedness","female coalitions","male infanticide","sexual dimorphism")
+metaforresults_notassociated<-c("-0.01 - +0.03","-0.07 - +0.03","-0.04 - +0.03","-0.30 - +0.40","-0.01 - +0.56","-0.10 - +0.07","-0.13 - +0.07","-0.17 - +0.11")
+rethinkingresults_notassociated<-c("-0.04 - +0.09","-0.01 - +0.12","-0.10 - +0.06","-0.60 - +0.10","-0.01 - +0.12","-0.09 - +0.07","-0.07 - +0.06","-0.05 - +0.01")
+
+d_notassociated <- data.frame(predictorvariable_notassociated,metaforresults_notassociated,rethinkingresults_notassociated)
+
+colnames(d_notassociated)<-c("Predictor variable","Metafor compatibility estimate of association","Rethinking compatibility estimate of association")
+
+knitr::kable(d_notassociated)
 
 
-d <- data.frame(predictorvariable,metaforresults,rethinkingresults)
 
-colnames(d)<-c("Predictor variable","Metafor compatibility estimate of association","Rethinking compatibility estimate of association")
-
-knitr::kable(d)
 ```
   
 
@@ -3353,7 +3365,7 @@ Female dispersal is more common in cooperative breeders (46%) than in plural/ass
 
 **R5.2.7 Coalition formation and cooperative breeding**
 
-Coalition formation does not occur in cooperative breeders, leading to a potential confound. Restricting the analyses to plural/associated breeders, we find that effect sizes are higher in species in which females do form coalitions than in species where they do not (metafor estimate 0.00 - +0.14, rethinking estimate +0.01 - +0.11).
+Coalition formation does not occur in cooperative breeders, leading to a potential confound. Restricting the analyses to plural/associated breeders, we find that effect sizes are higher in species in which females do form coalitions than in species where they do not (metafor estimate 0.00 - +0.14, rethinking estimate +0.01 - +0.11). We did not differentiate between stabilizing coalitions, which usually occur among kin to maintain matrilineal rank differences, and revolutionary coalitions, which usually occur among unrelated individuals to limit the power of others in the group.
 
 
 ```{r ranksuccess_social_cooperativebreeding, eval=FALSE, warning=FALSE, results='asis', echo=FALSE}
