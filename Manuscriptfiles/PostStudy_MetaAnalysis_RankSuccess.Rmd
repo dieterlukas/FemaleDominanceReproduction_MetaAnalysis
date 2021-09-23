@@ -226,7 +226,7 @@ We predict that the association between high dominance rank and increased reprod
 
 #### **5) Potential interactions among predictor variables**
 \ 
-We expect potential interactions among the predictor variables because some of the might influence each other while others might potentially modulate the influence of another predictor variable on the dominance effects. The following six predictions were those we added in the preregistration. We added further analyses based on the outcome of the single-factor analyses. These are listed in the changes from the preregistration section.
+We expect potential interactions among the predictor variables because some of them might influence each other while others might potentially modulate the influence of another predictor variable on the dominance effects. The following six predictions were those we added in the preregistration. We added further analyses based on the outcome of the single-factor analyses. These are listed in the changes from the preregistration section.
   
   &nbsp; 
 
@@ -322,7 +322,7 @@ The following data were added prior to the analyses. For most of these, we extra
 
 **Coalition formation**: whether adult females form coalitions with other female group members to support each other during within-group aggressive interactions; data from species-level descriptions of female behaviour (based on the data in @lukas2018social).
 
-**Sexual dimorphism in body weight**: we calculated sexual dimorphism following the two step approach of @smith1999statistics as the average weight of males of that species divided by average weight of females of that species if males are heavier than females and as 2 minus the average weight of females divided by the average weight of males (based on data in:@jarman1983mating, @loison1999factors, @smith2002scaling, @isaac2005potential, and @kappeler2019evolutionary)
+**Sexual dimorphism in body weight**: we calculated sexual dimorphism following the two step approach of @smith1999statistics as the average weight of males divided by average weight of females if males are heavier than females and as 2 minus the average weight of females divided by the average weight of males otherwise (based on data in:@jarman1983mating, @loison1999factors, @smith2002scaling, @isaac2005potential, and @kappeler2019evolutionary)
 
 **Male infanticide**: whether adult males in that species kill offspring (based on the data in @lukas2014evolution).
 
@@ -611,7 +611,7 @@ plot(selmodel(meta_basic,type="stepfun",steps=c(0.005,0.01,0.025,0.05,0.1,0.9,0.
 
 ```
 
-As a further indication of 'publication bias', we find that studies with small sample sizes and small effect sizes (those that presumably did not reach statistical significance) are missing in our dataset such that the average effect sizes at smaller sample sizes are more extreme than those at larger sample sizes (estimate of sample size on effect sizes metafor -0.03 - -0.02, rethinking -0.09 - -0.04) (Figure 2). 
+As a further indication of 'publication bias', we find that studies with small sample sizes and small effect sizes (those that presumably did not reach statistical significance) are missing in our dataset such that the average effect sizes at smaller sample sizes are more extreme than those at larger sample sizes (estimate of sample size on effect sizes metafor -0.03 - -0.02, rethinking -0.09 - -0.04) (Figure 2). Nevertheless, the estimated effect sizes in this model remain consistently larger than zero, indicating that even after including any missing studies with small or negative effect sizes there would still be on average a positive relationship between dominance rank and female reproductive success across studies.
 
   &nbsp;
   
@@ -878,7 +878,7 @@ precis(rethinking_simple)
   &nbsp;
   
 **R1.3 Influence of locality/species**: 
-To the base model, we added random effects to account for non-independence due to effect sizes originating from within the same study, from studies performed on the same population and on the same species. The estimate of the overall effect size did not change in this model (metafor estimate +0.22 - +0.31, rethinking estimate +0.26 - +0.35). Effect sizes from the same species and the same study, but not the same population, tend to be similar to each other. The absence of a population effect could be because there are only very few observations in our dataset of the same population taken in different studies where there are also observations from multiple additional populations of the same species. Alternatively, it could be that effects due not vary across populations of the same species, which is also indicated by the absence of differences between wild and captive populations (see below).
+To the base model, we added random effects to account for non-independence due to effect sizes originating from within the same study, from studies performed on the same population and on the same species. The estimate of the overall effect size did not change in this model (metafor estimate +0.22 - +0.31, rethinking estimate +0.26 - +0.35). Effect sizes from the same species and the same study, but not the same population, tend to be similar to each other. The absence of a population effect could be because there are only very few observations in our dataset of the same population taken in different studies where there are also observations from multiple additional populations of the same species. Alternatively, it could be that effects do not vary across populations of the same species, which is also indicated by the absence of differences between wild and captive populations (see below).
 
 ```{r ranksuccess_samesource, eval=FALSE, warning=FALSE, results='asis', echo=FALSE}
 
@@ -1058,7 +1058,7 @@ par<-originalpar
 **R1.5 Influence of approach**:
 To the base model, we add random effects reflecting the differences in approaches across studies (dominance ranks classified continuous/categorical; dominance determined through agonism/correlate; population type wild/provisioned/captive; number of years of the study).
 
-Studies which measured dominance rank categorically by classifying individuals as either dominants or subordinates report higher effect sizes (metafor estimate +0.29 - +0.35, rethinking estimate +0.31 - +0.41; n=251 effect sizes) than studies assigning individuals continuous ranks (metafor estimate 0.16-0.22, rethinking estimate +0.17 - +0.28; n=193 effect sizes). In essentially all studies of cooperative breeders (31 of 32 effect sizes), comparisons were between the single dominant female and a class of the remaining subordinate females, which may contribute to higher effect sizes for sgudies using categorical measures of rank (see section R5.2.1).
+Studies which measured dominance rank categorically by classifying individuals as either dominants or subordinates report higher effect sizes (metafor estimate +0.29 - +0.35, rethinking estimate +0.31 - +0.41; n=251 effect sizes) than studies assigning individuals continuous ranks (metafor estimate 0.16-0.22, rethinking estimate +0.17 - +0.28; n=193 effect sizes). In essentially all studies of cooperative breeders (31 of 32 effect sizes), comparisons were between the single dominant female and a class of the remaining subordinate females, which may contribute to higher effect sizes for studies using categorical measures of rank (see section R5.2.1).
 
 Studies which determined the rank of females based on agonistic interactions have lower effect sizes (metafor estimate +0.22 - +0.26, rethinking estimate +0.24 - +0.32; n=407 effect sizes) than studies which used other correlates (body size, age, etc.) to assign dominance ranks (metafor estimate 0.43-0.55, rethinking estimate +0.41 - +0.63; n=37 effect sizes). These 37 effect sizes where rank was assigned based on correlates are from cooperative breeders and/or studies in which groups consisted of mothers and their daughters.
 
@@ -1252,7 +1252,7 @@ Dominance rank appears to have the highest effect on age at first conception (me
 ---
 
 ![](ranksuccess_Fig5_effectsize_lifehistorymeasure.png) 
-**Figure 5.** Effect sizes of dominance rank on reproductive success are generally higher for cooperative breeders (a) than for plural breeders (b), and differ according to the measure of reproductive success. In general, dominance appears to have stronger effects on reproductive output (lifetime reproductive success, age at first conception, infant production, inter-birth intervals) than on survival (both of the adult females themselves and of their infants).
+**Figure 5.** Raw effect sizes of dominance rank on reproductive success are generally higher for cooperative breeders (a) than for plural breeders (b), and differ according to the measure of reproductive success. In general, dominance appears to have stronger effects on reproductive output (lifetime reproductive success, age at first conception, infant production, inter-birth intervals) than on survival (both of the adult females themselves and of their infants). The differences between measures of reproductive success change slightly when accounting for similarity among observations from the same and related species, but the ordering remains the same.
 
 ---
 
@@ -2961,7 +2961,7 @@ We found that effect sizes of dominance rank on reproductive success are associa
 options(width=60)
 
 predictorvariable_associated<-c("litters per year","population density","group size","cooperative breeding","philopatry","sex ratio")
-metaforresults_associated<-c("+0.03 - +0.05","+0.04 - +0.08","-0.07 - -0.01","+0.30 - +0.40","+0.24 - -0.12","+0.44 - +1.25")
+metaforresults_associated<-c("+0.03 - +0.05","+0.04 - +0.08","-0.07 - -0.01","+0.30 - +0.40","-0.24 - -0.12","+0.44 - +1.25")
 rethinkingresults_associated<-c("+0.05 - +0.09","+0.05 - +0.10","-0.10 - -0.05","+0.27 - +0.41","-0.25 - -0.11","+0.07 - +0.11")
 
 d_associated <- data.frame(predictorvariable_associated,metaforresults_associated,rethinkingresults_associated)
@@ -4052,7 +4052,7 @@ The analyses of combinations of predictors of the effect size of dominance on ra
 
 ## Discussion
 
-Our study finds that, in social mammals, dominant females have higher reproductive success than lower-ranking females. Positive effects of dominance rank are present for all our measures of life history and among plural breeders, where data for all measures of life history exist, are highest for life-time reproductive success. This suggests that even if dominants might face some trade-offs (e.g. higher stress levels @cavigelli2003female), obtaining a high ranking position in a social group leads to fitness benefits, though how females obtain these benefits (e.g. shorter interbirth intervals versus larger offspring) differ between populations. Our meta-analysis also highlights several factors associated with variation in the strength of the effect of dominance rank on reproductive success, where social factors in particular appear to have a modulating influence while variation in life history and ecological factors appears of less importance. Despite a consistent positive relationship between higher dominance rank and higher reproductive success, the data we were able to bring together for this study show some biases that suggest that further studies might detect lower effects. Our investigation of sample bias indicates a combination of publication bias, study system bias, and study time bias. Unlike often claimed for meta-analyses, the over-representation of positive findings in our case appears not to be primarily due to a file-drawer problem of unpublished negative findings but due to researchers targeting their efforts on feasible systems. Studies into the potential mechanisms of female competition and reproductive suppression have focused on species where there are clear difference in reproductive success between dominants and subordinates. In addition, obtaining reliable reproductive success data in long-lived mammals takes particular effort, again likely limiting the systems that have been studied to investigate the effects of dominance rank. We did find that studies conducted for longer time periods show less variance in their estimates, potentially because they also have larger sample sizes. Alternatively, or in addition, studies conducted across longer-times frames might be less likely to show extreme effect size estimates because natural changes in dominance rank and events that affect all females equally (e.g. infanticide @cheney2004factors) occur relatively regularly across a multi-year study, while estimates derived over short time frames may over-estimate effect sizes.
+Our study finds that, in social mammals, dominant females have higher reproductive success than lower-ranking females. Positive effects of dominance rank are present for all our measures of life history and among plural breeders, where data for all measures of life history exist, are highest for life-time reproductive success. This suggests that even if dominants might face some trade-offs (e.g. higher stress levels @cavigelli2003female), obtaining a high ranking position in a social group leads to fitness benefits, though how females obtain these benefits (e.g. shorter interbirth intervals versus larger offspring) differ between populations. Our meta-analysis also highlights several factors associated with variation in the strength of the effect of dominance rank on reproductive success, where social factors in particular appear to have a modulating influence while variation in life history and ecological factors appears of less importance. Despite a consistent positive relationship between higher dominance rank and higher reproductive success, the data we were able to bring together for this study show some biases that suggest that further studies might detect lower effects. Our investigation of sample bias indicates a combination of publication bias, study system bias, and study time bias. Unlike often claimed for meta-analyses, the over-representation of positive findings in our case appears not to be primarily due to a file-drawer problem of unpublished negative findings but due to researchers targeting their efforts on feasible systems. Studies into the potential mechanisms of female competition and reproductive suppression have focused on species where there are clear differences in reproductive success between dominants and subordinates. In addition, obtaining reliable reproductive success data in long-lived mammals takes particular effort, again likely limiting the systems that have been studied to investigate the effects of dominance rank. We did find that studies conducted for longer time periods show less variance in their estimates, potentially because they also have larger sample sizes. Alternatively, or in addition, studies conducted across longer time frames might be less likely to show extreme effect size estimates because natural changes in dominance rank and events that affect all females equally (e.g. infanticide @cheney2004factors) occur relatively regularly across a multi-year study, while estimates derived over short time frames may over-estimate effect sizes.
 
 Overall, we estimated an average effect of 0.28 of rank on reproductive success. What does this mean? First, it is important to highlight that this effect size reflects how well rank predicts reproductive success, but not directly indicates how different the reproductive success of high-ranking females is from that of low-ranking females. While the effect of dominance has to be zero in groups where all females have exactly the same reproductive success, an effect of zero is also found in a group where there are large differences in reproductive success across females which do not align with the females' dominance rank. Just by chance, we would expect differences in reproductive success among females in a social group and we could also expect that these differences are associated with traits that might be used to classify social rank. To assess whether the effects we detect are higher than such random variation, we performed simulations. For this, we simulated artificial groups of females reflecting macaques, the genus most common in our sample. We assumed that each female in each group might have between 0 to 8 offspring, with an average 2 (following a Poisson distribution, so most females have 1 or 2 offspring). We performed 10,000 simulations of six groups of twelve females each (the median group size in our data). When we set no association between rank and reproductive success, less than 0.1% of simulations showed an effect size as high or higher than the 0.28 we observe in the data (Figure 10). Effect sizes for a perfect association between each female's rank and her reproductive success ranged between 0.75-0.95 (mean 0.88). Simulations in which the two highest ranking females always have the highest reproductive success while rank among lower ranking females no longer is associated with success produces effect sizes close to what we observe (mean 0.32), whereas values tend to be slightly lower if only the highest ranking female consistently has the highest success (mean 0.18). These simulations cannot resolve whether high ranking females have higher reproductive success because they obtained this position or whether there are some traits that lead to both higher rank and higher reproductive success - or whether they are simply the lucky ones (@snyder2018pluck). However, the value of the overall effect size we observe compared to those under random expectations indicates that social rank has a particular association with reproductive success beyond the random variation we expect in social groups.
 
@@ -4148,11 +4148,11 @@ mtext("Number of independent simulation runs",side=2,cex=1.5,line=2.5,las=3)
 
 Among the social traits we investigated, the highest difference in the effect of rank on reproductive success was between cooperative breeders and plural/associated breeders. This results was expected given the higher reproductive skew that has been found among females in cooperative breeders (@lukas2012cooperative). The contrast between breeding systems appears due to the degree of reproductive control that dominants in cooperative breeders have over their, mostly related, group members. The likely importance of reproductive control of dominant females in cooperative breeders compared to plural/associated breeders are also reflected in the different relationships of the effect sizes with group size in the different breeding systems. While among cooperative breeders there usually is only a single breeding dominant female and large groups occur when her reproductive output is higher, dominant females in plural/associated breeders likely face reduced opportunities to control reproduction in larger groups (@rubenstein2016discrete). In this context, it is again important to note that we only look at the association between rank and the variation in reproductive success within groups. Even though the relative difference between dominant and subordinate females might be lower in larger group sizes, in terms of overall fitness it might still be better to be the dominant in a group of the optimal size rather than a smaller group (e.g. small group where dominant has 3 versus subordinate has 2 offspring (50% higher fitness) compared to large group where dominant has 4 while all other females have 3 offspring (33% higher fitness)). While reproductive control appears important in explaining high reproductive success of dominant females, we did not find that associations between the effect sizes and how females acquire and maintain rank. Effect sizes were similar when dominant females acquire their position by kin support versus aggression or age, and among macaque species were not associated with dominance styles. 
 
-Among plural and associated breeders, effects of dominance rank on female reproductive success are higher when (i) females disperse, (ii) groups are smaller, and (iii) females form coalitions. These observations are somewhat opposite to the processes presumably linked to reproductive suppression in cooperative breeders. In addition, these findings also do not support accounts that focus on nepotism as a primary factor in leading to social groups with large differences among females. It appears that in situations of strong nepotism females in a group might have more similar reproductive success, with patterns such as youngest sister ascendancy potentially reducing differences among kin (@datta1988acquisition, @bergstrom2010dominance, @lea2014complex). Instead, these findings suggest that competition among females might be highest in social groups in which females form complex relationships and rates of aggression are high (@lukas2018social).
+Among plural and associated breeders, effects of dominance rank on female reproductive success are higher when (i) females disperse, (ii) groups are smaller, and (iii) females form coalitions. These observations are somewhat opposite to the processes presumably linked to reproductive suppression in cooperative breeders. In addition, these findings also do not support accounts that focus on nepotism as a primary factor in leading to social groups with large differences among females. It appears that in situations of strong nepotism females in a group might have more similar reproductive success, with patterns such as youngest sister ascendancy potentially reducing differences among kin (@datta1988acquisition, @bergstrom2010dominance, @lea2014complex). Instead, these findings suggest that competition among females might be highest in social groups in which females form complex relationships and rates of aggression are high (@lukas2018social). In our sample we for example observe relative strong effects of high dominance rank on reproductive success among equids and among gorillas, who have similar social systems with females benefiting from forming social bonds with unfamiliar/unrelated individuals they encounter when joining new small groups upon reaching maturity (e.g. @cameron2009social).
 
-Of the ecological variables we investigated, only population density was associated with differences in effect sizes of dominance rank on reproductive success, again supporting the role of social interactions in shaping fitness outcomes of dominance interactions. The observation that other ecological factors do not mitigate the strength of the fitness benefit dominant females receive might suggests that dominants are consistently able to outcompete other females in the group rather than dominance only being important under challenging conditions. While local ecological conditions, rather than the species-level traits we used, might modulate fitness benefits of high dominance rank for females, it seems unlikely that there would be a strong directional influence given that effect sizes from the same species tend to be similar, even in captive conditions. In line with this, previous work has shown subordinate females may not always be the first to suffer under limiting conditions (@fedigan1983dominance). Instead, a number of ecological challenges affect all females independent of their rank thereby diminishing the relative benefits dominant females acquire (@altmann2003variability, @cheney2004factors). 
+Of the ecological variables we investigated, only population density was associated with differences in effect sizes of dominance rank on reproductive success, again supporting the role of social interactions in shaping fitness outcomes of dominance interactions. The observation that other ecological factors do not mitigate the strength of the fitness benefit dominant females receive might suggests that dominants are consistently able to outcompete other females in the group rather than dominance only being important under challenging conditions. While local ecological conditions, rather than the species-level traits we used, might modulate fitness benefits of high dominance rank for females, it seems unlikely that there would be a strong directional influence given that effect sizes from the same species tend to be similar, even in captive conditions. In line with this, previous work has shown that subordinate females may not always be the first to suffer under limiting conditions (@fedigan1983dominance). Instead, a number of ecological challenges, such as for example predation (@cheney2004factors), can affect all females independent of their rank and thereby diminishing the relative benefits dominant females acquire (@altmann2003variability). 
 
-The overall effect size of dominance rank on female reproductive success across the species in our sample is slightly higher than that reported in a previous study, though we find a similar value when we restrict our sample to primate species, the focus of the previous study (the average in our sample is 0.28, for only the primates in our sample 0.23, versus previously reported for primates 0.20 @majolo2012fitness). These estimates of the effects of female dominance rank are lower than those previously reported for males. The previous study on primates reports an effect of male dominance rank on fecundity of 0.71 (@majolo2012fitness), and estimates in a differernt study of the effect of dominance rank on males' mating success are ~0.6 (@cowlishaw1991dominance). Do these different estimates reflect that males benefit more from high dominance rank than females? We think that we cannot make such an inference at this stage. Measures of mating success might not necessarily translate in equally high skew in reproductive success and studies measuring male reproductive success tend to cover even shorter time periods than the studies that identify female reproductive success. Several of the factors we identified here to modulate the effect of dominance rank on reproductive success may also be linked to differences between females and males. However, it could be expected that males benefit more from rank than females, given that females are more monopolizable than many other resources. The benefits of rank are very different in nature between males and females and only additional symmetrical meta-analyses in males can answer such a question. 
+The overall effect size of dominance rank on female reproductive success across the species in our sample is slightly higher than that reported in a previous study, though we find a similar value when we restrict our sample to primate species, the focus of the previous study (the average in our sample is 0.28, for only the primates in our sample 0.23, versus previously reported for primates 0.20 @majolo2012fitness). These estimates of the effects of female dominance rank are lower than those previously reported for males. The previous study on primates reports an effect of male dominance rank on fecundity of 0.71 (@majolo2012fitness), and estimates in a different study of the effect of dominance rank on males' mating success are ~0.6 (@cowlishaw1991dominance). Do these different estimates reflect that males benefit more from high dominance rank than females? We think that we cannot make such an inference at this stage. Measures of mating success might not necessarily translate in equally high skew in reproductive success and studies measuring male reproductive success tend to cover even shorter time periods than the studies that identify female reproductive success. Several of the factors we identified here to modulate the effect of dominance rank on reproductive success may also be linked to differences between females and males. However, it could be expected that males benefit more from rank than females, given that females are more monopolizable than many other resources. The benefits of rank are very different in nature between males and females and only additional symmetrical meta-analyses in males can answer such a question. 
 
 Our findings highlight that social factors can have important influences on demography and genetic evolution by leading to systematic differences in reproductive success. The effect of high dominance rank on reproductive success influence the growth and composition of social groups across generations. In particular when social rank is heritable, strong long-term changes are visible in the few studies which have been able to track reproductive success across multiple generations. For example, among spotted hyenas, the highest ranking female in 1979 is the ancestor of more than half of the females in the clan in 2009 (@holekamp2012society). This perspective also highlights that even small differences in reproductive success can add up over long time frames. In particular, even if dominant females do not have much higher reproduction under average conditions, if they were the only ones to survive or reproduce under extreme conditions this could have important fitness consequences (@lewontin1969population). For future studies, detailed long-term investigations are not only relevant to understand the long-term consequences of the effect of dominance rank on reproduction, but also to infer the multiple mechanisms that link rank to reproductive output (e.g. @fedigan1983dominance, @pusey1997influence). 
 
@@ -4191,3 +4191,472 @@ We thank our PCI Ecology Recommender, Matthieu Paquet, and our reviewers, Bonave
   &nbsp; 
     
 ### [References](MyLibrary.bib)
+
+
+```{r table_references, eval=TRUE, warning=FALSE, results='asis', echo=FALSE, include=TRUE}
+library(kableExtra)
+
+Latin<-c("Cervus_elaphus",
+"Crocuta_crocuta",
+"Macaca_arctoides",
+"Macaca_fuscata",
+"Macaca_fuscata",
+"Macaca_fuscata",
+"Macaca_fuscata",
+"Macaca_mulatta",
+"Mandrillus_sphinx",
+"Papio_cynocephalus",
+"Papio_cynocephalus",
+"Rangifer_tarandus",
+"Callithrix_jacchus",
+"Chlorocebus_aethiops",
+"Chlorocebus_aethiops",
+"Crocuta_crocuta",
+"Crocuta_crocuta",
+"Lemur_catta",
+"Macaca_fuscata",
+"Macaca_fuscata",
+"Macaca_fuscata",
+"Macaca_sylvanus",
+"Macaca_sylvanus",
+"Mesocricetus_auratus",
+"Mesocricetus_auratus",
+"Mesocricetus_auratus",
+"Oreamnos_americanus",
+"Oryctolagus_cuniculus",
+"Oryctolagus_cuniculus",
+"Papio_cynocephalus",
+"Semnopithecus_entellus",
+"Rangifer_tarandus",
+"Sciurus_vulgaris",
+"Sciurus_vulgaris",
+"Theropithecus_gelada",
+"Papio_ursinus",
+"Papio_ursinus",
+"Papio_ursinus",
+"Cervus_elaphus",
+"Crocuta_crocuta",
+"Gorilla_beringei",
+"Lemur_catta",
+"Macaca_fascicularis",
+"Macaca_fascicularis",
+"Macaca_fascicularis",
+"Macaca_fascicularis",
+"Macaca_fascicularis",
+"Macaca_fascicularis",
+"Macaca_fascicularis",
+"Macaca_fascicularis",
+"Macaca_fascicularis",
+"Macaca_fascicularis",
+"Macaca_fascicularis",
+"Macaca_fascicularis",
+"Macaca_fascicularis",
+"Macaca_fascicularis",
+"Macaca_fascicularis",
+"Macaca_fascicularis",
+"Macaca_fascicularis",
+"Macaca_fascicularis",
+"Macaca_fascicularis",
+"Macaca_fascicularis",
+"Macaca_fascicularis",
+"Macaca_fuscata",
+"Macaca_mulatta",
+"Oreamnos_americanus",
+"Oreamnos_americanus",
+"Oryctolagus_cuniculus",
+"Pan_troglodytes",
+"Papio_anubis",
+"Papio_anubis",
+"Papio_anubis",
+"Papio_anubis",
+"Papio_anubis",
+"Papio_cynocephalus",
+"Papio_cynocephalus",
+"Papio_cynocephalus",
+"Semnopithecus_entellus",
+"Semnopithecus_entellus",
+"Crocuta_crocuta",
+"Papio_ursinus",
+"Papio_ursinus",
+"Papio_ursinus",
+"Papio_ursinus",
+"Macaca_fuscata",
+"Macaca_fuscata",
+"Mandrillus_sphinx",
+"Papio_anubis",
+"Papio_ursinus",
+"Papio_ursinus",
+"Chlorocebus_aethiops",
+"Crocuta_crocuta",
+"Crocuta_crocuta",
+"Crocuta_crocuta",
+"Crocuta_crocuta",
+"Crocuta_crocuta",
+"Gorilla_beringei",
+"Macaca_arctoides",
+"Mandrillus_sphinx",
+"Mandrillus_sphinx",
+"Papio_anubis",
+"Papio_anubis",
+"Papio_anubis",
+"Papio_anubis",
+"Papio_anubis",
+"Papio_anubis",
+"Papio_cynocephalus",
+"Papio_cynocephalus",
+"Papio_cynocephalus",
+"Papio_anubis",
+"Papio_ursinus",
+"Papio_ursinus",
+"Gorilla_beringei",
+"Macaca_fascicularis",
+"Macaca_fascicularis",
+"Macaca_fascicularis",
+"Macaca_fascicularis",
+"Macaca_fascicularis",
+"Macaca_fascicularis",
+"Macaca_fascicularis",
+"Macaca_fascicularis",
+"Macaca_fuscata",
+"Macaca_fuscata",
+"Macaca_fuscata",
+"Macaca_fuscata",
+"Mandrillus_sphinx",
+"Ovis_canadensis",
+"Papio_anubis",
+"Papio_anubis",
+"Papio_cynocephalus",
+"Crocuta_crocuta",
+"Macaca_fuscata",
+"Oryctolagus_cuniculus",
+"Papio_anubis",
+"Papio_anubis",
+"Papio_cynocephalus",
+"Papio_cynocephalus",
+"Papio_cynocephalus",
+"Crocuta_crocuta",
+"Papio_ursinus",
+"Papio_ursinus",
+"Cervus_elaphus",
+"Cervus_elaphus",
+"Macaca_mulatta",
+"Macaca_mulatta",
+"Macaca_sinica",
+"Macaca_sinica",
+"Lycaon_pictus",
+"Fukomys_damarensis",
+"Macaca_fuscata",
+"Macaca_fuscata",
+"Macaca_fuscata",
+"Macaca_fuscata",
+"Helogale_parvula",
+"Helogale_parvula",
+"Helogale_parvula",
+"Marmota_caligata",
+"Marmota_caligata",
+"Marmota_caligata",
+"Marmota_caligata",
+"Macaca_radiata",
+"Macaca_radiata",
+"Macaca_radiata",
+"Marmota_flaviventris",
+"Marmota_flaviventris",
+"Marmota_flaviventris",
+"Marmota_flaviventris",
+"Alouatta_palliata",
+"Alouatta_palliata",
+"Equus_quagga",
+"Equus_quagga",
+"Equus_zebra",
+"Equus_zebra",
+"Equus_zebra",
+"Equus_zebra",
+"Equus_zebra",
+"Equus_caballus",
+"Equus_caballus",
+"Equus_caballus",
+"Mirounga_angustirostris",
+"Ovis_canadensis",
+"Ovis_canadensis",
+"Ovis_canadensis",
+"Hyaena_brunnea",
+"Hyaena_brunnea",
+"Mus_musculus",
+"Mus_musculus",
+"Mus_musculus",
+"Mus_musculus",
+"Mus_musculus",
+"Rhabdomys_pumilio",
+"Rhabdomys_pumilio",
+"Rhabdomys_pumilio",
+"Rhabdomys_pumilio",
+"Rhabdomys_pumilio",
+"Rhabdomys_pumilio",
+"Apodemus_sylvaticus",
+"Apodemus_sylvaticus",
+"Apodemus_sylvaticus",
+"Apodemus_sylvaticus",
+"Apodemus_sylvaticus",
+"Apodemus_sylvaticus",
+"Apodemus_sylvaticus",
+"Apodemus_sylvaticus",
+"Apodemus_sylvaticus",
+"Apodemus_sylvaticus",
+"Apodemus_sylvaticus",
+"Apodemus_sylvaticus",
+"Rattus_norvegicus",
+"Marmota_marmota",
+"Heterocephalus_glaber",
+"Fukomys_damarensis",
+"Cryptomys_hottentotus",
+"Suricata_suricatta",
+"Leontopithecus_rosalia",
+"Leontopithecus_rosalia",
+"Leontopithecus_rosalia",
+"Leontopithecus_rosalia",
+"Leontocebus_fuscicollis",
+"Saguinus_mystax",
+"Cebus_capucinus",
+"Cebus_capucinus",
+"Cercopithecus_mitis",
+"Chlorocebus_aethiops",
+"Chlorocebus_aethiops",
+"Chlorocebus_aethiops",
+"Chlorocebus_aethiops",
+"Chlorocebus_aethiops",
+"Chlorocebus_aethiops",
+"Chlorocebus_aethiops",
+"Pan_troglodytes",
+"Papio_anubis",
+"Papio_anubis",
+"Macaca_fuscata",
+"Macaca_fuscata",
+"Macaca_fuscata",
+"Macaca_fuscata",
+"Macaca_fuscata",
+"Macaca_fuscata",
+"Ovis_canadensis",
+"Ovis_canadensis",
+"Ammotragus_lervia",
+"Ammotragus_lervia",
+"Ammotragus_lervia",
+"Ammotragus_lervia",
+"Antilocapra_americana",
+"Antilocapra_americana",
+"Antilocapra_americana",
+"Nanger_dama",
+"Gazella_cuvieri",
+"Gazella_cuvieri",
+"Gazella_cuvieri",
+"Gazella_cuvieri",
+"Nanger_dama",
+"Nanger_dama",
+"Nanger_dama",
+"Capra_nubiana",
+"Ozotoceros_bezoarticus",
+"Ozotoceros_bezoarticus",
+"Mus_musculus",
+"Mus_musculus",
+"Mus_musculus",
+"Helogale_parvula",
+"Macaca_mulatta",
+"Macaca_mulatta",
+"Cervus_elaphus",
+"Cervus_elaphus",
+"Macaca_mulatta",
+"Crocuta_crocuta",
+"Crocuta_crocuta",
+"Crocuta_crocuta",
+"Crocuta_crocuta",
+"Crocuta_crocuta",
+"Ateles_paniscus",
+"Crocuta_crocuta",
+"Crocuta_crocuta",
+"Crocuta_crocuta",
+"Petrogale_concinna",
+"Macaca_assamensis",
+"Papio_ursinus",
+"Macaca_fuscata",
+"Macaca_fuscata",
+"Macaca_fuscata",
+"Theropithecus_gelada",
+"Theropithecus_gelada",
+"Marmota_marmota",
+"Marmota_marmota",
+"Papio_cynocephalus",
+"Papio_cynocephalus",
+"Papio_cynocephalus",
+"Papio_cynocephalus",
+"Papio_ursinus",
+"Vulpes_vulpes",
+"Semnopithecus_entellus",
+"Sapajus_apella",
+"Miopithecus_talapoin",
+"Mungos_mungo",
+"Mungos_mungo",
+"Mungos_mungo",
+"Mungos_mungo",
+"Mungos_mungo",
+"Canis_simensis",
+"Procavia_capensis",
+"Bison_bison",
+"Bison_bison",
+"Capra_pyrenaica",
+"Sus_scrofa",
+"Papio_cynocephalus",
+"Macaca_sylvanus",
+"Macaca_sylvanus",
+"Macaca_sylvanus",
+"Papio_ursinus",
+"Papio_ursinus",
+"Papio_ursinus",
+"Papio_ursinus",
+"Papio_cynocephalus",
+"Lama_guanicoe",
+"Bos_taurus",
+"Capra_hircus",
+"Sus_scrofa",
+"Bison_bison",
+"Bison_bison",
+"Antilocapra_americana",
+"Antilocapra_americana",
+"Antilocapra_americana",
+"Antilocapra_americana",
+"Suricata_suricatta",
+"Suricata_suricatta",
+"Mesocricetus_auratus",
+"Mesocricetus_auratus",
+"Gorilla_beringei",
+"Gorilla_beringei",
+"Gorilla_beringei",
+"Papio_anubis",
+"Papio_anubis",
+"Papio_anubis",
+"Macaca_mulatta",
+"Cercopithecus_mitis",
+"Suricata_suricatta",
+"Microtus_arvalis",
+"Microtus_ochrogaster",
+"Microtus_pinetorum",
+"Macaca_mulatta",
+"Macaca_sylvanus",
+"Macaca_sylvanus",
+"Macaca_sylvanus",
+"Equus_quagga",
+"Equus_quagga",
+"Macaca_mulatta",
+"Macaca_arctoides",
+"Papio_cynocephalus",
+"Canis_latrans",
+"Canis_latrans",
+"Macaca_mulatta",
+"Suricata_suricatta",
+"Fukomys_mechowi",
+"Papio_ursinus",
+"Papio_cynocephalus",
+"Crocuta_crocuta",
+"Crocuta_crocuta",
+"Propithecus_verreauxi",
+"Propithecus_verreauxi",
+"Propithecus_verreauxi",
+"Macaca_mulatta",
+"Macaca_mulatta",
+"Macaca_mulatta",
+"Papio_ursinus",
+"Papio_ursinus",
+"Papio_ursinus",
+"Macaca_mulatta",
+"Macaca_fuscata",
+"Macaca_fuscata",
+"Macaca_mulatta",
+"Macaca_mulatta",
+"Semnopithecus_schistaceus",
+"Semnopithecus_schistaceus",
+"Semnopithecus_schistaceus",
+"Mungos_mungo",
+"Mungos_mungo",
+"Mesocricetus_auratus",
+"Mesocricetus_auratus",
+"Mesocricetus_auratus",
+"Macaca_mulatta",
+"Macaca_mulatta",
+"Macaca_mulatta",
+"Macaca_mulatta",
+"Ceratotherium_simum",
+"Cebus_capucinus",
+"Canis_lupus",
+"Macaca_nigra",
+"Equus_caballus",
+"Equus_caballus",
+"Odocoileus_virginianus",
+"Papio_cynocephalus",
+"Macaca_mulatta",
+"Cervus_elaphus",
+"Cervus_elaphus",
+"Cervus_elaphus",
+"Cervus_elaphus",
+"Bos_taurus",
+"Bos_taurus",
+"Bos_taurus",
+"Bos_taurus",
+"Bos_taurus",
+"Oryctolagus_cuniculus",
+"Oryctolagus_cuniculus",
+"Heterocephalus_glaber",
+"Canis_rufus",
+"Canis_rufus",
+"Lycaon_pictus",
+"Lycaon_pictus",
+"Macaca_mulatta",
+"Macaca_fuscata",
+"Macaca_fuscata",
+"Macaca_fuscata",
+"Macaca_fuscata",
+"Macaca_mulatta",
+"Macaca_mulatta",
+"Theropithecus_gelada",
+"Theropithecus_gelada",
+"Theropithecus_gelada",
+"Theropithecus_gelada",
+"Theropithecus_gelada",
+"Theropithecus_gelada",
+"Callithrix_jacchus",
+"Callithrix_jacchus",
+"Callithrix_jacchus",
+"Callithrix_jacchus",
+"Erythrocebus_patas",
+"Saimiri_sciureus",
+"Saimiri_sciureus",
+"Saimiri_sciureus",
+"Chlorocebus_aethiops",
+"Macaca_mulatta",
+"Pan_troglodytes",
+"Pan_troglodytes",
+"Lemur_catta",
+"Macaca_fascicularis",
+"Pan_troglodytes",
+"Pan_troglodytes",
+"Gorilla_beringei",
+"Macaca_sylvanus",
+"Lophocebus_albigena",
+"Trachypithecus_phayrei")
+
+Id<-c(1:444)
+
+ReferenceDominanceSuccess<-c("@CluttonBrock1984"," @Holekamp1996")
+
+ReferenceDominanceSystem<-c("@Hall2010","@Hofer2003","")
+
+ReferenceDominanceRelatedness<-c("@Nussey2005","@VanHorn2004")
+
+referencetable <- data.frame(Id,Latin,ReferenceDominanceSuccess,ReferenceDominanceSystem,ReferenceDominanceRelatedness)
+
+colnames(referencetable)<-c("Effect size id","Species","Reference for Dominance Rank Effect","Reference for Dominance System","Reference for Average Relatedness")
+
+
+knitr::kable(referencetable) %>%
+kable_styling(full_width = T, position = "left")
+```
+
+
+### [DataSources](ReferenceLibrary.bib)
