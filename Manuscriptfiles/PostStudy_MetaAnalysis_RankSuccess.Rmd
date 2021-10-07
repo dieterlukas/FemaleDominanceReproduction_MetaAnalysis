@@ -4657,27 +4657,161 @@ for (i in 1:nrow(dat)){
   if(is.na(dat[i,]$Reference_Relatedness_doi)==F){ReferenceDominanceRelatedness[i]<-citep(dat[i,]$Reference_Relatedness_doi)}
    if(is.na(dat[i,]$Reference_Relatedness_doi)==T){ReferenceDominanceRelatedness[i]<-NA}
 }
-write.bibtex(file="relatednessreferences.bib")
-
 
 ReferenceDominanceSystem<-NA
 
 for (i in 1:nrow(dat)){
   if(is.na(dat[i,]$Reference_DominanceSystem_doi)==F){ReferenceDominanceSystem[i]<-citep(dat[i,]$Reference_DominanceSystem_doi)}
   if(is.na(dat[i,]$Reference_DominanceSystem_doi)==T){ReferenceDominanceSystem[i]<-NA}
-  print(i)
 }
-write.bibtex(file="dominancereferences.bib")
-
 
 ReferenceDominanceSuccess<-NA
 
 for (i in 1:nrow(dat)){
   if(is.na(dat[i,]$Reference_DominanceSucccess_doi)==F){ReferenceDominanceSuccess[i]<-citep(dat[i,]$Reference_DominanceSucccess_doi)}
   if(is.na(dat[i,]$Reference_DominanceSucccess_doi)==T){ReferenceDominanceSuccess[i]<-NA}
+  print(i)
 }
-write.bibtex(file="dominancesuccessreferences.bib")
 
+ReferenceDominanceSuccess[36]<- "@cheney2006reproduction"
+ReferenceDominanceSuccess[81]<- "@cheney2006reproduction"
+ReferenceDominanceSuccess[82]<- "@cheney2006reproduction"
+ReferenceDominanceSuccess[87]<- "@setchell2002reproductive"
+ReferenceDominanceSuccess[88]<- "@cheney2006reproduction"
+ReferenceDominanceSuccess[90]<- "@cheney2006reproduction"
+ReferenceDominanceSuccess[99]<- "@setchell2002reproductive"
+ReferenceDominanceSuccess[100]<- "@setchell2002reproductive"
+ReferenceDominanceSuccess[140]<- "@cheney2006reproduction"
+ReferenceDominanceSuccess[141]<- "@cheney2006reproduction"
+ReferenceDominanceSuccess[177]<- "@rubenstein2009sociality"
+ReferenceDominanceSuccess[178]<- "@rubenstein2009sociality"
+ReferenceDominanceSuccess[179]<- "@rubenstein2009sociality"
+ReferenceDominanceSuccess[180]<- "@cheney1988vervet"
+ReferenceDominanceSuccess[225]<- "@cheney1988vervet"
+ReferenceDominanceSuccess[226]<- "@cheney1988vervet"
+ReferenceDominanceSuccess[227]<- "@whitten1983diet"
+ReferenceDominanceSuccess[228]<- "@whitten1983diet"
+ReferenceDominanceSuccess[229]<- "@whitten1983diet"
+ReferenceDominanceSuccess[230]<- "@whitten1983diet"
+ReferenceDominanceSuccess[269]<- "@frank1995dominance"
+ReferenceDominanceSuccess[270]<- "@frank1995dominance"
+ReferenceDominanceSuccess[271]<- "@frank1995dominance"
+ReferenceDominanceSuccess[272]<- "@frank1995dominance"
+ReferenceDominanceSuccess[273]<- "@frank1995dominance"
+ReferenceDominanceSuccess[280]<- "@busse1982social"
+ReferenceDominanceSuccess[290]<- "@altmann2003offspring"
+ReferenceDominanceSuccess[291]<- "@altmann2003offspring"
+ReferenceDominanceSuccess[292]<- "@baniel2021exploring"
+ReferenceDominanceSuccess[295]<- "@di2001reproductive"
+ReferenceDominanceSuccess[308]<- "@altmann1988baboons"
+ReferenceDominanceSuccess[309]<- "@paul1996differential"
+ReferenceDominanceSuccess[310]<- "@paul1996differential"
+ReferenceDominanceSuccess[311]<- "@paul1996differential"
+ReferenceDominanceSuccess[312]<- "@baniel2021exploring"
+ReferenceDominanceSuccess[313]<- "@baniel2021exploring"
+ReferenceDominanceSuccess[323]<- "@byers1997american"
+ReferenceDominanceSuccess[324]<- "@byers1997american"
+ReferenceDominanceSuccess[325]<- "@byers1997american"
+ReferenceDominanceSuccess[326]<- "@byers1997american"
+ReferenceDominanceSuccess[352]<- "@gese2004coyotes"
+ReferenceDominanceSuccess[353]<- "@gese2004coyotes"
+ReferenceDominanceSuccess[361]<- "@kubzdela1998sociodemography"
+ReferenceDominanceSuccess[362]<- "@kubzdela1998sociodemography"
+ReferenceDominanceSuccess[363]<- "@kubzdela1998sociodemography"
+
+ReferenceDominanceSystem[4]<- "@koyama2003matrilineal"
+ReferenceDominanceSystem[5]<- "@koyama2003matrilineal"
+ReferenceDominanceSystem[6]<- "@koyama2003matrilineal"
+ReferenceDominanceSystem[7]<- "@koyama2003matrilineal"
+ReferenceDominanceSystem[9]<- "@setchell2002reproductive"
+ReferenceDominanceSystem[19]<- "@koyama2003matrilineal"
+ReferenceDominanceSystem[20]<- "@koyama2003matrilineal"
+ReferenceDominanceSystem[21]<- "@koyama2003matrilineal"
+ReferenceDominanceSystem[64]<- "@koyama2003matrilineal"
+ReferenceDominanceSystem[69]<- "@wittig2003food"
+ReferenceDominanceSystem[85]<- "@koyama2003matrilineal"
+ReferenceDominanceSystem[86]<- "@koyama2003matrilineal"
+ReferenceDominanceSystem[87]<- "@setchell2002reproductive"
+ReferenceDominanceSystem[99]<- "@setchell2002reproductive"
+ReferenceDominanceSystem[100]<- "@setchell2002reproductive"
+ReferenceDominanceSystem[122]<- "@koyama2003matrilineal"
+ReferenceDominanceSystem[123]<- "@koyama2003matrilineal"
+ReferenceDominanceSystem[124]<- "@koyama2003matrilineal"
+ReferenceDominanceSystem[125]<- "@koyama2003matrilineal"
+ReferenceDominanceSystem[126]<- "@setchell2002reproductive"
+ReferenceDominanceSystem[132]<- "@koyama2003matrilineal"
+ReferenceDominanceSystem[150]<- "@koyama2003matrilineal"
+ReferenceDominanceSystem[151]<- "@koyama2003matrilineal"
+ReferenceDominanceSystem[152]<- "@koyama2003matrilineal"
+ReferenceDominanceSystem[153]<- "@koyama2003matrilineal"
+ReferenceDominanceSystem[177]<- "@sinderbrand2011relationship"
+ReferenceDominanceSystem[178]<- "@sinderbrand2011relationship"
+ReferenceDominanceSystem[215]<- "@baker2002liontamarins"
+ReferenceDominanceSystem[216]<- "@baker2002liontamarins"
+ReferenceDominanceSystem[217]<- "@baker2002liontamarins"
+ReferenceDominanceSystem[220]<- "@smith2001multiple"
+ReferenceDominanceSystem[231]<- "@wittig2003food"
+ReferenceDominanceSystem[234]<- "@koyama2003matrilineal"
+ReferenceDominanceSystem[235]<- "@koyama2003matrilineal"
+ReferenceDominanceSystem[236]<- "@koyama2003matrilineal"
+ReferenceDominanceSystem[237]<- "@koyama2003matrilineal"
+ReferenceDominanceSystem[238]<- "@koyama2003matrilineal"
+ReferenceDominanceSystem[239]<- "@koyama2003matrilineal"
+ReferenceDominanceSystem[274]<- "@van1980habitat"
+ReferenceDominanceSystem[279]<- "@furtbauer2011socio"
+ReferenceDominanceSystem[281]<- "@koyama2003matrilineal"
+ReferenceDominanceSystem[282]<- "@koyama2003matrilineal"
+ReferenceDominanceSystem[283]<- "@koyama2003matrilineal"
+ReferenceDominanceSystem[306]<- "@santiago2003seasonal"
+ReferenceDominanceSystem[307]<- "@gaillard1993body"
+ReferenceDominanceSystem[352]<- "@gese2004coyotes"
+ReferenceDominanceSystem[353]<- "@gese2004coyotes"
+ReferenceDominanceSystem[361]<- "@kubzdela1998sociodemography"
+ReferenceDominanceSystem[362]<- "@kubzdela1998sociodemography"
+ReferenceDominanceSystem[363]<- "@kubzdela1998sociodemography"
+ReferenceDominanceSystem[371]<- "@koyama2003matrilineal"
+ReferenceDominanceSystem[391]<- "@sinderbrand2011relationship"
+ReferenceDominanceSystem[392]<- "@sinderbrand2011relationship"
+ReferenceDominanceSystem[413]<- "@koyama2003matrilineal"
+ReferenceDominanceSystem[414]<- "@koyama2003matrilineal"
+ReferenceDominanceSystem[415]<- "@koyama2003matrilineal"
+ReferenceDominanceSystem[416]<- "@koyama2003matrilineal"
+ReferenceDominanceSystem[429]<- "@isbell1998differences"
+ReferenceDominanceSystem[435]<- "@wittig2003food"
+ReferenceDominanceSystem[436]<- "@wittig2003food"
+ReferenceDominanceSystem[438]<- "@wittig2003food"
+ReferenceDominanceSystem[440]<- "@wittig2003food"
+
+ReferenceDominanceRelatedness[13]<- "@nievergelt2000genetic"
+ReferenceDominanceRelatedness[21]<- "@koyama2003matrilineal"
+ReferenceDominanceRelatedness[70]<- "@kopp2015gene"
+ReferenceDominanceRelatedness[70]<- "@kopp2015gene"
+ReferenceDominanceRelatedness[71]<- "@kopp2015gene"
+ReferenceDominanceRelatedness[72]<- "@kopp2015gene"
+ReferenceDominanceRelatedness[73]<- "@kopp2015gene"
+ReferenceDominanceRelatedness[74]<- "@kopp2015gene"
+ReferenceDominanceRelatedness[88]<- "@kopp2015gene"
+ReferenceDominanceRelatedness[102]<- "@kopp2015gene"
+ReferenceDominanceRelatedness[103]<- "@kopp2015gene"
+ReferenceDominanceRelatedness[104]<- "@kopp2015gene"
+ReferenceDominanceRelatedness[110]<- "@lynch2016paternal"
+ReferenceDominanceRelatedness[128]<- "@kopp2015gene"
+ReferenceDominanceRelatedness[129]<- "@kopp2015gene"
+ReferenceDominanceRelatedness[132]<- "@koyama2003matrilineal"
+ReferenceDominanceRelatedness[134]<- "@kopp2015gene"
+ReferenceDominanceRelatedness[135]<- "@kopp2015gene"
+ReferenceDominanceRelatedness[281]<- "@koyama2003matrilineal"
+ReferenceDominanceRelatedness[282]<- "@koyama2003matrilineal"
+ReferenceDominanceRelatedness[283]<- "@koyama2003matrilineal"
+ReferenceDominanceRelatedness[303]<- "@visser2013gene"
+ReferenceDominanceRelatedness[371]<- "@koyama2003matrilineal"
+ReferenceDominanceRelatedness[372]<- "@koyama2003matrilineal"
+ReferenceDominanceRelatedness[426]<- "@nievergelt2000genetic"
+ReferenceDominanceRelatedness[427]<- "@nievergelt2000genetic"
+ReferenceDominanceRelatedness[444]<- "@larney2013influence"
+
+
+write.bibtex(file="supplementalreferences.bib")
 
 referencetable <- data.frame(Id,Latin,ReferenceDominanceSuccess,ReferenceDominanceSystem,ReferenceDominanceRelatedness)
 
