@@ -1,0 +1,767 @@
+---
+title: Supplement: The effect of dominance rank on female reproductive success in social mammals
+author: "Shivani, Elise Huchard, Dieter Lukas"
+date: "05/10/2021"
+output:
+  pdf_document:
+    keep_tex: no
+    latex_engine: xelatex
+    includes:
+      in_header: "ranksuccessheader.tex"
+  md_document: 
+    toc: true
+  html_document: 
+    toc: TRUE
+    toc_depth: 4
+    toc_float: 
+      collapsed: false
+    code_folding: hide 
+  github_document: 
+    toc: true
+---
+
+```{r setup, include=FALSE}
+options(width=60)
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(tidy.opts=list(width.cutoff=60), tidy=TRUE)
+```
+
+
+
+### Supplementary data
+
+**Data Table.** References for the effect sizes of dominance rank on female reproductive success, for the dominance system in a given population, and for the average relatedness among females in social groups in a given population..
+```{r create_supplementary_table, eval=TRUE, warning=FALSE, echo=FALSE}
+library(kableExtra)
+library(dplyr)
+
+inputdata<-read.csv(url("https://raw.githubusercontent.com/dieterlukas/FemaleDominanceReproduction_MetaAnalysis/trunk/Inputfiles/InputData_MetaAnalysis_FemaleDominanceReproduction.csv"))
+inputdata<-data.frame(inputdata)
+dat<-inputdata
+
+for (i in 1:nrow(dat)){
+  if(is.na(dat[i,]$Reference_Relatedness_doi)==F){citep(dat[i,]$Reference_Relatedness_doi)}
+}
+
+
+for (i in 1:nrow(dat)){
+  if(is.na(dat[i,]$Reference_DominanceSystem_doi)==F){citep(dat[i,]$Reference_DominanceSystem_doi)}
+}
+
+
+for (i in 1:nrow(dat)){
+  if(is.na(dat[i,]$Reference_DominanceSucccess_doi)==F){citep(dat[i,]$Reference_DominanceSucccess_doi)}
+  print(i)
+}
+
+
+ReferenceDominanceSuccess[36]<- "(Cheney et al. 2006)"
+ReferenceDominanceSuccess[81]<- "Cheney et al. 2006)"
+ReferenceDominanceSuccess[82]<- "(Cheney et al. 2006)"
+ReferenceDominanceSuccess[87]<- "(Setchell et al. 2002)"
+ReferenceDominanceSuccess[88]<- "(Cheney et al. 2006)"
+ReferenceDominanceSuccess[90]<- "(Cheney et al. 2006)"
+ReferenceDominanceSuccess[99]<- "(Setchell et al. 2002)"
+ReferenceDominanceSuccess[100]<- "(Setchell et al. 2002)"
+ReferenceDominanceSuccess[140]<- "(Cheney et al. 2006)"
+ReferenceDominanceSuccess[141]<- "(Cheney et al. 2006)"
+ReferenceDominanceSuccess[177]<- "(Rubenstein et al. 2009)"
+ReferenceDominanceSuccess[178]<- "(Rubenstein et al. 2009)"
+ReferenceDominanceSuccess[179]<- "(Rubenstein et al. 2009)"
+ReferenceDominanceSuccess[180]<- "(Cheney et al. 1988)"
+ReferenceDominanceSuccess[225]<- "(Cheney et al. 1988)"
+ReferenceDominanceSuccess[226]<- "(Cheney et al. 1988)"
+ReferenceDominanceSuccess[227]<- "(Whitten et al. 1983)"
+ReferenceDominanceSuccess[228]<- "(Whitten et al. 1983)"
+ReferenceDominanceSuccess[229]<- "(Whitten et al. 1983)"
+ReferenceDominanceSuccess[230]<- "(Whitten et al. 1983)"
+ReferenceDominanceSuccess[269]<- "(Frank et al. 1995)"
+ReferenceDominanceSuccess[270]<- "(Frank et al. 1995)"
+ReferenceDominanceSuccess[271]<- "(Frank et al. 1995)"
+ReferenceDominanceSuccess[272]<- "(Frank et al. 1995)"
+ReferenceDominanceSuccess[273]<- "(Frank et al. 1995)"
+ReferenceDominanceSuccess[280]<- "(Busse 1982)"
+ReferenceDominanceSuccess[290]<- "(Altmann & Alberts 2003)"
+ReferenceDominanceSuccess[291]<- "(Altmann & Alberts 2003)"
+ReferenceDominanceSuccess[292]<- "(Baniel et al. 2021)"
+ReferenceDominanceSuccess[295]<- "(DiBitetti et al. 2001)"
+ReferenceDominanceSuccess[308]<- "(Altmann et al. 1988)"
+ReferenceDominanceSuccess[309]<- "(Paul & Kuester 1996)"
+ReferenceDominanceSuccess[310]<- "(Paul & Kuester 1996)"
+ReferenceDominanceSuccess[311]<- "(Paul & Kuester 1996)"
+ReferenceDominanceSuccess[312]<- "(Baniel et al. 2021)"
+ReferenceDominanceSuccess[313]<- "(Baniel et al. 2021)"
+ReferenceDominanceSuccess[323]<- "(Byers 1997)"
+ReferenceDominanceSuccess[324]<- "(Byers 1997)"
+ReferenceDominanceSuccess[325]<- "(Byers 1997)"
+ReferenceDominanceSuccess[326]<- "(Byers 1997)"
+ReferenceDominanceSuccess[352]<- "(Gese 2004)"
+ReferenceDominanceSuccess[353]<- "(Gese 2004)"
+ReferenceDominanceSuccess[361]<- "(Kubzdela 1998)"
+ReferenceDominanceSuccess[362]<- "(Kubzdela 1998)"
+ReferenceDominanceSuccess[363]<- "(Kubzdela 1998)"
+
+ReferenceDominanceSystem[4]<- "(Koyama et al. 2003)"
+ReferenceDominanceSystem[5]<- "(Koyama et al. 2003)"
+ReferenceDominanceSystem[6]<- "(Koyama et al. 2003)"
+ReferenceDominanceSystem[7]<- "(Koyama et al. 2003)"
+ReferenceDominanceSystem[9]<- "(Setchell et al. 2002)"
+ReferenceDominanceSystem[19]<- "(Koyama et al. 2003)"
+ReferenceDominanceSystem[20]<- "(Koyama et al. 2003)"
+ReferenceDominanceSystem[21]<- "(Koyama et al. 2003)"
+ReferenceDominanceSystem[64]<- "(Koyama et al. 2003)"
+ReferenceDominanceSystem[69]<- "(Wittig et al. 2003)"
+ReferenceDominanceSystem[85]<- "(Koyama et al. 2003)"
+ReferenceDominanceSystem[86]<- "(Koyama et al. 2003)"
+ReferenceDominanceSystem[87]<- "(Setchell et al. 2002)"
+ReferenceDominanceSystem[99]<- "(Setchell et al. 2002)"
+ReferenceDominanceSystem[100]<- "(Setchell et al. 2002)"
+ReferenceDominanceSystem[122]<- "(Koyama et al. 2003)"
+ReferenceDominanceSystem[123]<- "(Koyama et al. 2003)"
+ReferenceDominanceSystem[124]<- "(Koyama et al. 2003)"
+ReferenceDominanceSystem[125]<- "(Koyama et al. 2003)"
+ReferenceDominanceSystem[126]<- "(Setchell et al. 2002)"
+ReferenceDominanceSystem[132]<- "(Koyama et al. 2003)"
+ReferenceDominanceSystem[150]<- "(Koyama et al. 2003)"
+ReferenceDominanceSystem[151]<- "(Koyama et al. 2003)"
+ReferenceDominanceSystem[152]<- "(Koyama et al. 2003)"
+ReferenceDominanceSystem[153]<- "(Koyama et al. 2003)"
+ReferenceDominanceSystem[177]<- "(Sinderbrand 2011)"
+ReferenceDominanceSystem[178]<- "(Sinderbrand 2011)"
+ReferenceDominanceSystem[215]<- "(Baker et al. 2002)"
+ReferenceDominanceSystem[216]<- "(Baker et al. 2002)"
+ReferenceDominanceSystem[217]<- "(Baker et al. 2002)"
+ReferenceDominanceSystem[220]<- "(Smith 2000)"
+ReferenceDominanceSystem[231]<- "(Wittig et al. 2003)"
+ReferenceDominanceSystem[234]<- "(Koyama et al. 2003)"
+ReferenceDominanceSystem[235]<- "(Koyama et al. 2003)"
+ReferenceDominanceSystem[236]<- "(Koyama et al. 2003)"
+ReferenceDominanceSystem[237]<- "(Koyama et al. 2003)"
+ReferenceDominanceSystem[238]<- "(Koyama et al. 2003)"
+ReferenceDominanceSystem[239]<- "(Koyama et al. 2003)"
+ReferenceDominanceSystem[274]<- "(van Roosmalen 1980)"
+ReferenceDominanceSystem[279]<- "(Fuertbauerr 2011)"
+ReferenceDominanceSystem[281]<- "(Koyama et al. 2003)"
+ReferenceDominanceSystem[282]<- "(Koyama et al. 2003)"
+ReferenceDominanceSystem[283]<- "(Koyama et al. 2003)"
+ReferenceDominanceSystem[306]<- "(Santiago et al. 2013)"
+ReferenceDominanceSystem[307]<- "(Gaillard et al. 1993)"
+ReferenceDominanceSystem[352]<- "(Gese 2004)"
+ReferenceDominanceSystem[353]<- "(Gese 2004)"
+ReferenceDominanceSystem[361]<- "(Kubzdela 1998)"
+ReferenceDominanceSystem[362]<- "(Kubzdela 1998)"
+ReferenceDominanceSystem[363]<- "(Kubzdela 1998)"
+ReferenceDominanceSystem[371]<- "(Koyama et al. 2003)"
+ReferenceDominanceSystem[391]<- "(Sinderbrand 2011)"
+ReferenceDominanceSystem[392]<- "(Sinderbrand 2011)"
+ReferenceDominanceSystem[413]<- "(Koyama et al. 2003)"
+ReferenceDominanceSystem[414]<- "(Koyama et al. 2003)"
+ReferenceDominanceSystem[415]<- "(Koyama et al. 2003)"
+ReferenceDominanceSystem[416]<- "(Koyama et al. 2003)"
+ReferenceDominanceSystem[429]<- "(Isbell & Pruetz 1988)"
+ReferenceDominanceSystem[435]<- "(Wittig et al. 2003)"
+ReferenceDominanceSystem[436]<- "(Wittig et al. 2003)"
+ReferenceDominanceSystem[438]<- "(Wittig et al. 2003)"
+ReferenceDominanceSystem[440]<- "(Wittig et al. 2003)"
+
+ReferenceDominanceRelatedness[13]<- "(nievergelt2000genetic)"
+ReferenceDominanceRelatedness[21]<- "(Koyama et al. 2003)"
+ReferenceDominanceRelatedness[70]<- "(Kopp 2015)"
+ReferenceDominanceRelatedness[70]<- "(Kopp 2015)"
+ReferenceDominanceRelatedness[71]<- "(Kopp 2015)"
+ReferenceDominanceRelatedness[72]<- "(Kopp 2015)"
+ReferenceDominanceRelatedness[73]<- "(Kopp 2015)"
+ReferenceDominanceRelatedness[74]<- "(Kopp 2015)"
+ReferenceDominanceRelatedness[88]<- "(Kopp 2015)"
+ReferenceDominanceRelatedness[102]<- "(Kopp 2015)"
+ReferenceDominanceRelatedness[103]<- "(Kopp 2015)"
+ReferenceDominanceRelatedness[104]<- "(Kopp 2015)"
+ReferenceDominanceRelatedness[110]<- "(lynch2016paternal)"
+ReferenceDominanceRelatedness[128]<- "(Kopp 2015)"
+ReferenceDominanceRelatedness[129]<- "(Kopp 2015)"
+ReferenceDominanceRelatedness[132]<- "(Koyama et al. 2003)"
+ReferenceDominanceRelatedness[134]<- "(Kopp 2015)"
+ReferenceDominanceRelatedness[135]<- "(Kopp 2015)"
+ReferenceDominanceRelatedness[281]<- "(Koyama et al. 2003)"
+ReferenceDominanceRelatedness[282]<- "(Koyama et al. 2003)"
+ReferenceDominanceRelatedness[283]<- "(Koyama et al. 2003)"
+ReferenceDominanceRelatedness[303]<- "(Visser 2013)"
+ReferenceDominanceRelatedness[371]<- "(Koyama et al. 2003)"
+ReferenceDominanceRelatedness[372]<- "(Koyama et al. 2003)"
+ReferenceDominanceRelatedness[426]<- "(Nievergelt et al. 2000)"
+ReferenceDominanceRelatedness[427]<- "(Nievergelt et al. 2000)"
+ReferenceDominanceRelatedness[444]<- "(Larney 2013)"
+
+
+
+d_supplementary<-matrix(nrow=nrow(dat),ncol=5)
+d_supplementary<-data.frame(d_supplementary)
+colnames(d_supplementary)<-c("Identifier","Species","Reference effect size","Reference dominance system","Reference relatedness")
+
+d_supplementary$Identifier<-dat$EffectRef
+d_supplementary$Species<-dat$Latin
+d_supplementary$'Reference effect size'<-ReferenceDominanceSuccess
+d_supplementary$'Reference dominance system'<-ReferenceDominanceSystem
+d_supplementary$'Reference relatedness'<-ReferenceDominanceRelatedness
+
+
+```
+
+
+```{r print_supplementary_table, eval=TRUE, warning=FALSE, results='asis', echo=FALSE, include=TRUE}
+library(kableExtra)
+library(dplyr)
+
+knitr::kable(d_supplementary) %>%
+kable_styling(full_width = F, position = "left")
+```
+
+
+
+
+### Supplementary references
+[1] Nievergelt, C.M., Digby, L.J., "Ramakrishnan, U. and Woodruff, D.S., 2000. Genetic analysis of group composition and breeding system in a wild common marmoset (Callithrix jacchus) population". In: International Journal of Primatology, 21(1), pp.1-20.
+
+[2] R. Š. á, M. Špinka, I. S. á, et al. “Pay respect to the elders: age, more than body mass, determines dominance in female beef cattle”. In: Animal Behaviour 86.6 (Dec. 2013), pp. 1315-1323. DOI: 10.1016/j.anbehav.2013.10.002. <URL: https://doi.org/10.1016/j.anbehav.2013.10.002>.
+
+[3] R. Š. á, M. Špinka, and F. Ceacero. “Higher dominance position does not result in higher reproductive success in female beef cattle1,2”. In: Journal of Animal Science 95.8 (Aug. 2017), pp. 3301-3309. DOI: 10.2527/jas.2017.1415. <URL: https://doi.org/10.2527/jas.2017.1415>.
+
+[4] D. H. Abbott. “Behaviourally mediated suppression of reproduction in female primates”. In: Journal of Zoology 213.3 (Nov. 1987), pp. 455-470. DOI: 10.1111/j.1469-7998.1987.tb03720.x. <URL: https://doi.org/10.1111/j.1469-7998.1987.tb03720.x>.
+
+[5] D. H. Abbott, A. S. McNeilly, S. F. Lunn, et al. “Inhibition of ovarian function in subordinate female marmoset monkeys (Callithrix jacchus jacchus)”. In: Reproduction 63.2 (Nov. 1981), pp. 335-345. DOI: 10.1530/jrf.0.0630335. <URL: https://doi.org/10.1530/jrf.0.0630335>.
+
+[6] C. Alados and J. Escós. “The determinants of social status and the effect of female rank on reproductive success in Dama and Cuvier’s gazelles”. In: Ethology Ecology & Evolution 4.2 (2021), pp. 151-164. ISSN: 0394-9370. DOI: 10.1080/08927014.1992.9525336. <URL: http://dx.doi.org/10.1080/08927014.1992.9525336>.
+
+[7] C. Alados and J. Escós. “The determinants of social status and the effect of female rank on reproductive success in Dama and Cuvier’s gazelles”. In: Ethology Ecology & Evolution 4.2 (2021), pp. 151-164. ISSN: 0394-9370. DOI: 10.1080/08927014.1992.9525336. <URL: http://dx.doi.org/10.1080/08927014.1992.9525336>.
+
+[8] C. Alados and J. Escós. “The determinants of social status and the effect of female rank on reproductive success in Dama and Cuvier’s gazelles”. In: Ethology Ecology & Evolution 4.2 (2021), pp. 151-164. ISSN: 0394-9370. DOI: 10.1080/08927014.1992.9525336. <URL: http://dx.doi.org/10.1080/08927014.1992.9525336>.
+
+[9] C. Alados and J. Escós. “The determinants of social status and the effect of female rank on reproductive success in Dama and Cuvier’s gazelles”. In: Ethology Ecology & Evolution 4.2 (Apr. 1992), pp. 151-164. DOI: 10.1080/08927014.1992.9525336. <URL: https://doi.org/10.1080/08927014.1992.9525336>.
+
+[10] D. M. Anderson and M. J. A. Simpson. “Breeding Performance of a Captive Colony of Rhesus Macaques (Macaca Mulatto)”. In: Laboratory Animals 13.3 (Jul. 1979), pp. 275-282. DOI: 10.1258/002367779780937834. <URL: https://doi.org/10.1258/002367779780937834>.
+
+[11] E. A. Archie, J. Tung, M. Clark, et al. “Social affiliation matters: both same-sex and opposite-sex relationships predict survival in wild female baboons”. In: Proceedings of the Royal Society B: Biological Sciences 281.1793 (Oct. 2014), p. 20141261. DOI: 10.1098/rspb.2014.1261. <URL: https://doi.org/10.1098/rspb.2014.1261>.
+
+[12] M. E. Arlet, L. A. Isbell, A. Kaasik, et al. “Determinants of Reproductive Performance Among Female Gray-Cheeked Mangabeys (Lophocebus albigena) in Kibale National Park, Uganda”. In: International Journal of Primatology 36.1 (Dec. 2014), pp. 55-73. DOI: 10.1007/s10764-014-9810-4. <URL: https://doi.org/10.1007/s10764-014-9810-4>.
+
+[13] K. B. Armitage, D. H. V. Vuren, A. Ozgul, et al. “Proximate causes of natal dispersal in female yellow-bellied marmots, Marmota flaviventris”. In: Ecology 92.1 (Jan. 2011), pp. 218-227. DOI: 10.1890/10-0109.1. <URL: https://doi.org/10.1890/10-0109.1>.
+
+[14] M. Arruda, A. Araújo, M. Sousa, et al. “Two Breeding Females within Free-Living Groups May Not Always Indicate Polygyny: Alternative Subordinate Female Strategies in Common Marmosets (Callithrix jacchus)”. In: Folia Primatologica 76.1 (2005), pp. 10-20. DOI: 10.1159/000082451. <URL: https://doi.org/10.1159/000082451>.
+
+[15] P. J. BAKER, C. P. ROBERTSON, S. M. FUNK, et al. “Potential fitness benefits of group living in the red fox,Vulpes vulpes”. In: Animal Behaviour 56.6 (Dec. 1998), pp. 1411-1424. DOI: 10.1006/anbe.1998.0950. <URL: https://doi.org/10.1006/anbe.1998.0950>.
+
+[16] A. Baniel, G. Cowlishaw, and E. Huchard. “Context dependence of female reproductive competition in wild chacma baboons”. In: Animal Behaviour 139 (May. 2018), pp. 37-49. DOI: 10.1016/j.anbehav.2018.03.001. <URL: https://doi.org/10.1016/j.anbehav.2018.03.001>.
+
+[17] F. Barroso, C. Alados, and J. Boza. “Social hierarchy in the domestic goat: effect on food habits and production”. In: Applied Animal Behaviour Science 69.1 (Aug. 2000), pp. 35-53. DOI: 10.1016/s0168-1591(00)00113-1. <URL: https://doi.org/10.1016/s0168-1591(00)00113-1>.
+
+[18] R. A. Barton and A. Whiten. “Feeding competition among female olive baboons, Papio anubis”. In: Animal Behaviour 46.4 (Oct. 1993), pp. 777-789. DOI: 10.1006/anbe.1993.1255. <URL: https://doi.org/10.1006/anbe.1993.1255>.
+
+[19] M. J. Baxter and L. M. Fedigan. “Grooming and consort partner selection in a troop of Japanese monkeys (Macaca fuscata)”. In: Archives of Sexual Behavior 8.5 (Sep. 1979), pp. 445-458. DOI: 10.1007/bf01541200. <URL: https://doi.org/10.1007/bf01541200>.
+
+[20] J. C. Beehner, D. A. Onderdonk, S. C. Alberts, et al. “The ecology of conception and pregnancy failure in wild baboons”. In: Behavioral Ecology 17.5 (Jun. 2006), pp. 741-750. DOI: 10.1093/beheco/arl006. <URL: https://doi.org/10.1093/beheco/arl006>.
+
+[21] F. B. Bercovitch and J. D. Berard. “Life history costs and consequences of rapid reproductive maturation in female rhesus macaques”. In: Behavioral Ecology and Sociobiology 32.2 (Feb. 1993), pp. 103-109. DOI: 10.1007/bf00164042. <URL: https://doi.org/10.1007/bf00164042>.
+
+[22] C. M. Berman. “Maternal Condition and Offspring Sex Ratio in a Group of Free-Ranging Rhesus Monkeys: An Eleven-Year Study”. In: The American Naturalist 131.3 (Mar. 1988), pp. 307-328. DOI: 10.1086/284792. <URL: https://doi.org/10.1086/284792>.
+
+[23] I. S. Bernstein and C. Ehardt. “The influence of kinship and socialization on aggressive behaviour in rhesus monkeys (Macaca mulatta)”. In: Animal Behaviour 34.3 (Jun. 1986), pp. 739-747. DOI: 10.1016/s0003-3472(86)80057-4. <URL: https://doi.org/10.1016/s0003-3472(86)80057-4>.
+
+[24] G. E. Blomquist. “Environmental and genetic causes of maturational differences among rhesus macaque matrilines”. In: Behavioral Ecology and Sociobiology 63.9 (May. 2009), pp. 1345-1352. DOI: 10.1007/s00265-009-0792-8. <URL: https://doi.org/10.1007/s00265-009-0792-8>.
+
+[25] G. E. Blomquist, D. S. Sade, and J. D. Berard. “Rank-Related Fitness Differences and Their Demographic Pathways in Semi-Free-Ranging Rhesus Macaques (Macaca mulatta)”. In: International Journal of Primatology 32.1 (Nov. 2010), pp. 193-208. DOI: 10.1007/s10764-010-9461-z. <URL: https://doi.org/10.1007/s10764-010-9461-z>.
+
+[26] C. BOESCH. “Evidence for dominant wild female chimpanzees investing more in sons”. In: Animal Behaviour 54.4 (Oct. 1997), pp. 811-815. DOI: 10.1006/anbe.1996.0510. <URL: https://doi.org/10.1006/anbe.1996.0510>.
+
+[27] C. Borries, E. Larney, A. Derby, et al. “Temporary Absence and Dispersal in Phayre’s Leaf Monkeys (Trachypithecus phayrei)”. In: Folia Primatologica 75.1 (Jan. 01, 2004), pp. 27-30. ISSN: 0015-5713. DOI: 10.1159/000073428. <URL: http://dx.doi.org/10.1159/000073428>.
+
+[28] C. Borries, V. Sommer, and A. Srivastava. “Dominance, age, and reproductive success in free-ranging female hanuman langurs (Presbytis entellus)”. In: International Journal of Primatology 12.3 (Jun. 1991), pp. 231-257. DOI: 10.1007/bf02547586. <URL: https://doi.org/10.1007/bf02547586>.
+
+[29] L. J. N. Brent, A. Ruiz-Lambides, and M. L. Platt. “Family network size and survival across the lifespan of female macaques”. In: Proceedings of the Royal Society B: Biological Sciences 284.1854 (May. 2017), p. 20170515. DOI: 10.1098/rspb.2017.0515. <URL: https://doi.org/10.1098/rspb.2017.0515>.
+
+[30] J. Bulger and W. J. Hamilton. “Rank and density correlates of inclusive fitness measures in a natural chacma baboon (Papio ursinus) troop”. In: International Journal of Primatology 8.6 (Dec. 1987), pp. 635-650. DOI: 10.1007/bf02735781. <URL: https://doi.org/10.1007/bf02735781>.
+
+[31] T. M. Burland, N. C. Bennett, J. U. M. Jarvis, et al. “Eusociality in African mole-rats: new insights from patterns of genetic relatedness in the Damaraland mole-rat ( Cryptomys damarensis )”. In: Proceedings of the Royal Society of London. Series B: Biological Sciences 269.1495 (May. 2002), pp. 1025-1030. DOI: 10.1098/rspb.2002.1978. <URL: https://doi.org/10.1098/rspb.2002.1978>.
+
+[32] T. M. BURLAND, N. C. BENNETT, J. U. M. JARVIS, et al. “Colony structure and parentage in wild colonies of co-operatively breeding Damaraland mole-rats suggest incest avoidance alone may not maintain reproductive skew”. In: Molecular Ecology 13.8 (Jul. 2004), pp. 2371-2379. DOI: 10.1111/j.1365-294x.2004.02233.x. <URL: https://doi.org/10.1111/j.1365-294x.2004.02233.x>.
+
+[33] S. Cafazzo, R. Bonanni, P. Valsecchi, et al. “Social Variables Affecting Mate Preferences, Copulation and Reproductive Outcome in a Pack of Free-Ranging Dogs”. In: PLoS ONE 9.6 (Jun. 2014). Ed. by C. Wicker-Thomas, p. e98594. DOI: 10.1371/journal.pone.0098594. <URL: https://doi.org/10.1371/journal.pone.0098594>.
+
+[34] S. Cafazzo, P. Valsecchi, R. Bonanni, et al. “Dominance in relation to age, sex, and competitive contexts in a group of free-ranging domestic dogs”. In: Behavioral Ecology 21.3 (2010), pp. 443-455. DOI: 10.1093/beheco/arq001. <URL: https://doi.org/10.1093/beheco/arq001>.
+
+[35] E. Z. Cameron, T. H. Setsaas, and W. L. Linklater. “Social bonds between unrelated females increase reproductive success in feral horses”. In: Proceedings of the National Academy of Sciences 106.33 (Aug. 2009), pp. 13850-13853. DOI: 10.1073/pnas.0900639106. <URL: https://doi.org/10.1073/pnas.0900639106>.
+
+[36] F. Cappa, M. Lombardini, and A. Meriggi. “Influence of seasonality, environmental and anthropic factors on crop damage by wild boar Sus scrofa”. In: Folia Zoologica 68.4 (2021), p. 261. ISSN: 0139-7893. DOI: 10.25225/fozo.015.2019. <URL: http://dx.doi.org/10.25225/fozo.015.2019>.
+
+[37] M. D. Carling, P. A. Wiseman, and J. A. Byers. “MICROSATELLITE ANALYSIS REVEALS MULTIPLE PATERNITY IN A POPULATION OF WILD PRONGHORN ANTELOPES (ANTILOCAPRA AMERICANA)”. In: Journal of Mammalogy 84.4 (Nov. 2003), pp. 1237-1243. DOI: 10.1644/brb-116. <URL: https://doi.org/10.1644/brb-116>.
+
+[38] J. Cassinello. “Factors modifying female social ranks in Ammotragus”. In: Applied Animal Behaviour Science 45.1-2 (Oct. 1995), pp. 175-180. DOI: 10.1016/0168-1591(95)00583-e. <URL: https://doi.org/10.1016/0168-1591(95)00583-e>.
+
+[39] J. Cassinello and C. L. Alados. “Female reproductive success in captiveAmmotragus lervia(Bovidae, Artiodactyla). Study of its components and effects of hierarchy and inbreeding”. In: Journal of Zoology 239.1 (May. 1996), pp. 141-153. DOI: 10.1111/j.1469-7998.1996.tb05442.x. <URL: https://doi.org/10.1111/j.1469-7998.1996.tb05442.x>.
+
+[40] F. Ceacero, M. K. á, A. J. Garc', et al. “Different maternal investment strategies for male and female calves in a polygynous mammal”. In: Current Zoology 65.3 (Jun. 2018). Ed. by Z. Jia, pp. 269-277. DOI: 10.1093/cz/zoy049. <URL: https://doi.org/10.1093/cz/zoy049>.
+
+[41] F. Ceacero, T. Landete-Castillejos, A. J. Garc', et al. “Kinship Discrimination and Effects on Social Rank and Aggressiveness Levels in Iberian Red Deer Hinds”. In: Ethology 113.12 (Dec. 2007), pp. 1133-1140. DOI: 10.1111/j.1439-0310.2007.01427.x. <URL: https://doi.org/10.1111/j.1439-0310.2007.01427.x>.
+
+[42] M. O. M. Chelini, R. Palme, and E. Otta. “Social stress and reproductive success in the female Syrian hamster: Endocrine and behavioral correlates”. In: Physiology & Behavior 104.5 (Oct. 2011), pp. 948-954. DOI: 10.1016/j.physbeh.2011.06.006. <URL: https://doi.org/10.1016/j.physbeh.2011.06.006>.
+
+[43] B. D. Chepko-Sade and T. J. Olivier. “Coefficient of genetic relationship and the probability of intragenealogical fission in Macaca mulatta”. In: Behavioral Ecology and Sociobiology 5.3 (1979), pp. 263-278. DOI: 10.1007/bf00293675. <URL: https://doi.org/10.1007/bf00293675>.
+
+[44] T. Christenson and B. L. Boeuf. “Aggression in the Female Northern Elephant Seal, Mirounga Angustirostris”. In: Behaviour 64.1-2 (1978), pp. 158-171. DOI: 10.1163/156853978x00495. <URL: https://doi.org/10.1163/156853978x00495>.
+
+[45] E. Clancey and J. A. Byers. “A comprehensive test of the Trivershypothesis in pronghorn ( Antilocapra americana )”. In: Journal of Mammalogy 97.1 (Oct. 2015), pp. 179-186. DOI: 10.1093/jmammal/gyv168. <URL: https://doi.org/10.1093/jmammal/gyv168>.
+
+[46] F. M. Clarke and C. G. Faulkes. “Dominance and queen succession in captive colonies of the eusocial naked mole, Heterocephalus glaber”. In: Proceedings of the Royal Society of London. Series B: Biological Sciences 264.1384 (Jul. 1997), pp. 993-1000. DOI: 10.1098/rspb.1997.0137. <URL: https://doi.org/10.1098/rspb.1997.0137>.
+
+[47] T. H. Clutton-Brock, S. D. Albon, and F. E. Guinness. “Maternal dominance, breeding success and birth sex ratios in red deer”. In: Nature 308.5957 (Mar. 1984), pp. 358-360. DOI: 10.1038/308358a0. <URL: https://doi.org/10.1038/308358a0>.
+
+[48] C. L. Coe, J. Chen, E. L. Lowe, et al. “Hormonal and behavioral changes at puberty in the squirrel monkey”. In: Hormones and Behavior 15.1 (Mar. 1981), pp. 36-53. DOI: 10.1016/0018-506x(81)90033-7. <URL: https://doi.org/10.1016/0018-506x(81)90033-7>.
+
+[49] M. Cords. “Friendship among adult female blue monkeys (Cercopithecus mitis)”. In: Behaviour 139.2 (2002), pp. 291-314. DOI: 10.1163/156853902760102681. <URL: https://doi.org/10.1163/156853902760102681>.
+
+[50] L. A. Correa, B. Zapata, H. Samaniego, et al. “Social structure in a family group of Guanaco (Lama guanicoe, Ungulate): Is female hierarchy based on prior attributes' orsocial dynamics’?” In: Behavioural Processes 98 (Sep. 2013), pp. 92-97. DOI: 10.1016/j.beproc.2013.05.003. <URL: https://doi.org/10.1016/j.beproc.2013.05.003>.
+
+[51] D. L. Cram, P. Monaghan, R. Gillespie, et al. “Rank-Related Contrasts in Longevity Arise from Extra-Group Excursions Not Delayed Senescence in a Cooperative Mammal”. In: Current Biology 28.18 (Sep. 2018), pp. 2934-2939.e4. DOI: 10.1016/j.cub.2018.07.021. <URL: https://doi.org/10.1016/j.cub.2018.07.021>.
+
+[52] S. Creel. “DOMINANCE, AGGRESSION, AND GLUCOCORTICOID LEVELS IN SOCIAL CARNIVORES”. In: Journal of Mammalogy 86.2 (Apr. 2005), pp. 255-264. DOI: 10.1644/bhe-002.1. <URL: https://doi.org/10.1644/bhe-002.1>.
+
+[53] S. R. Creel and P. M. Waser. “Inclusive fitness and reproductive strategies in dwarf mongooses”. In: Behavioral Ecology 5.3 (1994), pp. 339-348. DOI: 10.1093/beheco/5.3.339. <URL: https://doi.org/10.1093/beheco/5.3.339>.
+
+[54] S. Creel, N. M. Creel, M. G. L. Mills, et al. “Rank and reproduction in cooperatively breeding African wild dogs: behavioral and endocrine correlates”. In: Behavioral Ecology 8.3 (1997), pp. 298-306. DOI: 10.1093/beheco/8.3.298. <URL: https://doi.org/10.1093/beheco/8.3.298>.
+
+[55] P. Dammann, R. Šumbera, C. Maßmann, et al. “Extended Longevity of Reproductives Appears to be Common in Fukomys Mole-Rats (Rodentia, Bathyergidae)”. In: PLoS ONE 6.4 (Apr. 2011). Ed. by G. G. de Polavieja, p. e18757. DOI: 10.1371/journal.pone.0018757. <URL: https://doi.org/10.1371/journal.pone.0018757>.
+
+[56] J. J. Dennehy. “Influence of social dominance rank on diet quality of pronghorn females”. In: Behavioral Ecology 12.2 (Mar. 2001), pp. 177-181. DOI: 10.1093/beheco/12.2.177. <URL: https://doi.org/10.1093/beheco/12.2.177>.
+
+[57] J. C. Deutsch and P. C. Lee. “Dominance and feeding competition in captive rhesus monkeys”. In: International Journal of Primatology 12.6 (Dec. 1991), pp. 615-628. DOI: 10.1007/bf02547673. <URL: https://doi.org/10.1007/bf02547673>.
+
+[58] J. M. Dietz and A. J. Baker. “Polygyny and female reproductive success in golden lion tamarins, Leontopithecus rosalia”. In: Animal Behaviour 46.6 (Dec. 1993), pp. 1067-1078. DOI: 10.1006/anbe.1993.1297. <URL: https://doi.org/10.1006/anbe.1993.1297>.
+
+[59] L. J. Digby. “Social organization in a wild population ofCallithrix jacchus: II. Intragroup social behavior”. In: Primates 36.3 (Jul. 1995), pp. 361-375. DOI: 10.1007/bf02382859. <URL: https://doi.org/10.1007/bf02382859>.
+
+[60] W. P. Dittus. “The Evolution of Behaviors Regulating Density and Age-Specific Sex Ratios in a Primate Population”. In: Behaviour 69.3-4 (1979), pp. 265-301. DOI: 10.1163/156853979x00511. <URL: https://doi.org/10.1163/156853979x00511>.
+
+[61] W. P. J. Dittus. “Sex differences in fitness following a group take-over among Toque macaques: testing models of social evolution”. In: Behavioral Ecology and Sociobiology 19.4 (Sep. 1986), pp. 257-266. DOI: 10.1007/bf00300640. <URL: https://doi.org/10.1007/bf00300640>.
+
+[62] N. Djaković, Ø. Holand, A. L. Hovland, et al. “Association patterns and kinship in female reindeer (Rangifer tarandus) during rut”. In: acta ethologica 15.2 (Dec. 2011), pp. 165-171. DOI: 10.1007/s10211-011-0121-x. <URL: https://doi.org/10.1007/s10211-011-0121-x>.
+
+[63] A. Dobly. “Breeding suppression between two unrelated and initially unfamiliar females occurs with or without social tolerance in common voles (Microtus arvalis)”. In: Journal of Ethology 27.3 (Oct. 2008), pp. 299-306. DOI: 10.1007/s10164-008-0118-8. <URL: https://doi.org/10.1007/s10164-008-0118-8>.
+
+[64] P. Dolhinow, J. J. McKenna, and J. V. H. Laws. “Rank and reproduction among female langur monkeys: Aging and improvement (They’re not just getting older, they’re getting better)”. In: Aggressive Behavior 5.1 (1979), pp. 19-30. DOI: 10.1002/1098-2337(1979)5:1<19::aid-ab2480050104>3.0.co;2-7. <URL: https://doi.org/10.1002/1098-2337(1979)5:1<19::aid-ab2480050104>3.0.co;2-7>.
+
+[65] L. C. Drickamer. “A Ten-Year Summary of Reproductive Data for Free-Ranging Macaca mulatta”. In: Folia Primatologica 21.1 (1974), pp. 61-80. DOI: 10.1159/000155596. <URL: https://doi.org/10.1159/000155596>.
+
+[66] L. C. Drickamer. “Social dominance, reproduction, and release of the maturation-delaying chemosignal in the urine of female house mice (Mus musculus).” In: Journal of Comparative Psychology 99.4 (Dec. 1985), pp. 411-419. DOI: 10.1037/0735-7036.99.4.411. <URL: https://doi.org/10.1037/0735-7036.99.4.411>.
+
+[67] J. Duboscq, C. Neumann, M. Agil, et al. “Degrees of freedom in social bonds of crested macaque females”. In: Animal Behaviour 123 (Jan. 2017), pp. 411-426. DOI: 10.1016/j.anbehav.2016.11.010. <URL: https://doi.org/10.1016/j.anbehav.2016.11.010>.
+
+[68] R. Dunbar. Reproductive Decisions. Princeton University Press, Dec. 1985. DOI: 10.1515/9781400853847. <URL: https://doi.org/10.1515/9781400853847>.
+
+[69] R. I. M. Dunbar. “Determinants and evolutionary consequences of dominance among female gelada baboons”. In: Behavioral Ecology and Sociobiology 7.4 (Nov. 1980), pp. 253-265. DOI: 10.1007/bf00300665. <URL: https://doi.org/10.1007/bf00300665>.
+
+[70] R. I. M. DUNBAR and E. P. DUNBAR. “Dominance and reproductive success among female gelada baboons”. In: Nature 266.5600 (Mar. 1977), pp. 351-352. DOI: 10.1038/266351a0. <URL: https://doi.org/10.1038/266351a0>.
+
+[71] S. C. é. “DOMINANCE HIERARCHIES IN FEMALE MOUNTAIN GOATS: STABILITY, AGGRESSIVENESS AND DETERMINANTS OF RANK”. In: Behaviour 137.11 (2000), pp. 1541-1566. DOI: 10.1163/156853900502718. <URL: https://doi.org/10.1163/156853900502718>.
+
+[72] S. D. C. é and M. Festa-Bianchet. “Reproductive success in female mountain goats: the influence of age and social rank”. In: Animal Behaviour 62.1 (Jul. 2001), pp. 173-181. DOI: 10.1006/anbe.2001.1719. <URL: https://doi.org/10.1006/anbe.2001.1719>.
+
+[73] T. Eccles and D. Shackleton. “Correlates and consequences of social status in female bighorn sheep”. In: Animal Behaviour 34.5 (Oct. 1986), pp. 1392-1401. DOI: 10.1016/s0003-3472(86)80210-x. <URL: https://doi.org/10.1016/s0003-3472(86)80210-x>.
+
+[74] W. Eckardt, K. Fawcett, and A. W. Fletcher. “Weaned age variation in the Virunga mountain gorillas (Gorilla beringei beringei): influential factors”. In: Behavioral Ecology and Sociobiology 70.4 (Feb. 2016), pp. 493-507. DOI: 10.1007/s00265-016-2066-6. <URL: https://doi.org/10.1007/s00265-016-2066-6>.
+
+[75] S. Ellis, N. Snyder-Mackler, A. Ruiz-Lambides, et al. “Deconstructing sociality: the types of social connections that predict longevity in a group-living primate”. In: Proceedings of the Royal Society B: Biological Sciences 286.1917 (Dec. 2019), p. 20191991. DOI: 10.1098/rspb.2019.1991. <URL: https://doi.org/10.1098/rspb.2019.1991>.
+
+[76] L. A. Fairbanks, M. J. Jorgensen, J. N. Bailey, et al. “Heritability and genetic correlation of hair cortisol in vervet monkeys in low and higher stress environments”. In: Psychoneuroendocrinology 36.8 (Sep. 2011), pp. 1201-1208. DOI: 10.1016/j.psyneuen.2011.02.013. <URL: https://doi.org/10.1016/j.psyneuen.2011.02.013>.
+
+[77] L. A. Fairbanks and M. T. McGuire. “Determinants of fecundity and reproductive success in captive vervet monkeys”. In: American Journal of Primatology 7.1 (1984), pp. 27-38. DOI: 10.1002/ajp.1350070106. <URL: https://doi.org/10.1002/ajp.1350070106>.
+
+[78] C. G. Faulkes and N. C. Bennett. “Family values: group dynamics and social control of reproduction in African mole-rats”. In: Trends in Ecology & Evolution 16.4 (Apr. 2001), pp. 184-190. DOI: 10.1016/s0169-5347(01)02116-4. <URL: https://doi.org/10.1016/s0169-5347(01)02116-4>.
+
+[79] L. M. Fedigan, S. D. Carnegie, and K. M. Jack. “Predictors of reproductive success in female white-faced capuchins (Cebus capucinus)”. In: American Journal of Physical Anthropology 137.1 (Sep. 2008), pp. 82-90. DOI: 10.1002/ajpa.20848. <URL: https://doi.org/10.1002/ajpa.20848>.
+
+[80] L. M. Fedigan, L. Fedigan, S. Gouzoules, et al. “Lifetime Reproductive Success in Female Japanese Macaques”. In: Folia Primatologica 47.2-3 (1986), pp. 143-157. DOI: 10.1159/000156271. <URL: https://doi.org/10.1159/000156271>.
+
+[81] L. Fedigan and M. Bergstrom. “Dominance among female white-faced capuchin monkeys (Cebus capucinus): hierarchical linearity, nepotism, strength and stability”. In: Behaviour 147.7 (2010), pp. 899-931. DOI: 10.1163/000579510x497283. <URL: https://doi.org/10.1163/000579510x497283>.
+
+[82] M. Festa-Bianchet. “The social system of bighorn sheep: grouping patterns, kinship and female dominance rank”. In: Animal Behaviour 42.1 (Jul. 1991), pp. 71-82. DOI: 10.1016/s0003-3472(05)80607-4. <URL: https://doi.org/10.1016/s0003-3472(05)80607-4>.
+
+[83] F. Fournier and M. Festa-Bianchet. “Social dominance in adult female mountain goats”. In: Animal Behaviour 49.6 (Jun. 1995), pp. 1449-1459. DOI: 10.1016/0003-3472(95)90066-7. <URL: https://doi.org/10.1016/0003-3472(95)90066-7>.
+
+[84] P. A. Garber, F. E. Ón, L. Moya, et al. “Demographic and reproductive patterns in moustached tamarin monkeys (Saguinus mystax): Implications for reconstructing platyrrhine mating systems”. In: American Journal of Primatology 29.4 (1993), pp. 235-254. DOI: 10.1002/ajp.1350290402. <URL: https://doi.org/10.1002/ajp.1350290402>.
+
+[85] C. Garcia, P. Lee, and L. Rosetta. “Dominance and reproductive rates in captive female olive baboons,Papio anubis”. In: American Journal of Physical Anthropology 131.1 (2006), pp. 64-72. DOI: 10.1002/ajpa.20405. <URL: https://doi.org/10.1002/ajpa.20405>.
+
+[86] A. Gaylard, Y. Harrison, and N. C. Bennett. “Temporal changes in the social structure of a captive colony of the Damaraland mole-rat, Cryptomys damarensis: the relationship of sex and age to dominance and burrow-maintenance activity”. In: Journal of Zoology 244.3 (Mar. 1998), pp. 313-321. DOI: 10.1111/j.1469-7998.1998.tb00035.x. <URL: https://doi.org/10.1111/j.1469-7998.1998.tb00035.x>.
+
+[87] G. Gerlach. “Reproductive skew, costs, and benefits of cooperative breeding in female wood mice (Apodemus sylvaticus)”. In: Behavioral Ecology 13.3 (May. 2002), p. 408–418. ISSN: 1465-7279. DOI: 10.1093/beheco/13.3.408. <URL: http://dx.doi.org/10.1093/beheco/13.3.408>.
+
+[88] G. Gerlach. “Reproductive skew, costs, and benefits of cooperative breeding in female wood mice (Apodemus sylvaticus)”. In: Behavioral Ecology 13.3 (May. 2002), pp. 408-418. DOI: 10.1093/beheco/13.3.408. <URL: https://doi.org/10.1093/beheco/13.3.408>.
+
+[89] L. R. Gesquiere, J. Altmann, E. A. Archie, et al. “Interbirth intervals in wild baboons: Environmental predictors and hormonal correlates”. In: American Journal of Physical Anthropology 166.1 (Feb. 2018), pp. 107-126. DOI: 10.1002/ajpa.23407. <URL: https://doi.org/10.1002/ajpa.23407>.
+
+[90] D. J. Girman, M. G. L. Mills, E. Geffen, et al. “A molecular genetic analysis of social structure, dispersal, and interpack relationships of the African wild dog ( Lycaon pictus 1mu)”. In: Behavioral Ecology and Sociobiology 40.3 (Mar. 1997), pp. 187-198. DOI: 10.1007/s002650050332. <URL: https://doi.org/10.1007/s002650050332>.
+
+[91] K. E. Glander. “Reproduction and population growth in free-ranging mantled howling monkeys”. In: American Journal of Physical Anthropology 53.1 (Jul. 1980), pp. 25-36. DOI: 10.1002/ajpa.1330530106. <URL: https://doi.org/10.1002/ajpa.1330530106>.
+
+[92] A. W. Goldizen, J. Mendelson, M. van Vlaardingen, et al. “Saddle-back tamarin (Saguinus fuscicollis) reproductive strategies: Evidence from a thirteen-year study of a marked population”. In: American Journal of Primatology 38.1 (1996), pp. 57-83. DOI: 10.1002/(sici)1098-2345(1996)38:1<57::aid-ajp6>3.0.co;2-s. <URL: https://doi.org/10.1002/(sici)1098-2345(1996)38:1<57::aid-ajp6>3.0.co;2-s>.
+
+[93] M. Gomendio. “The influence of maternal rank and infant sex on maternal investment trends in rhesus macaques: birth sex ratios, inter-birth intervals and suckling patterns”. In: Behavioral Ecology and Sociobiology 27.5 (1990), pp. 365-375. DOI: 10.1007/bf00164008. <URL: https://doi.org/10.1007/bf00164008>.
+
+[94] M. Gomendio, T. H. Clutton-Brock, S. D. Albon, et al. “Mammalian sex ratios and variation in costs of rearing sons and daughters”. In: Nature 343.6255 (Jan. 1990), pp. 261-263. DOI: 10.1038/343261a0. <URL: https://doi.org/10.1038/343261a0>.
+
+[95] H. Gouzoules, S. Gouzoules, and L. Fedigan. “Behavioural dominance and reproductive success in female Japanese monkeys (Macaca fuscata)”. In: Animal Behaviour 30.4 (Nov. 1982), pp. 1138-1150. DOI: 10.1016/s0003-3472(82)80204-2. <URL: https://doi.org/10.1016/s0003-3472(82)80204-2>.
+
+[96] W. C. Green and A. Rothstein. “Sex bias or equal opportunity? Patterns of maternal investment in bison”. In: Behavioral Ecology and Sociobiology 29.5 (Dec. 1991), pp. 373-384. DOI: 10.1007/bf00165963. <URL: https://doi.org/10.1007/bf00165963>.
+
+[97] D. Greenberg-Cohen, P. U. Alkon, and Y. Yom-Tov. “A Linear Dominance Hierarchy in Female Nubian Ibex”. In: Ethology 98.3-4 (Apr. 2010), pp. 210-220. DOI: 10.1111/j.1439-0310.1994.tb01072.x. <URL: https://doi.org/10.1111/j.1439-0310.1994.tb01072.x>.
+
+[98] A. S. Griffin. “A genetic analysis of breeding success in the cooperative meerkat (Suricata suricatta)”. In: Behavioral Ecology 14.4 (Jul. 2003), pp. 472-480. DOI: 10.1093/beheco/arg040. <URL: https://doi.org/10.1093/beheco/arg040>.
+
+[99] K. Hackländer, E. Möstl, and W. Arnold. “Reproductive suppression in female Alpine marmots, Marmota marmota”. In: Animal Behaviour 65.6 (Jun. 2003), pp. 1133-1140. DOI: 10.1006/anbe.2003.2159. <URL: https://doi.org/10.1006/anbe.2003.2159>.
+
+[100] M. J. HALL. “Social Organization in an Enclosed Group of Red Deer (Cervus elaphus L.) on Rhum. I. The Dominance Hierarchy of Females and their Offspring”. In: Zeitschrift für Tierpsychologie 61.3 (Apr. 2010), pp. 250-262. DOI: 10.1111/j.1439-0310.1983.tb01341.x. <URL: https://doi.org/10.1111/j.1439-0310.1983.tb01341.x>.
+
+[101] C. C. Hass. “Social status in female bighorn sheep (Ovis canadensis): expression, development and reproductive correlates”. In: Journal of Zoology 225.3 (Nov. 1991), pp. 509-523. DOI: 10.1111/j.1469-7998.1991.tb03832.x. <URL: https://doi.org/10.1111/j.1469-7998.1991.tb03832.x>.
+
+[102] M. Heesen, S. Rogahn, J. Ostner, et al. “Food abundance affects energy intake and reproduction in frugivorous female Assamese macaques”. In: Behavioral Ecology and Sociobiology 67.7 (Apr. 2013), pp. 1053-1066. DOI: 10.1007/s00265-013-1530-9. <URL: https://doi.org/10.1007/s00265-013-1530-9>.
+
+[103] M. D. Henry, S. J. Hankerson, J. M. Siani, et al. “High rates of pregnancy loss by subordinates leads to high reproductive skew in wild golden lion tamarins (Leontopithecus rosalia)”. In: Hormones and Behavior 63.5 (May. 2013), pp. 675-683. DOI: 10.1016/j.yhbeh.2013.02.009. <URL: https://doi.org/10.1016/j.yhbeh.2013.02.009>.
+
+[104] H. Hofer and M. L. East. “Behavioral processes and costs of co-existence in female spotted hyenas: a life history perspective”. In: Evolutionary Ecology 17.4 (Jul. 2003), pp. 315-331. DOI: 10.1023/a:1027352517231. <URL: https://doi.org/10.1023/a:1027352517231>.
+
+[105] S. Hohenbrink and S. Meinecke-Tillmann. “Influence of social dominance on the secondary sex ratio and factors affecting hierarchy in Holstein dairy cows”. In: Journal of Dairy Science 95.10 (Oct. 2012), pp. 5694-5701. DOI: 10.3168/jds.2011-5281. <URL: https://doi.org/10.3168/jds.2011-5281>.
+
+[106] Ø. Holand, H. Gjøstein, A. Losvar, et al. “Social rank in female reindeer (Rangifer tarandus): effects of body mass, antler size and age”. In: Journal of Zoology 263.4 (Aug. 2004), pp. 365-372. DOI: 10.1017/s0952836904005382. <URL: https://doi.org/10.1017/s0952836904005382>.
+
+[107] �. Holand, R. B. Weladji, H. Gj�stein, et al. “Reproductive effort in relation to maternal social rank in reindeer (Rangifer tarandus)”. In: Behavioral Ecology and Sociobiology 57.1 (Jul. 2004), pp. 69-76. DOI: 10.1007/s00265-004-0827-0. <URL: https://doi.org/10.1007/s00265-004-0827-0>.
+
+[108] K. E. HOLEKAMP and L. SMALE. “Dominance Acquisition During Mammalian Social Development: The of Maternal Rank”. In: American Zoologist 31.2 (Apr. 1991), pp. 306-317. DOI: 10.1093/icb/31.2.306. <URL: https://doi.org/10.1093/icb/31.2.306>.
+
+[109] K. E. Holekamp, L. Smale, and M. Szykman. “Rank and reproduction in the female spotted hyaena”. In: Reproduction 108.2 (Nov. 1996), pp. 229-237. DOI: 10.1530/jrf.0.1080229. <URL: https://doi.org/10.1530/jrf.0.1080229>.
+
+[110] D. von Holst, H. Hutzelmeyer, P. Kaetzke, et al. “Social rank, fecundity and lifetime reproductive success in wild European rabbits ( Oryctolagus cuniculus )”. In: Behavioral Ecology and Sociobiology 51.3 (Feb. 2002), pp. 245-254. DOI: 10.1007/s00265-001-0427-1. <URL: https://doi.org/10.1007/s00265-001-0427-1>.
+
+[111] R. C. V. Horn, J. C. Buchan, J. Altmann, et al. “Divided destinies: group choice by female savannah baboons during social group fission”. In: Behavioral Ecology and Sociobiology 61.12 (Jun. 2007), pp. 1823-1837. DOI: 10.1007/s00265-007-0415-1. <URL: https://doi.org/10.1007/s00265-007-0415-1>.
+
+[112] R. C. V. Horn, A. L. Engh, K. T. Scribner, et al. “Behavioural structuring of relatedness in the spotted hyena (Crocuta crocuta) suggests direct fitness benefits of clan-level cooperation”. In: Molecular Ecology 13.2 (Jan. 2004), pp. 449-458. DOI: 10.1046/j.1365-294x.2003.02071.x. <URL: https://doi.org/10.1046/j.1365-294x.2003.02071.x>.
+
+[113] B. Huang, T. W. Wey, and D. T. Blumstein. “Correlates and Consequences of Dominance in a Social Rodent”. In: Ethology 117.7 (May. 2011), pp. 573-585. DOI: 10.1111/j.1439-0310.2011.01909.x. <URL: https://doi.org/10.1111/j.1439-0310.2011.01909.x>.
+
+[114] U. Huck, R. D. Lisk, and M. V. McKay. “Social dominance and reproductive success in pregnant and lactating golden hamsters (Mesocricetus auratus) under seminatural conditions”. In: Physiology & Behavior 44.3 (Jan. 1988), pp. 313-319. DOI: 10.1016/0031-9384(88)90031-5. <URL: https://doi.org/10.1016/0031-9384(88)90031-5>.
+
+[115] G. Iossa, C. D. Soulsbury, P. J. Baker, et al. “Behavioral changes associated with a population density decline in the facultatively social red fox”. In: Behavioral Ecology 20.2 (Dec. 2008), pp. 385-395. DOI: 10.1093/beheco/arn149. <URL: https://doi.org/10.1093/beheco/arn149>.
+
+[116] N. Itoigawa, T. Tanaka, N. Ukai, et al. “Demography and reproductive parameters of a free-ranging group of Japanese macaques (Macaca fuscata) at Katsuyama”. In: Primates 33.1 (Jan. 1992), pp. 49-68. DOI: 10.1007/bf02382762. <URL: https://doi.org/10.1007/bf02382762>.
+
+[117] J. Jarvis. “Eusociality in a mammal: cooperative breeding in naked mole-rat colonies”. In: Science 212.4494 (May. 1981), pp. 571-573. DOI: 10.1126/science.7209555. <URL: https://doi.org/10.1126/science.7209555>.
+
+[118] J. A. Johnson. “Dominance rank in juvenile olive baboons, Papio anubis: the influence of gender, size, maternal rank and orphaning”. In: Animal Behaviour 35.6 (Dec. 1987), pp. 1694-1708. DOI: 10.1016/s0003-3472(87)80062-3. <URL: https://doi.org/10.1016/s0003-3472(87)80062-3>.
+
+[119] C. B. Jones. “The functions of status in the mantled howler monkey,Alouatta palliata Gray: Intraspecific competition for group membership in a folivorous neotropical primate”. In: Primates 21.3 (Jul. 1980), pp. 389-405. DOI: 10.1007/bf02390468. <URL: https://doi.org/10.1007/bf02390468>.
+
+[120] J. H. Jones, M. L. Wilson, C. Murray, et al. “Phenotypic quality influences fertility in Gombe chimpanzees”. In: Journal of Animal Ecology 79.6 (Apr. 2010), pp. 1262-1269. DOI: 10.1111/j.1365-2656.2010.01687.x. <URL: https://doi.org/10.1111/j.1365-2656.2010.01687.x>.
+
+[121] U. Kalbitzer, M. L. Bergstrom, S. D. Carnegie, et al. “Female sociality and sexual conflict shape offspring survival in a Neotropical primate”. In: Proceedings of the National Academy of Sciences 114.8 (Feb. 2017), pp. 1892-1897. DOI: 10.1073/pnas.1608625114. <URL: https://doi.org/10.1073/pnas.1608625114>.
+
+[122] B. Keane, P. Waser, S. Creel, et al. “Subordinate reproduction in dwarf mongooses”. In: Animal Behaviour 47.1 (Jan. 1994), pp. 65-75. DOI: 10.1006/anbe.1994.1008. <URL: https://doi.org/10.1006/anbe.1994.1008>.
+
+[123] D. Kerhoas, D. Perwitasari-Farajallah, M. Agil, et al. “Social and ecological factors influencing offspring survival in wild macaques”. In: Behavioral Ecology 25.5 (2014), pp. 1164-1172. DOI: 10.1093/beheco/aru099. <URL: https://doi.org/10.1093/beheco/aru099>.
+
+[124] A. A. Kinahan and N. Pillay. “Dominance status influences female reproductive strategy in a territorial African rodent Rhabdomys pumilio”. In: Behavioral Ecology and Sociobiology 62.4 (Sep. 2007), pp. 579-587. DOI: 10.1007/s00265-007-0482-3. <URL: https://doi.org/10.1007/s00265-007-0482-3>.
+
+[125] W. J. King and D. A. é. “Social, maternal, and environmental influences on reproductive success in female Alpine marmots (Marmota marmota)”. In: Canadian Journal of Zoology 80.12 (Dec. 2002), pp. 2137-2143. DOI: 10.1139/z02-205. <URL: https://doi.org/10.1139/z02-205>.
+
+[126] K. Klass and M. Cords. “Agonism and dominance in female blue monkeys”. In: American Journal of Primatology 77.12 (Sep. 2015), pp. 1299-1315. DOI: 10.1002/ajp.22481. <URL: https://doi.org/10.1002/ajp.22481>.
+
+[127] J. C. Knowles, P. J. V. C. de Groot, I. Wiesel, et al. “Microsatellite Variation in Namibian Brown Hyenas (Hyaena brunnea): Population Structure and Mating System Implications”. In: Journal of Mammalogy 90.6 (Dec. 2009), pp. 1381-1391. DOI: 10.1644/08-mamm-a-298r1.1. <URL: https://doi.org/10.1644/08-mamm-a-298r1.1>.
+
+[128] A. Koenig, E. Larney, A. Lu, et al. “Agonistic behavior and dominance relationships in female phayre’s leaf monkeys - preliminary results”. In: American Journal of Primatology 64.3 (2004), pp. 351-357. DOI: 10.1002/ajp.20084. <URL: https://doi.org/10.1002/ajp.20084>.
+
+[129] B. König. “Fitness effects of communal rearing in house mice: the role of relatedness versus familiarity”. In: Animal Behaviour 48.6 (Dec. 1994), pp. 1449-1457. DOI: 10.1006/anbe.1994.1381. <URL: https://doi.org/10.1006/anbe.1994.1381>.
+
+[130] L. Koren and E. Geffen. “Androgens and social status in female rock hyraxes”. In: Animal Behaviour 77.1 (Jan. 2009), pp. 233-238. DOI: 10.1016/j.anbehav.2008.09.031. <URL: https://doi.org/10.1016/j.anbehav.2008.09.031>.
+
+[131] N. Koyama, Y. Takahata, M. A. Huffman, et al. “Reproductive parameters of female Japanese macaques: Thirty years data from the arashiyama troops, Japan”. In: Primates 33.1 (Jan. 1992), pp. 33-47. DOI: 10.1007/bf02382761. <URL: https://doi.org/10.1007/bf02382761>.
+
+[132] R. Kümmerli and R. D. Martin. “Male and Female Reproductive Success in Macaca sylvanus in Gibraltar: No Evidence for Rank Dependence”. In: International Journal of Primatology 26.6 (Dec. 2005), pp. 1229-1249. DOI: 10.1007/s10764-005-8851-0. <URL: https://doi.org/10.1007/s10764-005-8851-0>.
+
+[133] R. Kümmerli and R. D. Martin. “Patterns of infant handling and relatedness in Barbary macaques (Macaca sylvanus) on Gibraltar”. In: Primates 49.4 (Sep. 2008), pp. 271-282. DOI: 10.1007/s10329-008-0100-7. <URL: https://doi.org/10.1007/s10329-008-0100-7>.
+
+[134] S. Lardy, D. A. é, and A. Cohas. “Intrasexual competition and female dominance in a singular breeding mammal, the Alpine marmot”. In: Animal Behaviour 86.6 (Dec. 2013), pp. 1155-1163. DOI: 10.1016/j.anbehav.2013.09.017. <URL: https://doi.org/10.1016/j.anbehav.2013.09.017>.
+
+[135] R. R. Lawler, A. F. Richard, and M. A. Riley. “Genetic population structure of the white sifaka (Propithecus verreauxi verreauxi) at Beza Mahafaly Special Reserve, southwest Madagascar (1992)”. In: Molecular Ecology 12.9 (Jul. 2003), pp. 2307-2317. DOI: 10.1046/j.1365-294x.2003.01909.x. <URL: https://doi.org/10.1046/j.1365-294x.2003.01909.x>.
+
+[136] B. Liu, C. Wu, P. A. Garber, et al. “Effects of group size and rank on mother-infant relationships and reproductive success in rhesus macaques (Macaca mulatta )”. In: American Journal of Primatology 80.7 (Jun. 2018), p. e22881. DOI: 10.1002/ajp.22881. <URL: https://doi.org/10.1002/ajp.22881>.
+
+[137] P. H. Lloyd and O. A. E. Rasa. “Status, reproductive success and fitness in Cape mountain zebra (Equus zebra zebra)”. In: Behavioral Ecology and Sociobiology 25.6 (Dec. 1989), pp. 411-420. DOI: 10.1007/bf00300187. <URL: https://doi.org/10.1007/bf00300187>.
+
+[138] P. Lloyd and O. Rasa. “Incest Avoidance and Attainment of Dominance By Females in a Cape Mountain Zebra (Equus Zebra Zebra) Population”. In: Behaviour 128.3-4 (1994), pp. 169-188. DOI: 10.1163/156853994x00253. <URL: https://doi.org/10.1163/156853994x00253>.
+
+[139] J. Loy. “The reproductive and heterosexual behaviours of adult patas monkeys in captivity”. In: Animal Behaviour 29.3 (Aug. 1981), pp. 714-726. DOI: 10.1016/s0003-3472(81)80006-1. <URL: https://doi.org/10.1016/s0003-3472(81)80006-1>.
+
+[140] D. de Luca and J. Ginsberg. “Dominance, reproduction and survival in banded mongooses: towards an egalitarian social system?” In: Animal Behaviour 61.1 (Jan. 2001), pp. 17-30. DOI: 10.1006/anbe.2000.1559. <URL: https://doi.org/10.1006/anbe.2000.1559>.
+
+[141] D. LUKAS, V. REYNOLDS, C. BOESCH, et al. “To what extent does living in a group mean living with kin?” In: Molecular Ecology 14.7 (Apr. 2005), pp. 2181-2196. DOI: 10.1111/j.1365-294x.2005.02560.x. <URL: https://doi.org/10.1111/j.1365-294x.2005.02560.x>.
+
+[142] D. W. Macdonald and S. P. Doolan. “Band Structure and Failures of Reproductive Suppression in a Cooperatively Breeding Carnivore, the Slender-Tailed Meerkat (Suricata Suricatta)”. In: Behaviour 134.11-12 (1997), pp. 827-848. DOI: 10.1163/156853997x00179. <URL: https://doi.org/10.1163/156853997x00179>.
+
+[143] K. MacLeod and T. Clutton-Brock. “No evidence for adaptive sex ratio variation in the cooperatively breeding meerkat, Suricata suricatta”. In: Animal Behaviour 85.3 (Mar. 2013), pp. 645-653. DOI: 10.1016/j.anbehav.2012.12.028. <URL: https://doi.org/10.1016/j.anbehav.2012.12.028>.
+
+[144] D. Maestripieri. “Female-Biased Maternal Investment in Rhesus Macaques”. In: Folia Primatologica 72.1 (2001), pp. 44-47. DOI: 10.1159/000049920. <URL: https://doi.org/10.1159/000049920>.
+
+[145] J. R. Malcolm and K. Marten. “Natural selection and the communal rearing of pups in African wild dogs (Lycaon pictus)”. In: Behavioral Ecology and Sociobiology 10.1 (Feb. 1982), pp. 1-13. DOI: 10.1007/bf00296390. <URL: https://doi.org/10.1007/bf00296390>.
+
+[146] R. McFarland, D. Murphy, D. Lusseau, et al. “The `strength of weak ties’ among female baboons: fitness-related benefits of social bonds”. In: Animal Behaviour 126 (Apr. 2017), pp. 101-106. DOI: 10.1016/j.anbehav.2017.02.002. <URL: https://doi.org/10.1016/j.anbehav.2017.02.002>.
+
+[147] D. B. Meikle, L. C. Drickamer, S. H. Vessey, et al. “Dominance Rank and Parental Investment in Swine (Sus scrofa domesticus)”. In: Ethology 102.8 (Apr. 2010), pp. 969-978. DOI: 10.1111/j.1439-0310.1996.tb01174.x. <URL: https://doi.org/10.1111/j.1439-0310.1996.tb01174.x>.
+
+[148] D. B. Meikle, B. L. Tilford, and S. H. Vessey. “Dominance Rank, Secondary Sex Ratio, and Reproduction of Offspring in Polygynous Primates”. In: The American Naturalist 124.2 (Aug. 1984), pp. 173-188. DOI: 10.1086/284262. <URL: https://doi.org/10.1086/284262>.
+
+[149] D. B. Meikle and S. H. Vessey. “Maternal dominance rank and lifetime survivorship of male and female rhesus monkeys”. In: Behavioral Ecology and Sociobiology 22.6 (Jun. 1988), p. 379–383. ISSN: 1432-0762. DOI: 10.1007/bf00294974. <URL: http://dx.doi.org/10.1007/BF00294974>.
+
+[150] M. Mendl, A. J. Zanella, D. M. Broom, et al. “Maternal social status and birth sex ratio in domestic pigs: an analysis of mechanisms”. In: Animal Behaviour 50.5 (1995), pp. 1361-1370. DOI: 10.1016/0003-3472(95)80051-4. <URL: https://doi.org/10.1016/0003-3472(95)80051-4>.
+
+[151] L. C. Metrione and J. D. Harder. “Fecal corticosterone concentrations and reproductive success in captive female southern white rhinoceros”. In: General and Comparative Endocrinology 171.3 (May. 2011), pp. 283-292. DOI: 10.1016/j.ygcen.2011.02.010. <URL: https://doi.org/10.1016/j.ygcen.2011.02.010>.
+
+[152] L. C. Metrione, L. M. Penfold, and G. H. Waring. “Social and spatial relationships in captive southern white rhinoceros (Ceratotherium simum simum)”. In: Zoo Biology 26.6 (Jul. 2007), pp. 487-502. DOI: 10.1002/zoo.20143. <URL: https://doi.org/10.1002/zoo.20143>.
+
+[153] E. S. Michel, S. Demarais, B. K. Strickland, et al. “Contrasting the Effects of Maternal and Behavioral Characteristics on Fawn Birth Mass in White-Tailed Deer”. In: PLOS ONE 10.8 (Aug. 2015). Ed. by T. Mappes, p. e0136034. DOI: 10.1371/journal.pone.0136034. <URL: https://doi.org/10.1371/journal.pone.0136034>.
+
+[154] C. L. Mitchell, S. Boinski, and C. P. van Schaik. “Competitive regimes and female bonding in two species of squirrel monkeys (Saimiri oerstedi and S. sciureus)”. In: Behavioral Ecology and Sociobiology 28.1 (Jan. 1991), pp. 55-60. DOI: 10.1007/bf00172139. <URL: https://doi.org/10.1007/bf00172139>.
+
+[155] L. Modolo and R. D. Martin. “Reproductive success in relation to dominance rank in the absence of prime-age males in Barbary macaques”. In: American Journal of Primatology 70.1 (2007), pp. 26-34. DOI: 10.1002/ajp.20452. <URL: https://doi.org/10.1002/ajp.20452>.
+
+[156] D. D. Moor, C. Roos, J. Ostner, et al. “Female Assamese macaques bias their affiliation to paternal and maternal kin”. In: Behavioral Ecology 31.2 (Jan. 2020). Ed. by L. Barrett, pp. 493-507. DOI: 10.1093/beheco/arz213. <URL: https://doi.org/10.1093/beheco/arz213>.
+
+[157] J. T. Morales-Piñeyrúa, G. Ciappesoni, and R. Ungerfeld. “Social rank and reproductive performance of pampas deer females (Ozotoceros bezoarticus, Linnaeus, 1758)”. In: Behavioural Processes 105 (Jun. 2014), pp. 49-52. DOI: 10.1016/j.beproc.2014.03.004. <URL: https://doi.org/10.1016/j.beproc.2014.03.004>.
+
+[158] R. Mykytowycz. “Social behaviour of an experimental colony of wild rabbits, Oryctolagus cuniculus (L.) II. First breeding season”. In: CSIRO Wildlife Research 4.1 (1959), p. 1. DOI: 10.1071/cwr9590001. <URL: https://doi.org/10.1071/cwr9590001>.
+
+[159] N. Nakagawa, M. Matsubara, Y. Shimooka, et al. “Embracing in a Wild Group of Yakushima Macaques (Macaca fuscata yakui) as an Example of Social Customs”. In: Current Anthropology 56.1 (Feb. 2015), pp. 104-120. DOI: 10.1086/679448. <URL: https://doi.org/10.1086/679448>.
+
+[160] J. Nelson and A. Goldstone. “Reproduction in Peradorcas-Concinna (Marsupialia, Macropodidae)”. In: Wildlife Research 13.4 (1986), p. 501. DOI: 10.1071/wr9860501. <URL: https://doi.org/10.1071/wr9860501>.
+
+[161] H. J. Nichols, W. Amos, M. A. Cant, et al. “Top males gain high reproductive success by guarding more successful females in a cooperatively breeding mongoose”. In: Animal Behaviour 80.4 (Oct. 2010), pp. 649-657. DOI: 10.1016/j.anbehav.2010.06.025. <URL: https://doi.org/10.1016/j.anbehav.2010.06.025>.
+
+[162] H. J. Nichols, M. B. V. Bell, S. J. Hodge, et al. “Resource limitation moderates the adaptive suppression of subordinate breeding in a cooperatively breeding mongoose”. In: Behavioral Ecology 23.3 (Feb. 2012), pp. 635-642. DOI: 10.1093/beheco/ars008. <URL: https://doi.org/10.1093/beheco/ars008>.
+
+[163] H. J. Nichols, N. R. Jordan, G. A. Jamie, et al. “Fine-scale spatiotemporal patterns of genetic variation reflect budding dispersal coupled with strong natal philopatry in a cooperatively breeding mammal”. In: Molecular Ecology 21.21 (Sep. 2012), pp. 5348-5362. DOI: 10.1111/mec.12015. <URL: https://doi.org/10.1111/mec.12015>.
+
+[164] K. Nieuwenhuijsen, A. J. J. C. Lammers, K. J. de Neef, et al. “Reproduction and social rank in female stumptail Macaques (Macaca arctoides)”. In: International Journal of Primatology 6.1 (Feb. 1985), pp. 77-99. DOI: 10.1007/bf02693697. <URL: https://doi.org/10.1007/bf02693697>.
+
+[165] M. A. van Noordwijk and C. P. van Schaik. “Competition among female long-tailed macaques, Macaca fascicularis”. In: Animal Behaviour 35.2 (Apr. 1987), pp. 577-589. DOI: 10.1016/s0003-3472(87)80284-1. <URL: https://doi.org/10.1016/s0003-3472(87)80284-1>.
+
+[166] M. A. van Noordwijk and C. P. van Schaik. “The effects of dominance rank and group size on female lifetime reproductive success in wild long-tailed macaques,Macaca fascicularis”. In: Primates 40.1 (Jan. 1999), pp. 105-130. DOI: 10.1007/bf02557705. <URL: https://doi.org/10.1007/bf02557705>.
+
+[167] M. A. van Noordwijk and C. P. van Schaik. “The effects of dominance rank and group size on female lifetime reproductive success in wild long-tailed macaques,Macaca fascicularis”. In: Primates 40.1 (Jan. 1999), p. 105–130. ISSN: 1610-7365. DOI: 10.1007/bf02557705. <URL: http://dx.doi.org/10.1007/BF02557705>.
+
+[168] C. L. Nunn and M. E. Pereira. “Group histories and offspring sex ratios in ringtailed lemurs ( Lemur catta )”. In: Behavioral Ecology and Sociobiology 48.1 (Jun. 2000), pp. 18-28. DOI: 10.1007/s002650000206. <URL: https://doi.org/10.1007/s002650000206>.
+
+[169] D. H. NUSSEY, D. W. COLTMAN, T. COULSON, et al. “Rapidly declining fine-scale spatial genetic structure in female red deer”. In: Molecular Ecology 14.11 (Oct. 2005), pp. 3395-3405. DOI: 10.1111/j.1365-294x.2005.02692.x. <URL: https://doi.org/10.1111/j.1365-294x.2005.02692.x>.
+
+[170] D. OWENS and M. OWENS. “Social dominance and reproductive patterns in brown hyaenas,Hyaena brunnea, of the central Kalahari desert”. In: Animal Behaviour 51.3 (Mar. 1996), pp. 535-551. DOI: 10.1006/anbe.1996.0058. <URL: https://doi.org/10.1006/anbe.1996.0058>.
+
+[171] C. Packer, D. A. Collins, A. Sindimwo, et al. “Reproductive constraints on aggressive competition in female baboons”. In: Nature 373.6509 (Jan. 1995), pp. 60-63. DOI: 10.1038/373060a0. <URL: https://doi.org/10.1038/373060a0>.
+
+[172] J. A. Parga, M. L. Sauther, F. P. Cuozzo, et al. “Genetic Evidence for Male and Female Dispersal in Wild Lemur catta”. In: Folia Primatologica 86.1-2 (May. 2015), pp. 66-75. DOI: 10.1159/000369386. <URL: https://doi.org/10.1159/000369386>.
+
+[173] V. P. Patil, T. J. Karels, and D. S. Hik. “Ecological, Evolutionary and Social Constraints on Reproductive Effort: Are Hoary Marmots Really Biennial Breeders?” In: PLOS ONE 10.3 (Mar. 2015). Ed. by J. M. Waterman, p. e0119081. DOI: 10.1371/journal.pone.0119081. <URL: https://doi.org/10.1371/journal.pone.0119081>.
+
+[174] A. Paul and J. Kuester. “Dominance, kinship and reproductive value in female Barbary macaques (Macaca sylvanus) at Affenberg Salem”. In: Behavioral Ecology and Sociobiology 21.5 (Nov. 1987), pp. 323-331. DOI: 10.1007/bf00299970. <URL: https://doi.org/10.1007/bf00299970>.
+
+[175] A. Paul and D. Thommen. “Timing of Birth, Female Reproductive Success and Infant Sex Ratio in Semifree-Ranging Barbary Macaques (Macaca sylvanus)”. In: Folia Primatologica 42.1 (1984), pp. 2-16. DOI: 10.1159/000156140. <URL: https://doi.org/10.1159/000156140>.
+
+[176] J. Pluháček, L. B. š, and L. Čul'. “High-ranking mares of captive plains zebra Equus burchelli have greater reproductive success than low-ranking mares”. In: Applied Animal Behaviour Science 99.3-4 (Sep. 2006), pp. 315-329. DOI: 10.1016/j.applanim.2005.11.003. <URL: https://doi.org/10.1016/j.applanim.2005.11.003>.
+
+[177] N. C. Pratt and R. D. Lisk. “Effects of social stress during early pregnancy on litter size and sex ratio in the golden hamster (Mesocricetus auratus)”. In: Reproduction 87.2 (Nov. 1989), pp. 763-769. DOI: 10.1530/jrf.0.0870763. <URL: https://doi.org/10.1530/jrf.0.0870763>.
+
+[178] A. Pusey. “The Influence of Dominance Rank on the Reproductive Success of Female Chimpanzees”. In: Science 277.5327 (Aug. 1997), p. 828–831. ISSN: 1095-9203. DOI: 10.1126/science.277.5327.828. <URL: http://dx.doi.org/10.1126/science.277.5327.828>.
+
+[179] D. A. Randall, J. P. Pollinger, R. K. Wayne, et al. “Inbreeding is reduced by female-biased dispersal and mating behavior in Ethiopian wolves”. In: Behavioral Ecology 18.3 (Mar. 2007), pp. 579-589. DOI: 10.1093/beheco/arm010. <URL: https://doi.org/10.1093/beheco/arm010>.
+
+[180] R. J. Rhine. “A twenty-one-year study of maternal dominance and secondary sex ratio in a colony group of stumptailed macaques (Macaca arctoides)”. In: American Journal of Primatology 32.2 (1994), pp. 145-148. DOI: 10.1002/ajp.1350320207. <URL: https://doi.org/10.1002/ajp.1350320207>.
+
+[181] R. J. Rhine, G. W. Norton, J. Rogers, et al. “Secondary sex ratio and maternal dominance rank among wild yellow baboons (Papio cynocephalus) of Mikumi National Park, Tanzania”. In: American Journal of Primatology 27.4 (1992), pp. 261-273. DOI: 10.1002/ajp.1350270404. <URL: https://doi.org/10.1002/ajp.1350270404>.
+
+[182] A. M. Robbins, T. Stoinski, K. Fawcett, et al. “Lifetime reproductive success of female mountain gorillas”. In: American Journal of Physical Anthropology 146.4 (Oct. 2011), pp. 582-593. DOI: 10.1002/ajpa.21605. <URL: https://doi.org/10.1002/ajpa.21605>.
+
+[183] M. M. Robbins, N. Gerald-Steklis, A. M. Robbins, et al. “Long-term dominance relationships in female mountain gorillas: strength, stability and determinants of rank”. In: Behaviour 142.6 (2005), pp. 779-809. DOI: 10.1163/1568539054729123. <URL: https://doi.org/10.1163/1568539054729123>.
+
+[184] M. M. Robbins, A. M. Robbins, N. Gerald-Steklis, et al. “Socioecological influences on the reproductive success of female mountain gorillas (Gorilla beringei beringei)”. In: Behavioral Ecology and Sociobiology 61.6 (Jan. 2007), pp. 919-931. DOI: 10.1007/s00265-006-0321-y. <URL: https://doi.org/10.1007/s00265-006-0321-y>.
+
+[185] M. M. Robbins, A. M. Robbins, N. Gerald-Steklis, et al. “Socioecological influences on the reproductive success of female mountain gorillas (Gorilla beringei beringei)”. In: Behavioral Ecology and Sociobiology 61.6 (Jan. 2007), p. 919–931. ISSN: 1432-0762. DOI: 10.1007/s00265-006-0321-y. <URL: http://dx.doi.org/10.1007/s00265-006-0321-y>.
+
+[186] S. Roberts and M. Cords. “Group size but not dominance rank predicts the probability of conception in a frugivorous primate”. In: Behavioral Ecology and Sociobiology 67.12 (Jul. 2013), pp. 1995-2009. DOI: 10.1007/s00265-013-1607-5. <URL: https://doi.org/10.1007/s00265-013-1607-5>.
+
+[187] T. Ron, S. P. Henzi, and U. Motro. “Do Female Chacma Baboons Compete for a Safe Spatial Position in a Southern Woodland Habitat?” In: Behaviour 133.5-6 (1996), pp. 475-490. DOI: 10.1163/156853996x00549. <URL: https://doi.org/10.1163/156853996x00549>.
+
+[188] J. P. Rood. “Mating relationships and breeding suppression in the dwarf mongoose”. In: Animal Behaviour 28.1 (Feb. 1980), pp. 143-150. DOI: 10.1016/s0003-3472(80)80019-4. <URL: https://doi.org/10.1016/s0003-3472(80)80019-4>.
+
+[189] H. Rothe. “Some Aspects of Sexuality and Reproduction in Groups of Captive Marmosets (Callithrix jacchus)”. In: Zeitschrift für Tierpsychologie 37.3 (Apr. 2010), pp. 255-273. DOI: 10.1111/j.1439-0310.1975.tb00880.x. <URL: https://doi.org/10.1111/j.1439-0310.1975.tb00880.x>.
+
+[190] A. le Roux, J. C. Beehner, and T. J. Bergman. “Female philopatry and dominance patterns in wild geladas”. In: American Journal of Primatology 73.5 (Dec. 2010), pp. 422-430. DOI: 10.1002/ajp.20916. <URL: https://doi.org/10.1002/ajp.20916>.
+
+[191] J. Ruiter and E. Geffen. “Relatedness of matrilines, dispersing males and social groups in longmacaques (Macaca fascicularis)”. In: Proceedings of the Royal Society of London. Series B: Biological Sciences 265.1391 (Jan. 1998), pp. 79-87. DOI: 10.1098/rspb.1998.0267. <URL: https://doi.org/10.1098/rspb.1998.0267>.
+
+[192] A. F. Russell, A. A. Carlson, G. M. McIlrath, et al. “ADAPTIVE SIZE MODIFICATION BY DOMINANT FEMALE MEERKATS”. In: Evolution 58.7 (Jul. 2004), pp. 1600-1607. DOI: 10.1111/j.0014-3820.2004.tb01739.x. <URL: https://doi.org/10.1111/j.0014-3820.2004.tb01739.x>.
+
+[193] A. Rusu and S. Krackow. “Kin-preferential cooperation, dominance-dependent reproductive skew, and competition for mates in communally nesting female house mice”. In: Behavioral Ecology and Sociobiology 56.3 (Apr. 2004). DOI: 10.1007/s00265-004-0787-4. <URL: https://doi.org/10.1007/s00265-004-0787-4>.
+
+[194] J. L. Sanderson, H. J. Nichols, H. H. Marshall, et al. “Elevated glucocorticoid concentrations during gestation predict reduced reproductive success in subordinate female banded mongooses”. In: Biology Letters 11.10 (Oct. 2015), p. 20150620. DOI: 10.1098/rsbl.2015.0620. <URL: https://doi.org/10.1098/rsbl.2015.0620>.
+
+[195] J. Santiago-Moreno, A. Gómez-Brunet, A. Toledano-D', et al. “Social dominance and breeding activity in Spanish ibex (Capra pyrenaica) maintained in captivity”. In: Reproduction, Fertility and Development 19.3 (2007), p. 436. DOI: 10.1071/rd06122. <URL: https://doi.org/10.1071/rd06122>.
+
+[196] C. P. V. Schaik, W. J. Netto, A. J. J. V. Amerongen, et al. “Social rank and sex ratio of captive long-tailed macaque females (Macaca fascicularis)”. In: American Journal of Primatology 19.3 (1989), pp. 147-161. DOI: 10.1002/ajp.1350190303. <URL: https://doi.org/10.1002/ajp.1350190303>.
+
+[197] M. B. Schilder and P. L. Boer. “Ethological investigations on a herd of plains zebra in a safari park: Time-budgets, reproduction and food competition”. In: Applied Animal Behaviour Science 18.1 (Jul. 1987), pp. 45-56. DOI: 10.1016/0168-1591(87)90253-x. <URL: https://doi.org/10.1016/0168-1591(87)90253-x>.
+
+[198] L. A. Schultz and R. K. Lore. “Communal reproductive success in rats (Rattus norvegicus): Effects of group composition and prior social experience.” In: Journal of Comparative Psychology 107.2 (1993), pp. 216-222. DOI: 10.1037/0735-7036.107.2.216. <URL: https://doi.org/10.1037/0735-7036.107.2.216>.
+
+[199] J. M. Setchell, M. Charpentier, and E. J. Wickings. “Sexual selection and reproductive careers in mandrills (Mandrillus sphinx)”. In: Behavioral Ecology and Sociobiology 58.5 (May. 2005), pp. 474-485. DOI: 10.1007/s00265-005-0946-2. <URL: https://doi.org/10.1007/s00265-005-0946-2>.
+
+[200] A. B. A. Shafer, J. M. Northrup, K. S. White, et al. “Habitat selection predicts genetic relatedness in an alpine ungulate”. In: Ecology 93.6 (Jun. 2012), pp. 1317-1329. DOI: 10.1890/11-0815.1. <URL: https://doi.org/10.1890/11-0815.1>.
+
+[201] D. Shargal, L. Shore, N. Roteri, et al. “Fecal testosterone is elevated in high ranking female ibexes (Capra nubiana) and associated with increased aggression and a preponderance of male offspring”. In: Theriogenology 69.6 (Apr. 2008), pp. 673-680. DOI: 10.1016/j.theriogenology.2007.11.017. <URL: https://doi.org/10.1016/j.theriogenology.2007.11.017>.
+
+[202] J. B. Silk. “Social Bonds of Female Baboons Enhance Infant Survival”. In: Science 302.5648 (Nov. 2003), pp. 1231-1234. DOI: 10.1126/science.1088580. <URL: https://doi.org/10.1126/science.1088580>.
+
+[203] J. B. Silk, J. C. Beehner, T. J. Bergman, et al. “Strong and Consistent Social Bonds Enhance the Longevity of Female Baboons”. In: Current Biology 20.15 (Aug. 2010), pp. 1359-1361. DOI: 10.1016/j.cub.2010.05.067. <URL: https://doi.org/10.1016/j.cub.2010.05.067>.
+
+[204] J. B. Silk, C. B. Clark-Wheatley, P. S. Rodman, et al. “Differential reproductive success and facultative adjustment of sex ratios among captive female bonnet macaques (Macaca radiata)”. In: Animal Behaviour 29.4 (Nov. 1981), pp. 1106-1120. DOI: 10.1016/s0003-3472(81)80063-2. <URL: https://doi.org/10.1016/s0003-3472(81)80063-2>.
+
+[205] J. Silk, D. Cheney, and R. Seyfarth. “THE STRUCTURE OF SOCIAL RELATIONSHIPS AMONG FEMALE SAVANNA BABOONS IN MOREMI RESERVE, BOTSWANA”. In: Behaviour 136.6 (1999), pp. 679-703. DOI: 10.1163/156853999501522. <URL: https://doi.org/10.1163/156853999501522>.
+
+[206] M. J. A. Simpson and A. E. Simpson. “Birth sex ratios and social rank in rhesus monkey mothers”. In: Nature 300.5891 (Dec. 1982), pp. 440-441. DOI: 10.1038/300440a0. <URL: https://doi.org/10.1038/300440a0>.
+
+[207] M. F. Small and S. B. Hrdy. “Secondary sex ratios by maternal rank, parity, and age in captive rhesus macaques (Macaca mulatta)”. In: American Journal of Primatology 11.4 (1986), pp. 359-365. DOI: 10.1002/ajp.1350110406. <URL: https://doi.org/10.1002/ajp.1350110406>.
+
+[208] B. Smuts and N. Nicolson. “Reproduction in wild female olive baboons”. In: American Journal of Primatology 19.4 (1989), pp. 229-246. DOI: 10.1002/ajp.1350190405. <URL: https://doi.org/10.1002/ajp.1350190405>.
+
+[209] N. Snyder-Mackler, S. C. Alberts, and T. J. Bergman. “The socio-genetics of a complex society: female gelada relatedness patterns mirror association patterns in a multilevel society”. In: Molecular Ecology 23.24 (Nov. 2014), pp. 6179-6191. DOI: 10.1111/mec.12987. <URL: https://doi.org/10.1111/mec.12987>.
+
+[210] M. B. C. Sousa, A. C. S. da Rocha Albuquerque, F. da Silva Albuquerque, et al. “Behavioral strategies and hormonal profiles of dominant and subordinate common marmoset (Callithrix jacchus) females in wild monogamous groups”. In: American Journal of Primatology 67.1 (2005), pp. 37-50. DOI: 10.1002/ajp.20168. <URL: https://doi.org/10.1002/ajp.20168>.
+
+[211] A. M. Sparkman, J. R. Adams, T. D. Steury, et al. “Direct fitness benefits of delayed dispersal in the cooperatively breeding red wolf (Canis rufus)”. In: Behavioral Ecology 22.1 (Dec. 2010), pp. 199-205. DOI: 10.1093/beheco/arq194. <URL: https://doi.org/10.1093/beheco/arq194>.
+
+[212] P. A. Spiering, M. J. Somers, J. E. Maldonado, et al. “Reproductive sharing and proximate factors mediating cooperative breeding in the African wild dog (Lycaon pictus)”. In: Behavioral Ecology and Sociobiology 64.4 (Nov. 2009), pp. 583-592. DOI: 10.1007/s00265-009-0875-6. <URL: https://doi.org/10.1007/s00265-009-0875-6>.
+
+[213] M. A. Stanton, E. V. Lonsdorf, A. E. Pusey, et al. “Do juveniles help or hinder? Influence of juvenile offspring on maternal behavior and reproductive outcomes in wild chimpanzees (Pan troglodytes)”. In: Journal of Human Evolution 111 (Oct. 2017), pp. 152-162. DOI: 10.1016/j.jhevol.2017.07.012. <URL: https://doi.org/10.1016/j.jhevol.2017.07.012>.
+
+[214] E. D. Strauss and K. E. Holekamp. “Social alliances improve rank and fitness in convention-based societies”. In: Proceedings of the National Academy of Sciences 116.18 (Mar. 2019), pp. 8919-8924. DOI: 10.1073/pnas.1810384116. <URL: https://doi.org/10.1073/pnas.1810384116>.
+
+[215] B. R. Stucki, M. M. Dow, and D. S. Sade. “Variance in intrinsic rates of growth among free-ranging rhesus monkey groups”. In: American Journal of Physical Anthropology 84.2 (Feb. 1991), pp. 181-191. DOI: 10.1002/ajpa.1330840208. <URL: https://doi.org/10.1002/ajpa.1330840208>.
+
+[216] Y. Sugiyama and H. Ohsawa. “Population Dynamics of Japanese Monkeys with Special Reference to the Effect of Artificial Feeding”. In: Folia Primatologica 39.3-4 (1982), pp. 238-263. DOI: 10.1159/000156080. <URL: https://doi.org/10.1159/000156080>.
+
+[217] A. K. SURRIDGE, K. M. IBRAHIM, D. J. BELL, et al. “Fine-scale genetic structuring in a natural population of European wild rabbits (Oryctolagus cuniculus)”. In: Molecular Ecology 8.2 (Feb. 1999), pp. 299-307. DOI: 10.1046/j.1365-294x.1999.00570.x. <URL: https://doi.org/10.1046/j.1365-294x.1999.00570.x>.
+
+[218] M. M. Symington. “Sex ratio and maternal rank in wild spider monkeys: when daughters disperse”. In: Behavioral Ecology and Sociobiology 20.6 (Jun. 1987), pp. 421-425. DOI: 10.1007/bf00302985. <URL: https://doi.org/10.1007/bf00302985>.
+
+[219] Y. Takahata. “The reproductive biology of a free-ranging troop of Japanese monkeys”. In: Primates 21.3 (Jul. 1980), pp. 303-329. DOI: 10.1007/bf02390462. <URL: https://doi.org/10.1007/bf02390462>.
+
+[220] Y. Takahata, N. Koyama, S. Ichino, et al. “The relationship between female rank and reproductive parameters of the ringtailed lemur: a preliminary analysis”. In: Primates 49.2 (Dec. 2007), pp. 135-138. DOI: 10.1007/s10329-007-0076-8. <URL: https://doi.org/10.1007/s10329-007-0076-8>.
+
+[221] Y. Takahata, S. Suzuki, N. Agetsuma, et al. “Reproduction of wild Japanese macaque females of Yakushima and Kinkazan Islands: A preliminary report”. In: Primates 39.3 (Jul. 1998), pp. 339-349. DOI: 10.1007/bf02573082. <URL: https://doi.org/10.1007/bf02573082>.
+
+[222] L. Taylor and R. W. Sussman. “A preliminary study of kinship and social organization in a semi-free-ranging group ofLemur catta”. In: International Journal of Primatology 6.6 (Dec. 1985), pp. 601-614. DOI: 10.1007/bf02692291. <URL: https://doi.org/10.1007/bf02692291>.
+
+[223] T. W. Townsend and E. D. Bailey. “Effects of Age, Sex and Weight on Social Rank in Penned White-tailed Deer”. In: American Midland Naturalist 106.1 (Jul. 1981), p. 92. DOI: 10.2307/2425138. <URL: https://doi.org/10.2307/2425138>.
+
+[224] R. C. Van Horn, J. C. Buchan, J. Altmann, et al. “Divided destinies: group choice by female savannah baboons during social group fission”. In: Behavioral Ecology and Sociobiology 61.12 (Jun. 2007), p. 1823–1837. ISSN: 1432-0762. DOI: 10.1007/s00265-007-0415-1. <URL: http://dx.doi.org/10.1007/s00265-007-0415-1>.
+
+[225] H. Vervaecke, C. Roden, and H. de Vries. “Dominance, fatness and fitness in female American bison, Bison bison”. In: Animal Behaviour 70.4 (Oct. 2005), pp. 763-770. DOI: 10.1016/j.anbehav.2004.12.018. <URL: https://doi.org/10.1016/j.anbehav.2004.12.018>.
+
+[226] L. Vigilant, M. Hofreiter, H. Siedel, et al. “Paternity and relatedness in wild chimpanzee communities”. In: Proceedings of the National Academy of Sciences 98.23 (Oct. 2001), pp. 12890-12895. DOI: 10.1073/pnas.231320498. <URL: https://doi.org/10.1073/pnas.231320498>.
+
+[227] J. Visser, T. Robinson, and B. J. van Vuuren. “Spatial genetic structure in the rock hyrax (Procavia capensis) across the Namaqualand and western Fynbos areas of South Africa — a mitochondrial and microsatellite perspective”. In: Canadian Journal of Zoology 98.8 (Aug. 2020), pp. 557-571. DOI: 10.1139/cjz-2019-0154. <URL: https://doi.org/10.1139/cjz-2019-0154>.
+
+[228] D. D. VRIES, A. KOENIG, and C. BORRIES. “Female reproductive success in a species with an age-inversed hierarchy”. In: Integrative Zoology 11.6 (Nov. 2016), pp. 433-446. DOI: 10.1111/1749-4877.12201. <URL: https://doi.org/10.1111/1749-4877.12201>.
+
+[229] E. D. Wallace and N. C. Bennett. “The colony structure and social organization of the giant Zambian mole-rat, Cryptomys mechowi”. In: Journal of Zoology 244.1 (Jan. 1998), pp. 51-61. DOI: 10.1111/j.1469-7998.1998.tb00006.x. <URL: https://doi.org/10.1111/j.1469-7998.1998.tb00006.x>.
+
+[230] S. K. Wasser and D. P. Barash. “Reproductive Suppression Among Female Mammals: Implications for Biomedicine and Sexual Selection Theory”. In: The Quarterly Review of Biology 58.4 (Dec. 1983), pp. 513-538. DOI: 10.1086/413545. <URL: https://doi.org/10.1086/413545>.
+
+[231] S. K. Wasser and A. K. Starling. “Proximate and ultimate causes of reproductive suppression among female yellow baboons at Mikumi National Park, Tanzania”. In: American Journal of Primatology 16.2 (1988), p. 97–121. ISSN: 1098-2345. DOI: 10.1002/ajp.1350160202. <URL: http://dx.doi.org/10.1002/ajp.1350160202>.
+
+[232] S. K. Wasser and A. K. Starling. “Proximate and ultimate causes of reproductive suppression among female yellow baboons at Mikumi National Park, Tanzania”. In: American Journal of Primatology 16.2 (1988), pp. 97-121. DOI: 10.1002/ajp.1350160202. <URL: https://doi.org/10.1002/ajp.1350160202>.
+
+[233] S. Wasser, G. Norton, S. Kleindorfer, et al. “Population trend alters the effects of maternal dominance rank on lifetime reproductive success in yellow baboons (Papio cynocephalus)”. In: Behavioral Ecology and Sociobiology 56.4 (May. 2004). DOI: 10.1007/s00265-004-0797-2. <URL: https://doi.org/10.1007/s00265-004-0797-2>.
+
+[234] D. P. Watts. “Social relationships of immigrant and resident female mountain gorillas, II: Relatedness, residence, and relationships between females”. In: American Journal of Primatology 32.1 (1994), pp. 13-30. DOI: 10.1002/ajp.1350320103. <URL: https://doi.org/10.1002/ajp.1350320103>.
+
+[235] H. E. Watts, J. B. Tanner, B. L. Lundrigan, et al. “Post-weaning maternal effects and the evolution of female dominance in the spotted hyena”. In: Proceedings of the Royal Society B: Biological Sciences 276.1665 (Mar. 2009), pp. 2291-2298. DOI: 10.1098/rspb.2009.0268. <URL: https://doi.org/10.1098/rspb.2009.0268>.
+
+[236] L. Wauters and A. A. Dhondt. “Body Weight, Longevity and Reproductive Success in Red Squirrels (Sciurus vulgaris)”. In: The Journal of Animal Ecology 58.2 (Jun. 1989), p. 637. DOI: 10.2307/4853. <URL: https://doi.org/10.2307/4853>.
+
+[237] C. Welker, H. H&ouml, and C. Sch&auml-Witt. “Significance of Kin Relations and Individual Preferences in the Social Behaviour of Cebus apella”. In: Folia Primatologica 54.3-4 (1990), pp. 166-170. DOI: 10.1159/000156440. <URL: https://doi.org/10.1159/000156440>.
+
+[238] P. A. White. “Maternal rank is not correlated with cub survival in the spotted hyena, Crocuta crocuta”. In: Behavioral Ecology 16.3 (Feb. 2005), pp. 606-613. DOI: 10.1093/beheco/ari033. <URL: https://doi.org/10.1093/beheco/ari033>.
+
+[239] M. E. Wilson, T. P. Gordon, and I. S. Bernstein. “Timing of Births and Reproductive Success in Rhesus Monkey Social Groups1”. In: Journal of Medical Primatology 7.4 (1978), pp. 202-212. DOI: 10.1159/000459880. <URL: https://doi.org/10.1159/000459880>.
+
+[240] L. D. Wolfe. “Female rank and reproductive success among arashiyama B Japanese macaques (Macaca fuscata)”. In: International Journal of Primatology 5.2 (Apr. 1984), pp. 133-143. DOI: 10.1007/bf02735737. <URL: https://doi.org/10.1007/bf02735737>.
+
+[241] J. O. Wolff, A. S. Dunlap, and E. Ritchhart. “Adult female prairie voles and meadow voles do not suppress reproduction in their daughters”. In: Behavioural Processes 55.3 (Sep. 2001), pp. 157-162. DOI: 10.1016/s0376-6357(01)00176-0. <URL: https://doi.org/10.1016/s0376-6357(01)00176-0>.
+
+[242] R. Wrangham. “Drinking competition in vervet monkeys”. In: Animal Behaviour 29.3 (Aug. 1981), pp. 904-910. DOI: 10.1016/s0003-3472(81)80027-9. <URL: https://doi.org/10.1016/s0003-3472(81)80027-9>.
+
+[243] E. Zimen. “On the Regulation of Pack Size in Wolves”. In: Zeitschrift für Tierpsychologie 40.3 (Apr. 2010), pp. 300-341. DOI: 10.1111/j.1439-0310.1976.tb00939.x. <URL: https://doi.org/10.1111/j.1439-0310.1976.tb00939.x>.
+
+[244] T. Ziporyn and M. K. McClintock. “Passing as an Indicator of Social Dominance Among Female Wild and Domestic Norway Rats”. In: Behaviour 118.1-2 (1991), pp. 26-41. DOI: 10.1163/156853991x00184. <URL: https://doi.org/10.1163/156853991x00184>.
+
+[245] Altmann, Hausfater, J. 1988. “Determinants of Reproductive Success in Savannah Baboons, Papio Cynocephalus.” In Reproductive Success: Studies of Individual Variation in Contrasting Breeding Systems, edited by T. H. Clutton-Brock, 403–18. Princeton University Press.
+
+[246] Altmann J, Alberts SC. 2003. “Intraspecific Variability in Fertility and Offspring Survival in a Nonhuman Primate: Behavioral Control of Ecological and Social Sources.” In Offspring: Human Fertility Behavior in Biodemographic Perspective, edited by Bulatao RA Wachter KW, 6. ashington (DC): National Academies Press (US).
+
+[247] Baker AJ, Dietz JM, Bales K. 2002. “Mating System and Group Dynamics in Lion Tamarins.” In Lion Tamarins: Biology and Conservation, edited by Rylands AB Kleiman DG, 188–212. Washington, Smithsonian Institution Press.
+
+[248] Baniel A, Huchard E, Carter AJ. in press. “Exploring Environmental and Social Predictors of Reproductive Pace in a Desert-Dwelling Baboon,” in press.
+Busse, C. 1982. “Social Dominance and Offspring Mortality Among Female Chacma Baboons.” Int J Primatol 3: 267.
+
+[249] Byers, John A. 1997. American Pronghorn: Social Adaptations and the Ghosts of Predators Past. University of Chicago Press.
+
+[250] Cheney, Dorothy L, Robert M Seyfarth, Julia Fischer, Jacinta C Beehner, Thore J Bergman, Sara E Johnson, Dawn M Kitchen, Ryne A Palombit, Drew Rendall, and Joan B Silk. 2006. “Reproduction, Mortality, and Female Reproductive Success in Chacma Baboons of the Okavango Delta, Botswana.” In Reproduction and Fitness in Baboons: Behavioral, Ecological, and Life History Perspectives, 147–76. Springer.
+
+[251] Cheney, R. M. Seyfarth, D. L., and P. C. Lee. 1988. “Reproductive Success in Vervet Monkeys.” In Reproductive Success: Studies of Individual Variation in Contrasting Breeding Systems, edited by T. H. Clutton-Brock, 384–402. Princeton University Press.
+
+[252] Di Bitetti, Mario S, and Charles H Janson. 2001. “Reproductive Socioecology of Tufted Capuchins (Cebus Apella Nigritus) in Northeastern Argentina.” International Journal of Primatology 22 (2): 127–42.
+
+[253] Frank, Laurence G, Kay E Holekamp, and Laura Smale. 1995. “Dominance, Demography, and Reproductive Success of Female Spotted Hyenas.” Serengeti II: Dynamics, Management, and Conservation of an Ecosystem, 364–84.
+
+[254] Fürtbauer, Ines. 2011. “The Socio-Endocrinology of Female Reproductive Strategies in Wild Assamese Macaques (Macaca Assamensis).” PhD thesis, Göttingen University.
+
+[255] Gaillard, J-M, Serge Brandt, and J-M Jullien. 1993. “Body Weight Effect on Reproduction of Young Wild Boar (Sus Scrofa) Females: A Comparative Analysis.” Folia Zoologica (Brno) 42 (3): 204–12.
+
+[256] Gese, Eric M. 2004. “Coyotes in Yellowstone National Park: The Influence of Dominance on Foraging, Territoriality, and Fitness.” Biology and Conservation of Wild Canids. Oxford University Press, New York, New York, USA, 271–83.
+
+[257] Isbell, Lynne A, and Jill D Pruetz. 1998. “Differences Between Vervets (Cercopithecus Aethiops) and Patas Monkeys (Erythrocebus Patas) in Agonistic Interactions Between Adult Females.” International Journal of Primatology 19 (5): 837–55.
+
+[258] Kopp, Gisela. 2015. “Gene Flow Dynamics in Baboons-the Influence of Social Systems.” PhD thesis, Göttingen University.
+
+[259] Koyama, Nicola F. 2003. “Matrilineal Cohesion and Social Networks in Macaca Fuscata.” International Journal of Primatology 24 (4): 797–811.
+
+[260] Kubzdela, Katarzyna Stefania. 1998. “Sociodemography in Diurnal Primates: The Effects of Group Size and Female Dominance Rank on Intragroup Spatial Distribution, Feeding Competition, Female Reproductive Success, and Female Dispersal Patterns in White Sifaka, Propithecus Verreauxi Verreauxi.” PhD thesis, University of Chicago.
+
+[261] Larney, Eileen. 2013. “The Influence of Genetic and Social Structure on Reproduction in Phayre’s Leaf Monkeys (Trachypithecus Phayrei Crepusculus).” PhD thesis, State University of New York at Stony Brook.
+
+[262] Lynch, Emily Claire. 2016. “Paternal Kinship in a Matrilocal Society of Olive Baboons (Papio Hamadryas Anubis) in Laikipia District, Kenya.” PhD thesis, Rutgers The State University of New Jersey-New Brunswick.
+
+[263] Nievergelt, Caroline M, Leslie J Digby, Uma Ramakrishnan, and David S Woodruff. 2000. “Genetic Analysis of Group Composition and Breeding System in a Wild Common Marmoset (Callithrix Jacchus) Population.” International Journal of Primatology 21 (1): 1–20.
+
+[264] Paul, Kuester, A. 1996. “Differential Reproduction in Male and Female Barbary Macaques.” In Evolution and Ecology of Macaque Societies, edited by Lindburg D. G. Fa J. E., 293–317. Cambridge University Press.
+
+[265] Roosmalen, Marc GM van. 1980. “Habitat Preferences, Diet, Feeding Strategy and Social Organization of the Black Spider Monkey (Ateles Paniscus Paniscus Linnaeus 1758) in Surinam.” PhD thesis, Roosmalen.
+
+[266] Rubenstein, Daniel I, and CASSANDRA M Nuñez. 2009. “Sociality and Reproductive Skew in Horses and Zebras.” Reproductive Skew in Vertebrates: Proximate and Ultimate Causes, 196–226.
+
+[267] Santiago-Moreno, Julián, Amelia Gómez-Brunet, Antonio González-Bulnes, Benoit Malpaux, Philippe Chemineau, Antonio Pulido-Pastor, and Antonio López-Sebastián. 2003. “Seasonal Ovulatory Activity and Plasma Prolactin Concentrations in the Spanish Ibex (Capra Pyrenaica Hispanica) Maintained in Captivity.” Reproduction Nutrition Development 43 (3): 217–24.
+
+[268] Setchell, Joanna M, Phyllis C Lee, E Jean Wickings, and Alan F Dixson. 2002. “Reproductive Parameters and Maternal Investment in Mandrills (Mandrillus Sphinx).” International Journal of Primatology 23 (1): 51–68.
+
+[269] Sinderbrand, Carly Anne. 2011. “The Relationship of Dominance, Reproductive State and Stress in a Non-Cooperative Breeder, the Domestic Horse (Equus Caballus).” PhD thesis, Western Kentucky University.
+Smith, Andrew C, ER Tirado Herrera, Hannah M Buchanan-Smith, and Eckhard W Heymann. 2001. “Multiple Breeding Females and Allo-Nursing in a Wild Group of Moustached Tamarins (Saguinus Mystax).” Neotropical Primates 9 (2): 67–69.
+
+[270] Visser, Jacobus Hendrik. 2013. “Gene-Flow in the Rock Hyrax (Procavia Capensis) at Different Spatial Scales.” PhD thesis, Stellenbosch: Stellenbosch University.
+
+[271] Whitten, Patricia L. 1983. “Diet and Dominance Among Female Vervet Monkeys (Cercopithecus Aethiops).” American Journal of Primatology 5 (2): 139–59.
+
+[272] Wittig, Roman M, and Christophe Boesch. 2003. “Food Competition and Linear Dominance Hierarchy Among Female Chimpanzees of the Tai National Park.” International Journal of Primatology 24 (4): 847–67.

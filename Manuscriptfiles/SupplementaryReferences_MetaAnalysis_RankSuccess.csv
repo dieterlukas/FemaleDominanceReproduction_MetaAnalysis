@@ -1,0 +1,599 @@
+"","Identifier","Species","Reference effect size","Reference dominance system","Reference relatedness"
+"1",1,"Cervus_elaphus","(Clutton-Brock, Albon, and Guinness, 1984)","(HALL, 2010)","(NUSSEY, COLTMAN, COULSON, et al., 2005)"
+"2",2,"Crocuta_crocuta","(Holekamp, Smale, and Szykman, 1996)","(Hofer and East, 2003)","(Horn, Engh, Scribner, et al., 2004)"
+"3",3,"Macaca_arctoides","(Nieuwenhuijsen, Lammers, de
+Neef, et al., 1985)","(HOLEKAMP and SMALE, 1991)",NA
+"4",4,"Macaca_fuscata","(Gouzoules, Gouzoules, and Fedigan, 1982)","(Koyama et al. 2003)","(Baxter and Fedigan, 1979)"
+"5",5,"Macaca_fuscata","(Takahata, Suzuki, Agetsuma, et al., 1998)","(Koyama et al. 2003)","(Nakagawa, Matsubara, Shimooka, et al., 2015)"
+"6",6,"Macaca_fuscata","(Takahata, Suzuki, Agetsuma, et al., 1998)","(Koyama et al. 2003)","(Nakagawa, Matsubara, Shimooka, et al., 2015)"
+"7",7,"Macaca_fuscata","(Takahata, Suzuki, Agetsuma, et al., 1998)","(Koyama et al. 2003)","(Nakagawa, Matsubara, Shimooka, et al., 2015)"
+"8",8,"Macaca_mulatta","(Drickamer, 1974)","(Deutsch and Lee, 1991)",NA
+"9",9,"Mandrillus_sphinx","(Setchell, Charpentier, and Wickings, 2005)","(Setchell et al. 2002)",NA
+"10",10,"Papio_cynocephalus","(, 2021)","(Packer, Collins, Sindimwo, and Goodall, 1995)",NA
+"11",11,"Papio_cynocephalus","(Wasser, Norton, Kleindorfer, et al., 2004)","(Packer, Collins, Sindimwo, et al., 1995)","(Wasser and Starling, 1988)"
+"12",12,"Rangifer_tarandus","(Holand, Weladji, Gj�stein, et al., 2004)","(Holand, Gjøstein, Losvar, Kumpula, Smith, Røed, Nieminen, and Weladji, 2004)","(Djaković, Holand, Hovland, et al., 2011)"
+"13",13,"Callithrix_jacchus","(Sousa, da
+Rocha Albuquerque, da
+Silva Albuquerque, et al., 2005)","(Digby, 1995)","(nievergelt2000genetic)"
+"14",14,"Chlorocebus_aethiops","(Fairbanks and McGuire, 1984)","(HOLEKAMP and SMALE, 1991)","(Fairbanks, Jorgensen, Bailey, et al., 2011)"
+"15",15,"Chlorocebus_aethiops","(Fairbanks and McGuire, 1984)","(HOLEKAMP and SMALE, 1991)","(Fairbanks, Jorgensen, Bailey, et al., 2011)"
+"16",16,"Crocuta_crocuta","(Holekamp, Smale, and Szykman, 1996)","(Hofer and East, 2003)","(Horn, Engh, Scribner, et al., 2004)"
+"17",17,"Crocuta_crocuta","(Holekamp, Smale, and Szykman, 1996)","(Hofer and East, 2003)","(Horn, Engh, Scribner, et al., 2004)"
+"18",18,"Lemur_catta","(Takahata, Koyama, Ichino, Miyamoto, Nakamichi, and Soma, 2007)","(Taylor and Sussman, 1985)","(Parga, Sauther, Cuozzo, Youssouf Jacky, Gould, Sussman, Lawler, and Pastorini, 2015)"
+"19",19,"Macaca_fuscata","(Gouzoules, Gouzoules, and Fedigan, 1982)","(Koyama et al. 2003)","(Baxter and Fedigan, 1979)"
+"20",20,"Macaca_fuscata","(Gouzoules, Gouzoules, and Fedigan, 1982)","(Koyama et al. 2003)","(Baxter and Fedigan, 1979)"
+"21",21,"Macaca_fuscata","(Wolfe, 1984)","(Koyama et al. 2003)","(Koyama et al. 2003)"
+"22",22,"Macaca_sylvanus","(Kümmerli and Martin, 2005)","(Paul and Kuester, 1987)","(Kümmerli and Martin, 2008)"
+"23",23,"Macaca_sylvanus","(Kümmerli and Martin, 2005)","(Paul and Kuester, 1987)","(Kümmerli and Martin, 2008)"
+"24",24,"Mesocricetus_auratus","(Huck, Lisk, and McKay, 1988)","(Huck, Lisk, and McKay, 1988)","(Huck, Lisk, and McKay, 1988)"
+"25",25,"Mesocricetus_auratus","(Huck, Lisk, and McKay, 1988)","(Huck, Lisk, and McKay, 1988)","(Huck, Lisk, and McKay, 1988)"
+"26",26,"Mesocricetus_auratus","(Huck, Lisk, and McKay, 1988)","(Huck, Lisk, and McKay, 1988)","(Huck, Lisk, and McKay, 1988)"
+"27",27,"Oreamnos_americanus","(é and Festa-Bianchet, 2001)","(é, 2000)","(Shafer, Northrup, White, et al., 2012)"
+"28",28,"Oryctolagus_cuniculus","(von
+Holst, Hutzelmeyer, Kaetzke, et al., 2002)","(von
+Holst, Hutzelmeyer, Kaetzke, Khaschei, Rödel, and Schrutka, 2002)","(SURRIDGE, IBRAHIM, BELL, et al., 1999)"
+"29",29,"Oryctolagus_cuniculus","(von
+Holst, Hutzelmeyer, Kaetzke, et al., 2002)","(von
+Holst, Hutzelmeyer, Kaetzke, et al., 2002)","(SURRIDGE, IBRAHIM, BELL, et al., 1999)"
+"30",30,"Papio_cynocephalus","(Wasser, Norton, Kleindorfer, et al., 2004)","(Packer, Collins, Sindimwo, et al., 1995)","(Wasser and Starling, 1988)"
+"31",31,"Semnopithecus_entellus","(Borries, Sommer, and Srivastava, 1991)","(Borries, Sommer, and Srivastava, 1991)",NA
+"32",32,"Rangifer_tarandus","(Holand, Weladji, Gj�stein, et al., 2004)","(Holand, Gjøstein, Losvar, et al., 2004)","(Djaković, Holand, Hovland, et al., 2011)"
+"33",33,"Sciurus_vulgaris","(Wauters and Dhondt, 1989)","(Wauters and Dhondt, 1989)",NA
+"34",34,"Sciurus_vulgaris","(Wauters and Dhondt, 1989)","(Wauters and Dhondt, 1989)",NA
+"35",35,"Theropithecus_gelada","(DUNBAR and DUNBAR, 1977)","(Dunbar, 1980)","(Snyder-Mackler, Alberts, and Bergman, 2014)"
+"36",36,"Papio_ursinus","(Cheney et al. 2006)","(HOLEKAMP and SMALE, 1991)","(Silk, Cheney, and Seyfarth, 1999)"
+"37",37,"Papio_ursinus","(Bulger and Hamilton, 1987)","(HOLEKAMP and SMALE, 1991)","(Silk, Cheney, and Seyfarth, 1999)"
+"38",38,"Papio_ursinus","(Bulger and Hamilton, 1987)","(HOLEKAMP and SMALE, 1991)","(Silk, Cheney, and Seyfarth, 1999)"
+"39",39,"Cervus_elaphus","(Clutton-Brock, Albon, and Guinness, 1984)","(HALL, 2010)","(NUSSEY, COLTMAN, COULSON, et al., 2005)"
+"40",40,"Crocuta_crocuta","(Holekamp, Smale, and Szykman, 1996)","(Hofer and East, 2003)","(Horn, Engh, Scribner, et al., 2004)"
+"41",41,"Gorilla_beringei","(Robbins, Robbins, Gerald-Steklis, et al., 2007)","(Robbins, Gerald-Steklis, Robbins, and Steklis, 2005)","(Watts, 1994)"
+"42",42,"Lemur_catta","(Takahata, Koyama, Ichino, et al., 2007)","(Taylor and Sussman, 1985)","(Parga, Sauther, Cuozzo, et al., 2015)"
+"43",43,"Macaca_fascicularis","(van
+Noordwijk and van
+Schaik, 1999)","(van
+Noordwijk and van
+Schaik, 1987)","(Ruiter and Geffen, 1998)"
+"44",44,"Macaca_fascicularis","(van
+Noordwijk and van
+Schaik, 1999)","(van
+Noordwijk and van
+Schaik, 1987)","(Ruiter and Geffen, 1998)"
+"45",45,"Macaca_fascicularis","(van
+Noordwijk and van
+Schaik, 1999)","(van
+Noordwijk and van
+Schaik, 1987)","(Ruiter and Geffen, 1998)"
+"46",46,"Macaca_fascicularis","(van
+Noordwijk and van
+Schaik, 1999)","(van
+Noordwijk and van
+Schaik, 1987)","(Ruiter and Geffen, 1998)"
+"47",47,"Macaca_fascicularis","(van
+Noordwijk and van
+Schaik, 1999)","(van
+Noordwijk and van
+Schaik, 1987)","(Ruiter and Geffen, 1998)"
+"48",48,"Macaca_fascicularis","(van
+Noordwijk and van
+Schaik, 1999)","(van
+Noordwijk and van
+Schaik, 1987)","(Ruiter and Geffen, 1998)"
+"49",49,"Macaca_fascicularis","(van
+Noordwijk and van
+Schaik, 1999)","(van
+Noordwijk and van
+Schaik, 1987)","(Ruiter and Geffen, 1998)"
+"50",50,"Macaca_fascicularis","(van
+Noordwijk and van
+Schaik, 1999)","(van
+Noordwijk and van
+Schaik, 1987)","(Ruiter and Geffen, 1998)"
+"51",51,"Macaca_fascicularis","(van
+Noordwijk and van
+Schaik, 1999)","(van
+Noordwijk and van
+Schaik, 1987)","(Ruiter and Geffen, 1998)"
+"52",52,"Macaca_fascicularis","(van
+Noordwijk and van
+Schaik, 1999)","(van
+Noordwijk and van
+Schaik, 1987)","(Ruiter and Geffen, 1998)"
+"53",53,"Macaca_fascicularis","(van
+Noordwijk and van
+Schaik, 1999)","(van
+Noordwijk and van
+Schaik, 1987)","(Ruiter and Geffen, 1998)"
+"54",54,"Macaca_fascicularis","(van
+Noordwijk and van
+Schaik, 1999)","(van
+Noordwijk and van
+Schaik, 1987)","(Ruiter and Geffen, 1998)"
+"55",55,"Macaca_fascicularis","(van
+Noordwijk and van
+Schaik, 1999)","(van
+Noordwijk and van
+Schaik, 1987)","(Ruiter and Geffen, 1998)"
+"56",56,"Macaca_fascicularis","(van
+Noordwijk and van
+Schaik, 1999)","(van
+Noordwijk and van
+Schaik, 1987)","(Ruiter and Geffen, 1998)"
+"57",57,"Macaca_fascicularis","(van
+Noordwijk and van
+Schaik, 1999)","(van
+Noordwijk and van
+Schaik, 1987)","(Ruiter and Geffen, 1998)"
+"58",58,"Macaca_fascicularis","(van
+Noordwijk and van
+Schaik, 1999)","(van
+Noordwijk and van
+Schaik, 1987)","(Ruiter and Geffen, 1998)"
+"59",59,"Macaca_fascicularis","(van
+Noordwijk and van
+Schaik, 1999)","(van
+Noordwijk and van
+Schaik, 1987)","(Ruiter and Geffen, 1998)"
+"60",60,"Macaca_fascicularis","(van
+Noordwijk and van
+Schaik, 1999)","(van
+Noordwijk and van
+Schaik, 1987)","(Ruiter and Geffen, 1998)"
+"61",61,"Macaca_fascicularis","(van
+Noordwijk and van
+Schaik, 1999)","(van
+Noordwijk and van
+Schaik, 1987)","(Ruiter and Geffen, 1998)"
+"62",62,"Macaca_fascicularis","(van
+Noordwijk and van
+Schaik, 1999)","(van
+Noordwijk and van
+Schaik, 1987)","(Ruiter and Geffen, 1998)"
+"63",63,"Macaca_fascicularis","(van
+Noordwijk and van
+Schaik, 1999)","(van
+Noordwijk and van
+Schaik, 1987)","(Ruiter and Geffen, 1998)"
+"64",64,"Macaca_fuscata","(Takahata, Suzuki, Agetsuma, et al., 1998)","(Koyama et al. 2003)","(Nakagawa, Matsubara, Shimooka, et al., 2015)"
+"65",65,"Macaca_mulatta","(Meikle and Vessey, 1988)","(Deutsch and Lee, 1991)",NA
+"66",66,"Oreamnos_americanus","(é and Festa-Bianchet, 2001)","(é, 2000)","(Shafer, Northrup, White, et al., 2012)"
+"67",67,"Oreamnos_americanus","(é and Festa-Bianchet, 2001)","(é, 2000)","(Shafer, Northrup, White, et al., 2012)"
+"68",68,"Oryctolagus_cuniculus","(von
+Holst, Hutzelmeyer, Kaetzke, et al., 2002)","(von
+Holst, Hutzelmeyer, Kaetzke, et al., 2002)","(SURRIDGE, IBRAHIM, BELL, et al., 1999)"
+"69",69,"Pan_troglodytes","(Pusey, 1997)","(Wittig et al. 2003)","(Vigilant, Hofreiter, Siedel, et al., 2001)"
+"70",70,"Papio_anubis","(Packer, Collins, Sindimwo, et al., 1995)","(Johnson, 1987)","(Kopp 2015)"
+"71",71,"Papio_anubis","(Packer, Collins, Sindimwo, et al., 1995)","(Johnson, 1987)","@kopp2015gene"
+"72",72,"Papio_anubis","(Packer, Collins, Sindimwo, et al., 1995)","(Johnson, 1987)","(Kopp 2015)"
+"73",73,"Papio_anubis","(Packer, Collins, Sindimwo, et al., 1995)","(Johnson, 1987)","@kopp2015gene"
+"74",74,"Papio_anubis","(Packer, Collins, Sindimwo, et al., 1995)","(Johnson, 1987)","(Kopp 2015)"
+"75",75,"Papio_cynocephalus","(Wasser, Norton, Kleindorfer, et al., 2004)","(Packer, Collins, Sindimwo, et al., 1995)","(Wasser and Starling, 1988)"
+"76",76,"Papio_cynocephalus","(Silk, 2003)","(Packer, Collins, Sindimwo, et al., 1995)","(Horn, Buchan, Altmann, et al., 2007)"
+"77",77,"Papio_cynocephalus","(Silk, 2003)","(Packer, Collins, Sindimwo, et al., 1995)","(Horn, Buchan, Altmann, et al., 2007)"
+"78",78,"Semnopithecus_entellus","(Borries, Sommer, and Srivastava, 1991)","(Borries, Sommer, and Srivastava, 1991)",NA
+"79",79,"Semnopithecus_entellus","(Borries, Sommer, and Srivastava, 1991)","(Borries, Sommer, and Srivastava, 1991)",NA
+"80",80,"Crocuta_crocuta","(Hofer and East, 2003)","(Hofer and East, 2003)",NA
+"81",81,"Papio_ursinus","Cheney et al. 2006)","(HOLEKAMP and SMALE, 1991)","(Silk, Cheney, and Seyfarth, 1999)"
+"82",82,"Papio_ursinus","(Cheney et al. 2006)","(HOLEKAMP and SMALE, 1991)","(Silk, Cheney, and Seyfarth, 1999)"
+"83",83,"Papio_ursinus","(Bulger and Hamilton, 1987)","(HOLEKAMP and SMALE, 1991)","(Silk, Cheney, and Seyfarth, 1999)"
+"84",84,"Papio_ursinus","(Bulger and Hamilton, 1987)","(HOLEKAMP and SMALE, 1991)","(Silk, Cheney, and Seyfarth, 1999)"
+"85",85,"Macaca_fuscata","(Gouzoules, Gouzoules, and Fedigan, 1982)","(Koyama et al. 2003)","(Baxter and Fedigan, 1979)"
+"86",86,"Macaca_fuscata","(Takahata, Suzuki, Agetsuma, et al., 1998)","(Koyama et al. 2003)","(Nakagawa, Matsubara, Shimooka, et al., 2015)"
+"87",87,"Mandrillus_sphinx","(Setchell et al. 2002)","(Setchell et al. 2002)",NA
+"88",88,"Papio_anubis","(Cheney et al. 2006)","(Johnson, 1987)",NA
+"89",89,"Papio_ursinus",NA,"(HOLEKAMP and SMALE, 1991)","(Silk, Cheney, and Seyfarth, 1999)"
+"90",90,"Papio_ursinus","(Cheney et al. 2006)","(HOLEKAMP and SMALE, 1991)","(Silk, Cheney, and Seyfarth, 1999)"
+"91",91,"Chlorocebus_aethiops","(Fairbanks and McGuire, 1984)","(HOLEKAMP and SMALE, 1991)","(Fairbanks, Jorgensen, Bailey, et al., 2011)"
+"92",92,"Crocuta_crocuta","(Holekamp, Smale, and Szykman, 1996)","(Hofer and East, 2003)","(Horn, Engh, Scribner, et al., 2004)"
+"93",93,"Crocuta_crocuta","(Holekamp, Smale, and Szykman, 1996)","(Hofer and East, 2003)","(Horn, Engh, Scribner, et al., 2004)"
+"94",94,"Crocuta_crocuta","(Holekamp, Smale, and Szykman, 1996)","(Hofer and East, 2003)","(Horn, Engh, Scribner, et al., 2004)"
+"95",95,"Crocuta_crocuta","(Holekamp, Smale, and Szykman, 1996)","(Hofer and East, 2003)","(Horn, Engh, Scribner, et al., 2004)"
+"96",96,"Crocuta_crocuta","(Holekamp, Smale, and Szykman, 1996)","(Hofer and East, 2003)","(Horn, Engh, Scribner, et al., 2004)"
+"97",97,"Gorilla_beringei","(Robbins, Robbins, Gerald-Steklis, et al., 2007)","(Robbins, Gerald-Steklis, Robbins, et al., 2005)","(Watts, 1994)"
+"98",98,"Macaca_arctoides","(Nieuwenhuijsen, Lammers, de
+Neef, et al., 1985)","(HOLEKAMP and SMALE, 1991)",NA
+"99",99,"Mandrillus_sphinx","(Setchell et al. 2002)","(Setchell et al. 2002)",NA
+"100",100,"Mandrillus_sphinx","(Setchell et al. 2002)","(Setchell et al. 2002)",NA
+"101",101,"Papio_anubis","(Packer, Collins, Sindimwo, et al., 1995)","(Johnson, 1987)",NA
+"102",102,"Papio_anubis","(Packer, Collins, Sindimwo, et al., 1995)","(Johnson, 1987)","(Kopp 2015)"
+"103",103,"Papio_anubis","(Packer, Collins, Sindimwo, et al., 1995)","(Johnson, 1987)",NA
+"104",104,"Papio_anubis","(Packer, Collins, Sindimwo, et al., 1995)","(Johnson, 1987)","(Kopp 2015)"
+"105",105,"Papio_anubis","(Garcia, Lee, and Rosetta, 2006)","(Johnson, 1987)",NA
+"106",106,"Papio_anubis","(Garcia, Lee, and Rosetta, 2006)","(Johnson, 1987)",NA
+"107",107,"Papio_cynocephalus","(Wasser, Norton, Kleindorfer, et al., 2004)","(Packer, Collins, Sindimwo, et al., 1995)","(Wasser and Starling, 1988)"
+"108",108,"Papio_cynocephalus","(Wasser, Norton, Kleindorfer, and Rhine, 2004)","(Packer, Collins, Sindimwo, et al., 1995)","(Wasser and Starling, 1988)"
+"109",109,"Papio_cynocephalus","(Wasser, Norton, Kleindorfer, et al., 2004)","(Packer, Collins, Sindimwo, et al., 1995)","(Wasser and Starling, 1988)"
+"110",110,"Papio_anubis","(Barton and Whiten, 1993)","(Johnson, 1987)","(lynch2016paternal)"
+"111",111,"Papio_ursinus","(Bulger and Hamilton, 1987)","(HOLEKAMP and SMALE, 1991)","(Silk, Cheney, and Seyfarth, 1999)"
+"112",112,"Papio_ursinus","(Bulger and Hamilton, 1987)","(HOLEKAMP and SMALE, 1991)","(Silk, Cheney, and Seyfarth, 1999)"
+"113",113,"Gorilla_beringei","(Robbins, Robbins, Gerald-Steklis, et al., 2007)","(Robbins, Gerald-Steklis, Robbins, et al., 2005)","(Watts, 1994)"
+"114",114,"Macaca_fascicularis","(van
+Noordwijk and van
+Schaik, 1999)","(van
+Noordwijk and van
+Schaik, 1987)","(Ruiter and Geffen, 1998)"
+"115",115,"Macaca_fascicularis","(van
+Noordwijk and van
+Schaik, 1999)","(van
+Noordwijk and van
+Schaik, 1987)","(Ruiter and Geffen, 1998)"
+"116",116,"Macaca_fascicularis","(van
+Noordwijk and van
+Schaik, 1999)","(van
+Noordwijk and van
+Schaik, 1987)","(Ruiter and Geffen, 1998)"
+"117",117,"Macaca_fascicularis","(van
+Noordwijk and van
+Schaik, 1999)","(van
+Noordwijk and van
+Schaik, 1987)","(Ruiter and Geffen, 1998)"
+"118",118,"Macaca_fascicularis","(van
+Noordwijk and van
+Schaik, 1999)","(van
+Noordwijk and van
+Schaik, 1987)","(Ruiter and Geffen, 1998)"
+"119",119,"Macaca_fascicularis","(van
+Noordwijk and van
+Schaik, 1999)","(van
+Noordwijk and van
+Schaik, 1987)","(Ruiter and Geffen, 1998)"
+"120",120,"Macaca_fascicularis","(van
+Noordwijk and van
+Schaik, 1999)","(van
+Noordwijk and van
+Schaik, 1987)","(Ruiter and Geffen, 1998)"
+"121",121,"Macaca_fascicularis","(van
+Noordwijk and van
+Schaik, 1999)","(van
+Noordwijk and van
+Schaik, 1987)","(Ruiter and Geffen, 1998)"
+"122",122,"Macaca_fuscata","(Takahata, Suzuki, Agetsuma, et al., 1998)","(Koyama et al. 2003)","(Nakagawa, Matsubara, Shimooka, et al., 2015)"
+"123",123,"Macaca_fuscata","(Takahata, Suzuki, Agetsuma, et al., 1998)","(Koyama et al. 2003)","(Nakagawa, Matsubara, Shimooka, et al., 2015)"
+"124",124,"Macaca_fuscata","(Takahata, Suzuki, Agetsuma, et al., 1998)","(Koyama et al. 2003)","(Nakagawa, Matsubara, Shimooka, et al., 2015)"
+"125",125,"Macaca_fuscata","(Takahata, Suzuki, Agetsuma, et al., 1998)","(Koyama et al. 2003)","(Nakagawa, Matsubara, Shimooka, et al., 2015)"
+"126",126,"Mandrillus_sphinx","(Setchell, Charpentier, and Wickings, 2005)","(Setchell et al. 2002)",NA
+"127",127,"Ovis_canadensis","(Festa-Bianchet, 1991)","(Festa-Bianchet, 1991)","(Fournier and Festa-Bianchet, 1995)"
+"128",128,"Papio_anubis","(Packer, Collins, Sindimwo, et al., 1995)","(Johnson, 1987)","(Kopp 2015)"
+"129",129,"Papio_anubis","(Packer, Collins, Sindimwo, et al., 1995)","(Johnson, 1987)","(Kopp 2015)"
+"130",130,"Papio_cynocephalus","(Wasser, Norton, Kleindorfer, et al., 2004)","(Packer, Collins, Sindimwo, et al., 1995)","(Wasser and Starling, 1988)"
+"131",131,"Crocuta_crocuta","(Hofer and East, 2003)","(Hofer and East, 2003)",NA
+"132",132,"Macaca_fuscata","(Takahata, 1980)","(Koyama et al. 2003)","@koyama2003matrilineal"
+"133",133,"Oryctolagus_cuniculus","(von
+Holst, Hutzelmeyer, Kaetzke, et al., 2002)","(von
+Holst, Hutzelmeyer, Kaetzke, et al., 2002)","(SURRIDGE, IBRAHIM, BELL, et al., 1999)"
+"134",134,"Papio_anubis","(Packer, Collins, Sindimwo, et al., 1995)","(Johnson, 1987)","(Kopp 2015)"
+"135",135,"Papio_anubis","(Packer, Collins, Sindimwo, et al., 1995)","(Johnson, 1987)","(Kopp 2015)"
+"136",136,"Papio_cynocephalus","(Wasser, Norton, Kleindorfer, et al., 2004)","(Packer, Collins, Sindimwo, et al., 1995)","(Wasser and Starling, 1988)"
+"137",137,"Papio_cynocephalus","(Wasser, Norton, Kleindorfer, et al., 2004)","(Packer, Collins, Sindimwo, et al., 1995)","(Wasser and Starling, 1988)"
+"138",138,"Papio_cynocephalus","(Wasser, Norton, Kleindorfer, et al., 2004)","(Packer, Collins, Sindimwo, et al., 1995)","(Wasser and Starling, 1988)"
+"139",139,"Crocuta_crocuta","(Hofer and East, 2003)","(Hofer and East, 2003)",NA
+"140",140,"Papio_ursinus","(Cheney et al. 2006)","(HOLEKAMP and SMALE, 1991)","(Silk, Cheney, and Seyfarth, 1999)"
+"141",141,"Papio_ursinus","(Cheney et al. 2006)","(HOLEKAMP and SMALE, 1991)","(Silk, Cheney, and Seyfarth, 1999)"
+"142",142,"Cervus_elaphus","(Clutton-Brock, Albon, and Guinness, 1984)","(HALL, 2010)","(NUSSEY, COLTMAN, COULSON, et al., 2005)"
+"143",143,"Cervus_elaphus","(Clutton-Brock, Albon, and Guinness, 1984)","(HALL, 2010)","(NUSSEY, COLTMAN, COULSON, et al., 2005)"
+"144",144,"Macaca_mulatta","(Wilson, Gordon, and Bernstein, 1978)","(Deutsch and Lee, 1991)","(Bernstein and Ehardt, 1986)"
+"145",145,"Macaca_mulatta","(Wilson, Gordon, and Bernstein, 1978)","(Deutsch and Lee, 1991)","(Bernstein and Ehardt, 1986)"
+"146",146,"Macaca_sinica","(Dittus, 1979)","(Dittus, 1986)",NA
+"147",147,"Macaca_sinica","(Dittus, 1979)","(Dittus, 1986)",NA
+"148",148,"Lycaon_pictus","(Creel, Creel, Mills, et al., 1997)","(Spiering, Somers, Maldonado, Wildt, and Gunther, 2009)","(Girman, Mills, Geffen, et al., 1997)"
+"149",149,"Fukomys_damarensis","(BURLAND, BENNETT, JARVIS, et al., 2004)","(Gaylard, Harrison, and Bennett, 1998)","(Burland, Bennett, Jarvis, et al., 2002)"
+"150",150,"Macaca_fuscata","(Fedigan, Fedigan, Gouzoules, et al., 1986)","(Koyama et al. 2003)","(Baxter and Fedigan, 1979)"
+"151",151,"Macaca_fuscata","(Fedigan, Fedigan, Gouzoules, et al., 1986)","(Koyama et al. 2003)","(Baxter and Fedigan, 1979)"
+"152",152,"Macaca_fuscata","(Fedigan, Fedigan, Gouzoules, et al., 1986)","(Koyama et al. 2003)","(Baxter and Fedigan, 1979)"
+"153",153,"Macaca_fuscata","(Fedigan, Fedigan, Gouzoules, et al., 1986)","(Koyama et al. 2003)","(Baxter and Fedigan, 1979)"
+"154",154,"Helogale_parvula","(Keane, Waser, Creel, et al., 1994)","(Creel, 2005)","(Creel and Waser, 1994)"
+"155",155,"Helogale_parvula","(Keane, Waser, Creel, et al., 1994)","(Creel, 2005)","(Creel and Waser, 1994)"
+"156",156,"Helogale_parvula","(Keane, Waser, Creel, et al., 1994)","(Creel, 2005)","(Creel and Waser, 1994)"
+"157",157,"Marmota_caligata","(Wasser and Barash, 1983)","(Patil, Karels, and Hik, 2015)",NA
+"158",158,"Marmota_caligata","(Wasser and Barash, 1983)","(Patil, Karels, and Hik, 2015)",NA
+"159",159,"Marmota_caligata","(Wasser and Barash, 1983)","(Patil, Karels, and Hik, 2015)",NA
+"160",160,"Marmota_caligata","(Wasser and Barash, 1983)","(Patil, Karels, and Hik, 2015)",NA
+"161",161,"Macaca_radiata","(Silk, Clark-Wheatley, Rodman, et al., 1981)","(HOLEKAMP and SMALE, 1991)",NA
+"162",162,"Macaca_radiata","(Silk, Clark-Wheatley, Rodman, et al., 1981)","(HOLEKAMP and SMALE, 1991)",NA
+"163",163,"Macaca_radiata","(Silk, Clark-Wheatley, Rodman, et al., 1981)","(HOLEKAMP and SMALE, 1991)",NA
+"164",164,"Marmota_flaviventris","(Huang, Wey, and Blumstein, 2011)","(Huang, Wey, and Blumstein, 2011)","(Armitage, Vuren, Ozgul, et al., 2011)"
+"165",165,"Marmota_flaviventris","(Huang, Wey, and Blumstein, 2011)","(Huang, Wey, and Blumstein, 2011)","(Armitage, Vuren, Ozgul, et al., 2011)"
+"166",166,"Marmota_flaviventris","(Huang, Wey, and Blumstein, 2011)","(Huang, Wey, and Blumstein, 2011)","(Armitage, Vuren, Ozgul, et al., 2011)"
+"167",167,"Marmota_flaviventris","(Huang, Wey, and Blumstein, 2011)","(Huang, Wey, and Blumstein, 2011)","(Armitage, Vuren, Ozgul, et al., 2011)"
+"168",168,"Alouatta_palliata","(Glander, 1980)","(Jones, 1980)",NA
+"169",169,"Alouatta_palliata","(Glander, 1980)","(Jones, 1980)",NA
+"170",170,"Equus_quagga","(Pluháček, š, and Čul\'\ik, 2006)","(Lloyd and Rasa, 1994)",NA
+"171",171,"Equus_quagga","(Pluháček, š, and Čul\'\ik, 2006)","(Lloyd and Rasa, 1994)",NA
+"172",172,"Equus_zebra","(Lloyd and Rasa, 1989)","(Lloyd and Rasa, 1994)",NA
+"173",173,"Equus_zebra","(Lloyd and Rasa, 1989)","(Lloyd and Rasa, 1994)",NA
+"174",174,"Equus_zebra","(Lloyd and Rasa, 1989)","(Lloyd and Rasa, 1994)",NA
+"175",175,"Equus_zebra","(Lloyd and Rasa, 1989)","(Lloyd and Rasa, 1994)",NA
+"176",176,"Equus_zebra","(Lloyd and Rasa, 1989)","(Lloyd and Rasa, 1994)",NA
+"177",177,"Equus_caballus","(Rubenstein et al. 2009)","(Sinderbrand 2011)",NA
+"178",178,"Equus_caballus","(Rubenstein et al. 2009)","(Sinderbrand 2011)",NA
+"179",179,"Equus_caballus","(Rubenstein et al. 2009)",NA,NA
+"180",180,"Mirounga_angustirostris","(Cheney et al. 1988)","(Christenson and Boeuf, 1978)",NA
+"181",181,"Ovis_canadensis","(Hass, 1991)","(Festa-Bianchet, 1991)","(Fournier and Festa-Bianchet, 1995)"
+"182",182,"Ovis_canadensis","(Hass, 1991)","(Festa-Bianchet, 1991)","(Fournier and Festa-Bianchet, 1995)"
+"183",183,"Ovis_canadensis","(Hass, 1991)","(Festa-Bianchet, 1991)","(Fournier and Festa-Bianchet, 1995)"
+"184",184,"Hyaena_brunnea","(OWENS and OWENS, 1996)","(OWENS and OWENS, 1996)","(Knowles, de
+Groot, Wiesel, et al., 2009)"
+"185",185,"Hyaena_brunnea","(OWENS and OWENS, 1996)","(OWENS and OWENS, 1996)","(Knowles, de
+Groot, Wiesel, et al., 2009)"
+"186",186,"Mus_musculus","(Rusu and Krackow, 2004)","(Rusu and Krackow, 2004)","(Rusu and Krackow, 2004)"
+"187",187,"Mus_musculus","(König, 1994)","(Rusu and Krackow, 2004)","(König, 1994)"
+"188",188,"Mus_musculus","(König, 1994)","(Rusu and Krackow, 2004)","(König, 1994)"
+"189",189,"Mus_musculus","(König, 1994)","(Rusu and Krackow, 2004)","(König, 1994)"
+"190",190,"Mus_musculus","(König, 1994)","(Rusu and Krackow, 2004)","(König, 1994)"
+"191",191,"Rhabdomys_pumilio","(Kinahan and Pillay, 2007)","(Kinahan and Pillay, 2007)","(Kinahan and Pillay, 2007)"
+"192",192,"Rhabdomys_pumilio","(Kinahan and Pillay, 2007)","(Kinahan and Pillay, 2007)","(Kinahan and Pillay, 2007)"
+"193",193,"Rhabdomys_pumilio","(Kinahan and Pillay, 2007)","(Kinahan and Pillay, 2007)","(Kinahan and Pillay, 2007)"
+"194",194,"Rhabdomys_pumilio","(Kinahan and Pillay, 2007)","(Kinahan and Pillay, 2007)","(Kinahan and Pillay, 2007)"
+"195",195,"Rhabdomys_pumilio","(Kinahan and Pillay, 2007)","(Kinahan and Pillay, 2007)","(Kinahan and Pillay, 2007)"
+"196",196,"Rhabdomys_pumilio","(Kinahan and Pillay, 2007)","(Kinahan and Pillay, 2007)","(Kinahan and Pillay, 2007)"
+"197",197,"Apodemus_sylvaticus","(Gerlach, 2002)","(Gerlach, 2002)","(Gerlach, 2002)"
+"198",198,"Apodemus_sylvaticus","(Gerlach, 2002)","(Gerlach, 2002)","(Gerlach, 2002)"
+"199",199,"Apodemus_sylvaticus","(Gerlach, 2002)","(Gerlach, 2002)","(Gerlach, 2002)"
+"200",200,"Apodemus_sylvaticus","(Gerlach, 2002)","(Gerlach, 2002)","(Gerlach, 2002)"
+"201",201,"Apodemus_sylvaticus","(Gerlach, 2002)","(Gerlach, 2002)","(Gerlach, 2002)"
+"202",202,"Apodemus_sylvaticus","(Gerlach, 2002)","(Gerlach, 2002)","(Gerlach, 2002)"
+"203",203,"Apodemus_sylvaticus","(Gerlach, 2002)","(Gerlach, 2002)","(Gerlach, 2002)"
+"204",204,"Apodemus_sylvaticus","(Gerlach, 2002)","(Gerlach, 2002)","(Gerlach, 2002)"
+"205",205,"Apodemus_sylvaticus","(Gerlach, 2002)","(Gerlach, 2002)","(Gerlach, 2002)"
+"206",206,"Apodemus_sylvaticus","(Gerlach, 2002)","(Gerlach, 2002)","(Gerlach, 2002)"
+"207",207,"Apodemus_sylvaticus","(Gerlach, 2002)","(Gerlach, 2002)","(Gerlach, 2002)"
+"208",208,"Apodemus_sylvaticus","(Gerlach, 2002)","(Gerlach, 2002)","(Gerlach, 2002)"
+"209",209,"Rattus_norvegicus","(Schultz and Lore, 1993)","(Ziporyn and McClintock, 1991)","(Schultz and Lore, 1993)"
+"210",210,"Marmota_marmota","(Hackländer, Möstl, and Arnold, 2003)","(Lardy, é, and Cohas, 2013)","(Hackländer, Möstl, and Arnold, 2003)"
+"211",211,"Heterocephalus_glaber","(Faulkes and Bennett, 2001)","(Clarke and Faulkes, 1997)",NA
+"212",212,"Fukomys_damarensis","(Faulkes and Bennett, 2001)","(Gaylard, Harrison, and Bennett, 1998)","(Burland, Bennett, Jarvis, et al., 2002)"
+"213",213,"Cryptomys_hottentotus","(Faulkes and Bennett, 2001)","(Gaylard, Harrison, and Bennett, 1998)",NA
+"214",214,"Suricata_suricatta","(Griffin, 2003)","(Russell, Carlson, McIlrath, Jordan, and Clutton-Brock, 2004)","(Griffin, 2003)"
+"215",215,"Leontopithecus_rosalia","(Henry, Hankerson, Siani, et al., 2013)","(Baker et al. 2002)",NA
+"216",216,"Leontopithecus_rosalia","(Henry, Hankerson, Siani, et al., 2013)","(Baker et al. 2002)",NA
+"217",217,"Leontopithecus_rosalia","(Henry, Hankerson, Siani, et al., 2013)","(Baker et al. 2002)",NA
+"218",218,"Leontopithecus_rosalia","(Dietz and Baker, 1993)",NA,NA
+"219",219,"Leontocebus_fuscicollis","(Goldizen, Mendelson, van
+Vlaardingen, et al., 1996)","(Goldizen, Mendelson, van
+Vlaardingen, and Terborgh, 1996)",NA
+"220",220,"Saguinus_mystax","(Garber, Ón, Moya, et al., 1993)","(Smith 2000)",NA
+"221",221,"Cebus_capucinus","(Fedigan, Carnegie, and Jack, 2008)","(Fedigan and Bergstrom, 2010)",NA
+"222",222,"Cebus_capucinus","(Fedigan, Carnegie, and Jack, 2008)","(Fedigan and Bergstrom, 2010)",NA
+"223",223,"Cercopithecus_mitis","(Cords, 2002)","(Klass and Cords, 2015)",NA
+"224",224,"Chlorocebus_aethiops",NA,"(HOLEKAMP and SMALE, 1991)",NA
+"225",225,"Chlorocebus_aethiops","(Cheney et al. 1988)","(HOLEKAMP and SMALE, 1991)",NA
+"226",226,"Chlorocebus_aethiops","(Cheney et al. 1988)","(HOLEKAMP and SMALE, 1991)",NA
+"227",227,"Chlorocebus_aethiops","(Whitten et al. 1983)","(HOLEKAMP and SMALE, 1991)",NA
+"228",228,"Chlorocebus_aethiops","(Whitten et al. 1983)","(HOLEKAMP and SMALE, 1991)",NA
+"229",229,"Chlorocebus_aethiops","(Whitten et al. 1983)","(HOLEKAMP and SMALE, 1991)",NA
+"230",230,"Chlorocebus_aethiops","(Whitten et al. 1983)","(HOLEKAMP and SMALE, 1991)",NA
+"231",231,"Pan_troglodytes","(Jones, Wilson, Murray, et al., 2010)","(Wittig et al. 2003)","(Vigilant, Hofreiter, Siedel, et al., 2001)"
+"232",232,"Papio_anubis","(Smuts and Nicolson, 1989)","(Johnson, 1987)",NA
+"233",233,"Papio_anubis","(Smuts and Nicolson, 1989)","(Johnson, 1987)",NA
+"234",234,"Macaca_fuscata","(Itoigawa, Tanaka, Ukai, Fujii, Kurokawa, Koyama, Ando, Watanabe, and Imakawa, 1992)","(Koyama et al. 2003)",NA
+"235",235,"Macaca_fuscata","(Itoigawa, Tanaka, Ukai, et al., 1992)","(Koyama et al. 2003)",NA
+"236",236,"Macaca_fuscata","(Itoigawa, Tanaka, Ukai, et al., 1992)","(Koyama et al. 2003)",NA
+"237",237,"Macaca_fuscata","(Itoigawa, Tanaka, Ukai, et al., 1992)","(Koyama et al. 2003)",NA
+"238",238,"Macaca_fuscata","(Itoigawa, Tanaka, Ukai, et al., 1992)","(Koyama et al. 2003)",NA
+"239",239,"Macaca_fuscata","(Itoigawa, Tanaka, Ukai, et al., 1992)","(Koyama et al. 2003)",NA
+"240",240,"Ovis_canadensis","(Eccles and Shackleton, 1986)","(Festa-Bianchet, 1991)","(Fournier and Festa-Bianchet, 1995)"
+"241",241,"Ovis_canadensis","(Eccles and Shackleton, 1986)","(Festa-Bianchet, 1991)","(Fournier and Festa-Bianchet, 1995)"
+"242",242,"Ammotragus_lervia","(Cassinello and Alados, 1996)","(Cassinello, 1995)",NA
+"243",243,"Ammotragus_lervia","(Cassinello and Alados, 1996)","(Cassinello, 1995)",NA
+"244",244,"Ammotragus_lervia","(Cassinello and Alados, 1996)","(Cassinello, 1995)",NA
+"245",245,"Ammotragus_lervia","(Cassinello and Alados, 1996)","(Cassinello, 1995)",NA
+"246",246,"Antilocapra_americana","(Clancey and Byers, 2015)","(Dennehy, 2001)","(Carling, Wiseman, and Byers, 2003)"
+"247",247,"Antilocapra_americana","(Clancey and Byers, 2015)","(Dennehy, 2001)","(Carling, Wiseman, and Byers, 2003)"
+"248",248,"Antilocapra_americana","(Clancey and Byers, 2015)","(Dennehy, 2001)","(Carling, Wiseman, and Byers, 2003)"
+"249",249,"Nanger_dama","(Alados and Escós, 1992)","(Alados and Escós, 2021)",NA
+"250",250,"Gazella_cuvieri","(Alados and Escós, 1992)","(Alados and Escós, 2021)",NA
+"251",251,"Gazella_cuvieri","(Alados and Escós, 1992)","(Alados and Escós, 2021)",NA
+"252",252,"Gazella_cuvieri","(Alados and Escós, 1992)","(Alados and Escós, 2021)",NA
+"253",253,"Gazella_cuvieri","(Alados and Escós, 1992)","(Alados and Escós, 2021)",NA
+"254",254,"Nanger_dama","(Alados and Escós, 1992)","(Alados and Escós, 2021)",NA
+"255",255,"Nanger_dama","(Alados and Escós, 1992)","(Alados and Escós, 2021)",NA
+"256",256,"Nanger_dama","(Alados and Escós, 1992)","(Alados and Escós, 2021)",NA
+"257",257,"Capra_nubiana","(Shargal, Shore, Roteri, et al., 2008)","(Greenberg-Cohen, Alkon, and Yom-Tov, 2010)",NA
+"258",258,"Ozotoceros_bezoarticus","(Morales-Piñeyrúa, Ciappesoni, and Ungerfeld, 2014)","(Morales-Piñeyrúa, Ciappesoni, and Ungerfeld, 2014)",NA
+"259",259,"Ozotoceros_bezoarticus","(Morales-Piñeyrúa, Ciappesoni, and Ungerfeld, 2014)","(Morales-Piñeyrúa, Ciappesoni, and Ungerfeld, 2014)",NA
+"260",260,"Mus_musculus","(Drickamer, 1985)","(Rusu and Krackow, 2004)","(Drickamer, 1985)"
+"261",261,"Mus_musculus","(Drickamer, 1985)","(Rusu and Krackow, 2004)","(Drickamer, 1985)"
+"262",262,"Mus_musculus","(Drickamer, 1985)","(Rusu and Krackow, 2004)","(Drickamer, 1985)"
+"263",263,"Helogale_parvula","(Rood, 1980)","(Creel, 2005)","(Creel and Waser, 1994)"
+"264",264,"Macaca_mulatta","(Gomendio, 1990)","(Deutsch and Lee, 1991)",NA
+"265",265,"Macaca_mulatta","(Gomendio, 1990)","(Deutsch and Lee, 1991)",NA
+"266",266,"Cervus_elaphus","(Gomendio, Clutton-Brock, Albon, et al., 1990)","(HALL, 2010)","(NUSSEY, COLTMAN, COULSON, et al., 2005)"
+"267",267,"Cervus_elaphus","(Gomendio, Clutton-Brock, Albon, et al., 1990)","(HALL, 2010)","(NUSSEY, COLTMAN, COULSON, et al., 2005)"
+"268",268,"Macaca_mulatta","(Gomendio, Clutton-Brock, Albon, et al., 1990)","(Deutsch and Lee, 1991)",NA
+"269",269,"Crocuta_crocuta","(Frank et al. 1995)","(Hofer and East, 2003)","(Horn, Engh, Scribner, et al., 2004)"
+"270",270,"Crocuta_crocuta","(Frank et al. 1995)","(Hofer and East, 2003)","(Horn, Engh, Scribner, et al., 2004)"
+"271",271,"Crocuta_crocuta","(Frank et al. 1995)","(Hofer and East, 2003)","(Horn, Engh, Scribner, et al., 2004)"
+"272",272,"Crocuta_crocuta","(Frank et al. 1995)","(Hofer and East, 2003)","(Horn, Engh, Scribner, et al., 2004)"
+"273",273,"Crocuta_crocuta","(Frank et al. 1995)","(Hofer and East, 2003)","(Horn, Engh, Scribner, et al., 2004)"
+"274",274,"Ateles_paniscus","(Symington, 1987)","(van Roosmalen 1980)",NA
+"275",275,"Crocuta_crocuta","(White, 2005)","(Hofer and East, 2003)","(Horn, Engh, Scribner, et al., 2004)"
+"276",276,"Crocuta_crocuta","(White, 2005)","(Hofer and East, 2003)","(Horn, Engh, Scribner, et al., 2004)"
+"277",277,"Crocuta_crocuta","(White, 2005)","(Hofer and East, 2003)","(Horn, Engh, Scribner, et al., 2004)"
+"278",278,"Petrogale_concinna","(Nelson and Goldstone, 1986)","(Nelson and Goldstone, 1986)",NA
+"279",279,"Macaca_assamensis","(Heesen, Rogahn, Ostner, et al., 2013)","(Fuertbauerr 2011)","(Moor, Roos, Ostner, et al., 2020)"
+"280",280,"Papio_ursinus","(Busse 1982)","(HOLEKAMP and SMALE, 1991)","(Silk, Cheney, and Seyfarth, 1999)"
+"281",281,"Macaca_fuscata","(Wolfe, 1984)","(Koyama et al. 2003)","(Koyama et al. 2003)"
+"282",282,"Macaca_fuscata","(Wolfe, 1984)","(Koyama et al. 2003)","(Koyama et al. 2003)"
+"283",283,"Macaca_fuscata","(Wolfe, 1984)","(Koyama et al. 2003)","(Koyama et al. 2003)"
+"284",284,"Theropithecus_gelada","(le
+Roux, Beehner, and Bergman, 2010)","(Dunbar, 1980)","(Snyder-Mackler, Alberts, and Bergman, 2014)"
+"285",285,"Theropithecus_gelada","(le
+Roux, Beehner, and Bergman, 2010)","(Dunbar, 1980)","(Snyder-Mackler, Alberts, and Bergman, 2014)"
+"286",286,"Marmota_marmota","(King and é, 2002)","(Lardy, é, and Cohas, 2013)",NA
+"287",287,"Marmota_marmota","(King and é, 2002)","(Lardy, é, and Cohas, 2013)",NA
+"288",288,"Papio_cynocephalus","(Beehner, Onderdonk, Alberts, et al., 2006)","(Packer, Collins, Sindimwo, et al., 1995)","(Horn, Buchan, Altmann, et al., 2007)"
+"289",289,"Papio_cynocephalus","(Beehner, Onderdonk, Alberts, et al., 2006)","(Packer, Collins, Sindimwo, et al., 1995)","(Horn, Buchan, Altmann, et al., 2007)"
+"290",290,"Papio_cynocephalus",NA,"(Packer, Collins, Sindimwo, et al., 1995)","(Horn, Buchan, Altmann, et al., 2007)"
+"291",291,"Papio_cynocephalus","(Altmann & Alberts 2003)","(Packer, Collins, Sindimwo, et al., 1995)","(Horn, Buchan, Altmann, et al., 2007)"
+"292",292,"Papio_ursinus","(Baniel et al. 2021)","(HOLEKAMP and SMALE, 1991)","(Baniel, Cowlishaw, and Huchard, 2018)"
+"293",293,"Vulpes_vulpes","(BAKER, ROBERTSON, FUNK, et al., 1998)","(BAKER, ROBERTSON, FUNK, and HARRIS, 1998)","(Iossa, Soulsbury, Baker, et al., 2008)"
+"294",294,"Semnopithecus_entellus","(Dolhinow, McKenna, and Laws, 1979)","(Borries, Sommer, and Srivastava, 1991)",NA
+"295",295,"Sapajus_apella","(DiBitetti et al. 2001)","(Welker, H&ouml$\mathsemicolon$hmann, and Sch&auml$\mathsemicolon$fer-Witt, 1990)",NA
+"296",296,"Miopithecus_talapoin","(Abbott, 1987)","(Abbott, 1987)",NA
+"297",297,"Mungos_mungo","(Nichols, Bell, Hodge, and Cant, 2012)","(de
+Luca and Ginsberg, 2001)","(Nichols, Jordan, Jamie, et al., 2012)"
+"298",298,"Mungos_mungo","(Nichols, Bell, Hodge, et al., 2012)","(de
+Luca and Ginsberg, 2001)","(Nichols, Jordan, Jamie, et al., 2012)"
+"299",299,"Mungos_mungo","(Nichols, Bell, Hodge, et al., 2012)","(de
+Luca and Ginsberg, 2001)","(Nichols, Jordan, Jamie, et al., 2012)"
+"300",300,"Mungos_mungo","(Nichols, Amos, Cant, Bell, and Hodge, 2010)","(de
+Luca and Ginsberg, 2001)","(Nichols, Jordan, Jamie, et al., 2012)"
+"301",301,"Mungos_mungo","(de
+Luca and Ginsberg, 2001)","(de
+Luca and Ginsberg, 2001)","(Nichols, Jordan, Jamie, et al., 2012)"
+"302",302,"Canis_simensis","(Randall, Pollinger, Wayne, et al., 2007)","(HOLEKAMP and SMALE, 1991)","(Randall, Pollinger, Wayne, et al., 2007)"
+"303",303,"Procavia_capensis","(Koren and Geffen, 2009)","(Visser, Robinson, and van
+Vuuren, 2020)","(Visser 2013)"
+"304",304,"Bison_bison","(Vervaecke, Roden, and de
+Vries, 2005)","(Vervaecke, Roden, and de
+Vries, 2005)",NA
+"305",305,"Bison_bison","(Vervaecke, Roden, and de
+Vries, 2005)","(Vervaecke, Roden, and de
+Vries, 2005)",NA
+"306",306,"Capra_pyrenaica","(Santiago-Moreno, Gómez-Brunet, Toledano-D\'\iaz, Pulido-Pastor, and López-Sebastián, 2007)","(Santiago et al. 2013)",NA
+"307",307,"Sus_scrofa","(Meikle, Drickamer, Vessey, et al., 2010)","(Gaillard et al. 1993)","(Meikle, Drickamer, Vessey, et al., 2010)"
+"308",308,"Papio_cynocephalus","(Altmann et al. 1988)","(Packer, Collins, Sindimwo, et al., 1995)","(Horn, Buchan, Altmann, et al., 2007)"
+"309",309,"Macaca_sylvanus","(Paul & Kuester 1996)","(Paul and Kuester, 1987)","(Kümmerli and Martin, 2008)"
+"310",310,"Macaca_sylvanus","(Paul & Kuester 1996)","(Paul and Kuester, 1987)","(Kümmerli and Martin, 2008)"
+"311",311,"Macaca_sylvanus",NA,"(Paul and Kuester, 1987)","(Kümmerli and Martin, 2008)"
+"312",312,"Papio_ursinus","(Baniel et al. 2021)","(HOLEKAMP and SMALE, 1991)","(Baniel, Cowlishaw, and Huchard, 2018)"
+"313",313,"Papio_ursinus","(Baniel et al. 2021)","(HOLEKAMP and SMALE, 1991)","(Baniel, Cowlishaw, and Huchard, 2018)"
+"314",314,"Papio_ursinus","(McFarland, Murphy, Lusseau, Henzi, Parker, Pollet, and Barrett, 2017)","(HOLEKAMP and SMALE, 1991)",NA
+"315",315,"Papio_ursinus","(McFarland, Murphy, Lusseau, et al., 2017)","(HOLEKAMP and SMALE, 1991)",NA
+"316",316,"Papio_cynocephalus","(Gesquiere, Altmann, Archie, and Alberts, 2018)","(Packer, Collins, Sindimwo, et al., 1995)","(Horn, Buchan, Altmann, et al., 2007)"
+"317",317,"Lama_guanicoe","(Correa, Zapata, Samaniego, et al., 2013)","(Correa, Zapata, Samaniego, and Soto-Gamboa, 2013)",NA
+"318",318,"Bos_taurus","(Hohenbrink and Meinecke-Tillmann, 2012)","(á, Špinka, á, Ceacero, á, and Kotrba, 2013)",NA
+"319",319,"Capra_hircus","(Barroso, Alados, and Boza, 2000)","(Barroso, Alados, and Boza, 2000)",NA
+"320",320,"Sus_scrofa","(Mendl, Zanella, Broom, and Whittemore, 1995)","(Cappa, Lombardini, and Meriggi, 2021)",NA
+"321",321,"Bison_bison","(Green and Rothstein, 1991)","(Vervaecke, Roden, and de
+Vries, 2005)",NA
+"322",322,"Bison_bison","(Green and Rothstein, 1991)","(Vervaecke, Roden, and de
+Vries, 2005)",NA
+"323",323,"Antilocapra_americana","(Byers 1997)","(Dennehy, 2001)","(Carling, Wiseman, and Byers, 2003)"
+"324",324,"Antilocapra_americana","(Byers 1997)","(Dennehy, 2001)","(Carling, Wiseman, and Byers, 2003)"
+"325",325,"Antilocapra_americana","(Byers 1997)","(Dennehy, 2001)","(Carling, Wiseman, and Byers, 2003)"
+"326",326,"Antilocapra_americana","(Byers 1997)","(Dennehy, 2001)","(Carling, Wiseman, and Byers, 2003)"
+"327",327,"Suricata_suricatta","(MacLeod and Clutton-Brock, 2013)","(Russell, Carlson, McIlrath, et al., 2004)","(Griffin, 2003)"
+"328",328,"Suricata_suricatta","(MacLeod and Clutton-Brock, 2013)","(Russell, Carlson, McIlrath, et al., 2004)","(Griffin, 2003)"
+"329",329,"Mesocricetus_auratus","(Pratt and Lisk, 1989)","(Huck, Lisk, and McKay, 1988)","(Huck, Lisk, and McKay, 1988)"
+"330",330,"Mesocricetus_auratus","(Pratt and Lisk, 1989)","(Huck, Lisk, and McKay, 1988)","(Huck, Lisk, and McKay, 1988)"
+"331",331,"Gorilla_beringei","(Robbins, Stoinski, Fawcett, and Robbins, 2011)","(Robbins, Gerald-Steklis, Robbins, et al., 2005)","(Watts, 1994)"
+"332",332,"Gorilla_beringei","(Robbins, Stoinski, Fawcett, et al., 2011)","(Robbins, Gerald-Steklis, Robbins, et al., 2005)","(Watts, 1994)"
+"333",333,"Gorilla_beringei","(Robbins, Stoinski, Fawcett, et al., 2011)","(Robbins, Gerald-Steklis, Robbins, et al., 2005)","(Watts, 1994)"
+"334",334,"Papio_anubis","(Smuts and Nicolson, 1989)","(Johnson, 1987)",NA
+"335",335,"Papio_anubis","(Smuts and Nicolson, 1989)","(Johnson, 1987)",NA
+"336",336,"Papio_anubis","(Smuts and Nicolson, 1989)","(Johnson, 1987)",NA
+"337",337,"Macaca_mulatta","(Small and Hrdy, 1986)","(Deutsch and Lee, 1991)",NA
+"338",338,"Cercopithecus_mitis","(Roberts and Cords, 2013)","(Klass and Cords, 2015)",NA
+"339",339,"Suricata_suricatta","(Macdonald and Doolan, 1997)","(Russell, Carlson, McIlrath, et al., 2004)",NA
+"340",340,"Microtus_arvalis","(Dobly, 2008)","(Dobly, 2008)","(Dobly, 2008)"
+"341",341,"Microtus_ochrogaster","(Wolff, Dunlap, and Ritchhart, 2001)","(Wolff, Dunlap, and Ritchhart, 2001)","(Wolff, Dunlap, and Ritchhart, 2001)"
+"342",342,"Microtus_pinetorum","(Wolff, Dunlap, and Ritchhart, 2001)","(Wolff, Dunlap, and Ritchhart, 2001)","(Wolff, Dunlap, and Ritchhart, 2001)"
+"343",343,"Macaca_mulatta","(Meikle, Tilford, and Vessey, 1984)","(Deutsch and Lee, 1991)",NA
+"344",344,"Macaca_sylvanus","(Paul and Thommen, 1984)","(Paul and Kuester, 1987)",NA
+"345",345,"Macaca_sylvanus","(Paul and Thommen, 1984)","(Paul and Kuester, 1987)",NA
+"346",346,"Macaca_sylvanus","(Paul and Thommen, 1984)","(Paul and Kuester, 1987)",NA
+"347",347,"Equus_quagga","(Schilder and Boer, 1987)","(Lloyd and Rasa, 1994)",NA
+"348",348,"Equus_quagga","(Schilder and Boer, 1987)","(Lloyd and Rasa, 1994)",NA
+"349",349,"Macaca_mulatta","(Berman, 1988)","(Deutsch and Lee, 1991)","(Chepko-Sade and Olivier, 1979)"
+"350",350,"Macaca_arctoides","(Rhine, 1994)","(HOLEKAMP and SMALE, 1991)",NA
+"351",351,"Papio_cynocephalus","(Rhine, Norton, Rogers, and Wasser, 1992)","(Packer, Collins, Sindimwo, et al., 1995)","(Wasser and Starling, 1988)"
+"352",352,"Canis_latrans","(Gese 2004)","(Gese 2004)",NA
+"353",353,"Canis_latrans","(Gese 2004)","(Gese 2004)",NA
+"354",354,"Macaca_mulatta","(Brent, Ruiz-Lambides, and Platt, 2017)","(Deutsch and Lee, 1991)","(Chepko-Sade and Olivier, 1979)"
+"355",355,"Suricata_suricatta","(Cram, Monaghan, Gillespie, Dantzer, Duncan, Spence-Jones, and Clutton-Brock, 2018)","(Russell, Carlson, McIlrath, et al., 2004)","(Griffin, 2003)"
+"356",356,"Fukomys_mechowi","(Dammann, Šumbera, Maßmann, et al., 2011)","(Wallace and Bennett, 1998)","(Dammann, Šumbera, Maßmann, et al., 2011)"
+"357",357,"Papio_ursinus","(Silk, Beehner, Bergman, Crockford, Engh, Moscovice, Wittig, Seyfarth, and Cheney, 2010)","(HOLEKAMP and SMALE, 1991)","(Silk, Cheney, and Seyfarth, 1999)"
+"358",358,"Papio_cynocephalus","(Archie, Tung, Clark, Altmann, and Alberts, 2014)","(Packer, Collins, Sindimwo, et al., 1995)","(Horn, Buchan, Altmann, et al., 2007)"
+"359",359,"Crocuta_crocuta","(Watts, Tanner, Lundrigan, and Holekamp, 2009)","(Hofer and East, 2003)","(Horn, Engh, Scribner, et al., 2004)"
+"360",360,"Crocuta_crocuta","(Strauss and Holekamp, 2019)","(Hofer and East, 2003)","(Horn, Engh, Scribner, et al., 2004)"
+"361",361,"Propithecus_verreauxi","(Kubzdela 1998)","(Kubzdela 1998)","(Lawler, Richard, and Riley, 2003)"
+"362",362,"Propithecus_verreauxi","(Kubzdela 1998)","(Kubzdela 1998)","(Lawler, Richard, and Riley, 2003)"
+"363",363,"Propithecus_verreauxi","(Kubzdela 1998)","(Kubzdela 1998)","(Lawler, Richard, and Riley, 2003)"
+"364",364,"Macaca_mulatta","(Blomquist, Sade, and Berard, 2010)","(Deutsch and Lee, 1991)","(Chepko-Sade and Olivier, 1979)"
+"365",365,"Macaca_mulatta","(Blomquist, Sade, and Berard, 2010)","(Deutsch and Lee, 1991)","(Chepko-Sade and Olivier, 1979)"
+"366",366,"Macaca_mulatta","(Blomquist, Sade, and Berard, 2010)","(Deutsch and Lee, 1991)","(Chepko-Sade and Olivier, 1979)"
+"367",367,"Papio_ursinus","(Ron, Henzi, and Motro, 1996)","(HOLEKAMP and SMALE, 1991)",NA
+"368",368,"Papio_ursinus","(Ron, Henzi, and Motro, 1996)","(HOLEKAMP and SMALE, 1991)",NA
+"369",369,"Papio_ursinus","(Ron, Henzi, and Motro, 1996)","(HOLEKAMP and SMALE, 1991)",NA
+"370",370,"Macaca_mulatta","(Simpson and Simpson, 1982)","(Deutsch and Lee, 1991)",NA
+"371",371,"Macaca_fuscata","(Koyama, Takahata, Huffman, Norikoshi, and Suzuki, 1992)","(Koyama et al. 2003)","(Koyama et al. 2003)"
+"372",372,"Macaca_fuscata","(Koyama, Takahata, Huffman, et al., 1992)","(Borries, Sommer, and Srivastava, 1991)","@koyama2003matrilineal"
+"373",373,"Macaca_mulatta","(Maestripieri, 2001)","(Deutsch and Lee, 1991)","(Bernstein and Ehardt, 1986)"
+"374",374,"Macaca_mulatta","(Maestripieri, 2001)","(Deutsch and Lee, 1991)","(Bernstein and Ehardt, 1986)"
+"375",375,"Semnopithecus_schistaceus","(VRIES, KOENIG, and BORRIES, 2016)","(VRIES, KOENIG, and BORRIES, 2016)",NA
+"376",376,"Semnopithecus_schistaceus","(VRIES, KOENIG, and BORRIES, 2016)","(VRIES, KOENIG, and BORRIES, 2016)",NA
+"377",377,"Semnopithecus_schistaceus","(VRIES, KOENIG, and BORRIES, 2016)","(VRIES, KOENIG, and BORRIES, 2016)",NA
+"378",378,"Mungos_mungo","(Sanderson, Nichols, Marshall, Vitikainen, Thompson, Walker, Cant, and Young, 2015)","(de
+Luca and Ginsberg, 2001)","(Nichols, Jordan, Jamie, et al., 2012)"
+"379",379,"Mungos_mungo","(Sanderson, Nichols, Marshall, et al., 2015)","(de
+Luca and Ginsberg, 2001)","(Nichols, Jordan, Jamie, et al., 2012)"
+"380",380,"Mesocricetus_auratus","(Chelini, Palme, and Otta, 2011)","(Huck, Lisk, and McKay, 1988)","(Pratt and Lisk, 1989)"
+"381",381,"Mesocricetus_auratus","(Chelini, Palme, and Otta, 2011)","(Huck, Lisk, and McKay, 1988)","(Pratt and Lisk, 1989)"
+"382",382,"Mesocricetus_auratus","(Chelini, Palme, and Otta, 2011)","(Huck, Lisk, and McKay, 1988)","(Pratt and Lisk, 1989)"
+"383",383,"Macaca_mulatta","(Liu, Wu, Garber, Zhang, and Li, 2018)","(Deutsch and Lee, 1991)",NA
+"384",384,"Macaca_mulatta","(Liu, Wu, Garber, et al., 2018)","(Deutsch and Lee, 1991)",NA
+"385",385,"Macaca_mulatta","(Liu, Wu, Garber, et al., 2018)","(Deutsch and Lee, 1991)",NA
+"386",386,"Macaca_mulatta","(Liu, Wu, Garber, et al., 2018)","(Deutsch and Lee, 1991)",NA
+"387",387,"Ceratotherium_simum","(Metrione and Harder, 2011)","(Metrione, Penfold, and Waring, 2007)","(Metrione and Harder, 2011)"
+"388",388,"Cebus_capucinus","(Kalbitzer, Bergstrom, Carnegie, Wikberg, Kawamura, Campos, Jack, and Fedigan, 2017)","(Fedigan and Bergstrom, 2010)",NA
+"389",389,"Canis_lupus","(Cafazzo, Bonanni, Valsecchi, and Natoli, 2014)","(Cafazzo, Valsecchi, Bonanni, and Natoli, 2010)",NA
+"390",390,"Macaca_nigra","(Kerhoas, Perwitasari-Farajallah, Agil, Widdig, and Engelhardt, 2014)","(Duboscq, Neumann, Agil, Perwitasari-Farajallah, Thierry, and Engelhardt, 2017)",NA
+"391",391,"Equus_caballus","(Cameron, Setsaas, and Linklater, 2009)","(Sinderbrand 2011)","(Cameron, Setsaas, and Linklater, 2009)"
+"392",392,"Equus_caballus","(Cameron, Setsaas, and Linklater, 2009)","(Sinderbrand 2011)","(Cameron, Setsaas, and Linklater, 2009)"
+"393",393,"Odocoileus_virginianus","(Michel, Demarais, Strickland, and Belant, 2015)","(Townsend and Bailey, 1981)",NA
+"394",394,"Papio_cynocephalus","(Archie, Tung, Clark, et al., 2014)","(Packer, Collins, Sindimwo, et al., 1995)","(Horn, Buchan, Altmann, et al., 2007)"
+"395",395,"Macaca_mulatta","(Ellis, Snyder-Mackler, Ruiz-Lambides, Platt, and Brent, 2019)","(Deutsch and Lee, 1991)","(Chepko-Sade and Olivier, 1979)"
+"396",396,"Cervus_elaphus","(Ceacero, á, Garc\'\ia, and Gallego, 2018)","(HALL, 2010)","(Ceacero, Landete-Castillejos, Garc\'\ia, Estévez, and Gallego, 2007)"
+"397",397,"Cervus_elaphus","(Ceacero, á, Garc\'\ia, et al., 2018)","(HALL, 2010)","(Ceacero, Landete-Castillejos, Garc\'\ia, et al., 2007)"
+"398",398,"Cervus_elaphus","(Ceacero, á, Garc\'\ia, et al., 2018)","(HALL, 2010)","(Ceacero, Landete-Castillejos, Garc\'\ia, et al., 2007)"
+"399",399,"Cervus_elaphus","(Ceacero, á, Garc\'\ia, et al., 2018)","(HALL, 2010)","(Ceacero, Landete-Castillejos, Garc\'\ia, et al., 2007)"
+"400",400,"Bos_taurus","(á, Špinka, and Ceacero, 2017)","(á, Špinka, á, et al., 2013)",NA
+"401",401,"Bos_taurus","(á, Špinka, and Ceacero, 2017)","(á, Špinka, á, et al., 2013)",NA
+"402",402,"Bos_taurus","(á, Špinka, and Ceacero, 2017)","(á, Špinka, á, et al., 2013)",NA
+"403",403,"Bos_taurus","(á, Špinka, and Ceacero, 2017)","(á, Špinka, á, et al., 2013)",NA
+"404",404,"Bos_taurus","(á, Špinka, and Ceacero, 2017)","(á, Špinka, á, et al., 2013)",NA
+"405",405,"Oryctolagus_cuniculus","(Mykytowycz, 1959)","(von
+Holst, Hutzelmeyer, Kaetzke, et al., 2002)",NA
+"406",406,"Oryctolagus_cuniculus","(Mykytowycz, 1959)","(von
+Holst, Hutzelmeyer, Kaetzke, et al., 2002)",NA
+"407",407,"Heterocephalus_glaber","(Jarvis, 1981)","(Clarke and Faulkes, 1997)",NA
+"408",408,"Canis_rufus","(Zimen, 2010)","(Sparkman, Adams, Steury, Waits, and Murray, 2010)",NA
+"409",409,"Canis_rufus","(Zimen, 2010)","(Sparkman, Adams, Steury, et al., 2010)",NA
+"410",410,"Lycaon_pictus","(Malcolm and Marten, 1982)","(Spiering, Somers, Maldonado, et al., 2009)","(Girman, Mills, Geffen, et al., 1997)"
+"411",411,"Lycaon_pictus","(Malcolm and Marten, 1982)","(Spiering, Somers, Maldonado, et al., 2009)","(Girman, Mills, Geffen, et al., 1997)"
+"412",412,"Macaca_mulatta","(Anderson and Simpson, 1979)","(Deutsch and Lee, 1991)",NA
+"413",413,"Macaca_fuscata","(Sugiyama and Ohsawa, 1982)","(Koyama et al. 2003)",NA
+"414",414,"Macaca_fuscata","(Sugiyama and Ohsawa, 1982)","(Koyama et al. 2003)",NA
+"415",415,"Macaca_fuscata","(Sugiyama and Ohsawa, 1982)","(Koyama et al. 2003)",NA
+"416",416,"Macaca_fuscata","(Sugiyama and Ohsawa, 1982)","(Koyama et al. 2003)",NA
+"417",417,"Macaca_mulatta","(Stucki, Dow, and Sade, 1991)","(Deutsch and Lee, 1991)","(Chepko-Sade and Olivier, 1979)"
+"418",418,"Macaca_mulatta","(Bercovitch and Berard, 1993)","(Deutsch and Lee, 1991)","(Chepko-Sade and Olivier, 1979)"
+"419",419,"Theropithecus_gelada","(Dunbar, 1980)","(Dunbar, 1980)","(Snyder-Mackler, Alberts, and Bergman, 2014)"
+"420",420,"Theropithecus_gelada","(Dunbar, 1980)","(Dunbar, 1980)","(Snyder-Mackler, Alberts, and Bergman, 2014)"
+"421",421,"Theropithecus_gelada","(Dunbar, 1980)","(Dunbar, 1980)","(Snyder-Mackler, Alberts, and Bergman, 2014)"
+"422",422,"Theropithecus_gelada","(Dunbar, 1980)","(Dunbar, 1980)","(Snyder-Mackler, Alberts, and Bergman, 2014)"
+"423",423,"Theropithecus_gelada","(Dunbar, 1980)","(Dunbar, 1980)","(Snyder-Mackler, Alberts, and Bergman, 2014)"
+"424",424,"Theropithecus_gelada","(Dunbar, 1985)","(Dunbar, 1980)","(Snyder-Mackler, Alberts, and Bergman, 2014)"
+"425",425,"Callithrix_jacchus","(Rothe, 2010)","(Digby, 1995)","(Rothe, 2010)"
+"426",426,"Callithrix_jacchus","(Arruda, Araújo, Sousa, Albuquerque, Albuquerque, and Yamamoto, 2005)","(Digby, 1995)","(Nievergelt et al. 2000)"
+"427",427,"Callithrix_jacchus","(Arruda, Araújo, Sousa, et al., 2005)","(Digby, 1995)","(Nievergelt et al. 2000)"
+"428",428,"Callithrix_jacchus","(Abbott, McNeilly, Lunn, et al., 1981)","(Digby, 1995)","(Abbott, McNeilly, Lunn, Hulme, and Burden, 1981)"
+"429",429,"Erythrocebus_patas","(Loy, 1981)","(Isbell & Pruetz 1988)",NA
+"430",430,"Saimiri_sciureus","(Coe, Chen, Lowe, Davidson, and Levine, 1981)","(Mitchell, Boinski, and van
+Schaik, 1991)",NA
+"431",431,"Saimiri_sciureus","(Coe, Chen, Lowe, et al., 1981)","(Mitchell, Boinski, and van
+Schaik, 1991)",NA
+"432",432,"Saimiri_sciureus","(Coe, Chen, Lowe, et al., 1981)","(Mitchell, Boinski, and van
+Schaik, 1991)",NA
+"433",433,"Chlorocebus_aethiops","(Wrangham, 1981)","(HOLEKAMP and SMALE, 1991)",NA
+"434",434,"Macaca_mulatta","(Blomquist, 2009)","(Deutsch and Lee, 1991)","(Chepko-Sade and Olivier, 1979)"
+"435",435,"Pan_troglodytes","(BOESCH, 1997)","(Wittig et al. 2003)","(LUKAS, REYNOLDS, BOESCH, and VIGILANT, 2005)"
+"436",436,"Pan_troglodytes","(BOESCH, 1997)","(Wittig et al. 2003)","(LUKAS, REYNOLDS, BOESCH, et al., 2005)"
+"437",437,"Lemur_catta","(Nunn and Pereira, 2000)","(Taylor and Sussman, 1985)","(Taylor and Sussman, 1985)"
+"438",438,"Macaca_fascicularis","(Schaik, Netto, Amerongen, and Westland, 1989)","(Wittig et al. 2003)",NA
+"439",439,"Pan_troglodytes","(Stanton, Lonsdorf, Pusey, and Murray, 2017)",NA,"(Vigilant, Hofreiter, Siedel, et al., 2001)"
+"440",440,"Pan_troglodytes","(Stanton, Lonsdorf, Pusey, et al., 2017)","(Wittig et al. 2003)","(Vigilant, Hofreiter, Siedel, et al., 2001)"
+"441",441,"Gorilla_beringei","(Eckardt, Fawcett, and Fletcher, 2016)","(Robbins, Gerald-Steklis, Robbins, et al., 2005)","(Watts, 1994)"
+"442",442,"Macaca_sylvanus","(Modolo and Martin, 2007)","(Paul and Kuester, 1987)","(Kümmerli and Martin, 2008)"
+"443",443,"Lophocebus_albigena","(Arlet, Isbell, Kaasik, et al., 2014)","(Arlet, Isbell, Kaasik, Molleman, Chancellor, Chapman, Mänd, and Carey, 2014)",NA
+"444",444,"Trachypithecus_phayrei","(Borries, Larney, Derby, and Koenig, 2004)","(Koenig, Larney, Lu, and Borries, 2004)","(Larney 2013)"
