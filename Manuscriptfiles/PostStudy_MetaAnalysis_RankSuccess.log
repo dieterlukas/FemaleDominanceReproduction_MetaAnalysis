@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.4.6)  20 SEP 2021 11:01
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.4.6)  7 OCT 2021 13:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -873,7 +873,8 @@ LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
 \calc@Ccount=\count312
 \calc@Cskip=\skip78
-) (./PostStudy_MetaAnalysis_RankSuccess.aux)
+)
+No file PostStudy_MetaAnalysis_RankSuccess.aux.
 \openout1 = `PostStudy_MetaAnalysis_RankSuccess.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 112.
@@ -1179,6 +1180,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 112.
 LaTeX Info: Redefining \pageref on input line 112.
 LaTeX Info: Redefining \nameref on input line 112.
+
+Package hyperref Warning: Rerun to get /PageLabels entry.
+
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
 *geometry* verbose mode - [ preamble ] result:
@@ -1312,7 +1316,7 @@ File: ranksuccess_Fig2_effectsize_samplesize.png Graphic file (type bmp)
 File: ranksuccess_Fig3_effectsize_noyears.png Graphic file (type bmp)
 <ranksuccess_Fig3_effectsize_noyears.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 1228--1234
+Underfull \hbox (badness 10000) in paragraph at lines 1233--1239
 [][]
  []
 
@@ -1320,7 +1324,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1228--1234
 File: ranksuccess_Fig4_covariation_phylogeny.png Graphic file (type bmp)
 <ranksuccess_Fig4_covariation_phylogeny.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 1291--1302
+Underfull \hbox (badness 10000) in paragraph at lines 1296--1307
 [][]
  []
 
@@ -1332,7 +1336,7 @@ File: ranksuccess_Fig5_effectsize_lifehistorymeasure.png Graphic file (type bmp
 File: ranksuccess_Fig6_effectsize_philopatry.png Graphic file (type bmp)
 <ranksuccess_Fig6_effectsize_philopatry.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 1513--1518
+Underfull \hbox (badness 10000) in paragraph at lines 1521--1526
 [][]
  []
 
@@ -1341,7 +1345,7 @@ File: ranksuccess_Fig9_effectsizes_macaquedominancestyles.png Graphic file (typ
 e bmp)
 <ranksuccess_Fig9_effectsizes_macaquedominancestyles.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 1599--1607
+Underfull \hbox (badness 10000) in paragraph at lines 1607--1615
 [][]
  []
 
@@ -1349,7 +1353,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1599--1607
 File: ranksuccess_Fig7_effectsize_funnelplot.png Graphic file (type bmp)
 <ranksuccess_Fig7_effectsize_funnelplot.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 1741--1754
+Underfull \hbox (badness 10000) in paragraph at lines 1749--1762
 [][]
  []
 
@@ -1358,7 +1362,7 @@ File: ranksuccess_Fig8_effectsize_interaction_groupsize.png Graphic file (type
 bmp)
 <ranksuccess_Fig8_effectsize_interaction_groupsize.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 1859--1870
+Underfull \hbox (badness 10000) in paragraph at lines 1867--1878
 [][]
  []
 
@@ -1366,37 +1370,1438 @@ Underfull \hbox (badness 10000) in paragraph at lines 1859--1870
 File: ranksuccess_Fig10_simulatedeffectsizes.png Graphic file (type bmp)
 <ranksuccess_Fig10_simulatedeffectsizes.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 2054--2064
+Underfull \hbox (badness 10000) in paragraph at lines 2062--2072
 [][]
  []
 
-[33] [34] [35] [36] [37] [38] [39] [40]
-Underfull \hbox (badness 1142) in paragraph at lines 2594--2598
-[][]\TU/Arial(0)/m/n/10 Wilson, D. B. 2019. \TU/Arial(0)/m/it/10 Practical Meta
--Analysis Effect Size Calculator [Online Calculator]. \TU/Arial(0)/m/n/10 retri
-eved
+[33] [34] [35] [36]
+Missing character: There is no � in font Arial/OT:script=latn;language=DFLT;map
+ping=tex-text;!
+Missing character: There is no � in font Arial/OT:script=latn;language=DFLT;map
+ping=tex-text;!
+Missing character: There is no � in font Arial/OT:script=latn;language=DFLT;map
+ping=tex-text;!
+Missing character: There is no � in font Arial/OT:script=latn;language=DFLT;map
+ping=tex-text;!
+Missing character: There is no � in font Arial/OT:script=latn;language=DFLT;map
+ping=tex-text;!
+Missing character: There is no � in font Arial/OT:script=latn;language=DFLT;map
+ping=tex-text;!
+
+Overfull \hbox (30.5224pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @koyama2003matrilineal|  
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2594--2598
-\TU/Arial(0)/m/n/10 from: hhttps:/www.campbellcollaboration.org/research-resour
-ces/research-for-resources/effect-size-
+Overfull \hbox (30.5224pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @koyama2003matrilineal|  
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2601.
-[41]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 2601.
-(./PostStudy_MetaAnalysis_RankSuccess.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 2601.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 2601.
- ) 
+
+Overfull \hbox (30.5224pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @koyama2003matrilineal|  
+ []
+
+
+Overfull \hbox (30.5224pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @koyama2003matrilineal|  
+ []
+
+
+Overfull \hbox (38.87201pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @setchell2002reproductive|  
+ []
+
+
+Overfull \hbox (10.33904pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Papio_cynocephalus|  
+ []
+
+
+Overfull \hbox (10.33904pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Papio_cynocephalus|  
+ []
+
+Missing character: There is no � in font Arial/OT:script=latn;language=DFLT;map
+ping=tex-text;!
+Missing character: There is no � in font Arial/OT:script=latn;language=DFLT;map
+ping=tex-text;!
+
+Overfull \hbox (25.54193pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @nievergelt2000genetic|  
+ []
+
+
+Overfull \hbox (17.56071pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Chlorocebus_aethiops|  
+ []
+
+
+Overfull \hbox (17.56071pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Chlorocebus_aethiops|  
+ []
+
+
+Overfull \hbox (30.5224pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @koyama2003matrilineal|  
+ []
+
+
+Overfull \hbox (30.5224pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @koyama2003matrilineal|  
+ []
+
+
+Overfull \hbox (30.5224pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @koyama2003matrilineal|  
+ []
+
+
+Overfull \hbox (30.5224pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @koyama2003matrilineal|  
+ []
+
+
+Overfull \hbox (15.87126pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Mesocricetus_auratus|  
+ []
+
+
+Overfull \hbox (15.87126pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Mesocricetus_auratus|  
+ []
+
+
+Overfull \hbox (15.87126pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Mesocricetus_auratus|  
+ []
+
+
+Overfull \hbox (21.98454pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Oreamnos_americanus|  
+ []
+
+
+Overfull \hbox (18.65446pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Oryctolagus_cuniculus|  
+ []
+
+
+Overfull \hbox (18.65446pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Oryctolagus_cuniculus|  
+ []
+
+
+Overfull \hbox (10.33904pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Papio_cynocephalus|  
+ []
+
+
+Overfull \hbox (27.00896pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Semnopithecus_entellus|  
+ []
+
+Missing character: There is no � in font Arial/OT:script=latn;language=DFLT;map
+ping=tex-text;!
+
+Overfull \hbox (16.69896pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Theropithecus_gelada|  
+ []
+
+
+Overfull \hbox (37.77338pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @cheney2006reproduction|  
+ []
+
+
+Overfull \hbox (8.08318pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Macaca_fascicularis|  
+ []
+
+
+Overfull \hbox (8.08318pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Macaca_fascicularis|  
+ []
+
+
+Overfull \hbox (8.08318pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Macaca_fascicularis|  
+ []
+
+
+Overfull \hbox (8.08318pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Macaca_fascicularis|  
+ []
+
+
+Overfull \hbox (8.08318pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Macaca_fascicularis|  
+ []
+
+
+Overfull \hbox (8.08318pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Macaca_fascicularis|  
+ []
+
+
+Overfull \hbox (8.08318pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Macaca_fascicularis|  
+ []
+
+
+Overfull \hbox (8.08318pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Macaca_fascicularis|  
+ []
+
+
+Overfull \hbox (8.08318pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Macaca_fascicularis|  
+ []
+
+
+Overfull \hbox (8.08318pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Macaca_fascicularis|  
+ []
+
+
+Overfull \hbox (8.08318pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Macaca_fascicularis|  
+ []
+
+
+Overfull \hbox (8.08318pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Macaca_fascicularis|  
+ []
+
+
+Overfull \hbox (8.08318pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Macaca_fascicularis|  
+ []
+
+
+Overfull \hbox (8.08318pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Macaca_fascicularis|  
+ []
+
+
+Overfull \hbox (8.08318pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Macaca_fascicularis|  
+ []
+
+
+Overfull \hbox (8.08318pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Macaca_fascicularis|  
+ []
+
+
+Overfull \hbox (8.08318pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Macaca_fascicularis|  
+ []
+
+
+Overfull \hbox (8.08318pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Macaca_fascicularis|  
+ []
+
+
+Overfull \hbox (8.08318pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Macaca_fascicularis|  
+ []
+
+
+Overfull \hbox (8.08318pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Macaca_fascicularis|  
+ []
+
+
+Overfull \hbox (8.08318pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Macaca_fascicularis|  
+ []
+
+
+Overfull \hbox (30.5224pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @koyama2003matrilineal|  
+ []
+
+
+Overfull \hbox (21.98454pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Oreamnos_americanus|  
+ []
+
+
+Overfull \hbox (21.98454pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Oreamnos_americanus|  
+ []
+
+
+Overfull \hbox (18.65446pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Oryctolagus_cuniculus|  
+ []
+
+
+Overfull \hbox (10.33904pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Papio_cynocephalus|  
+ []
+
+
+Overfull \hbox (10.33904pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Papio_cynocephalus|  
+ []
+
+
+Overfull \hbox (10.33904pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Papio_cynocephalus|  
+ []
+
+
+Overfull \hbox (27.00896pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Semnopithecus_entellus|  
+ []
+
+
+Overfull \hbox (27.00896pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Semnopithecus_entellus|  
+ []
+
+
+Overfull \hbox (37.77338pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @cheney2006reproduction|  
+ []
+
+
+Overfull \hbox (37.77338pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @cheney2006reproduction|  
+ []
+
+
+Overfull \hbox (30.5224pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @koyama2003matrilineal|  
+ []
+
+
+Overfull \hbox (30.5224pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @koyama2003matrilineal|  
+ []
+
+
+Overfull \hbox (38.87201pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @setchell2002reproductive|  
+ []
+
+
+Overfull \hbox (38.87201pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @setchell2002reproductive|  
+ []
+
+
+Overfull \hbox (37.77338pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @cheney2006reproduction|  
+ []
+
+
+Overfull \hbox (37.77338pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @cheney2006reproduction|  
+ []
+
+
+Overfull \hbox (17.56071pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Chlorocebus_aethiops|  
+ []
+
+
+Overfull \hbox (38.87201pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @setchell2002reproductive|  
+ []
+
+
+Overfull \hbox (38.87201pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @setchell2002reproductive|  
+ []
+
+
+Overfull \hbox (38.87201pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @setchell2002reproductive|  
+ []
+
+
+Overfull \hbox (38.87201pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @setchell2002reproductive|  
+ []
+
+
+Overfull \hbox (10.33904pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Papio_cynocephalus|  
+ []
+
+
+Overfull \hbox (10.33904pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Papio_cynocephalus|  
+ []
+
+
+Overfull \hbox (10.33904pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Papio_cynocephalus|  
+ []
+
+
+Overfull \hbox (9.41888pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @lynch2016paternal|  
+ []
+
+
+Overfull \hbox (8.08318pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Macaca_fascicularis|  
+ []
+
+
+Overfull \hbox (8.08318pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Macaca_fascicularis|  
+ []
+
+
+Overfull \hbox (8.08318pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Macaca_fascicularis|  
+ []
+
+
+Overfull \hbox (8.08318pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Macaca_fascicularis|  
+ []
+
+
+Overfull \hbox (8.08318pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Macaca_fascicularis|  
+ []
+
+
+Overfull \hbox (8.08318pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Macaca_fascicularis|  
+ []
+
+
+Overfull \hbox (8.08318pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Macaca_fascicularis|  
+ []
+
+
+Overfull \hbox (8.08318pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Macaca_fascicularis|  
+ []
+
+
+Overfull \hbox (30.5224pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @koyama2003matrilineal|  
+ []
+
+
+Overfull \hbox (30.5224pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @koyama2003matrilineal|  
+ []
+
+
+Overfull \hbox (30.5224pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @koyama2003matrilineal|  
+ []
+
+
+Overfull \hbox (30.5224pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @koyama2003matrilineal|  
+ []
+
+
+Overfull \hbox (38.87201pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @setchell2002reproductive|  
+ []
+
+
+Overfull \hbox (10.33904pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Papio_cynocephalus|  
+ []
+
+
+Overfull \hbox (30.5224pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @koyama2003matrilineal|  
+ []
+
+
+Overfull \hbox (30.5224pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @koyama2003matrilineal|  
+ []
+
+
+Overfull \hbox (18.65446pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Oryctolagus_cuniculus|  
+ []
+
+
+Overfull \hbox (10.33904pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Papio_cynocephalus|  
+ []
+
+
+Overfull \hbox (10.33904pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Papio_cynocephalus|  
+ []
+
+
+Overfull \hbox (10.33904pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Papio_cynocephalus|  
+ []
+
+
+Overfull \hbox (37.77338pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @cheney2006reproduction|  
+ []
+
+
+Overfull \hbox (37.77338pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @cheney2006reproduction|  
+ []
+
+
+Overfull \hbox (15.8615pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Fukomys_damarensis|  
+ []
+
+
+Overfull \hbox (30.5224pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @koyama2003matrilineal|  
+ []
+
+
+Overfull \hbox (30.5224pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @koyama2003matrilineal|  
+ []
+
+
+Overfull \hbox (30.5224pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @koyama2003matrilineal|  
+ []
+
+
+Overfull \hbox (30.5224pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @koyama2003matrilineal|  
+ []
+
+
+Overfull \hbox (10.29997pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Marmota_flaviventris|  
+ []
+
+
+Overfull \hbox (10.29997pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Marmota_flaviventris|  
+ []
+
+
+Overfull \hbox (10.29997pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Marmota_flaviventris|  
+ []
+
+
+Overfull \hbox (10.29997pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Marmota_flaviventris|  
+ []
+
+
+Overfull \hbox (32.20209pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @rubenstein2009sociality|  
+ []
+
+
+Overfull \hbox (53.14935pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @sinderbrand2011relationship|  
+ []
+
+
+Overfull \hbox (32.20209pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @rubenstein2009sociality|  
+ []
+
+
+Overfull \hbox (53.14935pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @sinderbrand2011relationship|  
+ []
+
+
+Overfull \hbox (32.20209pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @rubenstein2009sociality|  
+ []
+
+
+Overfull \hbox (24.76775pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Mirounga_angustirostris|  
+ []
+
+
+Overfull \hbox (9.414pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @cheney1988vervet|  
+ []
+
+
+Overfull \hbox (8.64958pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Rhabdomys_pumilio|  
+ []
+
+
+Overfull \hbox (8.64958pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Rhabdomys_pumilio|  
+ []
+
+
+Overfull \hbox (8.64958pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Rhabdomys_pumilio|  
+ []
+
+
+Overfull \hbox (8.64958pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Rhabdomys_pumilio|  
+ []
+
+
+Overfull \hbox (8.64958pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Rhabdomys_pumilio|  
+ []
+
+
+Overfull \hbox (8.64958pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Rhabdomys_pumilio|  
+ []
+
+
+Overfull \hbox (14.43286pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Apodemus_sylvaticus|  
+ []
+
+
+Overfull \hbox (14.43286pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Apodemus_sylvaticus|  
+ []
+
+
+Overfull \hbox (14.43286pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Apodemus_sylvaticus|  
+ []
+
+
+Overfull \hbox (14.43286pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Apodemus_sylvaticus|  
+ []
+
+
+Overfull \hbox (14.43286pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Apodemus_sylvaticus|  
+ []
+
+
+Overfull \hbox (14.43286pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Apodemus_sylvaticus|  
+ []
+
+
+Overfull \hbox (14.43286pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Apodemus_sylvaticus|  
+ []
+
+
+Overfull \hbox (14.43286pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Apodemus_sylvaticus|  
+ []
+
+
+Overfull \hbox (14.43286pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Apodemus_sylvaticus|  
+ []
+
+
+Overfull \hbox (14.43286pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Apodemus_sylvaticus|  
+ []
+
+
+Overfull \hbox (14.43286pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Apodemus_sylvaticus|  
+ []
+
+
+Overfull \hbox (14.43286pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Apodemus_sylvaticus|  
+ []
+
+
+Overfull \hbox (0.87126pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Rattus_norvegicus|  
+ []
+
+
+Overfull \hbox (2.51677pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Marmota_marmota|  
+ []
+
+
+Overfull \hbox (21.45232pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Heterocephalus_glaber|  
+ []
+
+
+Overfull \hbox (15.8615pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Fukomys_damarensis|  
+ []
+
+
+Overfull \hbox (20.87614pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Cryptomys_hottentotus|  
+ []
+
+
+Overfull \hbox (20.90056pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Leontopithecus_rosalia|  
+ []
+
+
+Overfull \hbox (28.86224pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @baker2002liontamarins|  
+ []
+
+
+Overfull \hbox (20.90056pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Leontopithecus_rosalia|  
+ []
+
+
+Overfull \hbox (28.86224pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @baker2002liontamarins|  
+ []
+
+
+Overfull \hbox (20.90056pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Leontopithecus_rosalia|  
+ []
+
+
+Overfull \hbox (28.86224pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @baker2002liontamarins|  
+ []
+
+
+Overfull \hbox (20.90056pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Leontopithecus_rosalia|  
+ []
+
+
+Overfull \hbox (23.66911pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Leontocebus_fuscicollis|  
+ []
+
+
+Overfull \hbox (8.28607pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @smith2001multiple|  
+ []
+
+
+Overfull \hbox (8.08318pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Cercopithecus_mitis|  
+ []
+
+
+Overfull \hbox (17.56071pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Chlorocebus_aethiops|  
+ []
+
+
+Overfull \hbox (17.56071pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Chlorocebus_aethiops|  
+ []
+
+
+Overfull \hbox (9.414pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @cheney1988vervet|  
+ []
+
+
+Overfull \hbox (17.56071pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Chlorocebus_aethiops|  
+ []
+
+
+Overfull \hbox (9.414pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @cheney1988vervet|  
+ []
+
+
+Overfull \hbox (17.56071pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Chlorocebus_aethiops|  
+ []
+
+
+Overfull \hbox (17.56071pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Chlorocebus_aethiops|  
+ []
+
+
+Overfull \hbox (17.56071pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Chlorocebus_aethiops|  
+ []
+
+
+Overfull \hbox (17.56071pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Chlorocebus_aethiops|  
+ []
+
+
+Overfull \hbox (30.5224pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @koyama2003matrilineal|  
+ []
+
+
+Overfull \hbox (30.5224pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @koyama2003matrilineal|  
+ []
+
+
+Overfull \hbox (30.5224pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @koyama2003matrilineal|  
+ []
+
+
+Overfull \hbox (30.5224pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @koyama2003matrilineal|  
+ []
+
+
+Overfull \hbox (30.5224pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @koyama2003matrilineal|  
+ []
+
+
+Overfull \hbox (30.5224pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @koyama2003matrilineal|  
+ []
+
+
+Overfull \hbox (3.86157pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Ammotragus_lervia|  
+ []
+
+
+Overfull \hbox (3.86157pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Ammotragus_lervia|  
+ []
+
+
+Overfull \hbox (3.86157pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Ammotragus_lervia|  
+ []
+
+
+Overfull \hbox (3.86157pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Ammotragus_lervia|  
+ []
+
+
+Overfull \hbox (19.99927pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Antilocapra_americana|  
+ []
+
+
+Overfull \hbox (19.99927pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Antilocapra_americana|  
+ []
+
+
+Overfull \hbox (19.99927pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Antilocapra_americana|  
+ []
+
+
+Overfull \hbox (25.88103pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Ozotoceros_bezoarticus|  
+ []
+
+
+Overfull \hbox (25.88103pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Ozotoceros_bezoarticus|  
+ []
+
+
+Overfull \hbox (21.0888pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @frank1995dominance|  
+ []
+
+
+Overfull \hbox (21.0888pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @frank1995dominance|  
+ []
+
+
+Overfull \hbox (21.0888pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @frank1995dominance|  
+ []
+
+
+Overfull \hbox (21.0888pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @frank1995dominance|  
+ []
+
+
+Overfull \hbox (21.0888pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @frank1995dominance|  
+ []
+
+
+Overfull \hbox (6.44743pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Petrogale_concinna|  
+ []
+
+
+Overfull \hbox (11.42302pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Macaca_assamensis|  
+ []
+
+
+Overfull \hbox (12.56342pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @furtbauer2011socio|  
+ []
+
+
+Overfull \hbox (2.18744pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @busse1982social|  
+ []
+
+
+Overfull \hbox (30.5224pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @koyama2003matrilineal|  
+ []
+
+
+Overfull \hbox (30.5224pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @koyama2003matrilineal|  
+ []
+
+
+Overfull \hbox (30.5224pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @koyama2003matrilineal|  
+ []
+
+
+Overfull \hbox (30.5224pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @koyama2003matrilineal|  
+ []
+
+
+Overfull \hbox (30.5224pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @koyama2003matrilineal|  
+ []
+
+
+Overfull \hbox (30.5224pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @koyama2003matrilineal|  
+ []
+
+
+Overfull \hbox (16.69896pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Theropithecus_gelada|  
+ []
+
+
+Overfull \hbox (16.69896pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Theropithecus_gelada|  
+ []
+
+
+Overfull \hbox (2.51677pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Marmota_marmota|  
+ []
+
+
+Overfull \hbox (2.51677pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Marmota_marmota|  
+ []
+
+
+Overfull \hbox (10.33904pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Papio_cynocephalus|  
+ []
+
+
+Overfull \hbox (10.33904pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Papio_cynocephalus|  
+ []
+
+
+Overfull \hbox (10.33904pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Papio_cynocephalus|  
+ []
+
+
+Overfull \hbox (23.68646pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @altmann2003offspring|  
+ []
+
+
+Overfull \hbox (10.33904pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Papio_cynocephalus|  
+ []
+
+
+Overfull \hbox (23.68646pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @altmann2003offspring|  
+ []
+
+
+Overfull \hbox (17.20697pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @baniel2021exploring|  
+ []
+
+
+Overfull \hbox (27.00896pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Semnopithecus_entellus|  
+ []
+
+
+Overfull \hbox (12.74896pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @di2001reproductive|  
+ []
+
+
+Overfull \hbox (66.73224pt too wide) in paragraph at lines 3299--3299
+\TU/Arial(0)/m/n/10 H&ouml$\mathsemicolon$hmann, 
+ []
+
+
+Overfull \hbox (58.10751pt too wide) in paragraph at lines 3299--3299
+\TU/Arial(0)/m/n/10 Sch&auml$\mathsemicolon$fer- 
+ []
+
+
+Overfull \hbox (11.99919pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Miopithecus_talapoin|  
+ []
+
+
+Overfull \hbox (1.98454pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Procavia_capensis|  
+ []
+
+
+Overfull \hbox (27.77338pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @santiago2003seasonal|  
+ []
+
+
+Overfull \hbox (3.86224pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @gaillard1993body|  
+ []
+
+
+Overfull \hbox (10.33904pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Papio_cynocephalus|  
+ []
+
+
+Overfull \hbox (23.88177pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @altmann1988baboons|  
+ []
+
+
+Overfull \hbox (14.79974pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @paul1996differential|  
+ []
+
+
+Overfull \hbox (14.79974pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @paul1996differential|  
+ []
+
+
+Overfull \hbox (14.79974pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @paul1996differential|  
+ []
+
+
+Overfull \hbox (17.20697pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @baniel2021exploring|  
+ []
+
+
+Overfull \hbox (17.20697pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @baniel2021exploring|  
+ []
+
+
+Overfull \hbox (10.33904pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Papio_cynocephalus|  
+ []
+
+
+Overfull \hbox (19.99927pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Antilocapra_americana|  
+ []
+
+
+Overfull \hbox (15.51752pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @byers1997american|  
+ []
+
+
+Overfull \hbox (19.99927pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Antilocapra_americana|  
+ []
+
+
+Overfull \hbox (15.51752pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @byers1997american|  
+ []
+
+
+Overfull \hbox (19.99927pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Antilocapra_americana|  
+ []
+
+
+Overfull \hbox (15.51752pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @byers1997american|  
+ []
+
+
+Overfull \hbox (19.99927pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Antilocapra_americana|  
+ []
+
+
+Overfull \hbox (15.51752pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @byers1997american|  
+ []
+
+
+Overfull \hbox (15.87126pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Mesocricetus_auratus|  
+ []
+
+
+Overfull \hbox (15.87126pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Mesocricetus_auratus|  
+ []
+
+
+Overfull \hbox (8.08318pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Cercopithecus_mitis|  
+ []
+
+
+Overfull \hbox (14.20134pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Microtus_ochrogaster|  
+ []
+
+
+Overfull \hbox (5.8615pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Microtus_pinetorum|  
+ []
+
+
+Overfull \hbox (10.33904pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Papio_cynocephalus|  
+ []
+
+
+Overfull \hbox (6.08392pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @gese2004coyotes|  
+ []
+
+
+Overfull \hbox (6.08392pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @gese2004coyotes|  
+ []
+
+
+Overfull \hbox (6.08392pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @gese2004coyotes|  
+ []
+
+
+Overfull \hbox (6.08392pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @gese2004coyotes|  
+ []
+
+
+Overfull \hbox (3.63005pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Fukomys_mechowi|  
+ []
+
+
+Overfull \hbox (10.33904pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Papio_cynocephalus|  
+ []
+
+
+Overfull \hbox (17.54607pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Propithecus_verreauxi|  
+ []
+
+
+Overfull \hbox (68.9013pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @kubzdela1998sociodemography|  
+ []
+
+
+Overfull \hbox (68.9013pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @kubzdela1998sociodemography|  
+ []
+
+
+Overfull \hbox (17.54607pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Propithecus_verreauxi|  
+ []
+
+
+Overfull \hbox (68.9013pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @kubzdela1998sociodemography|  
+ []
+
+
+Overfull \hbox (68.9013pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @kubzdela1998sociodemography|  
+ []
+
+
+Overfull \hbox (17.54607pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Propithecus_verreauxi|  
+ []
+
+
+Overfull \hbox (68.9013pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @kubzdela1998sociodemography|  
+ []
+
+
+Overfull \hbox (68.9013pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @kubzdela1998sociodemography|  
+ []
+
+
+Overfull \hbox (30.5224pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @koyama2003matrilineal|  
+ []
+
+
+Overfull \hbox (30.5224pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @koyama2003matrilineal|  
+ []
+
+
+Overfull \hbox (30.5224pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @koyama2003matrilineal|  
+ []
+
+
+Overfull \hbox (44.78728pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Semnopithecus_schistaceus|  
+ []
+
+
+Overfull \hbox (44.78728pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Semnopithecus_schistaceus|  
+ []
+
+
+Overfull \hbox (44.78728pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Semnopithecus_schistaceus|  
+ []
+
+
+Overfull \hbox (15.87126pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Mesocricetus_auratus|  
+ []
+
+
+Overfull \hbox (15.87126pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Mesocricetus_auratus|  
+ []
+
+
+Overfull \hbox (15.87126pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Mesocricetus_auratus|  
+ []
+
+
+Overfull \hbox (16.41325pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Ceratotherium_simum|  
+ []
+
+
+Overfull \hbox (53.14935pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @sinderbrand2011relationship|  
+ []
+
+
+Overfull \hbox (53.14935pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @sinderbrand2011relationship|  
+ []
+
+
+Overfull \hbox (21.44255pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Odocoileus_virginianus|  
+ []
+
+
+Overfull \hbox (10.33904pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Papio_cynocephalus|  
+ []
+
+
+Overfull \hbox (18.65446pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Oryctolagus_cuniculus|  
+ []
+
+
+Overfull \hbox (18.65446pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Oryctolagus_cuniculus|  
+ []
+
+
+Overfull \hbox (21.45232pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Heterocephalus_glaber|  
+ []
+
+
+Overfull \hbox (30.5224pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @koyama2003matrilineal|  
+ []
+
+
+Overfull \hbox (30.5224pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @koyama2003matrilineal|  
+ []
+
+
+Overfull \hbox (30.5224pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @koyama2003matrilineal|  
+ []
+
+
+Overfull \hbox (30.5224pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @koyama2003matrilineal|  
+ []
+
+
+Overfull \hbox (16.69896pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Theropithecus_gelada|  
+ []
+
+
+Overfull \hbox (16.69896pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Theropithecus_gelada|  
+ []
+
+
+Overfull \hbox (16.69896pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Theropithecus_gelada|  
+ []
+
+
+Overfull \hbox (16.69896pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Theropithecus_gelada|  
+ []
+
+
+Overfull \hbox (16.69896pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Theropithecus_gelada|  
+ []
+
+
+Overfull \hbox (16.69896pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Theropithecus_gelada|  
+ []
+
+
+Overfull \hbox (25.54193pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @nievergelt2000genetic|  
+ []
+
+
+Overfull \hbox (25.54193pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @nievergelt2000genetic|  
+ []
+
+
+Overfull \hbox (6.98943pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Erythrocebus_patas|  
+ []
+
+
+Overfull \hbox (21.4599pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @isbell1998differences|  
+ []
+
+
+Overfull \hbox (17.56071pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Chlorocebus_aethiops|  
+ []
+
+
+Overfull \hbox (8.08318pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Macaca_fascicularis|  
+ []
+
+
+Overfull \hbox (15.9152pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Lophocebus_albigena|  
+ []
+
+
+Overfull \hbox (23.5349pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 Trachypithecus_phayrei|  
+ []
+
+
+Overfull \hbox (17.20209pt too wide) in paragraph at lines 3299--3299
+[]\TU/Arial(0)/m/n/10 @larney2013influence|  
+ []
+
+[37]
+Overfull \vbox (16715.34073pt too high) detected at line 3302
+ []
+
+
+Overfull \vbox (16715.34073pt too high) has occurred while \output is active []
+
+
+[38]
+Underfull \hbox (badness 10000) in paragraph at lines 3306--3315
+\TU/Arial(0)/m/n/10 020-01058-5; 10.1007/s00138-020-01060-x; 10.1007/s00138-019
+-01054-4; 10.1007/s00138-019-
+ []
+
+
+Underfull \hbox (badness 2846) in paragraph at lines 3306--3315
+\TU/Arial(0)/m/n/10 01056-2; 10.1007/s00138-019-01053-5; 10.1007/s00138-019-010
+55-3; 10.1007/s00138-019-01052-6;
+ []
+
+
+Underfull \hbox (badness 1383) in paragraph at lines 3367--3372
+\TU/Arial(0)/m/n/10 sus Macaques (Macaca Mulatto).” In: \TU/Arial(0)/m/it/10 La
+boratory Animals \TU/Arial(0)/m/n/10 13.3 (Jul. 1979), pp. 275-282. DOI:
+ []
+
+[39]
+Overfull \hbox (15.50247pt too wide) in paragraph at lines 3406--3411
+\TU/Arial(0)/m/n/10 wild chacma baboons.” In: \TU/Arial(0)/m/it/10 Animal Behav
+iour \TU/Arial(0)/m/n/10 139 (May. 2018), pp. 37-49. DOI: 10.1016/j.anbehav.201
+8.03.001.
+ []
+
+[40] [41]
+! Undefined control sequence.
+l.3555 ...0{]} F. Ceacero, M. K. á, A. J. Garc'\ia
+                                                  , et al. ``Different 
 Here is how much of TeX's memory you used:
- 28946 strings out of 492916
- 523577 string characters out of 6133346
- 766065 words of memory out of 5000000
- 32703 multiletter control sequences out of 15000+600000
- 536422 words of font info for 74 fonts, out of 8000000 for 9000
+ 29784 strings out of 492916
+ 531409 string characters out of 6133346
+ 1122726 words of memory out of 5000000
+ 33542 multiletter control sequences out of 15000+600000
+ 536430 words of font info for 75 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 59i,13n,118p,833b,446s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 59i,13n,118p,833b,460s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on PostStudy_MetaAnalysis_RankSuccess.pdf (41 pages).

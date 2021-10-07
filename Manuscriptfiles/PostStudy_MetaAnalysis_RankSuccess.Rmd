@@ -4190,10 +4190,10 @@ We thank our PCI Ecology Recommender, Matthieu Paquet, and our reviewers, Bonave
     
   &nbsp; 
     
-### [References](MyLibrary.bib)
 
 
-```{r table_references, eval=TRUE, warning=FALSE, results='asis', echo=FALSE, include=TRUE}
+
+```{r references, eval=TRUE, warning=FALSE, results='asis', echo=FALSE, include=TRUE}
 library(kableExtra)
 
 Latin<-c("Cervus_elaphus",
@@ -4645,7 +4645,7 @@ Id<-c(1:444)
 
 
 library("knitcitations")
-cleanbib()
+
 
 inputdata<-read.csv(url("https://raw.githubusercontent.com/dieterlukas/FemaleDominanceReproduction_MetaAnalysis/trunk/Inputfiles/InputData_MetaAnalysis_FemaleDominanceReproduction.csv"))
 inputdata<-data.frame(inputdata)
@@ -4670,7 +4670,6 @@ ReferenceDominanceSuccess<-NA
 for (i in 1:nrow(dat)){
   if(is.na(dat[i,]$Reference_DominanceSucccess_doi)==F){ReferenceDominanceSuccess[i]<-citep(dat[i,]$Reference_DominanceSucccess_doi)}
   if(is.na(dat[i,]$Reference_DominanceSucccess_doi)==T){ReferenceDominanceSuccess[i]<-NA}
-  print(i)
 }
 
 ReferenceDominanceSuccess[36]<- "@cheney2006reproduction"
@@ -4810,9 +4809,11 @@ ReferenceDominanceRelatedness[426]<- "@nievergelt2000genetic"
 ReferenceDominanceRelatedness[427]<- "@nievergelt2000genetic"
 ReferenceDominanceRelatedness[444]<- "@larney2013influence"
 
+```
 
-write.bibtex(file="supplementalreferences.bib")
 
+```{r table_references, eval=TRUE, warning=FALSE, results='asis', echo=FALSE, include=TRUE}
+options(width=60)
 referencetable <- data.frame(Id,Latin,ReferenceDominanceSuccess,ReferenceDominanceSystem,ReferenceDominanceRelatedness)
 
 colnames(referencetable)<-c("Effect size id","Species","Reference for Dominance Rank Effect","Reference for Dominance System","Reference for Average Relatedness")
@@ -4822,9 +4823,4 @@ knitr::kable(referencetable) %>%
 kable_styling(full_width = T, position = "left")
 ```
 
-
-### [DataSources]
-```{r results="asis",message=FALSE,echo=FALSE, warning=FALSE}
-
-bibliography()
-```
+### [References](MyLibrary.bib)
