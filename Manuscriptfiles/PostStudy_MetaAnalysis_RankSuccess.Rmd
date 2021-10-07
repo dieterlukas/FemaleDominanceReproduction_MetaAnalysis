@@ -4655,21 +4655,26 @@ ReferenceDominanceRelatedness<-NA
 
 for (i in 1:nrow(dat)){
   if(is.na(dat[i,]$Reference_Relatedness_doi)==F){ReferenceDominanceRelatedness[i]<-citep(dat[i,]$Reference_Relatedness_doi)}
+   if(is.na(dat[i,]$Reference_Relatedness_doi)==T){ReferenceDominanceRelatedness[i]<-NA}
 }
 write.bibtex(file="relatednessreferences.bib")
 
-ReferenceDominanceSystem<-NA
 
+ReferenceDominanceSystem<-NA
 
 for (i in 1:nrow(dat)){
   if(is.na(dat[i,]$Reference_DominanceSystem_doi)==F){ReferenceDominanceSystem[i]<-citep(dat[i,]$Reference_DominanceSystem_doi)}
+  if(is.na(dat[i,]$Reference_DominanceSystem_doi)==T){ReferenceDominanceSystem[i]<-NA}
+  print(i)
 }
 write.bibtex(file="dominancereferences.bib")
+
 
 ReferenceDominanceSuccess<-NA
 
 for (i in 1:nrow(dat)){
   if(is.na(dat[i,]$Reference_DominanceSucccess_doi)==F){ReferenceDominanceSuccess[i]<-citep(dat[i,]$Reference_DominanceSucccess_doi)}
+  if(is.na(dat[i,]$Reference_DominanceSucccess_doi)==T){ReferenceDominanceSuccess[i]<-NA}
 }
 write.bibtex(file="dominancesuccessreferences.bib")
 
