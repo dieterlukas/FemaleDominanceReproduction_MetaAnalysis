@@ -25,13 +25,9 @@ Identifier,Species,Reference effect size,Reference dominance system,Reference re
 24,Mesocricetus_auratus,"(Huck, Lisk, and McKay, 1988)","(Huck, Lisk, and McKay, 1988)","(Huck, Lisk, and McKay, 1988)"
 25,Mesocricetus_auratus,"(Huck, Lisk, and McKay, 1988)","(Huck, Lisk, and McKay, 1988)","(Huck, Lisk, and McKay, 1988)"
 26,Mesocricetus_auratus,"(Huck, Lisk, and McKay, 1988)","(Huck, Lisk, and McKay, 1988)","(Huck, Lisk, and McKay, 1988)"
-27,Oreamnos_americanus,"(é and Festa-Bianchet, 2001)","(é, 2000)","(Shafer, et al., 2012)"
-28,Oryctolagus_cuniculus,"(von
-Holst, Hutzelmeyer, Kaetzke, et al., 2002)","(von
-Holst, Hutzelmeyer, Kaetzke, Khaschei, Rödel, and Schrutka, 2002)","(Surrridge, et al., 1999)"
-29,Oryctolagus_cuniculus,"(von
-Holst, Hutzelmeyer, Kaetzke, et al., 2002)","(von
-Holst, Hutzelmeyer, Kaetzke, et al., 2002)","(Surrridge, et al., 1999)"
+27,Oreamnos_americanus,"(Cote and Festa-Bianchet, 2001)","(Cote, 2000)","(Shafer, et al., 2012)"
+28,Oryctolagus_cuniculus,"(von Holst, et al., 2002)","(von Holst, et al., 2002)","(Surrridge, et al., 1999)"
+29,Oryctolagus_cuniculus,"(von Holst, et al., 2002)","(von Holst, et al., 2002)","(Surrridge, et al., 1999)"
 30,Papio_cynocephalus,"(Wasser,  et al., 2004)","(Packer, Collins, Sindimwo, et al., 1995)","(Wasser and Starling, 1988)"
 31,Semnopithecus_entellus,"(Borries, et al. 1991)","(Borries, Sommer, and Srivastava, 1991)",NA
 32,Rangifer_tarandus,"(Holand,  et al., 2004)","(Holand, Gjonstein, Losvar, et al., 2004)","(Djakovifa et al., 2011)"
@@ -45,69 +41,27 @@ Holst, Hutzelmeyer, Kaetzke, et al., 2002)","(Surrridge, et al., 1999)"
 40,Crocuta_crocuta,"(Holekamp, et al. 1996)","(Hofer and East, 2003)","(Horn, et al., 2004)"
 41,Gorilla_beringei,"(Robbins,  et al., 2007)","(Robbins,  et al., 2007)","(Watts, 1994)"
 42,Lemur_catta,"(Takahata, et al., 2007)","(Taylor and Sussman, 1985)","(Parga, et al., 2015)"
-43,Macaca_fascicularis,"(van
-Noordwijk and van
-Schaik, 1999)","(van Noordwijk and van Schaik, 1987)","(Ruiter and Geffen, 1998)"
-44,Macaca_fascicularis,"(van
-Noordwijk and van
-Schaik, 1999)","(van Noordwijk and van Schaik, 1987)","(Ruiter and Geffen, 1998)"
-45,Macaca_fascicularis,"(van
-Noordwijk and van
-Schaik, 1999)","(van Noordwijk and van Schaik, 1987)","(Ruiter and Geffen, 1998)"
-46,Macaca_fascicularis,"(van
-Noordwijk and van
-Schaik, 1999)","(van Noordwijk and van Schaik, 1987)","(Ruiter and Geffen, 1998)"
-47,Macaca_fascicularis,"(van
-Noordwijk and van
-Schaik, 1999)","(van Noordwijk and van Schaik, 1987)","(Ruiter and Geffen, 1998)"
-48,Macaca_fascicularis,"(van
-Noordwijk and van
-Schaik, 1999)","(van Noordwijk and van Schaik, 1987)","(Ruiter and Geffen, 1998)"
-49,Macaca_fascicularis,"(van
-Noordwijk and van
-Schaik, 1999)","(van Noordwijk and van Schaik, 1987)","(Ruiter and Geffen, 1998)"
-50,Macaca_fascicularis,"(van
-Noordwijk and van
-Schaik, 1999)","(van Noordwijk and van Schaik, 1987)","(Ruiter and Geffen, 1998)"
-51,Macaca_fascicularis,"(van
-Noordwijk and van
-Schaik, 1999)","(van Noordwijk and van Schaik, 1987)","(Ruiter and Geffen, 1998)"
-52,Macaca_fascicularis,"(van
-Noordwijk and van
-Schaik, 1999)","(van Noordwijk and van Schaik, 1987)","(Ruiter and Geffen, 1998)"
-53,Macaca_fascicularis,"(van
-Noordwijk and van
-Schaik, 1999)","(van Noordwijk and van Schaik, 1987)","(Ruiter and Geffen, 1998)"
-54,Macaca_fascicularis,"(van
-Noordwijk and van
-Schaik, 1999)","(van Noordwijk and van Schaik, 1987)","(Ruiter and Geffen, 1998)"
-55,Macaca_fascicularis,"(van
-Noordwijk and van
-Schaik, 1999)","(van Noordwijk and van Schaik, 1987)","(Ruiter and Geffen, 1998)"
-56,Macaca_fascicularis,"(van
-Noordwijk and van
-Schaik, 1999)","(van Noordwijk and van Schaik, 1987)","(Ruiter and Geffen, 1998)"
-57,Macaca_fascicularis,"(van
-Noordwijk and van
-Schaik, 1999)","(van Noordwijk and van Schaik, 1987)","(Ruiter and Geffen, 1998)"
-58,Macaca_fascicularis,"(van
-Noordwijk and van
-Schaik, 1999)","(van Noordwijk and van Schaik, 1987)","(Ruiter and Geffen, 1998)"
-59,Macaca_fascicularis,"(van
-Noordwijk and van
-Schaik, 1999)","(van Noordwijk and van Schaik, 1987)","(Ruiter and Geffen, 1998)"
-60,Macaca_fascicularis,"(van
-Noordwijk and van
-Schaik, 1999)","(van Noordwijk and van Schaik, 1987)","(Ruiter and Geffen, 1998)"
-61,Macaca_fascicularis,"(van
-Noordwijk and van
-Schaik, 1999)","(van Noordwijk and van Schaik, 1987)","(Ruiter and Geffen, 1998)"
-62,Macaca_fascicularis,"(van
-Noordwijk and van
-Schaik, 1999)","(van Noordwijk and van Schaik, 1987)","(Ruiter and Geffen, 1998)"
-63,Macaca_fascicularis,"(van
-Noordwijk and van
-Schaik, 1999)","(van Noordwijk and van Schaik, 1987)","(Ruiter and Geffen, 1998)"
+43,Macaca_fascicularis,"(VanNoordwijk & VanSchaik, 1999)","(van Noordwijk and van Schaik, 1987)","(Ruiter and Geffen, 1998)"
+44,Macaca_fascicularis,"(VanNoordwijk & VanSchaik, 1999)","(van Noordwijk and van Schaik, 1987)","(Ruiter and Geffen, 1998)"
+45,Macaca_fascicularis,"(VanNoordwijk & VanSchaik, 1999)","(van Noordwijk and van Schaik, 1987)","(Ruiter and Geffen, 1998)"
+46,Macaca_fascicularis,"(VanNoordwijk & VanSchaik, 1999)","(van Noordwijk and van Schaik, 1987)","(Ruiter and Geffen, 1998)"
+47,Macaca_fascicularis,"(VanNoordwijk & VanSchaik, 1999)","(van Noordwijk and van Schaik, 1987)","(Ruiter and Geffen, 1998)"
+48,Macaca_fascicularis,"(VanNoordwijk & VanSchaik, 1999)","(van Noordwijk and van Schaik, 1987)","(Ruiter and Geffen, 1998)"
+49,Macaca_fascicularis,"(VanNoordwijk & VanSchaik, 1999)","(van Noordwijk and van Schaik, 1987)","(Ruiter and Geffen, 1998)"
+50,Macaca_fascicularis,"(VanNoordwijk & VanSchaik, 1999)","(van Noordwijk and van Schaik, 1987)","(Ruiter and Geffen, 1998)"
+51,Macaca_fascicularis,"(VanNoordwijk & VanSchaik, 1999)","(van Noordwijk and van Schaik, 1987)","(Ruiter and Geffen, 1998)"
+52,Macaca_fascicularis,"(VanNoordwijk & VanSchaik, 1999)","(van Noordwijk and van Schaik, 1987)","(Ruiter and Geffen, 1998)"
+53,Macaca_fascicularis,"(VanNoordwijk & VanSchaik, 1999)","(van Noordwijk and van Schaik, 1987)","(Ruiter and Geffen, 1998)"
+54,Macaca_fascicularis,"(VanNoordwijk & VanSchaik, 1999)","(van Noordwijk and van Schaik, 1987)","(Ruiter and Geffen, 1998)"
+55,Macaca_fascicularis,"(VanNoordwijk & VanSchaik, 1999)","(van Noordwijk and van Schaik, 1987)","(Ruiter and Geffen, 1998)"
+56,Macaca_fascicularis,"(VanNoordwijk & VanSchaik, 1999)","(van Noordwijk and van Schaik, 1987)","(Ruiter and Geffen, 1998)"
+57,Macaca_fascicularis,"(VanNoordwijk & VanSchaik, 1999)","(van Noordwijk and van Schaik, 1987)","(Ruiter and Geffen, 1998)"
+58,Macaca_fascicularis,"(VanNoordwijk & VanSchaik, 1999)","(van Noordwijk and van Schaik, 1987)","(Ruiter and Geffen, 1998)"
+59,Macaca_fascicularis,"(VanNoordwijk & VanSchaik, 1999)","(van Noordwijk and van Schaik, 1987)","(Ruiter and Geffen, 1998)"
+60,Macaca_fascicularis,"(VanNoordwijk & VanSchaik, 1999)","(van Noordwijk and van Schaik, 1987)","(Ruiter and Geffen, 1998)"
+61,Macaca_fascicularis,"(VanNoordwijk & VanSchaik, 1999)","(van Noordwijk and van Schaik, 1987)","(Ruiter and Geffen, 1998)"
+62,Macaca_fascicularis,"(VanNoordwijk & VanSchaik, 1999)","(van Noordwijk and van Schaik, 1987)","(Ruiter and Geffen, 1998)"
+63,Macaca_fascicularis,"(VanNoordwijk & VanSchaik, 1999)","(van Noordwijk and van Schaik, 1987)","(Ruiter and Geffen, 1998)"
 64,Macaca_fuscata,"(Takahata,  et al., 1998)",(Koyama et al. 2003),"(Nakagawa, et al., 2015)"
 65,Macaca_mulatta,"(Meikle and Vessey, 1988)","(Deutsch and Lee, 1991)",NA
 66,Oreamnos_americanus,"(Cote and Festa-Bianchet, 2001)","(Fa, 2000)","(Shafer, et al., 2012)"
@@ -264,9 +218,7 @@ Holst, Hutzelmeyer, Kaetzke, et al., 2002)","(von Holst, Hutzelmeyer, Kaetzke, e
 216,Leontopithecus_rosalia,"(Henry, et al., 2013)",(Baker et al. 2002),NA
 217,Leontopithecus_rosalia,"(Henry, et al., 2013)",(Baker et al. 2002),NA
 218,Leontopithecus_rosalia,"(Dietz and Baker, 1993)",NA,NA
-219,Leontocebus_fuscicollis,"(Goldizen, Mendelson, van
-Vlaardingen, et al., 1996)","(Goldizen, Mendelson, van
-Vlaardingen, and Terborgh, 1996)",NA
+219,Leontocebus_fuscicollis,"(Goldizen, et al., 1996)","(Goldizen, et al., 1996)",NA
 220,Saguinus_mystax,"(Garber, et al., 1993)",(Smith 2000),NA
 221,Cebus_capucinus,"(Fedigan, et al, 2008)","(Fedigan and Bergstrom, 2010)",NA
 222,Cebus_capucinus,"(Fedigan, et al, 2008)","(Fedigan and Bergstrom, 2010)",NA
@@ -335,12 +287,12 @@ Vlaardingen, and Terborgh, 1996)",NA
 285,Theropithecus_gelada,"(le Roux, et al., 2010)","(Dunbar, 1980)","(Snyder-Mackler, et al., 2014)"
 286,Marmota_marmota,"(King and Cote, 2002)","(Lardy, and Cohas, 2013)",NA
 287,Marmota_marmota,"(King and Cote, 2002)","(Lardy, and Cohas, 2013)",NA
-288,Papio_cynocephalus,"(Beehner, et al., 2006)","(Packer, Collins, Sindimwo, et al., 1995)","(Horn, et al., 2007)"
-289,Papio_cynocephalus,"(Beehner, et al., 2006)","(Packer, Collins, Sindimwo, et al., 1995)","(Horn, et al., 2007)"
-290,Papio_cynocephalus,NA,"(Packer, Collins, Sindimwo, et al., 1995)","(Horn, et al., 2007)"
-291,Papio_cynocephalus,(Altmann & Alberts 2003),"(Packer, Collins, Sindimwo, et al., 1995)","(Horn, et al., 2007)"
-292,Papio_ursinus,(Baniel et al. 2021),"(HOLEKAMP and SMALE, 1991)","(Baniel, et al. 2018)"
-293,Vulpes_vulpes,"(Baker, et al., 1998)","(BAKER, ROBERTSON, FUNK, and HARRIS, 1998)","(Iossa, et al., 2008)"
+288,Papio_cynocephalus,"(Beehner, et al., 2006)","(Packer, et al., 1995)","(Horn, et al., 2007)"
+289,Papio_cynocephalus,"(Beehner, et al., 2006)","(Packer, et al., 1995)","(Horn, et al., 2007)"
+290,Papio_cynocephalus,NA,"(Packer, et al., 1995)","(Horn, et al., 2007)"
+291,Papio_cynocephalus,(Altmann & Alberts 2003),"(Packer, et al., 1995)","(Horn, et al., 2007)"
+292,Papio_ursinus,(Baniel et al. 2021),"(Holekamp and Smale, 1991)","(Baniel, et al. 2018)"
+293,Vulpes_vulpes,"(Baker, et al., 1998)","(Baker et al., 1998)","(Iossa, et al., 2008)"
 294,Semnopithecus_entellus,"(Dolhinow, et al., 1979)","(Borries, Sommer, and Srivastava, 1991)",NA
 295,Sapajus_apella,(DiBitetti et al. 2001),"(Welker, et al., 1990)",NA
 296,Miopithecus_talapoin,"(Abbott, 1987)","(Abbott, 1987)",NA

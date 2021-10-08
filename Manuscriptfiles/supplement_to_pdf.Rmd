@@ -24,7 +24,6 @@ library(dplyr)
 
 d_supplementary<-read.csv(url("https://raw.githubusercontent.com/dieterlukas/FemaleDominanceReproduction_MetaAnalysis/trunk/Manuscriptfiles/SupplementaryReferences_MetaAnalysis_RankSuccess.csv"))
 
-d_supplementary<-d_supplementary[,c(2:6)]
 colnames(d_supplementary)<-c("Identifier","Species","Reference effect size","Reference dominance system","Reference relatedness")
 
 ```
