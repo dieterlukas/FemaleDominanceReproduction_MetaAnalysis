@@ -87,7 +87,7 @@ Identifier,Species,Reference effect size,Reference dominance system,Reference re
 86,Macaca_fuscata,"(Takahata, et al., 1998)",(Koyama et al. 2003),"(Nakagawa, et al., 2015)"
 87,Mandrillus_sphinx,(Setchell et al. 2002),(Setchell et al. 2002),NA
 88,Papio_anubis,(Cheney et al. 2006),"(Johnson, 1987)",NA
-89,Papio_ursinus,NA,"(HOLEKAMP and SMALE, 1991)","(Silk, et al., 1999)"
+89,Papio_ursinus,(Cheney et al. 2006),"(HOLEKAMP and SMALE, 1991)","(Silk, et al., 1999)"
 90,Papio_ursinus,(Cheney et al. 2006),"(HOLEKAMP and SMALE, 1991)","(Silk, et al., 1999)"
 91,Chlorocebus_aethiops,"(Fairbanks and McGuire, 1984)","(HOLEKAMP and SMALE, 1991)","(Fairbanks, et al., 2011)"
 92,Crocuta_crocuta,"(Holekamp, et al., 1996)","(Hofer and East, 2003)","(Horn, et al., 2004)"
