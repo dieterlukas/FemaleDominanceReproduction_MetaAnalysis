@@ -1,8 +1,9 @@
 ---
-title: "Untitled"
-author: "Dieter Lukas"
+title: "Supplement: The effect of dominance rank on female reproductive success in social mammals"
+author: "Shivani, Elise Huchard, Dieter Lukas"
 date: "07/10/2021"
 output: pdf_document
+classoption: landscape
 ---
 
 ```{r setup, include=FALSE}
@@ -17,15 +18,24 @@ knitr::opts_chunk$set(tidy.opts=list(width.cutoff=60), tidy=TRUE)
 
 **Data Table.** References for the effect sizes of dominance rank on female reproductive success, for the dominance system in a given population, and for the average relatedness among females in social groups in a given population.
 
-```{r print_supplementary_table, eval=TRUE, warning=FALSE, results='asis', echo=FALSE, include=TRUE}
+```{r load_supplementary_table, warning=FALSE, echo=FALSE}
 library(kableExtra)
 library(dplyr)
 
 d_supplementary<-read.csv(url("https://raw.githubusercontent.com/dieterlukas/FemaleDominanceReproduction_MetaAnalysis/trunk/Manuscriptfiles/SupplementaryReferences_MetaAnalysis_RankSuccess.csv"))
-knitr::kable(d_supplementary) %>%
-kable_styling(full_width = F, position = "left")
+
+d_supplementary<-d_supplementary[,c(2:6)]
+colnames(d_supplementary)<-c("Identifier","Species","Reference effect size","Reference dominance system","Reference relatedness")
+
 ```
 
+
+```{r print_supplementary_table, eval=TRUE, warning=FALSE, results='asis', echo=FALSE, include=TRUE}
+options(width = 60)
+
+knitr::kable(d_supplementary,longtable=T) %>% kable_styling(full_width = F, position = "left", font_size=8)
+
+```
 
 
 
