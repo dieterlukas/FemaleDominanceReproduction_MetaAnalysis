@@ -21,7 +21,7 @@ knitr::opts_chunk$set(tidy.opts=list(width.cutoff=60), tidy=TRUE)
 library(kableExtra)
 library(dplyr)
 
-d_supplementary<-read.csv(url("https://raw.githubusercontent.com/dieterlukas/FemaleDominanceReproduction_MetaAnalysis/trunk/Manuscriptfiles/PostStudy_MetaAnalysis_RankSuccess.csv"))
+d_supplementary<-read.csv(url("https://raw.githubusercontent.com/dieterlukas/FemaleDominanceReproduction_MetaAnalysis/trunk/Manuscriptfiles/SupplementaryReferences_MetaAnalysis_RankSuccess.csv"))
 knitr::kable(d_supplementary) %>%
 kable_styling(full_width = F, position = "left")
 ```
