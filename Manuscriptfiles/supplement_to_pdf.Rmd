@@ -32,9 +32,9 @@ kable_styling(full_width = F, position = "left")
 ### Supplementary references
 [1] Nievergelt, C.M., Digby, L.J., "Ramakrishnan, U. and Woodruff, D.S., 2000. Genetic analysis of group composition and breeding system in a wild common marmoset (Callithrix jacchus) population". In: International Journal of Primatology, 21(1), pp.1-20.
 
-[2] R. Š. á, M. Špinka, I. S. á, et al. “Pay respect to the elders: age, more than body mass, determines dominance in female beef cattle”. In: Animal Behaviour 86.6 (Dec. 2013), pp. 1315-1323. DOI: 10.1016/j.anbehav.2013.10.002. <URL: https://doi.org/10.1016/j.anbehav.2013.10.002>.
+[2] R. Spinka, et al. “Pay respect to the elders: age, more than body mass, determines dominance in female beef cattle”. In: Animal Behaviour 86.6 (Dec. 2013), pp. 1315-1323. DOI: 10.1016/j.anbehav.2013.10.002. <URL: https://doi.org/10.1016/j.anbehav.2013.10.002>.
 
-[3] R. Š. á, M. Špinka, and F. Ceacero. “Higher dominance position does not result in higher reproductive success in female beef cattle1,2”. In: Journal of Animal Science 95.8 (Aug. 2017), pp. 3301-3309. DOI: 10.2527/jas.2017.1415. <URL: https://doi.org/10.2527/jas.2017.1415>.
+[3] R. Spinka, et al., and F. Ceacero. “Higher dominance position does not result in higher reproductive success in female beef cattle1,2”. In: Journal of Animal Science 95.8 (Aug. 2017), pp. 3301-3309. DOI: 10.2527/jas.2017.1415. <URL: https://doi.org/10.2527/jas.2017.1415>.
 
 [4] D. H. Abbott. “Behaviourally mediated suppression of reproduction in female primates”. In: Journal of Zoology 213.3 (Nov. 1987), pp. 455-470. DOI: 10.1111/j.1469-7998.1987.tb03720.x. <URL: https://doi.org/10.1111/j.1469-7998.1987.tb03720.x>.
 
@@ -108,9 +108,9 @@ kable_styling(full_width = F, position = "left")
 
 [39] J. Cassinello and C. L. Alados. “Female reproductive success in captiveAmmotragus lervia(Bovidae, Artiodactyla). Study of its components and effects of hierarchy and inbreeding”. In: Journal of Zoology 239.1 (May. 1996), pp. 141-153. DOI: 10.1111/j.1469-7998.1996.tb05442.x. <URL: https://doi.org/10.1111/j.1469-7998.1996.tb05442.x>.
 
-[40] F. Ceacero, M. K. á, A. J. Garc', et al. “Different maternal investment strategies for male and female calves in a polygynous mammal”. In: Current Zoology 65.3 (Jun. 2018). Ed. by Z. Jia, pp. 269-277. DOI: 10.1093/cz/zoy049. <URL: https://doi.org/10.1093/cz/zoy049>.
+[40] F. Ceacero, M. K. á, A. J. Garc, et al. “Different maternal investment strategies for male and female calves in a polygynous mammal”. In: Current Zoology 65.3 (Jun. 2018). Ed. by Z. Jia, pp. 269-277. DOI: 10.1093/cz/zoy049. <URL: https://doi.org/10.1093/cz/zoy049>.
 
-[41] F. Ceacero, T. Landete-Castillejos, A. J. Garc', et al. “Kinship Discrimination and Effects on Social Rank and Aggressiveness Levels in Iberian Red Deer Hinds”. In: Ethology 113.12 (Dec. 2007), pp. 1133-1140. DOI: 10.1111/j.1439-0310.2007.01427.x. <URL: https://doi.org/10.1111/j.1439-0310.2007.01427.x>.
+[41] F. Ceacero, T. Landete-Castillejos, A. J. Garc, et al. “Kinship Discrimination and Effects on Social Rank and Aggressiveness Levels in Iberian Red Deer Hinds”. In: Ethology 113.12 (Dec. 2007), pp. 1133-1140. DOI: 10.1111/j.1439-0310.2007.01427.x. <URL: https://doi.org/10.1111/j.1439-0310.2007.01427.x>.
 
 [42] M. O. M. Chelini, R. Palme, and E. Otta. “Social stress and reproductive success in the female Syrian hamster: Endocrine and behavioral correlates”. In: Physiology & Behavior 104.5 (Oct. 2011), pp. 948-954. DOI: 10.1016/j.physbeh.2011.06.006. <URL: https://doi.org/10.1016/j.physbeh.2011.06.006>.
 
@@ -170,9 +170,9 @@ kable_styling(full_width = F, position = "left")
 
 [70] R. I. M. DUNBAR and E. P. DUNBAR. “Dominance and reproductive success among female gelada baboons”. In: Nature 266.5600 (Mar. 1977), pp. 351-352. DOI: 10.1038/266351a0. <URL: https://doi.org/10.1038/266351a0>.
 
-[71] S. C. é. “DOMINANCE HIERARCHIES IN FEMALE MOUNTAIN GOATS: STABILITY, AGGRESSIVENESS AND DETERMINANTS OF RANK”. In: Behaviour 137.11 (2000), pp. 1541-1566. DOI: 10.1163/156853900502718. <URL: https://doi.org/10.1163/156853900502718>.
+[71] S. Cote. “DOMINANCE HIERARCHIES IN FEMALE MOUNTAIN GOATS: STABILITY, AGGRESSIVENESS AND DETERMINANTS OF RANK”. In: Behaviour 137.11 (2000), pp. 1541-1566. DOI: 10.1163/156853900502718. <URL: https://doi.org/10.1163/156853900502718>.
 
-[72] S. D. C. é and M. Festa-Bianchet. “Reproductive success in female mountain goats: the influence of age and social rank”. In: Animal Behaviour 62.1 (Jul. 2001), pp. 173-181. DOI: 10.1006/anbe.2001.1719. <URL: https://doi.org/10.1006/anbe.2001.1719>.
+[72] S. Cote and M. Festa-Bianchet. “Reproductive success in female mountain goats: the influence of age and social rank”. In: Animal Behaviour 62.1 (Jul. 2001), pp. 173-181. DOI: 10.1006/anbe.2001.1719. <URL: https://doi.org/10.1006/anbe.2001.1719>.
 
 [73] T. Eccles and D. Shackleton. “Correlates and consequences of social status in female bighorn sheep”. In: Animal Behaviour 34.5 (Oct. 1986), pp. 1392-1401. DOI: 10.1016/s0003-3472(86)80210-x. <URL: https://doi.org/10.1016/s0003-3472(86)80210-x>.
 
@@ -196,7 +196,7 @@ kable_styling(full_width = F, position = "left")
 
 [83] F. Fournier and M. Festa-Bianchet. “Social dominance in adult female mountain goats”. In: Animal Behaviour 49.6 (Jun. 1995), pp. 1449-1459. DOI: 10.1016/0003-3472(95)90066-7. <URL: https://doi.org/10.1016/0003-3472(95)90066-7>.
 
-[84] P. A. Garber, F. E. Ón, L. Moya, et al. “Demographic and reproductive patterns in moustached tamarin monkeys (Saguinus mystax): Implications for reconstructing platyrrhine mating systems”. In: American Journal of Primatology 29.4 (1993), pp. 235-254. DOI: 10.1002/ajp.1350290402. <URL: https://doi.org/10.1002/ajp.1350290402>.
+[84] P. A. Garber, F. E. On, L. Moya, et al. “Demographic and reproductive patterns in moustached tamarin monkeys (Saguinus mystax): Implications for reconstructing platyrrhine mating systems”. In: American Journal of Primatology 29.4 (1993), pp. 235-254. DOI: 10.1002/ajp.1350290402. <URL: https://doi.org/10.1002/ajp.1350290402>.
 
 [85] C. Garcia, P. Lee, and L. Rosetta. “Dominance and reproductive rates in captive female olive baboons,Papio anubis”. In: American Journal of Physical Anthropology 131.1 (2006), pp. 64-72. DOI: 10.1002/ajpa.20405. <URL: https://doi.org/10.1002/ajpa.20405>.
 
@@ -240,9 +240,9 @@ kable_styling(full_width = F, position = "left")
 
 [105] S. Hohenbrink and S. Meinecke-Tillmann. “Influence of social dominance on the secondary sex ratio and factors affecting hierarchy in Holstein dairy cows”. In: Journal of Dairy Science 95.10 (Oct. 2012), pp. 5694-5701. DOI: 10.3168/jds.2011-5281. <URL: https://doi.org/10.3168/jds.2011-5281>.
 
-[106] Ø. Holand, H. Gjøstein, A. Losvar, et al. “Social rank in female reindeer (Rangifer tarandus): effects of body mass, antler size and age”. In: Journal of Zoology 263.4 (Aug. 2004), pp. 365-372. DOI: 10.1017/s0952836904005382. <URL: https://doi.org/10.1017/s0952836904005382>.
+[106] O. Holand, H. Gjostein, A. Losvar, et al. “Social rank in female reindeer (Rangifer tarandus): effects of body mass, antler size and age”. In: Journal of Zoology 263.4 (Aug. 2004), pp. 365-372. DOI: 10.1017/s0952836904005382. <URL: https://doi.org/10.1017/s0952836904005382>.
 
-[107] �. Holand, R. B. Weladji, H. Gj�stein, et al. “Reproductive effort in relation to maternal social rank in reindeer (Rangifer tarandus)”. In: Behavioral Ecology and Sociobiology 57.1 (Jul. 2004), pp. 69-76. DOI: 10.1007/s00265-004-0827-0. <URL: https://doi.org/10.1007/s00265-004-0827-0>.
+[107] O. Holand, R. B. Weladji, H. Gjostein, et al. “Reproductive effort in relation to maternal social rank in reindeer (Rangifer tarandus)”. In: Behavioral Ecology and Sociobiology 57.1 (Jul. 2004), pp. 69-76. DOI: 10.1007/s00265-004-0827-0. <URL: https://doi.org/10.1007/s00265-004-0827-0>.
 
 [108] K. E. HOLEKAMP and L. SMALE. “Dominance Acquisition During Mammalian Social Development: The of Maternal Rank”. In: American Zoologist 31.2 (Apr. 1991), pp. 306-317. DOI: 10.1093/icb/31.2.306. <URL: https://doi.org/10.1093/icb/31.2.306>.
 
@@ -296,7 +296,7 @@ kable_styling(full_width = F, position = "left")
 
 [133] R. Kümmerli and R. D. Martin. “Patterns of infant handling and relatedness in Barbary macaques (Macaca sylvanus) on Gibraltar”. In: Primates 49.4 (Sep. 2008), pp. 271-282. DOI: 10.1007/s10329-008-0100-7. <URL: https://doi.org/10.1007/s10329-008-0100-7>.
 
-[134] S. Lardy, D. A. é, and A. Cohas. “Intrasexual competition and female dominance in a singular breeding mammal, the Alpine marmot”. In: Animal Behaviour 86.6 (Dec. 2013), pp. 1155-1163. DOI: 10.1016/j.anbehav.2013.09.017. <URL: https://doi.org/10.1016/j.anbehav.2013.09.017>.
+[134] S. Lardy, and A. Cohas. “Intrasexual competition and female dominance in a singular breeding mammal, the Alpine marmot”. In: Animal Behaviour 86.6 (Dec. 2013), pp. 1155-1163. DOI: 10.1016/j.anbehav.2013.09.017. <URL: https://doi.org/10.1016/j.anbehav.2013.09.017>.
 
 [135] R. R. Lawler, A. F. Richard, and M. A. Riley. “Genetic population structure of the white sifaka (Propithecus verreauxi verreauxi) at Beza Mahafaly Special Reserve, southwest Madagascar (1992)”. In: Molecular Ecology 12.9 (Jul. 2003), pp. 2307-2317. DOI: 10.1046/j.1365-294x.2003.01909.x. <URL: https://doi.org/10.1046/j.1365-294x.2003.01909.x>.
 
@@ -342,7 +342,7 @@ kable_styling(full_width = F, position = "left")
 
 [156] D. D. Moor, C. Roos, J. Ostner, et al. “Female Assamese macaques bias their affiliation to paternal and maternal kin”. In: Behavioral Ecology 31.2 (Jan. 2020). Ed. by L. Barrett, pp. 493-507. DOI: 10.1093/beheco/arz213. <URL: https://doi.org/10.1093/beheco/arz213>.
 
-[157] J. T. Morales-Piñeyrúa, G. Ciappesoni, and R. Ungerfeld. “Social rank and reproductive performance of pampas deer females (Ozotoceros bezoarticus, Linnaeus, 1758)”. In: Behavioural Processes 105 (Jun. 2014), pp. 49-52. DOI: 10.1016/j.beproc.2014.03.004. <URL: https://doi.org/10.1016/j.beproc.2014.03.004>.
+[157] J. T. Morales-Pineyrua, G. Ciappesoni, and R. Ungerfeld. “Social rank and reproductive performance of pampas deer females (Ozotoceros bezoarticus, Linnaeus, 1758)”. In: Behavioural Processes 105 (Jun. 2014), pp. 49-52. DOI: 10.1016/j.beproc.2014.03.004. <URL: https://doi.org/10.1016/j.beproc.2014.03.004>.
 
 [158] R. Mykytowycz. “Social behaviour of an experimental colony of wild rabbits, Oryctolagus cuniculus (L.) II. First breeding season”. In: CSIRO Wildlife Research 4.1 (1959), p. 1. DOI: 10.1071/cwr9590001. <URL: https://doi.org/10.1071/cwr9590001>.
 
@@ -380,7 +380,7 @@ kable_styling(full_width = F, position = "left")
 
 [175] A. Paul and D. Thommen. “Timing of Birth, Female Reproductive Success and Infant Sex Ratio in Semifree-Ranging Barbary Macaques (Macaca sylvanus)”. In: Folia Primatologica 42.1 (1984), pp. 2-16. DOI: 10.1159/000156140. <URL: https://doi.org/10.1159/000156140>.
 
-[176] J. Pluháček, L. B. š, and L. Čul'. “High-ranking mares of captive plains zebra Equus burchelli have greater reproductive success than low-ranking mares”. In: Applied Animal Behaviour Science 99.3-4 (Sep. 2006), pp. 315-329. DOI: 10.1016/j.applanim.2005.11.003. <URL: https://doi.org/10.1016/j.applanim.2005.11.003>.
+[176] J. Pluhacek, L. B. š, and L. Cul'. “High-ranking mares of captive plains zebra Equus burchelli have greater reproductive success than low-ranking mares”. In: Applied Animal Behaviour Science 99.3-4 (Sep. 2006), pp. 315-329. DOI: 10.1016/j.applanim.2005.11.003. <URL: https://doi.org/10.1016/j.applanim.2005.11.003>.
 
 [177] N. C. Pratt and R. D. Lisk. “Effects of social stress during early pregnancy on litter size and sex ratio in the golden hamster (Mesocricetus auratus)”. In: Reproduction 87.2 (Nov. 1989), pp. 763-769. DOI: 10.1530/jrf.0.0870763. <URL: https://doi.org/10.1530/jrf.0.0870763>.
 
@@ -506,7 +506,7 @@ kable_styling(full_width = F, position = "left")
 
 [238] P. A. White. “Maternal rank is not correlated with cub survival in the spotted hyena, Crocuta crocuta”. In: Behavioral Ecology 16.3 (Feb. 2005), pp. 606-613. DOI: 10.1093/beheco/ari033. <URL: https://doi.org/10.1093/beheco/ari033>.
 
-[239] M. E. Wilson, T. P. Gordon, and I. S. Bernstein. “Timing of Births and Reproductive Success in Rhesus Monkey Social Groups1”. In: Journal of Medical Primatology 7.4 (1978), pp. 202-212. DOI: 10.1159/000459880. <URL: https://doi.org/10.1159/000459880>.
+[239] M. E. Wilson, T. P. Gordon, and I. S. Bernstein. “Timing of Births and Reproductive Success in Rhesus Monkey Social Groups”. In: Journal of Medical Primatology 7.4 (1978), pp. 202-212. DOI: 10.1159/000459880. <URL: https://doi.org/10.1159/000459880>.
 
 [240] L. D. Wolfe. “Female rank and reproductive success among arashiyama B Japanese macaques (Macaca fuscata)”. In: International Journal of Primatology 5.2 (Apr. 1984), pp. 133-143. DOI: 10.1007/bf02735737. <URL: https://doi.org/10.1007/bf02735737>.
 

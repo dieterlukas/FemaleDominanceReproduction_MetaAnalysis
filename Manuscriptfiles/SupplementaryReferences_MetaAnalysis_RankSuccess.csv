@@ -11,10 +11,8 @@ Neef, et al., 1985)","(HOLEKAMP and SMALE, 1991)",NA
 9,9,Mandrillus_sphinx,"(Setchell, Charpentier, and Wickings, 2005)",(Setchell et al. 2002),NA
 10,10,Papio_cynocephalus,"(, 2021)","(Packer, Collins, Sindimwo, and Goodall, 1995)",NA
 11,11,Papio_cynocephalus,"(Wasser, Norton, Kleindorfer, et al., 2004)","(Packer, Collins, Sindimwo, et al., 1995)","(Wasser and Starling, 1988)"
-12,12,Rangifer_tarandus,"(Holand, Weladji, Gj锟絪tein, et al., 2004)","(Holand, et al., 2004)","(Djakovi腶, Holand, Hovland, et al., 2011)"
-13,13,Callithrix_jacchus,"(Sousa, da
-Rocha Albuquerque, da
-Silva Albuquerque, et al., 2005)","(Digby, 1995)",(Nievergelt et al. 2009)
+12,12,Rangifer_tarandus,"(Holand, Weladji, Gjonstein, et al., 2004)","(Holand, et al., 2004)","(Djakovi腶, Holand, Hovland, et al., 2011)"
+13,13,Callithrix_jacchus,"(Sousa, da Rocha Albuquerque, da Silva Albuquerque, et al., 2005)","(Digby, 1995)",(Nievergelt et al. 2009)
 14,14,Chlorocebus_aethiops,"(Fairbanks and McGuire, 1984)","(HOLEKAMP and SMALE, 1991)","(Fairbanks, Jorgensen, Bailey, et al., 2011)"
 15,15,Chlorocebus_aethiops,"(Fairbanks and McGuire, 1984)","(HOLEKAMP and SMALE, 1991)","(Fairbanks, Jorgensen, Bailey, et al., 2011)"
 16,16,Crocuta_crocuta,"(Holekamp, Smale, and Szykman, 1996)","(Hofer and East, 2003)","(Horn, Engh, Scribner, et al., 2004)"
@@ -37,7 +35,7 @@ Holst, Hutzelmeyer, Kaetzke, et al., 2002)","(von
 Holst, Hutzelmeyer, Kaetzke, et al., 2002)","(SURRIDGE, IBRAHIM, BELL, et al., 1999)"
 30,30,Papio_cynocephalus,"(Wasser, Norton, Kleindorfer, et al., 2004)","(Packer, Collins, Sindimwo, et al., 1995)","(Wasser and Starling, 1988)"
 31,31,Semnopithecus_entellus,"(Borries, Sommer, and Srivastava, 1991)","(Borries, Sommer, and Srivastava, 1991)",NA
-32,32,Rangifer_tarandus,"(Holand, Weladji, Gjostein, et al., 2004)","(Holand, Gj酶stein, Losvar, et al., 2004)","(Djakovi腶, Holand, Hovland, et al., 2011)"
+32,32,Rangifer_tarandus,"(Holand, Weladji, Gjostein, et al., 2004)","(Holand, Gjonstein, Losvar, et al., 2004)","(Djakovi腶, Holand, Hovland, et al., 2011)"
 33,33,Sciurus_vulgaris,"(Wauters and Dhondt, 1989)","(Wauters and Dhondt, 1989)",NA
 34,34,Sciurus_vulgaris,"(Wauters and Dhondt, 1989)","(Wauters and Dhondt, 1989)",NA
 35,35,Theropithecus_gelada,"(DUNBAR and DUNBAR, 1977)","(Dunbar, 1980)","(Snyder-Mackler, Alberts, and Bergman, 2014)"
@@ -113,10 +111,9 @@ Noordwijk and van
 Schaik, 1999)","(van Noordwijk and van Schaik, 1987)","(Ruiter and Geffen, 1998)"
 64,64,Macaca_fuscata,"(Takahata, Suzuki, Agetsuma, et al., 1998)",(Koyama et al. 2003),"(Nakagawa, Matsubara, Shimooka, et al., 2015)"
 65,65,Macaca_mulatta,"(Meikle and Vessey, 1988)","(Deutsch and Lee, 1991)",NA
-66,66,Oreamnos_americanus,"(茅 and Festa-Bianchet, 2001)","(Fa, 2000)","(Shafer, Northrup, White, et al., 2012)"
-67,67,Oreamnos_americanus,"(茅 and Festa-Bianchet, 2001)","(Fa, 2000)","(Shafer, Northrup, White, et al., 2012)"
-68,68,Oryctolagus_cuniculus,"(von
-Holst, Hutzelmeyer, Kaetzke, et al., 2002)","(von Holst, Hutzelmeyer, Kaetzke, et al., 2002)","(SURRIDGE, IBRAHIM, BELL, et al., 1999)"
+66,66,Oreamnos_americanus,"(Cote and Festa-Bianchet, 2001)","(Fa, 2000)","(Shafer, Northrup, White, et al., 2012)"
+67,67,Oreamnos_americanus,"(Cote and Festa-Bianchet, 2001)","(Fa, 2000)","(Shafer, Northrup, White, et al., 2012)"
+68,68,Oryctolagus_cuniculus,"(von Holst, Hutzelmeyer, Kaetzke, et al., 2002)","(von Holst, Hutzelmeyer, Kaetzke, et al., 2002)","(SURRIDGE, IBRAHIM, BELL, et al., 1999)"
 69,69,Pan_troglodytes,"(Pusey, 1997)",(Wittig et al. 2003),"(Vigilant, Hofreiter, Siedel, et al., 2001)"
 70,70,Papio_anubis,"(Packer, Collins, Sindimwo, et al., 1995)","(Johnson, 1987)",(Kopp 2015)
 71,71,Papio_anubis,"(Packer, Collins, Sindimwo, et al., 1995)","(Johnson, 1987)",(Kopp 2015)
@@ -198,8 +195,7 @@ Schaik, 1999)","(van Noordwijk and van Schaik, 1987)","(Ruiter and Geffen, 1998)
 131,131,Crocuta_crocuta,"(Hofer and East, 2003)","(Hofer and East, 2003)",NA
 132,132,Macaca_fuscata,"(Takahata, 1980)",(Koyama et al. 2003),(Koyama )2003
 133,133,Oryctolagus_cuniculus,"(von
-Holst, Hutzelmeyer, Kaetzke, et al., 2002)","(von
-Holst, Hutzelmeyer, Kaetzke, et al., 2002)","(SURRIDGE, IBRAHIM, BELL, et al., 1999)"
+Holst, Hutzelmeyer, Kaetzke, et al., 2002)","(von Holst, Hutzelmeyer, Kaetzke, et al., 2002)","(SURRIDGE, IBRAHIM, BELL, et al., 1999)"
 134,134,Papio_anubis,"(Packer, Collins, Sindimwo, et al., 1995)","(Johnson, 1987)",(Kopp 2015)
 135,135,Papio_anubis,"(Packer, Collins, Sindimwo, et al., 1995)","(Johnson, 1987)",(Kopp 2015)
 136,136,Papio_cynocephalus,"(Wasser, Norton, Kleindorfer, et al., 2004)","(Packer, Collins, Sindimwo, et al., 1995)","(Wasser and Starling, 1988)"
@@ -319,14 +315,14 @@ Vlaardingen, and Terborgh, 1996)",NA
 246,246,Antilocapra_americana,"(Clancey and Byers, 2015)","(Dennehy, 2001)","(Carling, Wiseman, and Byers, 2003)"
 247,247,Antilocapra_americana,"(Clancey and Byers, 2015)","(Dennehy, 2001)","(Carling, Wiseman, and Byers, 2003)"
 248,248,Antilocapra_americana,"(Clancey and Byers, 2015)","(Dennehy, 2001)","(Carling, Wiseman, and Byers, 2003)"
-249,249,Nanger_dama,"(Alados and Esc贸s, 1992)","(Alados and Escvez, 2021)",NA
-250,250,Gazella_cuvieri,"(Alados and Esc贸s, 1992)","(Alados and Escvez, 2021)",NA
-251,251,Gazella_cuvieri,"(Alados and Esc贸s, 1992)","(Alados and Escvez, 2021)",NA
-252,252,Gazella_cuvieri,"(Alados and Esc贸s, 1992)","(Alados and Escvez, 2021)",NA
-253,253,Gazella_cuvieri,"(Alados and Esc贸s, 1992)","(Alados and Escvez, 2021)",NA
-254,254,Nanger_dama,"(Alados and Esc贸s, 1992)","(Alados and Escvez, 2021)",NA
-255,255,Nanger_dama,"(Alados and Esc贸s, 1992)","(Alados and Escvez, 2021)",NA
-256,256,Nanger_dama,"(Alados and Esc贸s, 1992)","(Alados and Escvez, 2021)",NA
+249,249,Nanger_dama,"(Alados and Escez, 1992)","(Alados and Escvez, 2021)",NA
+250,250,Gazella_cuvieri,"(Alados and Escez, 1992)","(Alados and Escvez, 2021)",NA
+251,251,Gazella_cuvieri,"(Alados and Escez, 1992)","(Alados and Escvez, 2021)",NA
+252,252,Gazella_cuvieri,"(Alados and Escez, 1992)","(Alados and Escvez, 2021)",NA
+253,253,Gazella_cuvieri,"(Alados and Escez, 1992)","(Alados and Escvez, 2021)",NA
+254,254,Nanger_dama,"(Alados and Escez, 1992)","(Alados and Escvez, 2021)",NA
+255,255,Nanger_dama,"(Alados and Escez, 1992)","(Alados and Escvez, 2021)",NA
+256,256,Nanger_dama,"(Alados and Escez, 1992)","(Alados and Escvez, 2021)",NA
 257,257,Capra_nubiana,"(Shargal, Shore, Roteri, et al., 2008)","(Greenberg-Cohen, Alkon, and Yom-Tov, 2010)",NA
 258,258,Ozotoceros_bezoarticus,"(Morales-Picerva, Ciappesoni, and Ungerfeld, 2014)","(Morales-Pisterva, Ciappesoni, and Ungerfeld, 2014)",NA
 259,259,Ozotoceros_bezoarticus,"(Morales-Picerva, Ciappesoni, and Ungerfeld, 2014)","(Morales-Pisterva, Ciappesoni, and Ungerfeld, 2014)",NA
@@ -354,12 +350,10 @@ Vlaardingen, and Terborgh, 1996)",NA
 281,281,Macaca_fuscata,"(Wolfe, 1984)",(Koyama et al. 2003),(Koyama et al. 2003)
 282,282,Macaca_fuscata,"(Wolfe, 1984)",(Koyama et al. 2003),(Koyama et al. 2003)
 283,283,Macaca_fuscata,"(Wolfe, 1984)",(Koyama et al. 2003),(Koyama et al. 2003)
-284,284,Theropithecus_gelada,"(le
-Roux, Beehner, and Bergman, 2010)","(Dunbar, 1980)","(Snyder-Mackler, Alberts, and Bergman, 2014)"
-285,285,Theropithecus_gelada,"(le
-Roux, Beehner, and Bergman, 2010)","(Dunbar, 1980)","(Snyder-Mackler, Alberts, and Bergman, 2014)"
-286,286,Marmota_marmota,"(King and 茅, 2002)","(Lardy, and Cohas, 2013)",NA
-287,287,Marmota_marmota,"(King and 茅, 2002)","(Lardy, and Cohas, 2013)",NA
+284,284,Theropithecus_gelada,"(le Roux, Beehner, and Bergman, 2010)","(Dunbar, 1980)","(Snyder-Mackler, Alberts, and Bergman, 2014)"
+285,285,Theropithecus_gelada,"(le Roux, Beehner, and Bergman, 2010)","(Dunbar, 1980)","(Snyder-Mackler, Alberts, and Bergman, 2014)"
+286,286,Marmota_marmota,"(King and Cote, 2002)","(Lardy, and Cohas, 2013)",NA
+287,287,Marmota_marmota,"(King and Cote, 2002)","(Lardy, and Cohas, 2013)",NA
 288,288,Papio_cynocephalus,"(Beehner, Onderdonk, Alberts, et al., 2006)","(Packer, Collins, Sindimwo, et al., 1995)","(Horn, Buchan, Altmann, et al., 2007)"
 289,289,Papio_cynocephalus,"(Beehner, Onderdonk, Alberts, et al., 2006)","(Packer, Collins, Sindimwo, et al., 1995)","(Horn, Buchan, Altmann, et al., 2007)"
 290,290,Papio_cynocephalus,NA,"(Packer, Collins, Sindimwo, et al., 1995)","(Horn, Buchan, Altmann, et al., 2007)"
@@ -367,7 +361,7 @@ Roux, Beehner, and Bergman, 2010)","(Dunbar, 1980)","(Snyder-Mackler, Alberts, a
 292,292,Papio_ursinus,(Baniel et al. 2021),"(HOLEKAMP and SMALE, 1991)","(Baniel, Cowlishaw, and Huchard, 2018)"
 293,293,Vulpes_vulpes,"(BAKER, ROBERTSON, FUNK, et al., 1998)","(BAKER, ROBERTSON, FUNK, and HARRIS, 1998)","(Iossa, Soulsbury, Baker, et al., 2008)"
 294,294,Semnopithecus_entellus,"(Dolhinow, McKenna, and Laws, 1979)","(Borries, Sommer, and Srivastava, 1991)",NA
-295,295,Sapajus_apella,(DiBitetti et al. 2001),"(Welker, H&ouml$\mathsemicolon$hmann, and Sch&auml$\mathsemicolon$fer-Witt, 1990)",NA
+295,295,Sapajus_apella,(DiBitetti et al. 2001),"(Welker, et al., 1990)",NA
 296,296,Miopithecus_talapoin,"(Abbott, 1987)","(Abbott, 1987)",NA
 297,297,Mungos_mungo,"(Nichols, Bell, Hodge, and Cant, 2012)","(de Luca and Ginsberg, 2001)","(Nichols, Jordan, Jamie, et al., 2012)"
 298,298,Mungos_mungo,"(Nichols, Bell, Hodge, et al., 2012)","(de Luca and Ginsberg, 2001)","(Nichols, Jordan, Jamie, et al., 2012)"
@@ -379,11 +373,9 @@ Luca and Ginsberg, 2001)","(de Luca and Ginsberg, 2001)","(Nichols, Jordan, Jami
 303,303,Procavia_capensis,"(Koren and Geffen, 2009)","(Visser, Robinson, and van
 Vuuren, 2020)",(Visser 2013)
 304,304,Bison_bison,"(Vervaecke, Roden, and de
-Vries, 2005)","(Vervaecke, Roden, and de
-Vries, 2005)",NA
+Vries, 2005)","(Vervaecke, Roden, and de Vries, 2005)",NA
 305,305,Bison_bison,"(Vervaecke, Roden, and de
-Vries, 2005)","(Vervaecke, Roden, and de
-Vries, 2005)",NA
+Vries, 2005)","(Vervaecke, Roden, and de Vries, 2005)",NA
 306,306,Capra_pyrenaica,"(Santiago-Moreno, Gomez-Brunet, Toledano-Diaz, Pulido-Pastor, and Lopez-Sebastian, 2007)",(Santiago et al. 2013),NA
 307,307,Sus_scrofa,"(Meikle, Drickamer, Vessey, et al., 2010)",(Gaillard et al. 1993),"(Meikle, Drickamer, Vessey, et al., 2010)"
 308,308,Papio_cynocephalus,(Altmann et al. 1988),"(Packer, Collins, Sindimwo, et al., 1995)","(Horn, Buchan, Altmann, et al., 2007)"
@@ -506,8 +498,8 @@ Vries, 2005)",NA
 423,423,Theropithecus_gelada,"(Dunbar, 1980)","(Dunbar, 1980)","(Snyder-Mackler, Alberts, and Bergman, 2014)"
 424,424,Theropithecus_gelada,"(Dunbar, 1985)","(Dunbar, 1980)","(Snyder-Mackler, Alberts, and Bergman, 2014)"
 425,425,Callithrix_jacchus,"(Rothe, 2010)","(Digby, 1995)","(Rothe, 2010)"
-426,426,Callithrix_jacchus,"(Arruda, Ara煤jo, Sousa, Albuquerque, Albuquerque, and Yamamoto, 2005)","(Digby, 1995)",(Nievergelt et al. 2000)
-427,427,Callithrix_jacchus,"(Arruda, Ara煤jo, Sousa, et al., 2005)","(Digby, 1995)",(Nievergelt et al. 2000)
+426,426,Callithrix_jacchus,"(Arruda, Araso, Sousa, Albuquerque, Albuquerque, and Yamamoto, 2005)","(Digby, 1995)",(Nievergelt et al. 2000)
+427,427,Callithrix_jacchus,"(Arruda, Araso, Sousa, Albuquerque, Albuquerque, and Yamamoto, 2005)","(Digby, 1995)",(Nievergelt et al. 2000)
 428,428,Callithrix_jacchus,"(Abbott, McNeilly, Lunn, et al., 1981)","(Digby, 1995)","(Abbott, McNeilly, Lunn, Hulme, and Burden, 1981)"
 429,429,Erythrocebus_patas,"(Loy, 1981)",(Isbell & Pruetz 1988),NA
 430,430,Saimiri_sciureus,"(Coe, Chen, Lowe, Davidson, and Levine, 1981)","(Mitchell, Boinski, and van
