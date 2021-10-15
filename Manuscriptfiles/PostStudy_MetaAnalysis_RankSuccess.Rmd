@@ -24,6 +24,9 @@ output:
   github_document: 
     toc: true
 bibliography: MyLibrary.bib
+header-includes:
+  - \usepackage[left]{lineno}
+  - \linenumbers
 ---
 ##### Affiliations 
 1. Indian Institute of Science Education and Research Kolkata 
@@ -261,7 +264,7 @@ We checked the titles and abstracts to identify studies that observed dominance 
 \
 **Variables coded directly from the relevant publications:**
 
-All data from the literature search on publications reporting the effect of dominance rank on reproductive success was entered prior to the first submission of the preregistration. S and DL performed the data extraction. We initially coded eight papers independently, for which we both extracted the same values and classified the approaches in the same way. We extracted the relevant information to calculate the effect size and its associated variance. In addition, we coded a set of variables to characterize the methodological approach. The dataset contains 444 effect sizes from 187 studies on 86 mammalian species. A copy of the [datafile is available on github](https://github.com/dieterlukas/FemaleDominanceReproduction_MetaAnalysis)
+All data from the literature search on publications reporting the effect of dominance rank on reproductive success was entered prior to the first submission of the preregistration. S and DL performed the data extraction. We initially coded eight papers independently, for which we both extracted the same values and classified the approaches in the same way. We extracted the relevant information to calculate the effect size and its associated variance. In addition, we coded a set of variables to characterize the methodological approach. The dataset contains 444 effect sizes from 187 studies on 86 mammalian species.
 
 **Z-transformed effect size**: we converted all effect sizes to Z-transformed correlation coefficients (Zr). In cases where articles reported a pairwise correlation coefficient, we directly use this value. In cases where authors had used alternative statistical approaches (e.g. t-test comparison between two groups of individuals), the test statistics were converted to the statistic ‘r’ using formulas provided by @lakens2013calculating, @lajeunesse2013recovering, and @wilson2019calculator. In cases where authors reported individual-level data reflecting dominance rank and reproductive success (for example in the form of a table that listed for groups of dominants and subordinates their mean and deviation of reproductive success or for every individual their rank and reproductive success), we calculated correlation coefficients directly from a 2-by-2 frequency table (when comparing classes of high- to low-ranking individuals) or from linear regressions (when individuals had continuous ranks). In cases where studies simply stated that “all dominants bred but none of the subordinates” we assumed an error of 0.5% for both dominants not breeding and subordinates breeding to obtain the sampling variance estimates. We extracted separate effect sizes for each reported analysis: for example, if authors reported separately associations between dominance rank and mortality of offspring to 1 year and to independence, we obtained two effect sizes from this population reflecting infant survival. We Z-transformed all correlation coefficients to control for the asymptotic distribution of these values. We changed the sign of the effect sizes to make them consistent across studies. This was necessary because dominance rank was coded differently across studies, for example sometimes studies assigned dominant individuals the lowest value by starting a count from 1, whereas in other cases they were assigned the highest value to reflect the proportion of other females they are dominant over. We set the sign of effect sizes such that positive values mean that higher ranking individuals have shorter interbirth intervals, higher survival as adults and of their infants, higher infant production (e.g. larger litter sizes, higher probability of breeding), and higher lifetime reproductive success (e.g. higher total number of offspring weaned).
 
@@ -4175,6 +4178,12 @@ Our study relies on previously published data and did not involve working direct
 **Huchard:** Hypothesis development, data analysis and interpretation, write up, revising/editing.
 
 **Lukas:** Hypothesis development, data collection, data analysis and interpretation, write up, revising/editing, materials/funding.
+
+
+### Data and code availability
+The dataset has been published at KNB [doi:10.5063/F1RB7312.](https://knb.ecoinformatics.org/view/doi:10.5063/F1RB7312) 
+The code of the current version is archived at Edmond [doi:10.17617/3.80](https://dx.doi.org/10.17617/3.80)
+
 
 ### Funding
 
