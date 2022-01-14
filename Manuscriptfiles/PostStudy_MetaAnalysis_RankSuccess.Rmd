@@ -73,7 +73,7 @@ https://github.com/dieterlukas/FemaleDominanceReproduction_MetaAnalysis/blob/tru
   
 ## Abstract
 
-Life in social groups, while potentially providing social benefits, inevitably leads to conflict among group members. In many social mammals, such conflicts lead to the formation of dominance hierarchies, where high-ranking individuals consistently outcompete other group members. Given that competition is a fundamental tenet of the theory of natural selection, it is generally assumed that high-ranking individuals have higher reproductive success than lower-ranking individuals. Previous reviews have indicated large variation across populations on the potential effect of dominance rank on reproductive success in female mammals. Here, we perform a meta-analysis based on 444 effect sizes from 187 studies on 86 mammal species to investigate how life-history, ecology and sociality modulate the relationship between female dominance rank and fitness. We show that (1) dominance rank is generally positively associated with reproductive success, independent of the approach different studies have taken to answer this question; (2) life-history mechanisms mediate the relationship between rank and reproductive success, with higher effects of dominance rank on reproductive output than on survival, particularly in species with high reproductive investment; (3) the fitness benefits to high-ranking females appear consistent across ecological conditions, and (4) instead the social environment consistently mitigates rank differences on reproductive success by modulating female competition.
+Life in social groups, while potentially providing social benefits, inevitably leads to conflict among group members. In many social mammals, such conflicts lead to the formation of dominance hierarchies, where high-ranking individuals consistently outcompete other group members. Given that competition is a fundamental tenet of the theory of natural selection, it is generally assumed that high-ranking individuals have higher reproductive success than lower-ranking individuals. Previous reviews have indicated large variation across populations on the potential effect of dominance rank on reproductive success in female mammals. Here, we perform a meta-analysis based on 444 effect sizes from 187 studies on 86 mammal species to investigate how life-history, ecology and sociality modulate the relationship between female dominance rank and fitness. We show that (1) dominance rank is generally positively associated with reproductive success, independent of the approach different studies have taken to answer this question; (2) life-history mechanisms mediate the relationship between rank and reproductive success, with higher effects of dominance rank on reproductive output than on survival, particularly in species with high reproductive investment; (3) the fitness benefits to high-ranking females appear consistent across ecological conditions, and (4) instead the social environment consistently mitigates rank differences on reproductive success by modulating female competition, with dominant females showing higher reproductive success than subordinates either when societies are complex (large groups of cooperative breeders) or when relationships among females in the societies are complex (small groups of unrelated breeding females).
 
    
   
@@ -339,7 +339,7 @@ We generated a single consensus phylogeny for the mammalian species in our sampl
     
 #### **Analyses**
 
-We performed all analyses in the statistical software R (R Software Consortium 2019). We built separate models for each prediction. To assess the robustness of the findings and whether modeling decisions might have an influence on our results, we used a frequentist and a Bayesian approach to build the statistical models. We first estimated all models using functions in the package metafor (@viechtbauer2010conducting). We fit meta-analytic multilevel mixed-effects models with moderators via linear models, including models that account for the potential correlations among effect sizes due to shared phylogenetic history among species (@nakagawa2012methodological). Second, we estimated relationships with Bayesian approaches as implemented in the package rethinking (@mcelreath2020statistical). For the Bayesian models, we fit multilevel models that include the sampling variance as measurement error (@kurz2019rethinking) and the shared phylogenetic history as a covariance matrix. Weakly regularizing priors are used for all parameters. The models are implemented in Stan. We drew 8000 samples from four chains, checking that for each the Gelman-Rubin convergence diagnostic 'R-hat' values are less than 1.01 indicating that the Markov chains have converged towards the final estimates. Visual inspection of trace plots and rank histograms were performed to ensure that they indicated no evidence of divergent transitions or biased posterior exploration. Posteriors from the model were used to generate estimates of the overall effect size and the influence of potential moderators. We detail model construction in the following: we first assess whether species and population identity create dependencies amongst the measured effect sizes. If so, we include these factors through covariance matrices reflecting the dependence across measurements. We determined whether a variable had a relationship with the variation in the effect of dominance rank on reproductive success when the compatibility interval of the estimated association did not cross zero (continuous variable) or the contrast between levels does not cross zero (categorical variable), indicating that the model estimates that our data shows a consistent positive/negative association.
+We performed all analyses in the statistical software R (R Software Consortium 2019). We built separate models for each prediction. To assess the robustness of the findings and whether modeling decisions might have an influence on our results, we used a frequentist and a Bayesian approach to build the statistical models. We first estimated all models using functions in the package metafor (@viechtbauer2010conducting). We fit meta-analytic multilevel mixed-effects models with moderators via linear models, including models that account for the potential correlations among effect sizes due to shared phylogenetic history among species (@nakagawa2012methodological). Second, we estimated relationships with Bayesian approaches as implemented in the package rethinking (@mcelreath2020statistical). For the Bayesian models, we fit multilevel models that include the sampling variance as measurement error (@kurz2019rethinking) and the shared phylogenetic history as a covariance matrix. Weakly regularizing priors are used for all parameters. The models are implemented in Stan. We drew 8000 samples from four chains, checking that for each the Gelman-Rubin convergence diagnostic 'R-hat' values are less than 1.01 indicating that the Markov chains have converged towards the final estimates. Visual inspection of trace plots and rank histograms were performed to ensure that they indicated no evidence of divergent transitions or biased posterior exploration. Posteriors from the model were used to generate estimates of the overall effect size and the influence of potential moderators. We detail model construction in the following: we first assess whether species and population identity create dependencies amongst the measured effect sizes. If so, we include these factors through covariance matrices reflecting the dependence across measurements. We determined whether a variable had a relationship with the variation in the effect of dominance rank on reproductive success when the interval (for metafor the 95% confidence interval of the estimate; for rethinking the 89% compatibility estimate of the posterior sample) of the estimated association did not cross zero (continuous variable) or the contrast between levels does not cross zero (categorical variable), indicating that the model estimates that our data shows a consistent positive/negative association.
 We provide all code showing the setup of the various models and the plots, the input files containing the data and phylogeny, as well as a simulated dataset with the same structure as the actual data on which we assessed our models in the preregistration [in the linked github repository](https://github.com/dieterlukas/FemaleDominanceReproduction_MetaAnalysis)
 
 &nbsp; 
@@ -375,7 +375,7 @@ We added data on the maximum lifespan of species to address Prediction 4.2. We r
 
 We added data on the dominance style of macaque species after noting that a large proportion of our sample reflects these species. Across macaque species, dominance interactions among females in a group have been assigned into one of four grades, ranging from egalitarian species in Grade 1 to highly despotic species in Grade 4. We predicted that effect sizes of dominance rank on reproductive success would be larger in species characterized as more despotic, with steeper dominance hierarchies and more asymmetries in social interactions (Prediction 4.9). We extracted the data for the species in our sample from @balasubramaniam2012hierarchical
 
-We changed how we calculated sexual dimorphism in body weight.
+We changed how we calculated sexual dimorphism in body weight. We had previously taken the ratio of male weight divided by female weight. A collaborator on a different project, in which we also use sexual dimorphism in body weight as a variable, alerted us to the article by @smith1999statistics which shows that this simply ratio is biased because it is non-linear and asymmetric when females are the larger sex. We therefore switched to the calculation of sex ratio as recommended in this article by calculating sexual dimorpiism as the average weight of males divided by average weight of females if males are heavier than females and as 2 minus the average weight of females divided by the average weight of males otherwise.
 
 **Outlier check:**
 Before running the analyses, we made a funnel plot of the standard error over the effect size, where we noticed three outlier data points. We realized that for these three entries (EffectRefs 425, 427, and 428) we had used the wrong formula to calculate the effect size and variance. All of these are studies of multiple groups of Callithrix jacchus, each with a small number of females. For these three studies, we had erroneously used the 2-by-2 frequency tables to calculate the standardized mean difference, not the correlation coefficient. We corrected the values for these three entries before performing any of the analyses.
@@ -601,7 +601,7 @@ orchard_plot_basic(meta_simple, mod="Int", xlab = "Effect size (Fisher's Z r)",
   
 There are potentially (at least) three sources of sample bias, the first being 'publication bias' with studies with low effect sizes (not reaching traditional levels of significance) not ending up in the published literature, the second being 'study system bias' with research focusing on populations where it is easy to detect effects (e.g. cooperative breeders), and the third being 'study time bias' with studies performed over shorter time frames generally being more imprecise. We added further post-hoc analyses to investigate these patterns individually here, and in combined models after identifying which study systems might show different effect sizes (section R5.1).
 
-Simple tests for 'publication bias' (@preston2004adjusting) suggest that effect sizes with a p-value smaller than 0.05 are about four times more likely to be reported than effect sizes with a p-value larger than 0.50. 
+We applied tests for 'publication bias' that expect a standard distribution of p-values (@preston2004adjusting) to our data, which suggest that effect sizes with a p-value smaller than 0.05 are about four times more likely to be reported than effect sizes with a p-value larger than 0.50. 
 
 ```{r ranksuccess_effectsizeselection, eval=FALSE, warning=FALSE, results='asis', echo=FALSE}
 options(width=60)
@@ -616,7 +616,7 @@ plot(selmodel(meta_basic,type="stepfun",steps=c(0.005,0.01,0.025,0.05,0.1,0.9,0.
 
 ```
 
-As a further indication of 'publication bias', we find that studies with small sample sizes and small effect sizes (those that presumably did not reach statistical significance) are missing in our dataset such that the average effect sizes at smaller sample sizes are more extreme than those at larger sample sizes (estimate of sample size on effect sizes metafor -0.03 - -0.02, rethinking -0.09 - -0.04) (Figure 2). Nevertheless, the estimated overall effect size in this model remains consistently larger than zero, indicating that even after including any missing studies with small or negative effect sizes there would still be on average a positive relationship between dominance rank and female reproductive success across studies.
+As a further indication of 'publication bias', we find that studies with small sample sizes and small effect sizes (those that presumably did not reach statistical significance) are missing in our dataset such that the average effect sizes at smaller sample sizes are more extreme than those at larger sample sizes (metafor estimate 95% confidence interval lower -0.03 to upper -0.02, rethinking estimate 89% compatibility estimate of posterior sample lower -0.09 to upper -0.04) (Figure 2). Nevertheless, the estimated overall effect size in this model remains consistently larger than zero, indicating that even after including any missing studies with small or negative effect sizes there would still be on average a positive relationship between dominance rank and female reproductive success across studies.
 
   &nbsp;
   
@@ -743,7 +743,7 @@ Our data also shows indication that the sample bias might result from 'study sys
   
   &nbsp;
  
-Finally, including the number of years a study had been conducted for as a predictor of the effect sizes also indicates that our sample shows 'study time bias'. Effect sizes are lower when studies have been conducted for longer (metafor estimate -0.01 - 0.00, rethinking estimate -0.05 - 0.00), but in particular the variance is reduced once a study has been running for 10 ore more years (Figure 3). 
+Finally, including the number of years a study had been conducted for as a predictor of the effect sizes also indicates that our sample shows 'study time bias'. Effect sizes are lower when studies have been conducted for longer (metafor estimate 95% confidence interval lower -0.01 to upper 0.00, rethinking estimate 89% compatibility estimate of posterior sample lower -0.05 to upper 0.00), but in particular the variance is reduced once a study has been running for 10 ore more years (Figure 3). 
 
 
 ---
@@ -848,7 +848,7 @@ figure_no_of_years
   &nbsp;
   
 **R1.2 Overall effect**: 
-We constructed an intercept-only meta-analytic base model to test for a general effect of dominance rank on reproductive success. Across our sample, there is a strong effect that females with higher dominance rank have higher reproductive success (metafor estimate +0.22 - +0.27, rethinking estimate +0.26 - +0.30; the metafor estimate here and in the additional models is lower than the rethinking estimate because the statistical approach of the former expects the data to be more symmetrical than they are). This overall effect means, for example, that in groups with two individuals dominants would have between 0-6 offspring while subordinates have between 0-4 offspring. There is large variation though in our sample, with effect sizes ranging from -0.89 - +1.33 (Figure 1).
+We constructed an intercept-only meta-analytic base model to test for a general effect of dominance rank on reproductive success. Across our sample, there is consistent evidence that females with higher dominance rank have higher reproductive success (metafor estimate of overall effect size +0.22 - +0.27, rethinking estimate +0.26 - +0.30; the metafor estimate here and in the additional models is lower than the rethinking estimate because the statistical approach of the former expects the data to be more symmetrical than they are (see Figure 1 for the bias) while the rethinking approach pools information from the available data, with the metafor estimate being closer to the median of the raw data of 0.23 and the rethinking estimate closer to the mean of 0.29). This overall effect means, for example, that in groups with two individuals dominants would have between 0-6 offspring while subordinates have between 0 to 4 offspring. There is large variation though in our sample, with effect sizes ranging from -0.89 to +1.33 (Figure 1).
 
 ```{r ranksuccess_overalleffect, eval=FALSE, warning=FALSE, results='asis', echo=FALSE}
 options(width=60)
@@ -883,7 +883,7 @@ precis(rethinking_simple)
   &nbsp;
   
 **R1.3 Influence of locality/species**: 
-To the base model, we added random effects to account for non-independence due to effect sizes originating from within the same study, from studies performed on the same population and on the same species. The estimate of the overall effect size did not change in this model (metafor estimate +0.22 - +0.31, rethinking estimate +0.26 - +0.35). Effect sizes from the same species and the same study, but not the same population, tend to be similar to each other. The absence of a population effect could be because there are only very few observations in our dataset of the same population taken in different studies where there are also observations from multiple additional populations of the same species. Alternatively, it could be that effects do not vary across populations of the same species, which is also indicated by the absence of differences between wild and captive populations (see below).
+To the base model, we added random effects to account for non-independence due to effect sizes originating from within the same study, from studies performed on the same population and on the same species. The estimate of the overall effect size did not change in this model accounting for non-independence (metafor estimate of overall effect size when accounting for non-independence +0.22 - +0.31, rethinking estimate +0.26 - +0.35) from the overall effect estimated in the base model. Effect sizes from the same species and the same study, but not the same population, tend to be similar to each other. The absence of a population effect could be because there are only very few observations in our dataset of the same population taken in different studies where there are also observations from multiple additional populations of the same species. Alternatively, it could be that effects do not vary across populations of the same species, which is also indicated by the absence of differences between wild and captive populations (see below).
 
 ```{r ranksuccess_samesource, eval=FALSE, warning=FALSE, results='asis', echo=FALSE}
 
@@ -1252,7 +1252,7 @@ precis(rethinking_noyears,depth=2)[445:447,]
 **R2.1 Influence of measure of reproductive success**:
 To the base model, we add a predictor variable reflecting the six classes of measures of reproductive success.
 
-Dominance rank appears to have the highest effect on age at first conception (metafor estimate +0.32 - +0.43, rethinking estimate +0.33 - +0.52; n=23 effect sizes), life time reproductive success (metafor estimate +0.27 - +0.40, rethinking estimate +0.31 - +0.47; n=34 effect sizes), interbirth interval (metafor estimate +0.25 - +0.37, rethinking estimate +0.28 - +0.37; n=46 effect sizes), infant production (metafor estimate +0.21 - +0.33, rethinking estimate +0.23 - +0.38; n=198 effect sizes), adult survival (metafor estimate +0.18 - +0.31, rethinking estimate +0.18 - +0.34; n=30 effect sizes), infant survival (metafor estimate +0.14 - +0.25, rethinking estimate +0.15 - +0.26; n=113 effect sizes). Effects of dominance rank on survival are lower than on other measures of female fitness. In addition, females themselves appear to benefit more than their offspring (adult survival > infant survival). While effect sizes for life time reproductive success are higher than those for the values from which it is usually calculated (adult survival, interbirth interval, infant production), there does not appear to be a straightforward additive (or multiplicative) combination of the individual effects (Figure 5)
+Dominance rank appears to have the highest effect on age at first conception (metafor estimate +0.32 - +0.43, rethinking estimate +0.33 - +0.52; n=23 effect sizes), life time reproductive success (metafor estimate +0.27 - +0.40, rethinking estimate +0.31 - +0.47; n=34 effect sizes), interbirth interval (metafor estimate +0.25 - +0.37, rethinking estimate +0.28 - +0.37; n=46 effect sizes), infant production (metafor estimate +0.21 - +0.33, rethinking estimate +0.23 - +0.38; n=198 effect sizes), adult survival (metafor estimate +0.18 - +0.31, rethinking estimate +0.18 - +0.34; n=30 effect sizes), infant survival (metafor estimate +0.14 - +0.25, rethinking estimate +0.15 - +0.26; n=113 effect sizes). Effects of dominance rank on survival are lower than on other measures of female fitness (contrasts between infant survival and age at first conception/life time reproductive success/interbirth interval/infant production do not cross zero; contrasts between adult survival and age at first conception/life time reproductive success/interbirth interval do not cross zero). While effect sizes for life time reproductive success are slightly higher (but contrasts overlap zero) than those for the values from which it is usually calculated (adult survival, interbirth interval, infant production), there does not appear to be a straightforward additive (or multiplicative) combination of the individual effects (Figure 5)
 
 ---
 
@@ -1300,6 +1300,68 @@ rethinking_rankmeasured <- ulam(
 precis(rethinking_rankmeasured,depth=2)[445:451,]
 
 plot(precis( rethinking_rankmeasured , depth=2 , pars="a" ))
+
+# a[1]: age at first conception, a[2]: interbirth interval, a[3]: infant survival, a[4]: infant production, a[5]: lifetime reproductive success, a[6]: adult survival
+posterior<-extract.samples(rethinking_rankmeasured)
+difference_rankmeasured<-posterior$a[,2]-posterior$a[,1]
+precis(as.numeric(difference_rankmeasured))
+# does *not* overlap zero
+
+difference_rankmeasured<-posterior$a[,3]-posterior$a[,1]
+precis(as.numeric(difference_rankmeasured))
+# does *not* overlap zero
+
+difference_rankmeasured<-posterior$a[,4]-posterior$a[,1]
+precis(as.numeric(difference_rankmeasured))
+# does *not* overlap zero
+
+difference_rankmeasured<-posterior$a[,5]-posterior$a[,1]
+precis(as.numeric(difference_rankmeasured))
+# does overlap zero
+
+difference_rankmeasured<-posterior$a[,6]-posterior$a[,1]
+precis(as.numeric(difference_rankmeasured))
+# does *not* overlap zero
+
+difference_rankmeasured<-posterior$a[,3]-posterior$a[,2]
+precis(as.numeric(difference_rankmeasured))
+# does *not* overlap zero
+
+difference_rankmeasured<-posterior$a[,4]-posterior$a[,2]
+precis(as.numeric(difference_rankmeasured))
+# does overlap zero
+
+difference_rankmeasured<-posterior$a[,5]-posterior$a[,2]
+precis(as.numeric(difference_rankmeasured))
+# does overlap zero
+
+difference_rankmeasured<-posterior$a[,6]-posterior$a[,2]
+precis(as.numeric(difference_rankmeasured))
+# does overlap zero
+
+difference_rankmeasured<-posterior$a[,4]-posterior$a[,3]
+precis(as.numeric(difference_rankmeasured))
+# does *not* overlap zero
+
+difference_rankmeasured<-posterior$a[,5]-posterior$a[,3]
+precis(as.numeric(difference_rankmeasured))
+# does *not* overlap zero
+
+difference_rankmeasured<-posterior$a[,6]-posterior$a[,3]
+precis(as.numeric(difference_rankmeasured))
+# does overlap zero
+
+difference_rankmeasured<-posterior$a[,5]-posterior$a[,4]
+precis(as.numeric(difference_rankmeasured))
+# does overlap zero
+
+difference_rankmeasured<-posterior$a[,6]-posterior$a[,4]
+precis(as.numeric(difference_rankmeasured))
+# does overlap zero
+
+difference_rankmeasured<-posterior$a[,6]-posterior$a[,5]
+precis(as.numeric(difference_rankmeasured))
+# does overlap zero
 
 
 meta_measuretype_cooperative <- rma.mv(yi=Fishers_Z_r, V=Variance, data=dat[dat$BreedingSystem=="1",], mods=~ -1+ MeasureType_Category, random=list(~1|StudyRef,~1|StudyPopulation,~1|SpeciesRef,~1|EffectRef))
@@ -1665,7 +1727,7 @@ precis(rethinking_phylogenetic_gaussian_littersperyear)
   
 **R3.1 Diet Category**
 
-Effect sizes are larger in carnivores (0.36; n=72 effect sizes) than in omnivores (0.29; n=227 effect sizes),  herbivores (0.27; n=117 effect sizes), or frugivores (0.22; n=28 effect sizes) (estimated difference carnivores versus omnivores metafor -0.36 - -0.17 rethinking -0.24 - -0.04, difference carnivores versus herbivores metafor -0.29 - -0.13 rethinking -0.16 - -0.03, difference carnivores versus frugivores metafor -0.27 - -0.11 rethinking -0.14 - -0.02; estimates for all other comparisons cross 0). Carnivores are no longer estimated to have different effect sizes when the phylogenetic relatedness among species is taken into account, potentially due to the higher prevalence of cooperative breeding in carnivores.
+Effect sizes are larger in carnivores (0.35; n=72 effect sizes) than in omnivores (0.28; n=227 effect sizes),  herbivores (0.25; n=117 effect sizes), or frugivores (0.21; n=28 effect sizes) (estimated difference carnivores versus omnivores rethinking -0.14 - -0.01, difference carnivores versus herbivores rethinking -0.16 - -0.03, difference carnivores versus frugivores rethinking -0.24 - -0.02; estimates for all other comparisons cross 0). Carnivores are no longer estimated to have different effect sizes when the phylogenetic relatedness among species is taken into account, potentially due to the higher prevalence of cooperative breeding in carnivores.
 
 
 
@@ -1714,7 +1776,26 @@ rethinking_diet <- ulam(
   ),data=dat_list_diet)
 precis(rethinking_diet,depth=2)[444:450,]
 posterior<-extract.samples(rethinking_diet)
+
+# b[1]: carnivores 0.35
+precis(rethinking_diet,depth=2)[445,1]+precis(rethinking_diet,depth=2)[446,1]
+
+# b[2]: frugivore 0.21
+precis(rethinking_diet,depth=2)[445,1]+precis(rethinking_diet,depth=2)[447,1]
+
+# b[3]: herbivore 0.25
+precis(rethinking_diet,depth=2)[445,1]+precis(rethinking_diet,depth=2)[448,1]
+
+# b[4]: omnivore 0.28
+precis(rethinking_diet,depth=2)[445,1]+precis(rethinking_diet,depth=2)[449,1]
+
 difference_diet<-posterior$b[,2]-posterior$b[,1]
+precis(difference_diet)
+
+difference_diet<-posterior$b[,3]-posterior$b[,1]
+precis(difference_diet)
+
+difference_diet<-posterior$b[,4]-posterior$b[,1]
 precis(difference_diet)
 
 
@@ -1749,7 +1830,7 @@ precis(rethinking_phylogenetic_gaussian_associatedbreeding)
   
 **R3.2 Environmental Harshness**
 
-Our data shows no association between environmental harshness and the effect of dominance rank on reproductive success (metafor estimate -0.3 - +0.4, rethinking -0.6 - +0.1; no change when accounting for shared phylogenetic history; n=259 effect sizes).
+With our data, we find no evidence for an association between environmental harshness and the effect of dominance rank on reproductive success (metafor estimate -0.3 - +0.4, rethinking -0.6 - +0.1; no change when accounting for shared phylogenetic history; n=259 effect sizes).
 
 ```{r ranksuccess_harshness, eval=FALSE, warning=FALSE, results='asis', echo=FALSE}
 
@@ -2971,7 +3052,7 @@ rethinkingresults_associated<-c("+0.05 - +0.09","+0.05 - +0.10","-0.10 - -0.05",
 
 d_associated <- data.frame(predictorvariable_associated,metaforresults_associated,rethinkingresults_associated)
 
-colnames(d_associated)<-c("Predictor variable","Metafor compatibility estimate of association","Rethinking compatibility estimate of association")
+colnames(d_associated)<-c("Predictor variable","Metafor 95% confidence interval of estimate of association","Rethinking 89% posterior compatibility estimate of association")
 
 
 predictorvariable_notassociated<-c("litter size","dominance acquisition","diet","environmental harshness","average relatedness","female coalitions","male infanticide","sexual dimorphism")
@@ -2980,13 +3061,13 @@ rethinkingresults_notassociated<-c("-0.04 - +0.09","-0.01 - +0.12","-0.10 - +0.0
 
 d_notassociated <- data.frame(predictorvariable_notassociated,metaforresults_notassociated,rethinkingresults_notassociated)
 
-colnames(d_notassociated)<-c("Predictor variable","Metafor compatibility estimate of association","Rethinking compatibility estimate of association")
+colnames(d_notassociated)<-c("Predictor variable","Metafor 95% confidence interval of estimate of association","Rethinking 89% posterior compatibility estimate of association")
 
 ```
 
 ---
 
-**Table 1.** Overview of **variables associated with variation in effect sizes of dominance rank on female reproductive success** in univariate analyses. The following six variables (of the fourteen we assessed) are estimated to explain variation in the effect sizes with both approaches when accounting for shared phylogenetic history among the species in our sample.
+**Table 1.** Overview of **variables for which we found an association with variation in effect sizes of dominance rank on female reproductive success** in univariate analyses. The following six variables (of the fourteen we assessed) are estimated to explain variation in the effect sizes with both approaches when accounting for shared phylogenetic history among the species in our sample.
 ```{r table_associated, eval=TRUE, warning=FALSE, results='asis', echo=FALSE, include=TRUE}
 library(kableExtra)
 knitr::kable(d_associated) %>%
@@ -2994,7 +3075,7 @@ kable_styling(full_width = T, position = "left")
 ```
 
 
-**Table 2.** Overview of **variables not associated with variation in effect sizes of dominance rank on female reproductive success** in univariate analyses. The following eight variables (of the fourteen we assessed) are estimated to not be linked with variation in the effect sizes when accounting for shared phylogenetic history among the species in our sample.  
+**Table 2.** Overview of **variables for which we did not find an association with variation in effect sizes of dominance rank on female reproductive success** in univariate analyses. The following eight variables (of the fourteen we assessed) are estimated to not be linked with variation in the effect sizes when accounting for shared phylogenetic history among the species in our sample.  
 ```{r table_notassociated, eval=TRUE, warning=FALSE, results='asis', echo=FALSE, include=TRUE}
 library(kableExtra)
 knitr::kable(d_notassociated) %>%
