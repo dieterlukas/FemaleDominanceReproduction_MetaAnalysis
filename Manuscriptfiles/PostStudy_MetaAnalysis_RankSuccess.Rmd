@@ -449,7 +449,7 @@ dat$SpeciesIncluded<-dat$Latin
 
 
 
-h# How many effect sizes are there for macaques and baboons?
+# How many effect sizes are there for macaques and baboons?
 table(dat$Latin)[grep("Macaca",names(table(dat$Latin)))]
 table(dat$Latin)[grep("Papio",names(table(dat$Latin)))]
 table(dat$Latin)[grep("Theropithecus",names(table(dat$Latin)))]
@@ -1257,7 +1257,7 @@ Dominance rank appears to have the highest effect on age at first conception (me
 ---
 
 ![](ranksuccess_Fig5_effectsize_lifehistorymeasure.png) 
-**Figure 5.** Raw effect sizes of dominance rank on reproductive success are generally higher for cooperative breeders (a) than for plural breeders (b), and differ according to the measure of reproductive success. In general, dominance appears to have stronger effects on reproductive output (lifetime reproductive success, age at first conception, infant production, inter-birth intervals) than on survival (both of the adult females themselves and of their infants). The differences between measures of reproductive success change slightly when accounting for similarity among observations from the same and related species, but the ordering remains the same.
+**Figure 5.** Raw effect sizes of dominance rank on reproductive success are generally higher for cooperative breeders (a) than for plural breeders (b), and differ according to the measure of reproductive success. In general, dominance appears to have stronger effects on reproductive output (lifetime reproductive success, age at first conception, infant production, inter-birth intervals) than on survival (both of the adult females themselves and of their infants). The differences between measures of reproductive success change slightly when accounting for similarity among observations from the same and related species, but the ordering remains the same. As in previous figures, each dot represents a single effect size, with the size of the dot indicates the precision (legend bottom right). For each measure of reproductive success, the darker circle in the middle represents the estimate mean effect, with the bold lines representing the confidence interval of the mean effect and the thinner lines the prediction estimate of the model.
 
 ---
 
@@ -3041,46 +3041,39 @@ orchard_plot_macaques(meta_macaques,mod = "dominancestyle", xlab="Effect size (F
 \
 Overall, our data indicate that females of higher rank generally have higher reproductive success than females of lower rank. In terms of the approach, effect sizes of dominance rank on reproductive success were higher (i) when individuals were assigned a rank category rather than a continuous position, (ii) when rank was determined using indirect measures rather than aggressive interactions, and (iii) in some studies, species, and families of species than in others. We found no differences in effect sizes when studies were conducted in a captive rather than a wild setting. Effect sizes of dominance rank were higher for measures of reproductive output than for measures of survival, and higher for measures of maternal than offspring fitness.
 
-We found that effect sizes of dominance rank on reproductive success are associated with six of our single predictor variables, whereas we did not find an association with another eight of the single predictor variables (Table 1). Five of the six associated predictor variables reflect variation in the social environment, while we did not find any association with any of the predictor variables reflecting the ecological environment.
+We found that effect sizes of dominance rank on reproductive success are associated with seven of our single predictor variables (one in the opposite direction from what we predicted), whereas we did not find an association with another eight of the single predictor variables (Table 1). Five of the six associated predictor variables reflect variation in the social environment, while we did not find any association with any of the predictor variables reflecting the ecological environment.
 
 ```{r table1, eval=TRUE, warning=FALSE, results='asis', echo=FALSE}
 options(width=60)
 
-predictorvariable_associated<-c("litters per year","population density","group size","cooperative breeding","philopatry","sex ratio")
-metaforresults_associated<-c("+0.03 - +0.05","+0.04 - +0.08","-0.07 - -0.01","+0.30 - +0.40","-0.24 - -0.12","+0.44 - +1.25")
-rethinkingresults_associated<-c("+0.05 - +0.09","+0.05 - +0.10","-0.10 - -0.05","+0.27 - +0.41","-0.25 - -0.11","+0.07 - +0.11")
+predictorvariable<-c("P2.1 success measure", "P2.2 litters per year", "P2.2 litter size", "P3.1 diet", "P3.2 environmental harshness", "P3.3 population density", "P4.1 cooperative breeding", "P4.2 dominance acquisition", "P4.3 philopatry", "P4.4 group size", "P4.5 average relatedness","P4.7 female coalitions","P4.8 male infanticide","P4.8 sexual dimorphism", "P4.8 sex ratio")
+ 
+predicted_effect<-c("negative (survival lower)", "positive", "positive", "positive (carnivores higher)", "positive", "positive","positive", "positive (condition higher)", "positive", "negative","negative","negative", "negative", "negative", "positive")
 
-d_associated <- data.frame(predictorvariable_associated,metaforresults_associated,rethinkingresults_associated)
+observed_effect<-c("negative", "positive", "none", "none", "none", "positive", "positive", "none", "negative", "negative", "none","none","none","none", "positive")
 
-colnames(d_associated)<-c("Predictor variable","Metafor 95% confidence interval of estimate of association","Rethinking 89% posterior compatibility estimate of association")
+metaforresults<-c("not available", "+0.03 - +0.05", "-0.01 - +0.03", "-0.04 - +0.03", "-0.30 - +0.40", "+0.04 - +0.08", "+0.30 - +0.40", "-0.07 - +0.03", "-0.24 - -0.12", "-0.07 - -0.01", "-0.01 - +0.56","-0.10 - +0.07","-0.13 - +0.07","-0.17 - +0.11", "+0.44 - +1.25")
+
+rethinkingresults<-c("-0.10 - -0.01", "+0.05 - +0.09","-0.04 - +0.09", "-0.10 - +0.06", "-0.60 - +0.10", "+0.05 - +0.10", "+0.27 - +0.41", "-0.01 - +0.12", "-0.25 - -0.11", "-0.10 - -0.05", "-0.01 - +0.12","-0.09 - +0.07","-0.07 - +0.06","-0.05 - +0.01", "+0.07 - +0.11")
 
 
-predictorvariable_notassociated<-c("litter size","dominance acquisition","diet","environmental harshness","average relatedness","female coalitions","male infanticide","sexual dimorphism")
-metaforresults_notassociated<-c("-0.01 - +0.03","-0.07 - +0.03","-0.04 - +0.03","-0.30 - +0.40","-0.01 - +0.56","-0.10 - +0.07","-0.13 - +0.07","-0.17 - +0.11")
-rethinkingresults_notassociated<-c("-0.04 - +0.09","-0.01 - +0.12","-0.10 - +0.06","-0.60 - +0.10","-0.01 - +0.12","-0.09 - +0.07","-0.07 - +0.06","-0.05 - +0.01")
+combined_table <- data.frame(predictorvariable, predicted_effect, observed_effect, metaforresults, rethinkingresults)
 
-d_notassociated <- data.frame(predictorvariable_notassociated,metaforresults_notassociated,rethinkingresults_notassociated)
-
-colnames(d_notassociated)<-c("Predictor variable","Metafor 95% confidence interval of estimate of association","Rethinking 89% posterior compatibility estimate of association")
+colnames(combined_table)<-c("Predictor variable","Predicted association","Observed association","Metafor 95% confidence interval of estimate of association","Rethinking 89% posterior compatibility estimate of association")
 
 ```
 
 ---
 
-**Table 1.** Overview of **variables for which we found an association with variation in effect sizes of dominance rank on female reproductive success** in univariate analyses. The following six variables (of the fourteen we assessed) are estimated to explain variation in the effect sizes with both approaches when accounting for shared phylogenetic history among the species in our sample.
+**Table 1.** Overview of results of in univariate analyses indicating whether **we found an association between individual variables with variation in effect sizes of dominance rank on female reproductive success**. The table presents for each variable which direction of association we predicted, the association we observed, and the respective estimates of the association when accounting for shared
+phylogenetic history among the species in our sample.
+
 ```{r table_associated, eval=TRUE, warning=FALSE, results='asis', echo=FALSE, include=TRUE}
 library(kableExtra)
-knitr::kable(d_associated) %>%
+knitr::kable(combined_table) %>%
 kable_styling(full_width = T, position = "left")
 ```
 
-
-**Table 2.** Overview of **variables for which we did not find an association with variation in effect sizes of dominance rank on female reproductive success** in univariate analyses. The following eight variables (of the fourteen we assessed) are estimated to not be linked with variation in the effect sizes when accounting for shared phylogenetic history among the species in our sample.  
-```{r table_notassociated, eval=TRUE, warning=FALSE, results='asis', echo=FALSE, include=TRUE}
-library(kableExtra)
-knitr::kable(d_notassociated) %>%
-kable_styling(full_width = T, position = "left")
-```
 
 
   &nbsp;
