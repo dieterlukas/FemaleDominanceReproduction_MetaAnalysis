@@ -3210,11 +3210,11 @@ kable_styling(full_width = T, position = "left")
 #### **5) Potential interactions among predictor variables**
 \ 
 
-We expected potential interactions among the predictor variables because some of them might influence each other while others might potentially modulate the influence of another predictor variable on the dominance effects. The following six predictions were those we added in the preregistration. We added further analyses based on the outcome of the single-factor analyses. These are listed in the changes from the preregistration section.
+We expected potential interactions among the predictor variables because some of them might influence each other while others might potentially modulate the influence of another predictor variable on the dominance effects. Six predictions were added in the preregistration (P5.5-P5.9). We added further analyses based on the outcome of the single-factor analyses. These are listed in the changes from the preregistration section and their results presented below.
   
   &nbsp; 
 
-**R5.1 Heterogeneity and sample bias**
+**Result 5.1: Heterogeneity and sample bias**
 
 The sample bias, namely the over-representation of extreme effect sizes, in our data likely results from all three influences of (i) publication bias, (ii) study system bias, and (iii) study time bias. In addition to the direct indications of publication and study system bias in our sample, our univariate analyses identified many factors that could lead to study system bias. For example, while less than 5% of all mammalian species are cooperative breeders, 12% of all effect sizes in our sample come from cooperative breeders which have high positive effect sizes. 
 
@@ -3369,11 +3369,11 @@ mtext("b) Adjusted for known predictors",side=3,cex=1.5,line=1.0)
   
 
 
-**R5.2 Differences between cooperative and plural/associated breeders**
+**Results 5.2: Differences between cooperative and plural/associated breeders**
 
 In our preregistration, we had decided to first construct univariate models as reported above, testing the influence of a single variable at a time to assess support for the specific predictions. One of the main factors that we found to be associated with higher effect sizes is cooperative breeding. Cooperative breeders differ in many additional aspects, so we first checked whether any of the other associations we detect occur because they covary with cooperative breeding.
 
-**R5.2.1 Differences in approach to study cooperative breeders**
+**Result 5.2.1: Differences in approach to study cooperative breeders**
 
 Approaches of assigning rank depend on the breeding system of the study species, with many studies of cooperative breeders assigning rank into categories (98% categorical, 2% continuous) based on other measures (50% agonism, 50% other) while studies of plural and associated breeders often assign continuous ranks (51% categorical, 49% continuous) based on agonistic interactions (97% agonism, 3% other). Combining the variables representing the different study approaches with the variable representing the classification as cooperative breeder or not into single models indicates that the difference in effect sizes is primarily due to the stronger dominance effects in cooperative breeders (estimate of difference metafor +0.23 - +0.34, rethinking +0.23 - +0.37, n=444 effect sizes) and only very little due to the approaches the authors chose (other measure vs agonisms estimate of difference metafor +0.02 - +0.15, rethinking -0.02 - +0.16; rank categorical vs continuous estimate of difference metafor -0.02 - -0.09, rethinking -0.07 - +0.03, n=444 effect sizes). 
 
@@ -3520,7 +3520,7 @@ precis(rethinking_phylogenetic_gaussian_rankdetermined_cooperativebreeding)
 
 
 
-**R5.2.2 Different life history measures and cooperative breeding**
+**Result 5.2.2: Different life history measures and cooperative breeding**
 
 In cooperative breeders, effects of dominance rank were only assessed on three of the six life history traits. We therefore performed separate analyses for cooperative and for plural/associated breeders to identify the life history traits showing specific increases in higher ranking females compared to others.
 
@@ -3630,7 +3630,7 @@ precis(rethinking_phylogenetic_gaussian_groupsize)
 
 
 
-**R5.2.3 Litters per year and cooperative breeding**
+**Result 5.2.3: Litters per year and cooperative breeding**
 
 Cooperative breeders tend to have higher reproductive rates than species with other breeding systems. However, the association between reproductive rate and effect sizes of dominance rank on reproductive success remains across all breeding systems (metafor estimate of cooperative breeding +0.22 - +0.58, litters per year 0.00 - +0.07, interaction -0.10 - +0.04), with larger effect sizes in species producing more litters per year in cooperative (rethinking estimate +0.02 - +0.20; n=52 effect sizes) and plural (rethinking +0.13 - +0.33; n=324 effect sizes), but not associated breeders (rethinking -0.08 - +0.23; n=68 effect sizes) (estimates take into account phylogenetic relatedness).
 
@@ -3704,7 +3704,7 @@ precis(rethinking_phylogenetic_gaussian_littersperyear_cooperativebreeding)
 ```
 
 
-**R5.2.4 Group size and cooperative breeding**
+**Result 5.2.4: Group size and cooperative breeding**
 
 In mammals, groups of cooperative breeders never grow to the same size (in our data, median 2 females per group, n=52) as groups of plural/associated breeders (in our data, median 14 females per group, n=392), potentially introducing an interaction effect. In our data, both group size and cooperative breeding remain independently associated with the effect sizes of dominance rank on reproductive success. The analyses suggest an interaction (metafor estimate for cooperative breeding +0.16 - +0.39, for group size -0.01 - 0.00, interaction 0.00 - +0.03, n=444 effect sizes), with effect sizes increasing with group size in cooperative breeders (rethinking estimate +0.01 - +0.02), where a single dominant continues to monopolize reproduction as groups get larger, and declining with group sizes in other breeding systems (rethinking estimate -0.01 - 0.00), where dominants might be less able to control reproduction of other group members as groups grow larger (Figure 9).
 
@@ -3716,15 +3716,15 @@ In mammals, groups of cooperative breeders never grow to the same size (in our d
 ---
 
 
-**R5.2.5 Average relatedness and cooperative breeding**
+**Result 5.2.5: Average relatedness and cooperative breeding**
 
 Similarly, there appears to be an interaction between average relatedness and breeding systems (metafor estimate for cooperative breeding -0.06 - +0.44, for average relatedness -0.75 - +0.03, for interaction +0.10 - +1.51, n=288 effect sizes), with effect sizes increasing with higher levels of average relatedness in cooperative breeders (rethinking estimate 0.00 - +0.12, n=36 effect sizes) and decreasing with higher levels of average relatedness in plural/associate breeders (rethinking estimate -0.06 - 0.00, n=252 effect sizes)
 
-**R5.2.6 Philopatry and cooperative breeding**
+**Result 5.2.6: Philopatry and cooperative breeding**
 
 Female dispersal is more common in cooperative breeders (46%) than in plural/associated breeders (9%). However, effect sizes are larger in species with female dispersal also just among the plural/associated breeders (rethinking estimate -0.19 - -0.02, n=363 effect sizes), though differences between philopatry and dispersal are not associated with effect sizes in cooperative breeders (rethinking estimate -0.10 - +0.12, n=52 effect sizes) (metafor estimate for cooperative breeding +0.15 - +0.49, for philopatry -0.18 - +0.06, for interaction -0.18 - +0.26). 
 
-**R5.2.7 Coalition formation and cooperative breeding**
+**Result 5.2.7: Coalition formation and cooperative breeding**
 
 Coalition formation does not occur in cooperative breeders, leading to a potential confound. Restricting the analyses to plural/associated breeders, we find that effect sizes are higher in species in which females do form coalitions than in species where they do not (metafor estimate 0.00 - +0.14, rethinking estimate +0.01 - +0.11, n=374 effect sizes). This likely reflects the benefits of nepotism in matrilineal groups. For our analysis, we did not differentiate between stabilizing coalitions, which usually occur among kin to maintain matrilineal rank differences, and revolutionary coalitions, which usually occur among unrelated individuals to limit the power of others in the group.
 
@@ -3987,7 +3987,7 @@ precis(difference_coalition)
 
   &nbsp;
 
-**R5.3 Philopatry and average relatedness**
+**Result 5.3: Philopatry and average relatedness**
 
 Among plural/associated breeders, average relatedness is lower in species in which females disperse (mean r 0.03, n=16) than in species in which females are philopatric (mean r 0.10, n=228), and among these species, differences in effect sizes are mainly associated with whether females disperse or are philopatric (metafor estimate -0.11 - -0.03, rethinking estimate -0.22 - -0.02) rather than levels of average relatedness (metafor estimate +0.03 - +0.10, rethinking estimate -0.04 - +0.01, n=242 effect sizes).
 
@@ -4537,6 +4537,35 @@ legend(x=0.17,y=2800,legend=c("Observed effect size"),lwd=4,col=c("white"),bty="
 
 mtext("Effect size of dominance rank on reproductive success",side=1,cex=1.8,line=3.0)
 mtext("Number of independent simulation runs",side=2,cex=1.5,line=2.5,las=3)
+
+
+plot(density(noassociation))
+
+
+p1_dens<-density(perfectassociation)
+p1_dens$y<-p1_dens$y/3
+p2_dens<-density(highestone)
+p3_dens<-density(noassociation)
+p4_dens<-density(highesttwo)
+
+
+plot( p1_dens, col=rgb(0,0,0,1), xlim=c(-0.5,1),ann=F,cex=3,lwd=15,yaxt="n")  # first histogram
+# P2   highest rank highest afterwards no link
+lines( p2_dens, col="gold", cex=3,lwd=15)
+# P3   no association
+lines( p3_dens, col=rgb(0,0,0,1/4), cex=3,lwd=15)
+# P4  highest two ranking
+lines( p4_dens, col=rgb(1,0,0,1/2), cex=3,lwd=15)
+
+abline(v=0.28,lwd=4,lty=2)
+
+legend(x="topleft",legend=c("No association","Highest one best","Highest two best","Perfect association"),lwd=4,col=c(rgb(0,0,0,1/8),rgb(1,1,0,1/2),rgb(1,0,0,1/2),rgb(0,0,0,1)),bty="n")
+
+legend(x=0.17,y=4.5,legend=c("Observed effect size"),lwd=4,col=c("white"),bty="n")
+
+mtext("Effect size of dominance rank on reproductive success",side=1,cex=1.8,line=3.0)
+mtext("Density of independent simulation runs",side=2,cex=1.5,line=2.5,las=3)
+
 
 ```
 
