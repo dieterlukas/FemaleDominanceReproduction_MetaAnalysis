@@ -23,7 +23,7 @@ output:
     code_folding: hide 
   github_document: 
     toc: true
-bibliography: MyLibrary.bib
+bibliography: References/MyLibrary.bib
 header-includes:
   - \usepackage[left]{lineno}
   - \linenumbers
@@ -46,7 +46,7 @@ knitr::opts_chunk$set(tidy.opts=list(width.cutoff=60), tidy=TRUE)
   &nbsp;
 \   
 
-Open... ![](logoOpenAccess.png){width=2.5%} access; ![](logoOpenCode.png){width=2.5%}   [code; ](https://github.com/corinalogan/grackles/blob/master/Files/Preregistrations/gdispersal_manuscript.Rmd) ![](logoOpenPeerReview.png){width=2.5%}   peer review;  ![](logoOpenData.png){width=2.5%}    [data](https://doi.org/10.5063/F1W66J48)
+Open... ![](Figures/logoOpenAccess.png){width=2.5%} access; ![](Figures/logoOpenCode.png){width=2.5%}   [code; ](https://github.com/corinalogan/grackles/blob/master/Files/Preregistrations/gdispersal_manuscript.Rmd) ![](Figures/logoOpenPeerReview.png){width=2.5%}   peer review;  ![](Figures/logoOpenData.png){width=2.5%}    [data](https://doi.org/10.5063/F1W66J48)
 \ 
   &nbsp;
 \   
@@ -56,7 +56,7 @@ Open... ![](logoOpenAccess.png){width=2.5%} access; ![](logoOpenCode.png){width=
   
 **The background, objectives, predictions, and methods are unchanged from the preregistration that has been pre-study peer reviewed and received an In Principle Recommendation by:** 
 
-![](logoPCIecology.png){width=25%}
+![](Figures/logoPCIecology.png){width=25%}
 \
 Matthieu Paquet (2020) The effect of dominance rank on female reproductive success in social mammals. *Peer Community in Ecology*, 100056. [10.24072/pci.ecology.100056] (https://doi.org/10.24072/pci.ecology.100056) (Reviewers: Bonaventura Majolo and one anonymous reviewer)
 
@@ -485,7 +485,7 @@ A visual inspection of the range of effect sizes at different sample sizes in a 
 
 ---
 
-![](ranksuccess_Fig1_orchard.png)
+![](Figures/ranksuccess_Fig1_orchard.png)
 **Figure 1.** Orchard plot displaying the spread of the 444 effect sizes in our sample (each dot represents a single effect size, the size of the dot indicates the precision). Overall, most studies report a positive association between dominance rank and reproductive success (darker circle in the center indicates the mean). Our sample does show bias, with effect sizes not distributed symmetrical around the center but showing an overrepresentation of highly positive values.
 
 ---
@@ -634,7 +634,7 @@ As a further indication of 'publication bias', we find that studies with small s
   
 ---
 
-![](ranksuccess_Fig2_effectsize_samplesize.png)
+![](Figures/ranksuccess_Fig2_effectsize_samplesize.png)
 
 **Figure 2.** Relationship between the measured size of the effect of dominance rank on female reproductive success and the sample size of the study. Studies with smaller sample sizes show more extreme effect sizes, and also indications of potential publication bias as there are more extremely positive values than what would be expected based on the average effect sizes of studies with larger sample sizes.
 
@@ -760,7 +760,7 @@ Finally, including the number of years a study had been conducted for as a predi
 
 ---
 
-![](ranksuccess_Fig3_effectsize_noyears.png)
+![](Figures/ranksuccess_Fig3_effectsize_noyears.png)
 **Figure 3.** Relationship between the measured size of the effect of dominance rank on female reproductive success and the length a study was conducted for. Studies that have been conducted for 10 or more years tend to have higher precision (larger circle) and tend to be closer to the overall mean.
 
 ---
@@ -977,7 +977,7 @@ To the random effects model, we added a covariance structure to reflect potentia
 
 ---
 
-![](ranksuccess_Fig4_covariation_phylogeny.png)
+![](Figures/ranksuccess_Fig4_covariation_phylogeny.png)
 **Figure 4.** Relationship between the phylogenetic distance between pairs of species and the similarity of their effect sizes (solid black line represents mean estimate of rethinking model, grey lines represent variation in the estimate). Species that are closely related and share most of their phylogenetic history (standardized phylogenetic distance close to zero) show intermediate levels of covariance in their effect sizes of dominance rank on female reproductive success. The covariance drops to low values at a standardized phylogenetic distance of around 0.4, the level separating species that are part of the same Order.
 
 ---
@@ -1307,7 +1307,7 @@ Dominance rank appears to have the highest effect on age at first conception (me
 
 ---
 
-![](ranksuccess_Fig5_effectsize_lifehistorymeasure.png) 
+![](Figures/ranksuccess_Fig5_effectsize_lifehistorymeasure.png) 
 **Figure 5.** Raw effect sizes of dominance rank on reproductive success are generally higher for cooperative breeders (a) than for plural breeders (b), and differ according to the measure of reproductive success. In general, dominance appears to have stronger effects on reproductive output (lifetime reproductive success, age at first conception, infant production, inter-birth intervals) than on survival (both of the adult females themselves and of their infants). The differences between measures of reproductive success change slightly when accounting for similarity among observations from the same and related species, but the ordering remains the same. As in previous figures, each dot represents a single effect size, with the size of the dot indicates the precision (legend bottom right). For each measure of reproductive success, the darker circle in the middle represents the estimate mean effect, with the bold lines representing the confidence interval of the mean effect and the thinner lines the prediction estimate of the model.
 
 ---
@@ -2275,7 +2275,7 @@ Differences in dominance styles among macaques are not associated with the effec
 
 ---
 
-![](ranksuccess_Fig9_effectsizes_macaquedominancestyles.png)
+![](Figures/ranksuccess_Fig9_effectsizes_macaquedominancestyles.png)
 **Figure 7.** The effect of dominance rank on female reproductive success is similar across macaque species with different dominance styles. Relationships among female group members in species of grade 1 (bottom dark grey) are generally considered egalitarian, while grade 4 (top light grey) is assigned to species in which relationships are deemed highly despotic. Species with different dominance styles are not estimated to be different (all posterior contrasts overlap zero).
 
 ---
@@ -2442,7 +2442,7 @@ The effects of dominance rank on reproductive success are higher in species in w
 
 ---
 
-![](ranksuccess_Fig6_effectsize_philopatry.png)
+![](Figures/ranksuccess_Fig6_effectsize_philopatry.png)
 **Figure 6.** Effect sizes of dominance rank on female reproductive success are lower in species in which which females are philopatric and remain in the group/area where they have been born (top, blue dots) than in species in which females disperse to breed (bottom, grey dots).
 
 ---
@@ -3224,7 +3224,7 @@ The reduction in publication bias when accounting for the study system bias is v
 
 ---
 
-![](ranksuccess_Fig7_effectsize_funnelplot.png)
+![](Figures/ranksuccess_Fig7_effectsize_funnelplot.png)
 **Figure 8.** Funnel plots based on raw effect sizes (a) and effect sizes adjusted for known predictors (b). When accounting for the influence of which reproductive trait was measured, whether the species is a cooperative breeder or not, the number of litters per year the species produces, and the phylogenetic covariance among species, the distribution of the 444 effect sizes in our sample appears much less imbalanced (b) than the raw effect sizes (a). The mean effect size (grey dotted line in the center going upwards) is shifted close to zero when adjusting for known predictors because these predictors explain why some studies have positive effect sizes. Precision decreases for most estimates because they no longer represent the measured values but the values inferred from the interaction of the predictors.
 
 ---
@@ -3710,7 +3710,7 @@ In mammals, groups of cooperative breeders never grow to the same size (in our d
 
 ---
 
-![](ranksuccess_Fig8_effectsize_interaction_groupsize.png)
+![](Figures/ranksuccess_Fig8_effectsize_interaction_groupsize.png)
 **Figure 9.** The relationship between the number of females in the group and the effect of dominance on reproductive success depends on whether the species is a cooperative (olive dots show data and olive line with shading shows estimate from rethinking model) or a plural breeder (red dots show data and red line with shading shows estimate from rethinking model). In cooperative breeders, effect sizes increase with increasing group size as a single female continues to monopolize reproduction in the group, whereas effect sizes decrease with increasing group size as dominants can potentially no longer control other females in the group.
 
 ---
@@ -4456,7 +4456,7 @@ Overall, we estimated an average effect of 0.28 of rank on reproductive success.
 
 ---
 
-![](ranksuccess_Fig10_simulatedeffectsizes.png)
+![](Figures/ranksuccess_Fig10_simulatedeffectsizes.png)
 **Figure 10.** The average effect size of dominance rank on female reproductive success we observe in our sample (0.28; dotted vertical line) is in between the effect sizes expected for social groups in which there is either no (grey line) or a perfect association (black line) between each rank and the reproductive success of females. The observed value is close to a situation in which the two highest ranking females (red line) or only the highest ranking female (yellow line) always have the highest success in a group of twelve females. Lines represent the density of 10,000 simulated samples showing the respective effect size for each of the four associations (dots inside lines show quartiles).
 
 ```{r ranksuccess_expectationsimulations, eval=FALSE, warning=FALSE, results='asis', echo=FALSE}
