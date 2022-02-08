@@ -2,7 +2,11 @@
 
 This repository contains the preregistration, R code, and data for the project "The effect of dominance rank on female reproductive success in social mammals" by Shivani, Elise Huchard & Dieter Lukas.
 
-The [Preregistration](https://dieterlukas.github.io/Preregistration_MetaAnalysis_RankSuccess.html) has been recommended by [PCI Ecology](https://doi.org/10.24072/pci.ecology.100056), and the final analyses are reported in the [post study markdown](https://github.com/dieterlukas/FemaleDominanceReproduction_MetaAnalysis/blob/trunk/Manuscriptfiles/PostStudy_MetaAnalysis_RankSuccess.Rmd) file. The code in the file will automatically load all necessary input data from this repository.
+The [Preregistration](https://dieterlukas.github.io/Preregistration_MetaAnalysis_RankSuccess.html) has been recommended by [PCI Ecology](https://doi.org/10.24072/pci.ecology.100056), and the final analyses are reported in the [post study markdown](https://ecoevorxiv.org/rc8na/) file. 
+
+All code to repeat the analyses is provided in the Rmarkdown file of the post study manuscript (https://github.com/dieterlukas/FemaleDominanceReproduction_MetaAnalysis/blob/trunk/Manuscriptfiles/PostStudy_MetaAnalysis_RankSuccess.Rmd). The code in the file will automatically load all necessary input data from this repository.
+
+The folder 'Manuscriptfiles' contains the Rmarkdown, html, and pdf copies of the manuscript and the preregistration. The folder 'Inputfiles' contains copies of the data files:
 
 The [input file](https://github.com/dieterlukas/FemaleDominanceReproduction_MetaAnalysis/blob/trunk/Inputfiles/InputData_MetaAnalysis_FemaleDominanceReproduction.csv) file contains 444 effect sizes from 187 studies on 86 mammal species linking the rank of females to their reproductive success, plus associated variables describing the source studies.
 
