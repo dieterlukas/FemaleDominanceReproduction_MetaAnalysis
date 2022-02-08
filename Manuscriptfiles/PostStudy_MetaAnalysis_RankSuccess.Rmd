@@ -4457,7 +4457,7 @@ Overall, we estimated an average effect of 0.28 of rank on reproductive success.
 ---
 
 ![](ranksuccess_Fig10_simulatedeffectsizes.png)
-**Figure 10.** The average effect size of dominance rank on female reproductive success we observe in our sample (0.28; dotted vertical line) is in between the effect sizes expected for social groups in which there is either no (grey histogram) or a perfect association (black histogram) between each rank and the reproductive success of females. The observed value is close to a situation in which the two highest ranking females (red histogram) or only the highest ranking female (yellow histogram) always have the highest success in a group of twelve females.
+**Figure 10.** The average effect size of dominance rank on female reproductive success we observe in our sample (0.28; dotted vertical line) is in between the effect sizes expected for social groups in which there is either no (grey line) or a perfect association (black line) between each rank and the reproductive success of females. The observed value is close to a situation in which the two highest ranking females (red line) or only the highest ranking female (yellow line) always have the highest success in a group of twelve females. Lines represent the density of 10,000 simulated samples showing the respective effect size for each of the four associations (dots inside lines show quartiles).
 
 ```{r ranksuccess_expectationsimulations, eval=FALSE, warning=FALSE, results='asis', echo=FALSE}
 
