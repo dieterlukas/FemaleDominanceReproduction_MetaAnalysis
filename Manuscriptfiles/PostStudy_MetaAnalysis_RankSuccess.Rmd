@@ -80,7 +80,7 @@ Life in social groups, while potentially providing social benefits, inevitably l
    
 ## Background
 
-In order for social groups to persist, group members need to find strategies to deal with the conflicts that inevitably occur (@ward2016sociality). In many female social mammals, conflicts and aggressive interactions are associated with the formation of different types of hierarchies. In singular cooperative breeders, a single dominant breeding female  suppresses reproduction in subordinate group members, who rarely fight amongst each other until an opportunity to become dominant opens (@solomon1997cooperative). In many species where multiple breeding females form stable groups, females can be arranged in stable linear hierarchies, where mothers help their daughters to inherit their rank in their matriline (@holekamp1991dominance). In another set of species, hierarchies are more flexible as a female’s rank depends on her body size, condition, or availability of coalition partners (@pusey2012magnitude). However, it has remained unclear whether and when there is selection on all females to compete for a high rank. Females differ in their intrinsic qualities as well as in their access to social opportunities, which influence their rank position. Accordingly, instead of direct selection on females to compete over high dominance rank because it provides substantial fitness benefits, selection might be on females to find their place in the hierarchy that provides them the highest fitness given their relative characteristics.  
+In order for social groups to persist, group members need to find strategies to deal with the conflicts that inevitably occur (@ward2016sociality). In many female social mammals, conflicts and aggressive interactions are associated with the formation of different types of hierarchies. In singular cooperative breeders, a single dominant breeding female  suppresses reproduction in subordinate group members, who rarely fight amongst each other until an opportunity to become dominant opens (@solomon1997cooperative). In many species where multiple breeding females form stable groups, females can be arranged in stable linear hierarchies, where mothers help their daughters to inherit their rank in their matriline (@holekamp1991dominance). In another set of species, hierarchies are more flexible as a female’s rank depends on her body size, condition, or availability of coalition partners (@pusey2012magnitude). However, it has remained unclear whether and when there is selection on all females to compete for a high rank. Females differ in their intrinsic qualities as well as in their access to social opportunities, which influence their ability to compete against other females. Accordingly, instead of direct selection on females to compete over high dominance rank because it provides substantial fitness benefits, selection might be on females to find their place in the hierarchy that provides them the highest fitness given their relative characteristics.  
 
 The prevailing assumption is that high ranking females benefit from their dominant status because outcompeting other females is expected to provide them with priority of access to resources (@ellis1995dominance, @pusey2012magnitude). Subordinates are expected to accept their status, because despite having lower reproductive success than dominants, they have few outside options and would presumably face high costs, or have even lower success if they tried to challenge for the dominant status or to reproduce independently (@alexander1974evolution, @vehrencamp1983model). An alternative assumption however is that both dominants and subordinates gain from arranging themselves in a hierarchy to avoid the overt fighting that occurs whenever differentially aggressive individuals repeatedly interact (@west1967foundress). All individuals make a compromise, such that they all balance the potential benefits of their respective positions with the potential costs (@williams1966adaptation). 
 
@@ -371,7 +371,7 @@ A visual inspection of an orchard plot of the raw data of the range of effect si
 ---
 
 ![](Figures/ranksuccess_Fig1_orchard.png)
-**Figure 1.** Orchard plot displaying the spread of the 444 effect sizes in our sample (each dot represents a single effect size, the size of the dot indicates the precision). Overall, most studies report a positive association between dominance rank and reproductive success (darker circle in the center indicates the mean). Our sample does show bias, with effect sizes not distributed symmetrical around the center but showing an overrepresentation of highly positive values.
+**Figure 1.** Orchard plot displaying the spread of the 444 effect sizes in our sample (each dot represents a single effect size, the size of the dot indicates the precision). Overall, most studies report a positive association between dominance rank and reproductive success (darker circle in the center indicates the mean, thick black edge right next to circle indicates precision interval, thin black lines extending from darker circle the confidence interval of the estimate). Our sample does show bias, with effect sizes not distributed symmetrical around the center but showing an overrepresentation of highly positive values.
 
 ---
 
@@ -380,15 +380,13 @@ A visual inspection of an orchard plot of the raw data of the range of effect si
 options(width=60)
 
 # We build the funnel plot based on the estimation of the overall effect size from the base model in metafor
-meta_simple <- rma.mv(yi=Fishers_Z_r, V=Variance, data=dat)
-funnel(meta_simple, level=c(90, 95, 99), shade=c("white", "gray", "darkgray"), 
-       yaxis="seinv",xlab="effect size (Zr)",ylab="precision (1/SE)",digits=c(1,0),xlim=c(-2,2),ylim=c(1,30))
+meta_simple <- rma.mv(yi=Fishers_Z_r, V=Variance, data=dat, method="REML", random=list(~1|EffectRef))
 
 #We buid the orchard plot based on the same base model
 orchard_plot_basic <- function(object, mod = "Int", xlab, N = "none", alpha = 0.5, angle = 90, cb = TRUE, k = TRUE, transfm = c("none", "tanh")) {
   
   ## evaluate choices
-  transfm <- match.arg(transfm) # if not sepcificed it takes the first choice
+  transfm <- match.arg(transfm) # if not specified it takes the first choice
   
   if(any(class(object) %in% c("rma.mv", "rma.uni", "rma"))){
     if(mod != "Int"){
@@ -758,7 +756,7 @@ We constructed an intercept-only meta-analytic base model to test for a general 
 options(width=60)
 
 #base model in metafor: determine the overall effect size, accounting for the measurement error as reflected by the sampling variance
-meta_simple <- rma.mv(yi=Fishers_Z_r, V=Variance, data=dat)
+meta_simple <- rma.mv(yi=Fishers_Z_r, V=Variance, data=dat, method="REML", random=list(~1|EffectRef))
 meta_simple
 
 
@@ -990,7 +988,7 @@ We expected that some of the variation in effect size across studies arises from
 **Result 1.5: Effect sizes are higher when studies used physical signs to classify individuals into rank categories**:
 To the base model, we added random effects reflecting the differences in approaches across studies (dominance ranks classified continuous/categorical; dominance determined through agonism/correlate; population type wild/provisioned/captive; number of years of the study).
 
-(i) Effect sizes did not vary between studies conducted with captive (metafor estimate lower +0.24 to upper +0.30, rethinking estimate lower +0.27 to upper +0.37; n=183 effect sizes), provisioned (metafor estimate lower +0.21 to upper +0.33, rethinking estimate lower +0.14 to upper +0.41; n=23 effect sizes), or wild (metafor estimate lower +0.22 to upper +0.34; n=283 effect sizes) individuals, and this does not change when we nest the population type within species (indicating that effect sizes do not differ between captive, provisioned, and wild populations of the same species).
+(i) Effect sizes did not vary between studies conducted with captive (metafor estimate lower +0.24 to upper +0.30, rethinking estimate lower +0.27 to upper +0.37; n=138 effect sizes), provisioned (metafor estimate lower +0.21 to upper +0.33, rethinking estimate lower +0.14 to upper +0.41; n=23 effect sizes), or wild (metafor estimate lower +0.22 to upper +0.34; n=283 effect sizes) individuals, and this does not change when we nest the population type within species (indicating that effect sizes do not differ between captive, provisioned, and wild populations of the same species).
 
 (ii) Studies which determined the rank of females based on agonistic interactions have lower effect sizes (metafor estimate lower +0.22 to upper +0.26, rethinking estimate lower +0.24 to upper +0.32; n=407 effect sizes) than studies which used other correlates (body size, age, etc.) to assign dominance ranks (metafor estimate lower +0.43 to upper +0.55, rethinking estimate lower +0.41 to upper +0.63; n=37 effect sizes). These 37 effect sizes where rank was assigned based on correlates are from cooperative breeders and/or studies in which groups consisted of mothers and their daughters.
 
@@ -3086,8 +3084,7 @@ colnames(combined_table)<-c("Predictor variable","Predicted association","Observ
 
 ---
 
-**Table 1.** Overview of results of in univariate analyses indicating whether **we found an association between individual variables with variation in effect sizes of dominance rank on female reproductive success**. The table presents for each variable which direction of association we predicted, the association we observed, and the respective estimates of the association when accounting for shared
-phylogenetic history among the species in our sample.
+**Table 1.** Overview of results of in univariate analyses indicating whether **we did or did not find an association between individual variables with variation in effect sizes of dominance rank on female reproductive success**. The table presents for each variable which direction of association we predicted, the association we observed, and the respective estimates of the association when accounting for shared phylogenetic history among the species in our sample.
 
 ```{r table_associated, eval=TRUE, warning=FALSE, results='asis', echo=FALSE, include=TRUE}
 library(kableExtra)
