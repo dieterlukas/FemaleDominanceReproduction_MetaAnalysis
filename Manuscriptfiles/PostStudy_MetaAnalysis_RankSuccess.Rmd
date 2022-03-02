@@ -563,7 +563,7 @@ dat_list_samplesize <- list(
   Z_sd = dat$Variance,
   SampleSize = standardize(dat$SampleSize)
  )
-)
+
 
 #We run the model assuming that the sampling variance reflects an error in the measurements of the true effect sizes
 
