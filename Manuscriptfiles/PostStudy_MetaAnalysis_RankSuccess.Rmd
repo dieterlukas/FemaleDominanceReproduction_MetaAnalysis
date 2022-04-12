@@ -6,7 +6,8 @@ author:
 - 'Dieter Lukas^2^*'
 date: '`r Sys.Date()`'
 mainfont: Arial
-linestretch: 1.2
+fontsize: 13
+linestretch: 1.3
 output:
   pdf_document:
     keep_tex: no
@@ -45,7 +46,10 @@ knitr::opts_chunk$set(tidy.opts=list(width.cutoff=60), tidy=TRUE)
 \ 
   &nbsp;
 \   
-
+  &nbsp;
+\   
+  &nbsp;
+\   
 Open... ![](Figures/logoOpenAccess.png){width=2.5%} access; ![](Figures/logoOpenCode.png){width=2.5%}   [code; ](https://github.com/corinalogan/grackles/blob/master/Files/Preregistrations/gdispersal_manuscript.Rmd) ![](Figures/logoOpenPeerReview.png){width=2.5%}   peer review;  ![](Figures/logoOpenData.png){width=2.5%}    [data](https://doi.org/10.5063/F1W66J48)
 \ 
   &nbsp;
@@ -53,17 +57,19 @@ Open... ![](Figures/logoOpenAccess.png){width=2.5%} access; ![](Figures/logoOpen
   &nbsp;
   
   &nbsp;
-  
-**The background, objectives, predictions, and methods have been peer reviewed prior to analyses and received an In Principle Recommendation on 07 July 2020 by:** 
 
 ![](Figures/logoPCIecology.png){width=25%}
 \
+  
+The background, objectives, predictions, and methods have been peer reviewed prior to analyses and received an In Principle Recommendation on 07 July 2020 by:
+
+
 Matthieu Paquet (2020) The effect of dominance rank on female reproductive success in social mammals. *Peer Community in Ecology*, 100056. [10.24072/pci.ecology.100056] (https://doi.org/10.24072/pci.ecology.100056) (Reviewers: Bonaventura Majolo and one anonymous reviewer)
 
   &nbsp;
   
-**The preregistration for this article can be found here:** Shivani, Huchard E., Lukas D. 2020. [Preregistration - The effect of dominance rank on female reproductive success in social mammals](https://dieterlukas.github.io/Preregistration_MetaAnalysis_RankSuccess.html)
-**Deviations from pre-registered methods are explained within the manuscript.**
+The preregistration for this article can be found here: Shivani, Huchard E., Lukas D. 2020. \ https://dieterlukas.github.io/Preregistration_MetaAnalysis_RankSuccess.html . \
+Deviations from pre-registered methods are explained within the manuscript.
 
    
 &nbsp; 
@@ -118,11 +124,13 @@ We expected that the association between dominance rank and reproduction is stro
   
   
   &nbsp; 
-    
-    
+  
+  
+\newpage  
+
 ## Methods
 
-#### **Literature search**
+#### **Literature search** \
 
 The literature search was performed by S & DL. We started with the references in previous major reviews and meta-analyses on the association between dominance and reproduction in female mammals (see below for inclusion criteria): @fedigan1983dominance (8 effect sizes on female primates entered), @ellis1995dominance (16 effect sizes entered / 5 not entered on female non-primates, 38 effect sizes entered / 22 not entered on female primates), @brown2002reconsidering (28 effect sizes entered / 7 not entered on female primates), @stockley2011female (12 effect sizes entered / 2 not entered on female non-primates, 11 effect sizes entered / 1 not entered on female primates), @majolo2012fitness (26 effect sizes entered / 2 not entered on female primates), @pusey2012magnitude (45 effect sizes entered / 2 not entered on female primates), and @clutton2013social (8 effect sizes entered / 1  not entered on female primates, 6 effect sizes entered / 1 not entered on female non-primates) (some effect sizes appear in multiple of these studies, leading to a total of 136 effect sizes) (using Pubmed, 22 May 2019 - 13 June 2019). Next, we searched Google Scholar and Google Search with the following terms: “dominance AND female AND mammal AND reproductive success OR reproduction” (04 July 2019 - 31 July 2019; 143 additional effect sizes), “rank AND female AND mammal AND reproductive success OR reproduction” (14 September 2019 - 13 November 2019; 90 additional effect sizes), and “sex ratio AND dominance AND female AND mammal” (11 February 2020 - 06 March 2020; 75 additional effect sizes). 
 
@@ -135,17 +143,17 @@ We checked the titles and abstracts to identify studies that observed dominance 
 
 All data from the literature search on publications reporting the effect of dominance rank on reproductive success were entered prior to the first submission of the preregistration. S and DL performed the data extraction. We initially coded eight papers independently, for which we both extracted the same values and classified the approaches in the same way. S and DL also independently went through the studies included in @majolo2012fitness and agreed on which to include and which not. After this, S and DL independently identified and coded articles, with occasional cross-checks and discussions of any border line cases. We extracted the relevant information to calculate the effect sizes and their associated variance. In addition, we coded a set of variables to characterize the methodological approach. The dataset contains 444 effect sizes from 187 studies on 86 mammalian species.
 
-**Z-transformed effect size**: we converted all effect sizes to Z-transformed correlation coefficients (Zr). In cases where articles reported a pairwise correlation coefficient, we directly use this value. In cases where authors had used alternative statistical approaches (e.g. t-test comparison between two groups of individuals), the test statistics were converted to the statistic ‘r’ using formulas provided by @lakens2013calculating, @lajeunesse2013recovering, and @wilson2019calculator. In cases where authors reported individual-level data reflecting dominance rank and reproductive success (for example in the form of a table that listed for groups of dominants and subordinates their mean and deviation of reproductive success or for every individual their rank and reproductive success), we calculated correlation coefficients directly from a 2-by-2 frequency table (when comparing classes of high- to low-ranking individuals) or from linear regressions (when individuals had continuous ranks). In cases where studies simply stated that “all dominants bred but none of the subordinates” we assumed an error of 0.5% for both dominants not breeding and subordinates breeding to obtain the sampling variance estimates. We extracted separate effect sizes for each reported analysis: for example, if authors reported separately associations between dominance rank and mortality of offspring to 1 year and to independence, we obtained two effect sizes from this population reflecting infant survival. We Z-transformed all correlation coefficients to control for the asymptotic distribution of these values. We changed the sign of the effect sizes to make them consistent across studies. This was necessary because dominance rank was coded differently across studies, for example sometimes studies assigned dominant individuals the lowest value by starting a count from 1, whereas in other cases they were assigned the highest value to reflect the proportion of other females they are dominant over. We set the sign of effect sizes such that positive values mean that higher ranking individuals have shorter interbirth intervals, higher survival as adults and of their infants, higher infant production (e.g. larger litter sizes, higher probability of breeding), and higher lifetime reproductive success (e.g. higher total number of offspring weaned).
+*Z-transformed effect size*: we converted all effect sizes to Z-transformed correlation coefficients (Zr). In cases where articles reported a pairwise correlation coefficient, we directly use this value. In cases where authors had used alternative statistical approaches (e.g. t-test comparison between two groups of individuals), the test statistics were converted to the statistic ‘r’ using formulas provided by @lakens2013calculating, @lajeunesse2013recovering, and @wilson2019calculator. In cases where authors reported individual-level data reflecting dominance rank and reproductive success (for example in the form of a table that listed for groups of dominants and subordinates their mean and deviation of reproductive success or for every individual their rank and reproductive success), we calculated correlation coefficients directly from a 2-by-2 frequency table (when comparing classes of high- to low-ranking individuals) or from linear regressions (when individuals had continuous ranks). In cases where studies simply stated that “all dominants bred but none of the subordinates” we assumed an error of 0.5% for both dominants not breeding and subordinates breeding to obtain the sampling variance estimates. We extracted separate effect sizes for each reported analysis: for example, if authors reported separately associations between dominance rank and mortality of offspring to 1 year and to independence, we obtained two effect sizes from this population reflecting infant survival. We Z-transformed all correlation coefficients to control for the asymptotic distribution of these values. We changed the sign of the effect sizes to make them consistent across studies. This was necessary because dominance rank was coded differently across studies, for example sometimes studies assigned dominant individuals the lowest value by starting a count from 1, whereas in other cases they were assigned the highest value to reflect the proportion of other females they are dominant over. We set the sign of effect sizes such that positive values mean that higher ranking individuals have shorter interbirth intervals, higher survival as adults and of their infants, higher infant production (e.g. larger litter sizes, higher probability of breeding), and higher lifetime reproductive success (e.g. higher total number of offspring weaned).
 
-**Sample size**: we recorded the sample size for the relevant statistical comparison (number of females, number of offspring, number of matrilines etc.).
+*Sample size*: we recorded the sample size for the relevant statistical comparison (number of females, number of offspring, number of matrilines etc.).
 
-**Sampling variance**: we calculated the sampling variance of the effect sizes based on the correlation coefficient r and the sample size, using the formulas provided by @wilson2019calculator. The standard error, which is alternatively used in some approaches, is the square root of the sampling variance (@viechtbauer2010conducting).
+*Sampling variance*: we calculated the sampling variance of the effect sizes based on the correlation coefficient r and the sample size, using the formulas provided by @wilson2019calculator. The standard error, which is alternatively used in some approaches, is the square root of the sampling variance (@viechtbauer2010conducting).
 
-**Species identity**: we recorded the common name and the latin species name as listed by the authors. We referred to the Mammal Diversity Database (@burgin2018many) to resolve instances where species attributions had been changed since the publication of the original study.  
+*Species identity*: we recorded the common name and the latin species name as listed by the authors. We referred to the Mammal Diversity Database (@burgin2018many) to resolve instances where species attributions had been changed since the publication of the original study.  
 
-**Study site**: we recorded the name of the study site as listed by the authors in the method section. The focus of this variable is to determine whether multiple observations are from the same species from the same study population, and we accordingly assigned different names for the study site label in case two or more different species had been studied at the same site. 
+*Study site*: we recorded the name of the study site as listed by the authors in the method section. The focus of this variable is to determine whether multiple observations are from the same species from the same study population, and we accordingly assigned different names for the study site label in case two or more different species had been studied at the same site. 
  
-**Measure of reproductive success**: we recorded which aspect of reproduction dominance rank was associated with. We classified reproductive traits into six classes: 
+*Measure of reproductive success*: we recorded which aspect of reproduction dominance rank was associated with. We classified reproductive traits into six classes: 
 - age at first reproduction (includes age at first birth, age at first conception, age at first menstrual cycle); 
 - infant survival (includes rates of mortality of offspring prior to their independence; proportion of pregnancies carried to birth);
 - survival (includes rates of mortality of females per year, age at death); 
@@ -153,72 +161,73 @@ All data from the literature search on publications reporting the effect of domi
 - interbirth interval (includes time between life births, number of cycles to conception, number of litters per year); 
 - lifetime reproductive success (includes total number of offspring born or surviving to independence for females who had been observed from first reproduction to death).
 
-**Classification of rank**: we recorded the approach the authors had used to assign dominance positions to individuals, distinguishing between those based on aggressive/submissive interactions between pairs of individuals and those based on other traits such as age, size, or which female was the first to reproduce.
+*Classification of rank*: we recorded the approach the authors had used to assign dominance positions to individuals, distinguishing between those based on aggressive/submissive interactions between pairs of individuals and those based on other traits such as age, size, or which female was the first to reproduce.
 
-**Scoring of rank**: we recorded whether in the analyses individuals were assigned a specific, continuous rank position or whether individuals were classified into rank categories (dominant versus subordinates, high- versus middle- versus low-ranking).
+*Scoring of rank*: we recorded whether in the analyses individuals were assigned a specific, continuous rank position or whether individuals were classified into rank categories (dominant versus subordinates, high- versus middle- versus low-ranking).
 
-**Duration of study**: we recorded the number of years that authors had observed the individuals (anything less than one year was assigned a value of 1).
+*Duration of study*: we recorded the number of years that authors had observed the individuals (anything less than one year was assigned a value of 1).
 
-**Population type**: we recorded whether the population was free-living, provisioned, or captive based on the authors descriptions.
+*Population type*: we recorded whether the population was free-living, provisioned, or captive based on the authors descriptions.
 
-**Social group size**: we recorded the average number of adult females per group in the study population, based on the information provided in the manuscripts. We relied on the definition of a social group as used by the respective authors, which might include associations of females in: singular-breeder cooperative groups (as in wolves or meerkats); stable groups of multiple breeding females (as in baboons or hyenas); or breeding associations defined by physical proximity (as in bighorn sheep or antelopes). We will have a separate coding of the social system (see below). 
+*Social group size*: we recorded the average number of adult females per group in the study population, based on the information provided in the manuscripts. We relied on the definition of a social group as used by the respective authors, which might include associations of females in: singular-breeder cooperative groups (as in wolves or meerkats); stable groups of multiple breeding females (as in baboons or hyenas); or breeding associations defined by physical proximity (as in bighorn sheep or antelopes). We will have a separate coding of the social system (see below). 
 
 
 **Variables extracted from the broader literature for each species/population:**
 
 The following data were added prior to the analyses. For most of these, we extracted information from the relevant papers or publications reporting on the same population. For some of these, we used previously published species’ averages, because records from each population for each specific period during which the effect of dominance rank on reproductive success were measured were not available for a large enough sample. We list sources we used to obtain these data.
 
-**Litter size**: the number of offspring per birth; data available for each population, we used the average as reported by the authors (based on the data in @jones2009pantheria).
+*Litter size*: the number of offspring per birth; data available for each population, we used the average as reported by the authors (based on the data in @jones2009pantheria).
 
-**Interbirth interval**: the time in months between consecutive births; data available for a limited set of populations, we used the average as reported by the authors. Given that population specific data was available for only a very limited subset, we added species-level averages (based on the data in @jones2009pantheria).
+*Interbirth interval*: the time in months between consecutive births; data available for a limited set of populations, we used the average as reported by the authors. Given that population specific data was available for only a very limited subset, we added species-level averages (based on the data in @jones2009pantheria).
 
-**Maximum lifespan**: the maximum time in months that an individual of that species has been recorded to live for (based on the data in @jones2009pantheria).
+*Maximum lifespan*: the maximum time in months that an individual of that species has been recorded to live for (based on the data in @jones2009pantheria).
 
-**Cooperative breeding group**: whether social groups usually contain a single breeding female and additional non-breeding adult females that help to raise the offspring of the breeding female. Group membership for females is usually closed and changes occur through birth and death or fissioning of existing groups. This classification is in contrast to plural breeding groups and breeding associations (see below); data available for each population, we used the description of the social system in the population as reported by the authors.
+*Cooperative breeding group*: whether social groups usually contain a single breeding female and additional non-breeding adult females that help to raise the offspring of the breeding female. Group membership for females is usually closed and changes occur through birth and death or fissioning of existing groups. This classification is in contrast to plural breeding groups and breeding associations (see below); data available for each population, we used the description of the social system in the population as reported by the authors.
 
-**Plural breeding group**: whether social groups usually contain multiple breeding females that remain together for extended periods of time. It includes both groups in which females are philopatric or disperse. Females form differentiated relationships with other group members. This classification is in contrast to cooperative breeding groups and breeding associations (see above/below); data available for each population, we used the description of the social system in the population as reported by the authors.
+*Plural breeding group*: whether social groups usually contain multiple breeding females that remain together for extended periods of time. It includes both groups in which females are philopatric or disperse. Females form differentiated relationships with other group members. This classification is in contrast to cooperative breeding groups and breeding associations (see above/below); data available for each population, we used the description of the social system in the population as reported by the authors.
 
-**Breeding association**: whether social groups consist of multiple breeding females that associate either in space or by mutual attraction. Group membership is fluid and associations among individuals can rapidly change. This classification is in contrast to cooperative breeding groups and plural breeding groups (see above); data available for each population, we will use the description of the social system in the population as reported by the authors.
+*Breeding association*: whether social groups consist of multiple breeding females that associate either in space or by mutual attraction. Group membership is fluid and associations among individuals can rapidly change. This classification is in contrast to cooperative breeding groups and plural breeding groups (see above); data available for each population, we will use the description of the social system in the population as reported by the authors.
 
-**Dominance system**: whether dominance rank of females appears to depend primarily on (i) their age, (ii) their physical attributes such as body size, or (iii) nepotism in the form of support from their mother or from same-aged group members. Data available from a subset of populations, to which we added data from primary reports of species-level classifications from other populations assuming that this trait is usually stable across populations within species (references listed in the data file).
+*Dominance system*: whether dominance rank of females appears to depend primarily on (i) their age, (ii) their physical attributes such as body size, or (iii) nepotism in the form of support from their mother or from same-aged group members. Data available from a subset of populations, to which we added data from primary reports of species-level classifications from other populations assuming that this trait is usually stable across populations within species (references listed in the data file).
 
-**Philopatry**: whether females have the majority of their offspring in the same social groups or in the same location in which they have been born or whether females disperse to other groups or locations to reproduce; data from species-level descriptions of female behaviour (based on the data in @barsbai2021local).
+*Philopatry*: whether females have the majority of their offspring in the same social groups or in the same location in which they have been born or whether females disperse to other groups or locations to reproduce; data from species-level descriptions of female behaviour (based on the data in @barsbai2021local).
 
-**Monopolizable resources**: whether the gross dietary category of a species is based on monopolizable resources (carnivory, frugivory), or non-monopolizable resources (herbivory, or omnivory) (based on the data in @wilman2014eltontraits). 
+*Monopolizable resources*: whether the gross dietary category of a species is based on monopolizable resources (carnivory, frugivory), or non-monopolizable resources (herbivory, or omnivory) (based on the data in @wilman2014eltontraits). 
 
-**Environmental harshness**: whether the average climatic conditions experienced by the species are characterized by cold temperatures, low rainfall, and unpredictability (based on the data and principal components summarizing climate data in @botero2014environmental).
+*Environmental harshness*: whether the average climatic conditions experienced by the species are characterized by cold temperatures, low rainfall, and unpredictability (based on the data and principal components summarizing climate data in @botero2014environmental).
 
-**Population density**: the average number of individuals per square kilometer for the species (based on the data in @jones2009pantheria).
+*Population density*: the average number of individuals per square kilometer for the species (based on the data in @jones2009pantheria).
 
-**Average and variance in relatedness among group females**: the average and variance in relatedness measured using genetic approaches among adult females within the same group as reported for this species; data available from a subset of the populations (references listed in the data file).
+*Average and variance in relatedness among group females*: the average and variance in relatedness measured using genetic approaches among adult females within the same group as reported for this species; data available from a subset of the populations (references listed in the data file).
 
-**Coalition formation**: whether adult females form coalitions with other female group members to support each other during within-group aggressive interactions; data from species-level descriptions of female behaviour (based on the data in @lukas2018social).
+*Coalition formation*: whether adult females form coalitions with other female group members to support each other during within-group aggressive interactions; data from species-level descriptions of female behaviour (based on the data in @lukas2018social).
 
-**Sexual dimorphism in body weight**: we calculated sexual dimorphism following the two step approach of @smith1999statistics as the average weight of males divided by average weight of females if males are heavier than females and as 2 minus the average weight of females divided by the average weight of males otherwise (based on data in:@jarman1983mating, @loison1999factors, @smith2002scaling, @isaac2005potential, and @kappeler2019evolutionary)
+*Sexual dimorphism in body weight*: we calculated sexual dimorphism following the two step approach of @smith1999statistics as the average weight of males divided by average weight of females if males are heavier than females and as 2 minus the average weight of females divided by the average weight of males otherwise (based on data in:@jarman1983mating, @loison1999factors, @smith2002scaling, @isaac2005potential, and @kappeler2019evolutionary)
 
-**Male infanticide**: whether adult males in that species kill offspring (based on the data in @lukas2014evolution).
+*Male infanticide*: whether adult males in that species kill offspring (based on the data in @lukas2014evolution).
 
-**Adult sex ratio**: the ratio of the average number of adult males divided by the sum of the average number of females and males per social group of that species. We took species' averages to reflect adaptation to likely levels of potential sexual conflict because several of the studies from which we extracted effect sizes had captive or experimental settings or only reported the number of females that were included in the study (based on the data in @barsbai2021local).
+*Adult sex ratio*: the ratio of the average number of adult males divided by the sum of the average number of females and males per social group of that species. We took species' averages to reflect adaptation to likely levels of potential sexual conflict because several of the studies from which we extracted effect sizes had captive or experimental settings or only reported the number of females that were included in the study (based on the data in @barsbai2021local).
 
 
 
-#### **Phylogeny**
+####  **Phylogeny**
+\
 We generated a single consensus phylogeny for the mammalian species in our sample from the most recent complete mammalian time-calibrated phylogeny (@upham2019inferring). We downloaded a credible set of 1000 trees of mammalian phylogenetic history from vertlife.org/phylosubsets/ (July 2020) and used TreeAnnotator (version 1.8.2 in BEAST: @drummond2012bayesian) to generate a maximum clade credibility (MCC) tree (median node heights and a burn in of 250 trees). We trimmed the tree to match the species in our sample (in one instance using a close relative, /Canis lupus/ instead of /Canis familiaris/ ) and converted branch lengths using functions of the package ape (@paradis2019ape).
 
     
 #### **Analyses**
+\
+We performed all analyses in the statistical software R (version 4.0.3; @Rlanguage). We built separate models for each prediction. For some predictor variables,we could not find data to match to all observed effect sizes, and excluded these cases with missing data from the respective analyses. We report the sample size for each analysis. To assess the robustness of the findings and whether modeling decisions might have an influence on our results, we used a frequentist and a Bayesian approach to build the statistical models. We first estimated all models using function "rma.mv" in the package metafor (@viechtbauer2010conducting). We fit meta-analytic multilevel mixed-effects models with moderators via linear models, including models that account for the potential correlations among effect sizes due to shared phylogenetic history among species (@nakagawa2012methodological). Second, we estimated relationships with Bayesian approaches as implemented in the package rethinking using the function "ulam" (@mcelreath2020statistical) to fit with Markov chain Monte Carlo estimation in stan (@STANlanguage). For the Bayesian models, we fit multilevel models that include the sampling variance as measurement error (@kurz2019rethinking) and the shared phylogenetic history as a covariance matrix. Weakly regularizing priors were used for all parameters. We drew 8000 samples from four chains, checking that for each the Gelman-Rubin convergence diagnostic 'R-hat' values are less than 1.01 indicating that the Markov chains have converged towards the final estimates. Visual inspection of trace plots and rank histograms were performed to ensure that they indicated no evidence of divergent transitions or biased posterior exploration. Posteriors from the model were used to generate estimates of the overall effect size and the influence of potential moderators. We detail model construction in the following: we first assess whether species and population identity create dependencies amongst the measured effect sizes. If so, we include these factors through covariance matrices reflecting the dependence across measurements. The models take the following form: we assume that each transformed effect size 'observed Fisher Zr' we extracted from the articles (individual effect sizes indexed by [i]) is a reflection of the 'true Fisher Zr' effect size of that population that was measured with some error, with the extent of the error related to the observed 'Variance' of each effect size; the 'true Fisher Zr' effect sizes come from an overall distribution, the mean 'mu' of which depends on an intercept 'alpha' and the influence of the respective predictor variables modulated by a modifier 'beta', with the prior for alpha and beta centered around zero assuming effect sizes can be both positive and zero and that the predictor variable might have no effect; similarity in the variance between all the 'true Fisher Zr' as arranged in a pairwise matrix for the different species is reflected by 'sigmasquared' which is assumed to follow a Gaussian process with a multinormal prior 'MVNormal' that transforms the extent of the shared phylogenetic history among species pairs i and j with the parameters etasquared (covariance among closely related species) and rhosquared (decline in covariance as phylogenetic distance increases), whose priors are constrained between 0 and 1:
 
-We performed all analyses in the statistical software R (version 4.0.3; @Rlanguage). We built separate models for each prediction. For some predictor variables,we could not find data to match to all observed effect sizes, and excluded these cases with missing data from the respective analyses. We report the sample size for each analysis. To assess the robustness of the findings and whether modeling decisions might have an influence on our results, we used a frequentist and a Bayesian approach to build the statistical models. We first estimated all models using function "rma.mv" in the package metafor (@viechtbauer2010conducting). We fit meta-analytic multilevel mixed-effects models with moderators via linear models, including models that account for the potential correlations among effect sizes due to shared phylogenetic history among species (@nakagawa2012methodological). Second, we estimated relationships with Bayesian approaches as implemented in the package rethinking using the function "ulam" (@mcelreath2020statistical) to fit with Markov chain Monte Carlo estimation in stan (@STANlanguage). For the Bayesian models, we fit multilevel models that include the sampling variance as measurement error (@kurz2019rethinking) and the shared phylogenetic history as a covariance matrix. Weakly regularizing priors were used for all parameters. We drew 8000 samples from four chains, checking that for each the Gelman-Rubin convergence diagnostic 'R-hat' values are less than 1.01 indicating that the Markov chains have converged towards the final estimates. Visual inspection of trace plots and rank histograms were performed to ensure that they indicated no evidence of divergent transitions or biased posterior exploration. Posteriors from the model were used to generate estimates of the overall effect size and the influence of potential moderators. We detail model construction in the following: we first assess whether species and population identity create dependencies amongst the measured effect sizes. If so, we include these factors through covariance matrices reflecting the dependence across measurements. The models take the following form: we assume that each transformed effect size 'observed Fisher Zr' we extracted from the articles (individual effect sizes indexed by [i]) is a reflection of the 'true Fisher Zr' effect size of that population that was measured with some error, with the extent of the error related to the observed 'Variance' of each effect size; the 'true Fisher Zr' effect sizes come from an overall distribution, the mean of which depends on an intercept and the influence of the respective predictor variables; and where similarity in the variance of the 'true Fisher Zr' effect sizes from different species is reflected by 'sigmasquared' which is assumed to follow a Gaussian process with a multinormal prior that transforms the extent of the shared phylogenetic history among species pairs i and j with the parameters etasquared (covariance among closely related species) and rhosquared (decline in covariance as phylogenetic distance increases):
-
-'observed Fisher Zr[i]' ~ normal( 'true Fisher Zr[i]' , Variance[i]) 
-vector[Number of species]:'true Fisher Zr[i]' ~ normal( mu , sigmasquared )
-matrix[Number of species:Number of species]: sigmasquared ~ MVNormal((0...0),K)
-K[ij]=etasquared times exp(-rhosquared * phylogenetic distance[ij])
-mu ~ alpha + beta*explanatory variable[i]
-alpha ~normal(0,1),
-beta*explanatory variable[i]~normal(0,0.5),
-etasquared~Exponential(1),
-rhosquared~Exponential(1)
+'observed Fisher Zr[i]' ~ normal( 'true Fisher Zr[i]' , Variance[i]) \ 
+vector[Number of species]:'true Fisher Zr[i]' ~ normal( mu , sigmasquared ) \ 
+mu ~ alpha + beta*explanatory variable[i] \ 
+alpha ~normal(0,1), \ 
+beta*explanatory variable[i]~normal(0,0.5), \ 
+matrix[Number of species:Number of species]: sigmasquared ~ MVNormal((0...0),K) \ 
+K[ij]=etasquared times exp(-rhosquared * phylogenetic distance[ij]) \ 
+etasquared~Exponential(1), \ 
+rhosquared~Exponential(1) \ 
     
     
 We determined whether a variable had a relationship with the variation in the effect of dominance rank on reproductive success when the interval (for metafor the 95% confidence interval of the estimate; for rethinking the 89% compatibility estimate of the posterior sample) of the estimated association did not cross zero (continuous variable) or the contrast between levels did not cross zero (categorical variable), indicating that our data show a consistent positive/negative association.
@@ -251,7 +260,6 @@ The literature search was completed before the first submission of the preregist
 
 ## **Changes from preregistration**
 \ 
-
 **Additional variables:**
 We added data on the maximum lifespan of species to address Prediction 4.2. We realized that whether a study should be considered short- or long-term depends on the lifespan of the focal species. We used the information on the number of years a study had been conducted together with the maximum lifespan data to calculate the relative duration of a study as the number of years the study had lasted divided by the maximum lifespan of the species.
 
@@ -271,6 +279,8 @@ We constructed the multivariate analyses after completing the univariate analyse
 
 &nbsp; 
   
+\newpage
+
 ## Results
 
 We extracted 444 effect sizes of the relationship between dominance rank and reproductive success of female mammals from 187 studies on 86 species during our literature search. More than half of the effect sizes are from primate species (253 effect sizes), with macaques (109) and baboons (76) a particular focus for this research. About two thirds (283) of the reports are from wild populations; rank was predominantly determined on the basis of aggressive interactions (407) rather than on other measures such as age or size (37); and it was about equally frequent that researchers classified rank categorically as dominant versus subordinate (251) than continuously from highest to lowest (193). Most of the reported effects link dominance rank to infant production (198) followed by infant survival (113), with fewer effects reported on interbirth intervals (46), lifetime reproductive success (34), survival (30), or age at first reproduction (23).
@@ -349,10 +359,6 @@ table(dat$MeasureType_Category)
 ```
 
 
-
-
-
-
   &nbsp;
 
 #### **1) Does high rank generally lead to higher reproductive success for females in social mammals?**
@@ -363,10 +369,15 @@ table(dat$MeasureType_Category)
 
 We did not predict a publication bias but that our sample will include studies showing small effect sizes with small sample sizes. Most studies set out to test if high dominance might lead to both benefits and costs, and previous meta-analyses did not detect signals of publication bias (e.g. @majolo2012fitness).
   
-  &nbsp;
-
-**Result 1.1: Indication of sample bias**: 
+\
+**Result 1.1: Our sample shows several biases**
+\
 A visual inspection of an orchard plot of the raw data of the range of effect sizes indicates a sample bias, showing that extreme effect sizes tend to be of low precision and that there is an overrepresentation of positive effect sizes (Figure 1). 
+
+\
+There are potentially (at least) three sources of sample bias, the first being 'publication bias' with studies with low effect sizes (not reaching traditional levels of significance) not ending-up in the published literature, the second being 'study system bias' with research focusing on populations where it is easy to detect effects (e.g. cooperative breeders), and the third being 'study time bias' with studies performed over shorter time frames generally being more imprecise. We added further post-hoc analyses to investigate these patterns individually here, and in combined models after identifying which study systems might show different effect sizes (section R5.1).
+
+\newpage
 
 ---
 
@@ -494,8 +505,6 @@ orchard_plot_basic(meta_simple, mod="Int", xlab = "Effect size (Fisher's Z r)",
 ```
 
   &nbsp;
-  
-There are potentially (at least) three sources of sample bias, the first being 'publication bias' with studies with low effect sizes (not reaching traditional levels of significance) not ending-up in the published literature, the second being 'study system bias' with research focusing on populations where it is easy to detect effects (e.g. cooperative breeders), and the third being 'study time bias' with studies performed over shorter time frames generally being more imprecise. We added further post-hoc analyses to investigate these patterns individually here, and in combined models after identifying which study systems might show different effect sizes (section R5.1).
 
 We applied tests for 'publication bias' that expect a standard distribution of p-values (@preston2004adjusting) to our data, which suggest that effect sizes with a p-value smaller than 0.05 are about four times more likely to be reported than effect sizes with a p-value larger than 0.50. 
 
@@ -747,10 +756,10 @@ figure_no_of_years
 
 We predicted that, taking into account the power of the different studies, the combined effect of high rank on reproductive success will be positive. Previous studies that summarized existing evidence (e.g. @majolo2012fitness, @pusey2012magnitude) found that high ranking females generally have higher reproductive success than low ranking females.
 
+\
 
-  &nbsp;
-  
-**Result 1.2 Positive overall effect of higher rank on reproductive success**: 
+**Result 1.2 Positive overall effect of higher rank on reproductive success**
+\
 We constructed an intercept-only meta-analytic base model to test for a general effect of dominance rank on reproductive success. Across our sample, there is consistent evidence that females with higher dominance rank have higher reproductive success (metafor estimate of overall effect size lower +0.22 to upper +0.27, rethinking estimate lower +0.26 to upper +0.30; the metafor estimate here and in the additional models is lower than the rethinking estimate because the statistical approach of the former expects the data to be more symmetrical than they are (see Figure 1 for the bias) while the rethinking approach pools information from the available heterogeneous data, such that the metafor estimate is closer to the median of the raw data of 0.23 and the rethinking estimate closer to the mean of 0.29). This overall effect means, for example, that in groups with two individuals dominants would have 0-6 offspring while subordinates would have 0-4 offspring (see Discussion). Yet there is large variation in our sample, with effect sizes ranging from -0.89 to +1.33 (Figure 1).
 
 
@@ -790,9 +799,10 @@ precis(rethinking_simple)
 
 We predicted that studies that have been conducted on the same species, and in particular at the same site, will report similar effects of dominance rank on reproductive success. For some long-term studies, multiple studies have been performed using slightly different methods and/or data from different years which might include the same set of individuals leading to very similar effect size estimates. For studies of the same species from different sites, we expected similarities because many aspects of the life-history and social system that will shape the relationship between rank and reproductive success will be conserved.
   
-  &nbsp;
+\
 
-**Result 1.3: Similarity of effect sizes from the same study and from the same species**: 
+**Result 1.3: Similarity of effect sizes from the same study and from the same species**
+\
 To the base model, we added random effects to account for non-independence due to effect sizes originating from within the same study, from studies performed on the same population and on the same species. The estimate of the overall effect size did not change in this model accounting for non-independence (metafor estimate of overall effect size when accounting for non-independence lower +0.22 to upper +0.31, rethinking estimate lower +0.26 to upper +0.35) from the overall effect estimated in the base model. Effect sizes from the same species and the same study, but not from the same population, tend to be similar to each other. The absence of a population effect could be because the ‘study’ and ‘population’ effects are likely to be confounded, as there are very few observations  of the same population but from different studies in our dataset. Alternatively, it could be that effects do not vary much across populations of the same species, which is also indicated by the absence of differences between wild and captive populations (see below), with differences among studies of the same species mostly due to differences in the choice of measurement.
 
 
@@ -855,12 +865,13 @@ precis(rethinking_moderators_hyperprior)
 
 We predicted that effect sizes of the relationship between dominance rank and reproductive success will be more similar among closely related species (@chamberlain2012does) because methodological approaches can be specific to specific Orders (e.g. ungulates are studied differently than primates) and because closely related species share life history, social and ecological traits that might shape the influence of rank on reproductive success.
 
-  &nbsp;
+\  
   
-  
-**Result 1.4: Effect sizes from species in the same Order are similar**: 
+**Result 1.4: Effect sizes from species in the same Order are similar**
+\
 To the random effects model, we added a covariance structure to reflect potential similarities in effect sizes arising from closely related species showing similar effects due to their shared phylogenetic history. Both statistical approaches indicate that closely related species tend to have effect sizes that are more similar than those of distantly related species. The metafor approach suggests that about 20% of the variation in effect sizes is associated with covariation among species. The rethinking approach shows high uncertainty in the estimates (Figure 4), reflecting the high heterogeneity in the underlying data with high variation within species and different measures taken among closely related species. It suggests that species of the same genus tend to have similar effect sizes and that shared phylogenetic history might also explain similarities in effect sizes among species in the same Order, but covariance estimates are close to zero for species pairs that are more distantly related (Figure 4; the highest standardized distance between any pair of species in the same Order is 0.40).
 
+\newpage
 
 ---
 
@@ -987,9 +998,10 @@ We expected that some of the variation in effect size across studies arises from
 (ii) we predicted lower effect sizes for studies where rank was measured based on agonistic interactions rather than on size or age because size and age are frequently directly associated with differences in female reproduction and clear differences between dominants and subordinates may indicate the existence of castes that tend to be associated with strong reproductive monopolization (@lukas2018social); and 
 (iii) we predicted different effect sizes for studies classifying individuals into two or three rank categories compared to linear ranking depending on the social system. In cases where there is usually a single dominant female (singular cooperative breeders, such as meerkats), using a linear regression between each individuals' rank and its reproductive success will likely estimate a lower effect size because such an approach assumes differences in rank or reproductive success among the subordinates when there are none. In contrast, grouping individuals into categories to compare dominants to subordinates will capture actual differences more accurately. In cases where several females breed (plural breeders, such as hyenas) and are ordered in a linear hierarchy, a linear regression will exploit the full information available on individual differences in rank and reproductive success, whereas grouping individuals will lead to a loss of resolution, at a risk of underestimating the differences between highest and lowest ranking individuals. We performed simulations to determine the extent to which this choice of approach skews the effect sizes and found that it can lead to differences of more than 35% between the true and the estimated effect sizes. For illustration, we include this simulation in our code.  
 
-  &nbsp;
-  
-**Result 1.5: Effect sizes are higher when studies used physical signs to classify individuals into categorical rank categories, but do not depend on whether they were measured in captive or in wild populations**:
+\
+
+**Result 1.5: Effect sizes are higher when studies used physical signs to classify individuals into categorical rank categories, but do not depend on whether they were measured in captive or in wild populations**
+\
 To the base model, we added random effects reflecting the differences in approaches across studies (dominance ranks classified continuous/categorical; dominance determined through agonism/correlate; population type wild/provisioned/captive).
 
 (i) Effect sizes did not vary between studies conducted with captive (metafor estimate lower +0.24 to upper +0.30, rethinking estimate lower +0.27 to upper +0.37; n=138 effect sizes), provisioned (metafor estimate lower +0.21 to upper +0.33, rethinking estimate lower +0.14 to upper +0.41; n=23 effect sizes), or wild (metafor estimate lower +0.22 to upper +0.34; n=283 effect sizes) individuals, and this does not change when we nest the population type within species (indicating that effect sizes do not differ between captive, provisioned, and wild populations of the same species).
@@ -1187,9 +1199,9 @@ precis(rethinking_noyears,depth=2)[445:447,]
 
 We predicted that high rank is more likely to be associated with higher reproductive success in studies that measured female age at first reproduction, number of offspring born per year or across a lifetime, or female survival rather than the survival of their offspring. While in cooperatively breeding species reproductive suppression might impact offspring survival, in plural breeders offspring survival is more likely to be influenced by factors that are outside of the control of females, such as infanticide by new males (@cheney2004factors). 
 
-  &nbsp;
-  
-**Result 2.1: Dominance rank has weakest effects on offspring survival and highest effects on lifetime reproductive success**:
+\
+**Result 2.1: Dominance rank has weakest effects on offspring survival and highest effects on lifetime reproductive success**
+\
 To the base model, we added a predictor variable reflecting the six classes of measures of reproductive success.
 
 Dominance rank appears to have the highest effect on age at first conception (metafor estimate lower +0.32 to upper +0.43, rethinking estimate lower +0.33 to upper +0.52; n=23 effect sizes), followed by life time reproductive success (metafor estimate lower +0.27 to upper +0.40, rethinking estimate lower +0.31 to upper +0.47; n=34 effect sizes), interbirth interval (metafor estimate lower +0.25 to upper +0.37, rethinking estimate lower +0.28 to upper +0.37; n=46 effect sizes), infant production (metafor estimate lower +0.21 to upper +0.33, rethinking estimate lower +0.23 to upper +0.38; n=198 effect sizes), adult survival (metafor estimate lower +0.18 to upper +0.31, rethinking estimate lower +0.18 to upper +0.34; n=30 effect sizes), and the lowest effect on infant survival (metafor estimate lower +0.14 to upper +0.25, rethinking estimate lower +0.15 to upper +0.26; n=113 effect sizes). Effects of dominance rank on survival are lower than on other measures of female fitness (contrasts between infant survival and age at first conception/life time reproductive success/interbirth interval/infant production do not cross zero; contrasts between adult survival and age at first conception/life time reproductive success/interbirth interval do not cross zero). Effect sizes for life time reproductive success are slightly higher (but contrasts overlap zero) than for its components (adult survival, interbirth interval, infant production). However, there does not appear to be a straightforward additive (or multiplicative) combination of these individual effects (Figure 5).
@@ -1518,6 +1530,7 @@ One key mechanism that has been proposed is that females with high dominance ran
 
   
 **Results 2.2: Stronger effects in species with larger litter sizes and more litters per year**
+\
 Effects of dominance on reproductive success are higher in species with larger litter sizes (metafor estimate of litter size lower +0.03 to upper +0.05, rethinking estimate lower +0.05 to upper +0.09; n=444 effect sizes) and with more litters per year (metafor estimate of litters per year lower +0.04 to upper +0.08, rethinking estimate lower +0.06 to upper +0.11; n=444 effect sizes). Effect sizes in species where females produce single offspring are on average 0.25 while effect sizes in species where females produce litters are on average 0.34, and effect sizes in species where females produce one or fewer litters per year are on average 0.25 while effect sizes in species where females produce multiple litters each year are on average 0.45. The association of the effect sizes with the number of litters per year remained when accounting for the phylogenetic relatedness among species, but the association with litter size did not, suggesting that it might be influenced by other characteristics that differ among species with variable litter sizes.
 
 
@@ -1689,10 +1702,9 @@ precis(rethinking_phylogenetic_gaussian_littersperyear)
 
 We predicted that high rank will have stronger effects on reproductive success in fruit- and meat-eaters compared to herbivores or omnivores. One of the main expected benefits of high rank is priority of access to resources, which should be more relevant in populations in which resources can be monopolized (@fedigan1983dominance).
     
-  &nbsp;
-
+\
 **Result 3.1: Effects of dominance rank on reproductive are independent of diet**
-
+\
 Effect sizes are larger in carnivores (0.35; n=72 effect sizes) than in omnivores (0.28; n=227 effect sizes),  herbivores (0.25; n=117 effect sizes), or frugivores (0.21; n=28 effect sizes) (estimated difference carnivores versus omnivores rethinking lower -0.14 to upper -0.01, difference carnivores versus herbivores rethinking lower -0.16 to upper -0.03, difference carnivores versus frugivores rethinking lower -0.24 to upper -0.02; estimates for all other comparisons cross 0). Carnivores are no longer estimated to have different effect sizes when the phylogenetic relatedness among species is taken into account, potentially due to the higher prevalence of cooperative breeding in carnivores.
 
 
@@ -1798,10 +1810,9 @@ precis(rethinking_phylogenetic_gaussian_associatedbreeding)
 
 We predicted that the effect of rank on reproductive success will be stronger in populations in which resources are limited because they live in harsh and unpredictable environments. Previous studies have shown that cooperatively breeding species are more likely to occur in such environments (@lukas2017climate), but we also expect stronger effects among plural breeding populations living in harsh environments.   
 
-  &nbsp;
-  
+\
 **Result 3.2: Effect sizes are not higher in harsher environments**
-
+\
 We found no evidence for an association between environmental harshness and the effect of dominance rank on reproductive success (metafor estimate lower -0.3 to upper +0.4, rethinking estimate lower -0.6 to upper +0.1; no change when accounting for shared phylogenetic history; n=259 effect sizes).
 
 
@@ -1884,10 +1895,9 @@ precis(rethinking_phylogenetic_gaussian_associatedbreeding)
 
 We predicted that the effect of rank on reproductive success will be stronger in populations in which more individuals share a limited amount of space. At higher population densities, social groupings and interactions are more likely and competition over resources is expected to be stronger.
 
-  &nbsp;
-  
+\
 **Results 3.3: Higher population density is associated with stronger effects of dominance rank on reproductive success**
-
+\
 Effect sizes are higher in populations with higher densities of individuals (metafor lower +0.04 to upper +0.08, rethinking lower +0.05 to upper +0.10; n=346 effect sizes), even when including phylogenetic relatedness.
 
 
@@ -1978,10 +1988,9 @@ precis(rethinking_phylogenetic_gaussian_density)
 
 We predicted that rank effects on reproduction will be higher in cooperative breeders, where the dominant female is often the only breeding female because she suppresses the reproduction of subordinate females (@digby2006role), compared to plural breeders, where aggressive behaviour is more targeted and limited to access over specific resources. 
 
-    &nbsp;
-
+\
 **Result 4.1: Cooperative breeders have larger effect sizes than plural breeders**
-
+\
 Effect sizes of cooperative breeders (average 0.58; n=52 effect sizes) are higher than those observed in plural (average 0.25; n=324 effect sizes) or associated breeders (average 0.23; n=68 effect sizes) (estimates for difference cooperative breeder vs plural breeder metafor lower -0.40 to upper -0.30, rethinking lower -0.41 to upper -0.27; cooperative breeder vs associated breeder metafor lower -0.47 to upper -0.35, rethinking lower -0.45 to upper -0.26; plural breeder vs associated breeder metafor lower -0.07 to upper +0.05, rethinking lower -0.07 to upper +0.05). Cooperative breeders are still estimated to have higher effect sizes than species with other breeding systems when accounting for phylogenetic relatedness, but the differences are slightly reduced (Figure 5).
 
 
@@ -2091,11 +2100,10 @@ precis(difference_breedingsystem)
 
 We predicted that in populations of plural breeders in which groups contain multiple breeding females, the way in which these females compete over dominance will influence the potential benefits of high rank. In populations in which female rank depends primarily on age, high ranking females will have higher reproductive success for short periods of time because changes in rank are expected to occur regularly, and because high rank may only be reached towards the end of their reproductive life (@thouless1986conflict). In societies in which female rank depends primarily on size or condition, rank effects on reproductive success are expected to be expressed on intermediate time frames, as individuals may not be able to maintain a larger relative size or condition over lifetime but they are expected to acquire rank relatively early in their reproductive life (@giles2015dominance, @huchard2016competitive). In societies in which female rank primarily depends on nepotism, and ranks are often inherited and stable across a female’s lifetime, we predicted that effects of rank on reproductive success will be strongest when measured over long periods because small benefits might add up to substantial differences among females (@frank1986social) whereas stochastic events might reduce differences between females on shorter time scales (@cheney2004factors).   
 
+\
 
-  &nbsp;
-  
 **Result 4.2: Overall, effect sizes do not differ according to how dominants achieve or maintain their high ranks**
-
+\
 Effect sizes are higher in species in which condition plays a major role in determining which females are dominant rather than subordinate (average effect size 0.38; n=94 effect sizes), compared to species in which age (average effect size 0.31; n=100 effect sizes) or nepotism (average effect size 0.24; n=243 effect sizes) influence dominance rank (estimates for difference condition vs age: metafor lower +0.05 to upper +0.17, rethinking lower +0.01 to upper +0.16; condition vs nepotism: metafor lower +0.07 to +0.20, rethinking lower +0.08 to +0.20; age vs nepotism: metafor lower -0.07 to upper +0.03, rethinking lower -0.01 to upper +0.12). Species with different dominance systems are no longer estimated to be different when including the phylogenetic similarity.
 
 Our initial prediction focused on whether the time-scales at which the reproductive benefits of dominance accrue depend on how individuals achieve high rank. However, we realized that there was no straightforward way to assess this prediction. The species in our dataset have vastly different lifespans and associated inter-birth intervals, so the time-scale needs to be considered on a relative rather than an absolute scale. The values for the relative duration of a study (number of years studied divided by the maximum lifespan of the species) show that 90% of effect sizes are from studies that lasted less than 10% of the lifespan of the species (median 3%). In all of the 19 species in which studies spanned more than 10% of the lifespan, females acquire rank by nepotism. We did not find any consistent pattern of relationship between effect size and study duration dependent on the system of dominance acquisition.  
@@ -2205,11 +2213,11 @@ precis(rethinking_dominance_years,depth=2)[304:308,]
   
 
 *Prediction 4.3: For plural-breeding macaques, effect sizes of dominance rank on reproductive success are larger in species characterized as more despotic than in species characterized as more egalitarian.*
-
+\
 We added an analysis after the preregistration, focusing on variation in dominance style among macaques. Macaque species have been assigned to a four-grade social style according to the relationships among females. Grade 1 species, the most despotic, are characterized by steep dominance hierarchies and more asymmetries in social interactions among breeding females, whereas grade 4 species show more frequent counter-aggression from subordinates towards dominants and less bias in social interactions. We expected that the steeper hierarchies in more despotic species would lead to larger differences in access to resources, and accordingly higher reproductive success for dominant females.
 
 **Result 4.3: Among macaques, effect sizes do not differ according to how the dominance style among females has been characterized**
-
+\
 Differences in dominance styles among macaques are not associated with the effect of dominance rank on reproductive success (metafor estimates effect sizes of species in Grade 1 to be different from species in Grade 2 lower +0.05 to upper +0.12 but no differences for the five other pairwise Grade comparisons; rethinking estimates for all comparisons overlap zero; n = 109 effect sizes from 9 species). Egalitarian species do not show lower effects of dominance rank on reproductive success than other species and the sample size is too small to determine whether despotic species differ from other species (Figure 7). 
 
 
@@ -2376,10 +2384,10 @@ orchard_plot_macaques(meta_macaques,mod = "dominancestyle", xlab="Effect size (F
 
 We predicted that effects of rank on reproductive success will be lower in populations in which adult females are able to leave their group and join other groups compared to populations in which females cannot breed outside their natal group. In populations in which females are philopatric, they are likely to have support from female kin which can strengthen dominance differences (@lukas2018social). In addition, in species where females can change group membership easily, females are expected to join those groups where they have the best breeding option available to them (@vehrencamp1983model). 
 
-  &nbsp;
+\
 
 **Result 4.4: Stronger effects in populations in which females disperse to breed rather than in which females are philopatric**
-
+\
 The effects of dominance rank on reproductive success are higher in species in which females disperse and join new groups (average effect size 0.46; n=55 effect sizes) compared to species in which most females were born in the group where they breed (average effect size 0.26; n=360 effect sizes) (metafor estimate of difference lower -0.24 to upper -0.12, rethinking estimate lower -0.25 to upper -0.11), also when accounting for phylogenetic covariance (Figure 6).
 
 ---
@@ -2574,10 +2582,10 @@ orchard_plot_philopatry(meta_philopatry,mod = "FemalePhilopatry", xlab="Effect s
 
 We predicted that the effect of rank on reproductive success will be stronger in plural breeding populations in which there are fewer females per group, because dominant females will be more likely to interfere in reproductive attempts when there are fewer subordinates (@clutton2010adaptive) and because increased competition in larger groups is expected to reduce reproductive success even among dominants (@van1988scramble). 
 
-  &nbsp;
-  
-**Result 4.5: Effects of dominance rank on reproductive success are higher when groups contain fewer females**
+\
 
+**Result 4.5: Effects of dominance rank on reproductive success are higher when groups contain fewer females**
+\
 Both approaches detect a negative association between the effect sizes and group sizes (metafor estimate of log group size lower -0.099 to upper -0.678, rethinking estimate of standardized group size lower -0.10 to upper -0.05; n=444 effect sizes). Compared to groups of 2 females, groups of 10 females show ~10% lower effect sizes and groups of ~50 females show 50% lower effect sizes. The negative association between group size and the effect sizes remains when accounting for similarity among closely related species.
 
 
@@ -2683,10 +2691,9 @@ for (i in 1:50) curve(post$etasq[i]*exp(-post$rhosq[i]*x^2),add=TRUE,col=grau())
 
 We predicted that the relationship between dominance rank and reproductive success will be more pronounced in species in which social groups primarily consist of close kin compared to groups composed of unrelated females. Groups with high levels of average kinship among females are those where groups are small, females remain philopatric (@lukas2005extent), and females have support to establish their positions (@lukas2018social), which all are expected to lead to higher benefits of high rank.
 
-  &nbsp;
-  
+\  
 **Result 4.6: No association between levels of relatedness and effects of dominance rank on reproductive success**
-
+\
 Effect sizes of dominance rank on reproductive success increase with increasing levels of average relatedness among female group members (metafor estimate lower +0.31 to upper +0.59, rethinking estimate lower +0.31 to upper +0.71; n=288 effect sizes), though the association is no longer detected when including the shared phylogenetic history among species (metafor estimate lower -0.01 to upper +0.56; rethinking estimate lower -0.02 to upper +0.65).
 
 
@@ -2766,10 +2773,9 @@ precis(rethinking_phylogenetic_gaussian_relatedness)
 
 In addition to levels of average relatedness among group females, we also predicted that the relationship between dominance rank and reproductive success will be more pronounced in species in which there is high variance in relatedness, with females being closely related to some group members but not to others, as compared to species in which group females are either all related or all unrelated. In several species with female philopatry, groups are structured into matrilines (@fortunato2019lineal). Members of the same matriline tend to support each other in interactions with unrelated females, likely reinforcing differences among females. 
 
-  &nbsp;
- 
+\ 
 **Result 4.7: Variance in relatedness**
-
+\
 We could not assess this prediction because sufficient data was not available.
 
   &nbsp;
@@ -2778,10 +2784,9 @@ We could not assess this prediction because sufficient data was not available.
 
 We predicted that high ranking females will have less pronounced reproductive benefits in species in which females form strategic coalitions with others (@bercovitch1991social). Individuals have been suggested to form strategic coalitions to level the reproduction of others (@pandit2003model) and these coalitions are less likely in cooperatively breeding species (@lukas2018social). 
 
-  &nbsp;
- 
+\ 
 **Result 4.8: No differences in effect sizes between species in which females form coalitions to those in which they do not**
-
+\
 Species in which females form coalitions show only slightly lower effects of dominance rank on reproductive success (average 0.27; n=246 effect sizes) than species in which females do not have support during aggressive interactions (average 0.32; n=180 effect sizes) (estimate of difference metafor: lower -0.11 to upper -0.01, rethinking lower -0.09 to upper +0.01), with no difference in models accounting for similarity due to phylogenetic relatedness (metafor lower -0.10 to upper +0.07; rethinking lower -0.09 to upper +0.03).
 
 
@@ -2863,10 +2868,9 @@ precis(rethinking_phylogenetic_gaussian_coalition)
 
 We predicted that the association between high dominance rank and increased reproductive success of females will be lower in populations in which males compete intensely over reproductive opportunites because this leads to intersexual conflict that harms female fitness (@swedell2014sexual). In such populations, males tend to be aggressive towards females and males taking up tenure in a group tend to kill offspring indiscriminately or might even target offspring of high-ranking females (@cheney2004factors, @fedigan2013sexual), reducing any potential differences between high- and low-ranking females. We assessed whether high ranking females benefit less from their positions in populations in which groups show strong female-biased sex composition, or in which males commit infanticide, or with strong sexual size dimorphism (with males being larger than females).
 
-  &nbsp;
-
+\
 **Result 4.9: Dominance rank has less effect on reproductive success in social groups with fewer males per female but not with sexual dimorphism and male infanticide**
-
+\
 Effect sizes are larger in species in which sex ratios in social groups are more balanced and lower when there are fewer males per female (metafor estimate lower +0.55 to upper +1.25, rethinking estimate lower +0.07 to upper +0.11; n=328 effect sizes), and the association remains the same when accounting for shared phylogenetic history.
 
 Effect sizes are lower in species in which males commit infanticide (metafor estimate lower -0.20 to upper 0.00; rethinking estimate lower -0.15 to upper -0.04; n=332 effect sizes), but the relationship does not hold when accounting for phylogenetic relatedness (metafor lower -0.13 to upper +0.07, rethinking lower -0.07 to upper +0.06).
@@ -3111,30 +3115,33 @@ Overall, our data indicate that females of higher rank generally have higher rep
 
 We found that effect sizes of dominance rank on reproductive success are associated with seven of our single predictor variables (one in the opposite direction from what we predicted), whereas we did not find an association with another eight of the single predictor variables (Table 1). Five of the six associated predictor variables reflect variation in the social environment, while we did not find any association with any of the predictor variables reflecting the ecological environment.
 
+  
+\newpage
+
 
 ```{r table1, eval=TRUE, warning=FALSE, results='asis', echo=FALSE}
 options(width=60)
 
-predictorvariable<-c("P2.1 success measure", "P2.2 litters per year", "P2.2 litter size", "P3.1 diet", "P3.2 environmental harshness", "P3.3 population density", "P4.1 cooperative breeding", "P4.2 dominance acquisition", "P4.3 philopatry", "P4.4 group size", "P4.5 average relatedness","P4.7 female coalitions","P4.8 male infanticide","P4.8 sexual dimorphism", "P4.8 sex ratio")
+predictorvariable<-c("P2.1 success measure", "P2.2 litters per year", "P2.2 litter size", "P3.1 diet", "P3.2 environmental harshness", "P3.3 population density", "P4.1 cooperative breeding", "P4.2 dominance acquisition", "P4.3 dominance style", "P4.4 philopatry", "P4.5 group size", "P4.6 average relatedness","P4.8 female coalitions","P4.9 male infanticide","P4.9 sexual dimorphism", "P4.9 sex ratio")
  
-predicted_effect<-c("negative (survival lower)", "positive", "positive", "positive (carnivores higher)", "positive", "positive","positive", "positive (condition higher)", "positive", "negative","negative","negative", "negative", "negative", "positive")
+predicted_effect<-c("negative (survival lower)", "positive", "positive", "positive (carnivores higher)", "positive", "positive","positive", "positive (condition higher)", "positive (despotic higher)", "positive", "negative","negative","negative", "negative", "negative", "positive")
 
-observed_effect<-c("negative", "positive", "none", "none", "none", "positive", "positive", "none", "negative", "negative", "none","none","none","none", "positive")
+observed_effect<-c("negative", "positive", "none", "none", "none", "positive", "positive", "none","none", "negative", "negative", "none","none","none","none", "positive")
 
-metaforresults<-c("not available", "+0.03 - +0.05", "-0.01 - +0.03", "-0.04 - +0.03", "-0.30 - +0.40", "+0.04 - +0.08", "+0.30 - +0.40", "-0.07 - +0.03", "-0.24 - -0.12", "-0.07 - -0.01", "-0.01 - +0.56","-0.10 - +0.07","-0.13 - +0.07","-0.17 - +0.11", "+0.44 - +1.25")
+metaforresults<-c("not available", "+0.03 - +0.05", "-0.01 - +0.03", "-0.04 - +0.03", "-0.30 - +0.40", "+0.04 - +0.08", "+0.30 - +0.40", "-0.10 - +0.12", "-0.07 - +0.03", "-0.24 - -0.12", "-0.07 - -0.01", "-0.01 - +0.56","-0.10 - +0.07","-0.13 - +0.07","-0.17 - +0.11", "+0.44 - +1.25")
 
-rethinkingresults<-c("-0.10 - -0.01", "+0.05 - +0.09","-0.04 - +0.09", "-0.10 - +0.06", "-0.60 - +0.10", "+0.05 - +0.10", "+0.27 - +0.41", "-0.01 - +0.12", "-0.25 - -0.11", "-0.10 - -0.05", "-0.01 - +0.12","-0.09 - +0.07","-0.07 - +0.06","-0.05 - +0.01", "+0.07 - +0.11")
+rethinkingresults<-c("-0.10 - -0.01", "+0.05 - +0.09","-0.04 - +0.09", "-0.10 - +0.06", "-0.60 - +0.10", "+0.05 - +0.10", "+0.27 - +0.41", "-0.02 - +0.03", "-0.01 - +0.12", "-0.25 - -0.11", "-0.10 - -0.05", "-0.01 - +0.12","-0.09 - +0.07","-0.07 - +0.06","-0.05 - +0.01", "+0.07 - +0.11")
 
 
 combined_table <- data.frame(predictorvariable, predicted_effect, observed_effect, metaforresults, rethinkingresults)
 
-colnames(combined_table)<-c("Predictor variable","Predicted association","Observed association","Metafor 95% confidence interval of estimate of association","Rethinking 89% posterior compatibility estimate of association")
+colnames(combined_table)<-c("Predictor variable","Predicted association","Observed association","Metafor 95% CI","Rethinking 89% PCI")
 
 ```
 
 ---
 
-**Table 1.** Overview of results of univariate analyses indicating whether **we did or did not find an association between individual variables with variation in effect sizes of dominance rank on female reproductive success**. The table presents, for each variable, which direction of association we predicted, the association we observed, and the respective estimates of the association when accounting for shared phylogenetic history among the species in our sample.
+**Table 1.** Overview of our predictions and results of univariate analyses indicating whether **we did or did not find an association between individual variables with variation in effect sizes of dominance rank on female reproductive success**. The table presents, for each variable, which direction of association we predicted, the association we observed (estimates of the 95% confidence interval with the metafor approach and of the 89% posterior compatibility interval with the rethinking approach), and the respective estimates of the association when accounting for shared phylogenetic history among the species in our sample. Overall, our results align with 7 out of our 16 predictions.
 
 
 ```{r table_associated, eval=TRUE, warning=FALSE, results='asis', echo=FALSE, include=TRUE}
@@ -3930,7 +3937,6 @@ precis(difference_coalition)
 
 ```
 
-  &nbsp;
 
 **Result 5.3: Philopatry and average relatedness**
 
@@ -4124,6 +4130,7 @@ precis(rethinking_phylogenetic_gaussian_groupsize_popdens)
 
 ```
 
+  &nbsp;
 
 *Prediction 5.6: Smaller group sizes [larger effect sizes predicted) might be associated with more intense intersexual conflict [smaller effect sizes predicted], leading to an interaction that might influence the estimation of their respective associations with the effect sizes of dominance rank on reproductive success.*
 
@@ -4188,6 +4195,8 @@ rethinking_groupsizesexratio <- ulam(
 precis(rethinking_groupsizesexratio,depth=2)[330:332,]
 
 ```
+
+  &nbsp;
  
 *Prediction 5.7: Monopolizable resources [larger effect sizes predicted] might be associated with reduced population density [smaller effect sizes predicted]), leading to an interactive influence on the strength of the effect sizes of dominance rank on reproductive success.*
 
@@ -4246,6 +4255,8 @@ rethinking_diet_density <- ulam(
 precis(rethinking_diet_density,depth=2)[347:349,]
 
 ```
+
+  &nbsp;
  
 *Prediction 5.8: Environmental harshness [larger effect sizes predicted] might be associated with reduced population density [smaller effect sizes predicted]), leading to an interactive influence on the strength of the effect sizes of dominance rank on reproductive success.*
 
@@ -4313,8 +4324,6 @@ precis(rethinking_philopatry_densityharshness,depth=2)[215:218,]
   &nbsp;
   
 *Prediction 5.9: Studies performed on wild versus captive individuals and using different measures of reproductive success might not only differ in the overall strength of the effect of rank on reproductive success, but also in how other variables influence this effect.*
-
-  &nbsp;
 
 **Result 5.9: No different influences in captive and wild populations**
 
@@ -4391,7 +4400,7 @@ The analyses of combinations of predictors of the effect size of dominance on ra
   
   &nbsp; 
     
-
+\newpage
 
 ## Discussion
 
@@ -4520,7 +4529,7 @@ mtext("Density of independent simulation runs",side=2,cex=1.5,line=2.5,las=3)
 
 
 
-Among the social traits we investigated, the highest difference in the effect of rank on reproductive success was between cooperative breeders and plural/associated breeders. This result was expected given the higher reproductive skew that has been found among females in cooperative breeders (@lukas2012cooperative). The contrast between breeding systems appears due to the degree of reproductive control that dominants in cooperative breeders have. Our results also show that other social factors, such as the relatedness among females, have less of a role on the effect sizes in cooperative breeders than in plural breeders, in line with theoretical predictions that complete monopolization of reproduction can be stable if subordinates are queuing to inherit the dominant position themselves (@kokko1999). The likely importance of reproductive control of dominant females in cooperative breeders compared to plural/associated breeders is also reflected in the effect of group size on the benefits of dominance in the different breeding systems. Similar to what has also been found in eusocial insects (@rubenstein2016discrete) and cooperatively breeding birds (@riehl2017kinship), among cooperatively breeding mammals there usually is a single breeding dominant female and large groups occur when her reproductive output is high without loss of reproductive control. In contrast, among plural/associated breeding mammals groups grow large as more females/matrilines join a group leading to reduced reproductive control of dominants. In this context, it is important to again bear in mind that we only look at the association between rank and the variation in reproductive success within groups. In cooperative breeders, increases in group size might reduce the reproductive output of dominant females even if they still monopolize reproduction (@clutton2010adaptive). In plural breeders, even though the relative difference between dominant and subordinate females might be lower in larger groups, in terms of overall fitness it might still be better to be dominant in a group of the optimal size than in a smaller group (e.g. small group where dominant has 3 versus subordinate has 2 offspring, i.e. 50% higher fitness, compared to a group where dominant has 4 while all other females have 3 offspring, i.e. 33% higher fitness). 
+Among the social traits we investigated, the highest difference in the effect of rank on reproductive success was between cooperative breeders and plural/associated breeders. This result was expected given the higher reproductive skew that has been found among females in cooperative breeders (@lukas2012cooperative). The contrast between breeding systems appears due to the degree of reproductive control that dominants in cooperative breeders have. Our results also show that other social factors, such as the relatedness among females, have less of a role on the effect sizes in cooperative breeders than in plural breeders, in line with theoretical predictions that complete monopolization of reproduction can be stable if subordinates are queuing to inherit the dominant position themselves (@kokko1999social). The likely importance of reproductive control of dominant females in cooperative breeders compared to plural/associated breeders is also reflected in the effect of group size on the benefits of dominance in the different breeding systems. Similar to what has also been found in eusocial insects (@rubenstein2016discrete) and cooperatively breeding birds (@riehl2017kinship), among cooperatively breeding mammals there usually is a single breeding dominant female and large groups occur when her reproductive output is high without loss of reproductive control. In contrast, among plural/associated breeding mammals groups grow large as more females/matrilines join a group leading to reduced reproductive control of dominants. In this context, it is important to again bear in mind that we only look at the association between rank and the variation in reproductive success within groups. In cooperative breeders, increases in group size might reduce the reproductive output of dominant females even if they still monopolize reproduction (@clutton2010adaptive). In plural breeders, even though the relative difference between dominant and subordinate females might be lower in larger groups, in terms of overall fitness it might still be better to be dominant in a group of the optimal size than in a smaller group (e.g. small group where dominant has 3 versus subordinate has 2 offspring, i.e. 50% higher fitness, compared to a group where dominant has 4 while all other females have 3 offspring, i.e. 33% higher fitness). 
 
 Among plural and associated breeders, effects of dominance rank on female reproductive success are higher when (i) females disperse, (ii) groups are smaller, and (iii) females form coalitions. These observations are somewhat opposite to the processes presumably linked to reproductive suppression in cooperative breeders. In addition, these findings also do not support accounts that focus on nepotism as a primary factor in leading to social groups with large differences among females. It appears that in situations of strong nepotism females in a group might have more similar reproductive success, with patterns such as youngest sister ascendancy potentially reducing differences among kin (@datta1988acquisition, @bergstrom2010dominance, @lea2014complex), as predicted when offspring production is costly (@cant1999costly). In species with high nepotism, differences might be predominantly among matrilines (@holekamp2012society) rather than among individuals, which our study focused on. In our sample we observe relatively strong effects of high dominance rank in plural breeders when females form social bonds with unfamiliar/unrelated individuals they encounter when joining new breeding units upon reaching maturity (e.g. @cameron2009social), such as among equids and gorillas. Groups in which females compete with and form complex bonds with unrelated females tend to be characterized by high relationship complexity (@lukas2018social). Rates of aggression tend to be high and dominance relationships are often based on age differences (@rutberg1990dominance) with rare changes in the hierarchy, such that females who obtain high ranking positions in these units are likely to gain fitness benefits for extended periods of time. Overall though, effect sizes can be high independent of how females acquire and maintain rank, as also highlighted by the similarity in effect sizes across macaque species with different dominance styles. It thus sounds as if social inequality, regardless of its sources and forms, has broadly similar consequences on the variance of reproductive success. 
 
