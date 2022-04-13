@@ -50,7 +50,7 @@ knitr::opts_chunk$set(tidy.opts=list(width.cutoff=60), tidy=TRUE)
 \   
   &nbsp;
 \   
-Open... ![](Figures/logoOpenAccess.png){width=2.5%} access; ![](Figures/logoOpenCode.png){width=2.5%}   [code; ](https://github.com/corinalogan/grackles/blob/master/Files/Preregistrations/gdispersal_manuscript.Rmd) ![](Figures/logoOpenPeerReview.png){width=2.5%}   peer review;  ![](Figures/logoOpenData.png){width=2.5%}    [data](https://doi.org/10.5063/F1W66J48)
+Open... ![](Figures/logoOpenAccess.png){width=2.5%} access; ![](Figures/logoOpenCode.png){width=2.5%}   [code; ](https://dx.doi.org/10.17617/3.80) ![](Figures/logoOpenPeerReview.png){width=2.5%}   peer review;  ![](Figures/logoOpenData.png){width=2.5%}    [data](https://doi.org/10.5063/F1PZ578P)
 \ 
   &nbsp;
 \   
@@ -4556,7 +4556,7 @@ Our study relies on previously published data and did not involve working direct
 
 
 ### Data and code availability
-The dataset has been published at KNB [doi:10.5063/F1RB7312.](https://knb.ecoinformatics.org/view/doi:10.5063/F1RB7312) 
+The dataset has been published at KNB [doi:10.5063/F1PZ578P.](https://knb.ecoinformatics.org/view/doi:10.5063/F1PZ578P) 
 The code of the current version is archived at Edmond [doi:10.17617/3.80](https://dx.doi.org/10.17617/3.80)
 
 
