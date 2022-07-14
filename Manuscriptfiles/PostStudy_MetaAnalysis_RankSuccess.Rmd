@@ -221,28 +221,55 @@ We generated a single consensus phylogeny for the mammalian species in our sampl
     
 #### **Analyses**
 \
-We performed all analyses in the statistical software R (version 4.0.3; @Rlanguage). We built separate models for each prediction. For some predictor variables,we could not find data to match to all observed effect sizes, and excluded these cases with missing data from the respective analyses. We report the sample size for each analysis. To assess the robustness of the findings and whether modeling decisions might have an influence on our results, we used a frequentist and a Bayesian approach to build the statistical models. We fit meta-analytic multilevel mixed-effects models with moderators via linear models using the function"rma.mv" in the package metafor (@viechtbauer2010conducting), taking into account the sampling variance as measurement error and including models that account for the potential correlations among effect sizes due to shared phylogenetic history among species (@nakagawa2012methodological). The phylogenetic multilevel meta-analysis has $ObservedFisher Zr_{n}$ as the effect size for the *n*th study (*n*=1,...,$N_{study}$), $\mu$ is the meta-analytical mean (or intercept), $m_{n}$ is a sampling (measurement) error effect fo the *n*th study, $e_{n}$ is the effect-size-specific (within-study) residual term for the *n*th effect size and **e** is a 1 by $N_{study}$ vector of $e_{j}$ which is normally distributed around zero with within-study variance $\sigma^{2}_{e}$, $u_{j[n]}$ denotes the study-specific effect for the *n*th study (n=1,...,$N_{study}$) applied to the *n*the effect size (i=1,...,$N_{effect-size}$), $s_{k}$ as the species-specific effect, which is not part of the phylogenetic effect with *s** as 1 by $N_{species}$ vector of $s_{k}$ which is normally distributed around zero with species specific variance $\sigma^{2}_{s}$, plus $a_{k}$ as the phylogenetic effect for the *k*th species, with A as a $N_{species}$ by $N_{species}$ correlation matrix of the distances between species:
+We performed all analyses in the statistical software R (version 4.0.3; @Rlanguage). We built separate models for each prediction. For some predictor variables,we could not find data to match to all observed effect sizes, and excluded these cases with missing data from the respective analyses. We report the sample size for each analysis. To assess the robustness of the findings and whether modeling decisions might have an influence on our results, we used a frequentist and a Bayesian approach to build the statistical models. For the frequentist approach, we fit meta-analytic multilevel mixed-effects models with moderators via linear models using the function"rma.mv" in the package metafor (@viechtbauer2010conducting), taking into account the sampling variance as measurement error and including models that account for the potential correlations among effect sizes due to shared phylogenetic history among species (@nakagawa2012methodological). For the Bayesian approach, we estimated relationships as implemented in the package rethinking using the function "ulam" (@mcelreath2020statistical) to fit with Markov chain Monte Carlo estimation in stan (@STANlanguage). We fit multilevel models that include the sampling variance as measurement error (@kurz2019rethinking) and the shared phylogenetic history as a covariance matrix. Weakly regularizing priors were used for all parameters. We drew 8000 samples from four chains, checking that for each the Gelman-Rubin convergence diagnostic 'R-hat' values are less than 1.01 indicating that the Markov chains have converged towards the final estimates. Visual inspection of trace plots and rank histograms were performed to ensure that they indicated no evidence of divergent transitions or biased posterior exploration. Posteriors from the model were used to generate estimates of the overall effect size and the influence of potential moderators. With both approaches, we determined whether a variable had a relationship with the variation in the effect of dominance rank on reproductive success when the interval (for metafor the 95% confidence interval of the estimate; for rethinking the 89% compatibility estimate of the posterior sample) of the estimated association did not cross zero (continuous variable) or of the contrast between levels did not cross zero (categorical variable), indicating that our data show a consistent positive/negative association.
 
-$ObservedFisher Zr_{n} = \mu + \alpha_{k[n]} +s_{k[n]} + u_{j[n]}+e_{n}+m_{n}$ \
-$m \sim N(0,M)$ \
-$u \sim N(0,\sigma^{2}_{u}I$  \
-$e \sim N(0,\sigma^{2}_{e}I$  \
-$s \sim {N(0,\sigma^{2}_{s}I)}$ \
-$a \sim {N(0,\sigma^{2}_{s}A)}$ \
+In both approaches, the phylogenetic multilevel meta-analyses we used for most of our analyses takes as outcome the individual effect sizes, the z-transformed $ObservedFisher Zr_{i}$ as the *i*-th effect size (with i = 1,...,$N_{i} = \sum_{j=1}^{N_{studies}} N_r$ where $N_{r}$ is the number of effect sizes reported in the *j*-th study). They include the variance $Variance_{i}$, the sampling (measurement) error of the *i*-th effect; and the values for the respective predictor variables, $Explanatory_{i}$ associated with the *i*-th effect size. From this, we estimate $\mu$ as the meta-analytical mean (or intercept); and $\beta_{explanatory}*Explanatory$ as the slope $\beta$ between the $explanatory$ variable and the effect size values.
 
-Second, we estimated relationships with Bayesian approaches as implemented in the package rethinking using the function "ulam" (@mcelreath2020statistical) to fit with Markov chain Monte Carlo estimation in stan (@STANlanguage). For the Bayesian models, we fit multilevel models that include the sampling variance as measurement error (@kurz2019rethinking) and the shared phylogenetic history as a covariance matrix. Weakly regularizing priors were used for all parameters. We drew 8000 samples from four chains, checking that for each the Gelman-Rubin convergence diagnostic 'R-hat' values are less than 1.01 indicating that the Markov chains have converged towards the final estimates. Visual inspection of trace plots and rank histograms were performed to ensure that they indicated no evidence of divergent transitions or biased posterior exploration. Posteriors from the model were used to generate estimates of the overall effect size and the influence of potential moderators. We detail model construction in the following: we first assess whether species and population identity create dependencies amongst the measured effect sizes. If so, we include these factors through covariance matrices reflecting the dependence across measurements. The models take the following form: we assume that each transformed effect size 'Observed Fisher Zr' we extracted from the articles (individual effect sizes indexed by 'n') is a reflection of the 'True Fisher Zr' effect size of that population that was measured with some error, with the extent of the error related to the observed 'Variance' of each effect size; the 'True Fisher Zr' effect sizes come from an overall distribution, the mean '$\mu$' of which depends on an intercept '$\alpha$' and the influence of the respective predictor variables modulated by a modifier '$\beta$', with the prior for $\alpha$ and $\beta$ centered around zero assuming effect sizes can be both positive and zero and that the predictor variable might have no effect; similarity in the variance $\sigma^{2}$ between the 'True Fisher Zr' as arranged in a pairwise matrix K between species 'i' and 'j' that transforms the extent of the shared phylogenetic history D among species pairs 'i' and 'j', assumed to follow a Gaussian process with a multinormal prior with the parameters $\eta^2$ (covariance among closely related species) and $\rho^2$ (decline in covariance as phylogenetic distance increases), whose priors are constrained between 0 and 1:
-    
-$ObservedFisher Zr_{n} \sim {Normal}(TrueFisherZr_{n}, Variance_{n})$ \
-$TrueFisherZr_{n} \sim MVNormal(\mu,\sigma^{2})$ \
-$\mu = \alpha + \beta_{explanatory[i]}$ \
-$\alpha \sim Normal(0,1)$ \
-$\beta_{explanatory[i]} \sim Normal(0,0.5)$ \
-$\sigma^{2} \sim MVNormal(0,K(i,j))$ \
-$K(i,j) = \eta^2 exp(-\rho^2D_{i,j})$ \
+&nbsp; 
+
+The meta-analysis in metafor takes the form:
+
+$ObservedFisher Zr_{i} = \mu + \beta_{explanatory}*Explanatory_{i} +s_{k[i]} + p_{k[i]} +e_{i}$ \
+$s \sim {N_{species}(0,\sigma^{2}_{s}I)}$ \
+$p \sim {N_{species}(0,\sigma^{2}_{p}D_{kl})}$ \
+$e \sim N_{i}(0,V)$  \
+
+where
+
+each effect size $ObservedFisher Zr_{i}$ is assumed to reflect the overall mean $\mu$ and the relationship with the respective predictor variable $\beta_{explanatory}*Explanatory_{i}$, plus
+
+$s_{k}$ is the species-specific effect, which is not part of the phylogenetic effect with $s$ as 1 by the number of species $N_{species}$ vector of the $s_{k}$ values which are normally distributed around zero with species specific variance $\sigma^{2}_{s}$ and $I$ has dimensions $N_{species}$ by $N_{species}$;
+
+$p_{k}$ is the phylogenetic effect for the *k*th species, with $p$ as 1 by $N_{species}$ column vector with the $p_{k}$ values which are assumed to follow a multivariate normal distribution with mean $0$ and variance-covariance matrix $\sigma^{2}_{p}K$, where $\sigma^{2}_{p}$ denotes between species variance due to phylogeny and D is the $N_{species}$ by $N_{species}$ correlation matrix of the distances between species $k$ and $l$ from the phylogeny; and
+
+$e_{i}$ is the effect-size-specific residual term for the *i*-th effect size and $e$ is a 1 by $N_{i}$ vector of $e_{i}$ which is normally distributed around zero with variance mean $Variance_{i}$, the sampling (measurement) error of the *i*-th effect, and $V$ is an $N_{i}$ by $N_{i}$ matrix with the  $Variance_{i}$ values along the diagonal: 
+
+&nbsp; 
+
+
+The meta-analysis in rethinking takes the form:
+
+$ObservedFisher Zr_{i} \sim {Normal}(TrueFisherZr_{i}, Variance_{i})$ \
+$TrueFisherZr_{i} \sim MVNormal(\alpha,\sigma)$ \
+$\alpha = \mu + \beta_{explanatory}*Explanatory_{i}$ \
+$\mu \sim Normal(0,1)$ \
+$\beta_{explanatory} \sim Normal(0,0.5)$ \
+$\sigma \sim N_{i}(0,K_{kl})$ \
+$K_{kl} = \eta^2 exp(-\rho^2D_{kl}^{2})$ \
 $\eta^2 \sim Exponential(1)$ \
 $\rho^2 \sim Exponential(1)$ \
-    
-We determined whether a variable had a relationship with the variation in the effect of dominance rank on reproductive success when the interval (for metafor the 95% confidence interval of the estimate; for rethinking the 89% compatibility estimate of the posterior sample) of the estimated association did not cross zero (continuous variable) or the contrast between levels did not cross zero (categorical variable), indicating that our data show a consistent positive/negative association.
+
+where 
+
+each effect size $ObservedFisher Zr_{i}$ is assumed to reflect the true effect size of that relationship $TrueFisher Zr_{i}$ that was measured with some error, with the extent of the error related to the observed $Variance_{i}$ of each effect size; 
+
+the $TrueFisher Zr_{i}$ effect sizes come from an overall distribution, the mean $\alpha$ of which depends on $\mu$ and the relationship with the respective predictor variable $\beta_{explanatory}*Explanatory_{i}$, with the priors for $\mu$ and $\beta$ centered around zero assuming the overall effect size mean is close to zero but might be smaller or larger than zero and that the predictor variable might have no, a negative, or a positive influence; and
+
+the variance $\sigma$ of the $TrueFisher Zr_{i}$ as a 1 by $N_{i}$ column vector with mean $0$ and variance-covariance matrix $K$ between the respective species $k$ and $l$, where the same species can appear in multiple rows/columns when there are multiple observed effect sizes from that species, that transforms the extent of the squared phylogenetic distance $D$ among species pairs $k$ and $l$, assumed to follow a Gaussian process with a multinormal prior with the parameters $\eta^2$ (maximum covariance among closely related species) and $\rho^2$ (decline in covariance as phylogenetic distance increases), whose priors are constrained to be positive.
+
+
+&nbsp; 
+
 We provide all code showing the setup of the various models and the plots, the input files containing the data and phylogeny (see the "Data and Code Availability" section for the archived versions or [the linked github repository](https://github.com/dieterlukas/FemaleDominanceReproduction_MetaAnalysis). In addition, the github repository also contains a simulated dataset with the same structure as the actual data, which we used to assess the fit of our models in the preregistration.
 
 
@@ -347,9 +374,8 @@ dat<-inputdata
 # Load the consensus tree for the 86 species in the actual dataset
 mammaltree<-read.nexus(url("https://raw.githubusercontent.com/dieterlukas/FemaleDominanceReproduction_MetaAnalysis/trunk/Inputfiles/CombinedTree_MetaAnalysis_RankSuccess.nex"))
 
-# In order to link the phylogenetic history to the data, we create covariance matrices reflecting the shared phylogenetic history of pairs of species in a distance matrix
-phylo_branch <- compute.brlen(mammaltree, method = "Grafen", power = 1)
-phylo_cor <- vcv(phylo_branch, cor = T)
+# In order to link the phylogenetic history to the data, we create covariance matrices reflecting the shared phylogenetic history of pairs of species in a distance matrix. This transformation resembles that changes in effect sizes occur over evolutionary time like in a Brownian motion model across all the branches of the phylogenetic tree. For transformations that reflect potentially alternative evolutionary histories, see below.
+phylo_cor <- vcv(mammaltree, cor = T)
 Dmat<-cophenetic(mammaltree)
 
 # Setting up the data for the phylogenetic models in rethinking
@@ -916,7 +942,7 @@ We predicted that effect sizes of the relationship between dominance rank and re
   
 **Result 1.4: Effect sizes from species in the same Order are similar**
 \
-To the random effects model, we added a covariance structure to reflect potential similarities in effect sizes arising from closely related species showing similar effects due to their shared phylogenetic history. Both statistical approaches indicate that closely related species tend to have effect sizes that are more similar than those of distantly related species. The metafor approach suggests that about 20% of the variation in effect sizes is associated with covariation among species. The rethinking approach shows high uncertainty in the estimates (Figure 5), reflecting the high heterogeneity in the underlying data with high variation within species and different measures taken among closely related species. It suggests that species of the same genus tend to have similar effect sizes and that shared phylogenetic history might also explain similarities in effect sizes among species in the same Order, but covariance estimates are close to zero for species pairs that are more distantly related (Figure 5; the highest standardized distance between any pair of species in the same Order is 0.40).
+To the random effects model, we added a covariance structure to reflect potential similarities in effect sizes arising from closely related species showing similar effects due to their shared phylogenetic history. Both statistical approaches indicate that closely related species tend to have effect sizes that are more similar than those of distantly related species. The metafor approach suggests that about 25% of the variation in effect sizes is associated with covariation among species. The rethinking approach shows high uncertainty in the estimates (Figure 5), reflecting the high heterogeneity in the underlying data with high variation within species and different measures taken among closely related species. It suggests that species of the same genus tend to have similar effect sizes and that shared phylogenetic history might also explain similarities in effect sizes among species in the same Order, but covariance estimates are close to zero for species pairs that are more distantly related (Figure 5; the highest standardized distance between any pair of species in the same Order is 0.40).
 
 \newpage
 
@@ -947,6 +973,23 @@ metafor_phylogenetic <- rma.mv(Fishers_Z_r, Variance,
 metafor_phylogenetic
 
 
+# For the metatfor approach, we can reflect potentially different evolutionary histories by transforming the branch length of the phylogenetic tree prior to calculating the covariances (the shared phylogenetic histories amongst all pairs of species). As an example, here we assume that changes occurred whenever populations split into two lineages, independent of the time these two lineages have been separated for. Raising the power to a value larger than one will approach a situation  more like the Gaussian model where all species on the same side of the tree are assumed to be different from all species on the other side of the tree.
+phylo_branch <- compute.brlen(mammaltree, method = "Grafen", power = 1)
+phylo_cor_grafen <- vcv(phylo_branch, cor = T)
+
+metafor_phylogenetic <- rma.mv(Fishers_Z_r, Variance,
+                                      mod =~1,
+                                      random=list(~ 1 | SpeciesIncluded, # linking the species to the phylogeny
+                                                  ~ 1 | Latin, # observations from the same species might be similar to each other, even if those from closely related species are not
+                                                  ~ 1 | StudyRef),  # accounting for observations from the same publication
+                                      R = list(SpeciesIncluded = phylo_cor_grafen), # reflecting the phylogenetic relatedness through the covariance matrix
+                                      method="REML",
+                                      test="t",  
+                                      data=dat)
+
+# Display the result. The influence of phylogenetic similarity is shown with the estimator for sigma^2.1 factor SpeciesIncluded. 
+
+metafor_phylogenetic
 
 
 #For the stan model, we also transform the phylogeny into a distance matrix that reflects the shared history among species. 
