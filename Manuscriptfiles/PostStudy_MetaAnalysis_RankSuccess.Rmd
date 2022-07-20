@@ -143,7 +143,7 @@ We checked the titles and abstracts to identify studies that observed dominance 
 
 #### **Variables, their definitions, and their sources**
 \
-**Variables coded directly from the relevant publications:**
+***Variables coded directly from the relevant publications:***
 
 All data from the literature search on publications reporting the effect of dominance rank on reproductive success were entered prior to the first submission of the preregistration. S and DL performed the data extraction. We initially coded eight papers independently, for which we both extracted the same values and classified the approaches in the same way. S and DL also independently went through the studies included in @majolo2012fitness and agreed on which to include and which not. After this, S and DL independently identified and coded articles, with occasional cross-checks and discussions of any border line cases. We extracted the relevant information to calculate the effect sizes and their associated variance. In addition, we coded a set of variables to characterize the methodological approach. The dataset contains 444 effect sizes from 187 studies on 86 mammalian species.
 
@@ -176,7 +176,7 @@ All data from the literature search on publications reporting the effect of domi
 *Social group size*: we recorded the average number of adult females per group in the study population, based on the information provided in the manuscripts. We relied on the definition of a social group as used by the respective authors, which might include associations of females in: singular-breeder cooperative groups (as in wolves or meerkats); stable groups of multiple breeding females (as in baboons or hyenas); or breeding associations defined by physical proximity (as in bighorn sheep or antelopes). We will have a separate coding of the social system (see below). 
 
 
-**Variables extracted from the broader literature for each species/population:**
+***Variables extracted from the broader literature for each species/population:***
 
 The following data were added prior to the analyses. For most of these, we extracted information from the relevant papers or publications reporting on the same population. For some of these, we used previously published species’ averages, because records from each population for each specific period during which the effect of dominance rank on reproductive success were measured were not available for a large enough sample. We list sources we used to obtain these data.
 
@@ -218,6 +218,7 @@ The following data were added prior to the analyses. For most of these, we extra
 \
 We generated a single consensus phylogeny for the mammalian species in our sample from the most recent complete mammalian time-calibrated phylogeny (@upham2019inferring). We downloaded a credible set of 1000 trees of mammalian phylogenetic history from vertlife.org/phylosubsets/ (July 2020) and used TreeAnnotator (version 1.8.2 in BEAST: @drummond2012bayesian) to generate a maximum clade credibility (MCC) tree (median node heights and a burn in of 250 trees). We trimmed the tree to match the species in our sample (in one instance using a close relative, /Canis lupus/ instead of /Canis familiaris/ ) and converted branch lengths using functions of the package ape (@paradis2019ape).
 
+\newpage
     
 #### **Analyses**
 \
@@ -230,20 +231,20 @@ In both approaches, the phylogenetic multilevel meta-analyses we used for most o
 The meta-analysis in metafor takes the form:
 
 $ObservedFisher Zr_{i} = \mu + \beta_{explanatory}*Explanatory_{i} +s_{k[i]} + p_{k[i]} +e_{i}$ \
-$s \sim N_{species} [Normal(0,\sigma^{2}_{s}I)]$ \
-$p \sim N_{species} [MVNormal(0,\sigma^{2}_{p}D)]$ \
-$e \sim N_{i} [Normal(0,V)]$  \
+$\mathbf{s} \sim Normal(0,\sigma^{2}_{s}\mathbf{I})$ \
+$\mathbf{p} \sim MVNormal(0,\sigma^{2}_{p}\mathbf{D})$ \
+$\mathbf{e} \sim Normal(0,\mathbf{V})$  \
 
 
 where
 
 each effect size $ObservedFisher Zr_{i}$ is assumed to reflect the overall mean $\mu$ and the relationship with the respective predictor variable $\beta_{explanatory}*Explanatory_{i}$, plus
 
-$s_{k}$ is the species-specific effect, which is not part of the phylogenetic effect with $s$ as 1 by the number of species $N_{species}$ vector of the $s_{k}$ values which are normally distributed around zero with species specific variance $\sigma^{2}_{s}$ and $I$ has dimensions $N_{species}$ by $N_{species}$;
+$s_{k}$ is the species-specific effect, which is not part of the phylogenetic effect with $\mathbf{s}$ as 1 by the number of species $N_{species}$ vector of the $s_{k}$ values which are normally distributed around zero with species specific variance $\sigma^{2}_{s}$ and $I$ has dimensions $N_{species}$ by $N_{species}$;
 
-$p_{k}$ is the phylogenetic effect for the *k*th species, with $p$ as 1 by $N_{species}$ column vector with the $p_{k}$ values which are assumed to follow a multivariate normal distribution with mean $0$ and variance-covariance matrix $\sigma^{2}_{p}K$, where $\sigma^{2}_{p}$ denotes between species variance due to phylogeny and D is the $N_{species}$ by $N_{species}$ distance matrix between species $k$ and $l$ from the phylogeny; and
+$p_{k}$ is the phylogenetic effect for the *k*th species, with $\mathbf{p}$ as 1 by $N_{species}$ column vector with the $p_{k}$ values which are assumed to follow a multivariate normal distribution with mean $0$ and variance-covariance matrix $\sigma^{2}_{p}K$, where $\sigma^{2}_{p}$ denotes between species variance due to phylogeny and $\mathbf{D}$ is the $N_{species}$ by $N_{species}$ distance matrix between species $k$ and $l$ from the phylogeny; and
 
-$e_{i}$ is the effect-size-specific residual term for the *i*-th effect size and $e$ is a 1 by $N_{i}$ vector of $e_{i}$ which is normally distributed around zero with variance mean $Variance_{i}$, the sampling (measurement) error of the *i*-th effect, and $V$ is an $N_{i}$ by $N_{i}$ matrix with the  $Variance_{i}$ values along the diagonal: 
+$e_{i}$ is the effect-size-specific residual term for the *i*-th effect size and $\mathbf{e}$ is a 1 by $N_{i}$ vector of $e_{i}$ which is normally distributed around zero with variance mean $Variance_{i}$, the sampling (measurement) error of the *i*-th effect, and $\mathbf{V}$ is an $N_{i}$ by $N_{i}$ matrix with the  $Variance_{i}$ values along the diagonal. 
 
 &nbsp; 
 
@@ -255,7 +256,7 @@ $TrueFisherZr_{i} \sim MVNormal(\alpha,K_{k[i],l[j]})$ \
 $\alpha = \mu + \beta_{explanatory}*Explanatory_{i}$ \
 $\mu \sim Normal(0,1)$ \
 $\beta_{explanatory} \sim Normal(0,0.5)$ \
-$K = \eta^2 exp(-\rho^2D^{2})$ \
+$\mathbf{K} = \eta^2 exp(-\rho^2\mathbf{D}^{2})$ \
 $\eta^2 \sim Exponential(1)$ \
 $\rho^2 \sim Exponential(1)$ \
 
@@ -265,7 +266,7 @@ each effect size $ObservedFisher Zr_{i}$ is assumed to reflect the true effect s
 
 the $TrueFisher Zr_{i}$ effect sizes come from an overall distribution, the mean $\alpha$ of which depends on $\mu$ and the relationship with the respective predictor variable $\beta_{explanatory}*Explanatory_{i}$, with the priors for $\mu$ and $\beta$ centered around zero assuming the overall effect size mean is close to zero but might be smaller or larger than zero and that the predictor variable might have no, a negative, or a positive influence; and
 
-$K_{k[i],l[j]}$ reflecting the similarity between the respective species $k$ and $l$ from which the effect sizes $i$ and $j$ have been reported, with $K$ as the variance-covariance matrix of the $TrueFisher Zr_{i}$ reflecting the similarity between all species $k$ and $l$, where the same species $k$ can appear in multiple rows/columns when there are multiple observed effect sizes from that species, that transforms the squared distance $D$ among all species pairs $k,l$ from the phylogeny according to a Gaussian process with a multinormal prior with the parameters $\eta^2$ (maximum covariance among closely related species) and $\rho^2$ (decline in covariance as phylogenetic distance increases), whose priors are constrained to be positive.
+$K_{k[i],l[j]}$ reflecting the similarity between the respective species $k$ and $l$ from which the effect sizes $i$ and $j$ have been reported, with $\mathbf{K}$ as the variance-covariance matrix of the $TrueFisher Zr_{i}$ reflecting the similarity between all species $k$ and $l$, where the same species $k$ can appear in multiple rows/columns when there are multiple observed effect sizes from that species, that transforms the squared distance $\mathbf{D}$ among all species pairs $k,l$ from the phylogeny according to a Gaussian process with a multinormal prior with the parameters $\eta^2$ (maximum covariance among closely related species) and $\rho^2$ (decline in covariance as phylogenetic distance increases), whose priors are constrained to be positive.
 
 
 &nbsp; 
@@ -296,6 +297,7 @@ The literature search was completed before the first submission of the preregist
   * average relatedness from the articles from which we obtained the effect sizes or additional references matching the exact population 
   * we did not collect data on variance in relatedness because it was not possible to extract this information from most studies reporting relatedness levels 
 
+\newpage
 
 ## **Changes from preregistration**
 \ 

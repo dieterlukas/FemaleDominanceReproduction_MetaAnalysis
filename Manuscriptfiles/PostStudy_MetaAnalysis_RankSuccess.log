@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.4.6)  18 JUL 2022 14:31
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.4.6)  20 JUL 2022 15:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1338,27 +1338,37 @@ LaTeX Font Info:    Font shape `TU/Arial(0)/m/sl' in size <10> not available
 48.
 LaTeX Font Info:    Font shape `TU/Arial(0)/m/it' will be
 (Font)              scaled to size 10.0pt on input line 248.
-[2] [3] [4] [5] [6] [7] [8] [9]
-Underfull \hbox (badness 10000) in paragraph at lines 714--718
+[2] [3] [4]
+LaTeX Font Info:    Font shape `TU/Arial(0)/bx/it' will be
+(Font)              scaled to size 10.0pt on input line 415.
+[5] [6] [7] [8] [9]
+LaTeX Font Info:    Font shape `TU/Arial(1)/bx/n' will be
+(Font)              scaled to size 10.0pt on input line 717.
+LaTeX Font Info:    Font shape `TU/Arial(1)/bx/n' will be
+(Font)              scaled to size 7.0pt on input line 717.
+LaTeX Font Info:    Font shape `TU/Arial(1)/bx/n' will be
+(Font)              scaled to size 5.0pt on input line 717.
 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 751--759
+Underfull \hbox (badness 10000) in paragraph at lines 716--720
 
  []
 
 [10]
+Underfull \hbox (badness 10000) in paragraph at lines 753--761
+
+ []
+
+[11]
 LaTeX Font Info:    Font shape `TU/Arial(0)/bx/sl' in size <10> not available
 (Font)              Font shape `TU/Arial(0)/bx/it' tried instead on input line 
-822.
+859.
 LaTeX Font Info:    Font shape `TU/Arial(0)/bx/it' will be
-(Font)              scaled to size 10.0pt on input line 822.
-[11] [12] [13]
+(Font)              scaled to size 10.0pt on input line 859.
+[12] [13]
 File: Figures/ranksuccess_phylogeny.png Graphic file (type bmp)
 <Figures/ranksuccess_phylogeny.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 947--958
+Underfull \hbox (badness 10000) in paragraph at lines 951--962
 [][]
  []
 
@@ -1366,7 +1376,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 947--958
 File: Figures/ranksuccess_Fig1_orchard.png Graphic file (type bmp)
 <Figures/ranksuccess_Fig1_orchard.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 1004--1014
+Underfull \hbox (badness 10000) in paragraph at lines 1008--1018
 [][]
  []
 
@@ -1378,12 +1388,12 @@ File: Figures/ranksuccess_Fig2_effectsize_samplesize.png Graphic file (type bmp
 File: Figures/ranksuccess_Fig3_effectsize_noyears.png Graphic file (type bmp)
 <Figures/ranksuccess_Fig3_effectsize_noyears.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 1088--1094
+Underfull \hbox (badness 10000) in paragraph at lines 1092--1098
 [][]
  []
 
 [18]
-Underfull \hbox (badness 10000) in paragraph at lines 1108--1109
+Underfull \hbox (badness 10000) in paragraph at lines 1112--1113
 
  []
 
@@ -1392,7 +1402,7 @@ File: Figures/ranksuccess_Fig4_covariation_phylogeny.png Graphic file (type bmp
 )
 <Figures/ranksuccess_Fig4_covariation_phylogeny.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 1204--1215
+Underfull \hbox (badness 10000) in paragraph at lines 1208--1219
 [][]
  []
 
@@ -1401,7 +1411,7 @@ File: Figures/ranksuccess_Fig5_effectsize_lifehistorymeasure.png Graphic file (
 type bmp)
 <Figures/ranksuccess_Fig5_effectsize_lifehistorymeasure.png>
 [23] [24] [25] [26]
-Underfull \hbox (badness 10000) in paragraph at lines 1544--1565
+Underfull \hbox (badness 10000) in paragraph at lines 1548--1569
 
  []
 
@@ -1410,12 +1420,12 @@ File: Figures/ranksuccess_Fig9_effectsizes_macaquedominancestyles.png Graphic f
 ile (type bmp)
 <Figures/ranksuccess_Fig9_effectsizes_macaquedominancestyles.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 1628--1636
+Underfull \hbox (badness 10000) in paragraph at lines 1632--1640
 [][]
  []
 
 [28]
-Underfull \hbox (badness 10000) in paragraph at lines 1645--1654
+Underfull \hbox (badness 10000) in paragraph at lines 1649--1658
 
  []
 
@@ -1424,22 +1434,22 @@ File: Figures/ranksuccess_Fig6_effectsize_philopatry.png Graphic file (type bmp
 )
 <Figures/ranksuccess_Fig6_effectsize_philopatry.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 1667--1672
+Underfull \hbox (badness 10000) in paragraph at lines 1671--1676
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1689--1690
+Underfull \hbox (badness 10000) in paragraph at lines 1693--1694
 
  []
 
 [30]
-Underfull \hbox (badness 10000) in paragraph at lines 1734--1744
+Underfull \hbox (badness 10000) in paragraph at lines 1738--1748
 
  []
 
 [31]
-Underfull \hbox (badness 10000) in paragraph at lines 1755--1761
+Underfull \hbox (badness 10000) in paragraph at lines 1759--1765
 
  []
 
@@ -1448,7 +1458,7 @@ File: Figures/ranksuccess_Fig7_effectsize_funnelplot.png Graphic file (type bmp
 )
 <Figures/ranksuccess_Fig7_effectsize_funnelplot.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 1957--1971
+Underfull \hbox (badness 10000) in paragraph at lines 1961--1975
 [][]
  []
 
@@ -1457,7 +1467,7 @@ File: Figures/ranksuccess_Fig8_effectsize_interaction_groupsize.png Graphic fil
 e (type bmp)
 <Figures/ranksuccess_Fig8_effectsize_interaction_groupsize.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 2089--2100
+Underfull \hbox (badness 10000) in paragraph at lines 2093--2104
 [][]
  []
 
@@ -1466,31 +1476,31 @@ File: Figures/ranksuccess_Fig10_simulatedeffectsizes.png Graphic file (type bmp
 )
 <Figures/ranksuccess_Fig10_simulatedeffectsizes.png>
 [43] [44] [45] [46] [47] [48] [49] [50] [51]
-Underfull \hbox (badness 1173) in paragraph at lines 3100--3104
+Underfull \hbox (badness 1173) in paragraph at lines 3104--3108
 []\TU/Arial(0)/m/n/10 Wilson, D. B. 2019. \TU/Arial(0)/m/it/10 Practical Meta-A
 nalysis Effect Size Calculator [Online Calculator]. \TU/Arial(0)/m/n/10 retriev
 ed
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3100--3104
+Underfull \hbox (badness 10000) in paragraph at lines 3104--3108
 \TU/Arial(0)/m/n/10 from: hhttps:/www.campbellcollaboration.org/research-resour
 ces/research-for-resources/effect-size-
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3107.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3111.
 [52]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 3107.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 3111.
 (./PostStudy_MetaAnalysis_RankSuccess.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 3107.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 3107.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 3111.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 3111.
  ) 
 Here is how much of TeX's memory you used:
- 29327 strings out of 492916
- 529670 string characters out of 6133346
- 765439 words of memory out of 5000000
- 33046 multiletter control sequences out of 15000+600000
- 538910 words of font info for 87 fonts, out of 8000000 for 9000
+ 29338 strings out of 492916
+ 529985 string characters out of 6133346
+ 765440 words of memory out of 5000000
+ 33053 multiletter control sequences out of 15000+600000
+ 538934 words of font info for 90 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  59i,13n,118p,833b,446s stack positions out of 5000i,500n,10000p,200000b,80000s
 
